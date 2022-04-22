@@ -1,0 +1,154 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            Editar cliente
+        </h2>
+    </x-slot>
+
+    <div>
+        <div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8">
+            <div class="mt-5 md:mt-0 md:col-span-2">
+                <form method="post" action="{{ route('clientes.update', $cliente->id) }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="shadow overflow-hidden sm:rounded-md">
+                        <div class="px-4 py-5 bg-white sm:p-6">
+                            <div class="flex justify-between mb-4">
+                                <div class="w-1/4">
+                                    <label for="nombre" class="block font-medium text-sm text-gray-700">Nombre</label>
+                                    <input type="text" name="nombre" id="nombre" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old('nombre', $cliente->nombre) }}" />
+                                    @error('nombre')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="w-1/3">
+                                    <label for="apellidos" class="block font-medium text-sm text-gray-700">Apellidos</label>
+                                    <input type="text" name="apellidos" id="apellidos" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old('apellidos', $cliente->apellidos) }}" />
+                                    @error('apellidos')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="w-1/4">
+                                    <label for="dni" class="block font-medium text-sm text-gray-700">DNI</label>
+                                    <input type="text" name="dni" id="dni" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old('dni', $cliente->apellidos) }}" />
+                                    @error('dni')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="flex justify-between mb-4">
+                                <div class="w-5/12">
+                                    <label for="direccion_fiscal" class="block font-medium text-sm text-gray-700">Dirección fiscal</label>
+                                    <input type="text" name="direccion_fiscal" id="direccion_fiscal" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old('direccion_fiscal', $cliente->direccion_fiscal) }}" />
+                                    @error('direccion_fiscal')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="w-5/12">
+                                    <label for="domicilio" class="block font-medium text-sm text-gray-700">Domicilio</label>
+                                    <input type="text" name="domicilio" id="domicilio" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old('domicilio', $cliente->domicilio) }}" />
+                                    @error('domicilio')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="flex justify-between mb-4">
+                                <div>
+                                    <label for="nombre_comercial" class="block font-medium text-sm text-gray-700">Nombre comercial</label>
+                                    <input type="text" name="nombre_comercial" id="nombre_comercial" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old('nombre_comercial', $cliente->nombre_comercial) }}" />
+                                    @error('nombre_comercial')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div>
+                                    <label for="nombre_sociedad" class="block font-medium text-sm text-gray-700">Nombre sociedad</label>
+                                    <input type="text" name="nombre_sociedad" id="nombre_sociedad" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old('nombre_sociedad', $cliente->nombre_sociedad) }}" />
+                                    @error('nombre_sociedad')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div>
+                                    <label for="cif" class="block font-medium text-sm text-gray-700">CIF</label>
+                                    <input type="text" name="cif" id="cif" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old('cif', $cliente->cif) }}" />
+                                    @error('cif')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="flex justify-between mb-4">
+                                <div class="w-5/12">
+                                    <label for="cuenta_bancaria" class="block font-medium text-sm text-gray-700">Cuenta bancaria</label>
+                                    <input type="text" name="cuenta_bancaria" id="cuenta_bancaria" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old('cuenta_bancaria', $cliente->cuenta_bancaria) }}" />
+                                    @error('cuenta_bancaria')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="w-5/12">
+                                    <label for="n_tarjeta" class="block font-medium text-sm text-gray-700">Número de tarjeta</label>
+                                    <input type="text" name="n_tarjeta" id="n_tarjeta" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old('n_tarjeta', $cliente->n_tarjeta) }}" />
+                                    @error('n_tarjeta')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="flex justify-between mb-4">
+                                <div class="w-5/12">
+                                    <label for="email" class="block font-medium text-sm text-gray-700">E-mail</label>
+                                    <input type="text" name="email" id="email" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old('email', $cliente->email) }}" />
+                                    @error('email')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="w-4/12">
+                                    <label for="telefono" class="block font-medium text-sm text-gray-700">Teléfono</label>
+                                    <input type="number" name="telefono" id="telefono" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old('telefono', $cliente->telefono) }}" />
+                                    @error('telefono')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="w-2/12">
+                                    <label for="anho_contable" class="block font-medium text-sm text-gray-700">Año</label>
+                                    <input type="number" name="anho_contable" id="anho_contable" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old('anho_contable', $cliente->anho_contable) }}" />
+                                    @error('anho_contable')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
+                            <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
+                                Editar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</x-app-layout>

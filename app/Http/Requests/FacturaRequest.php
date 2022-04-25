@@ -24,9 +24,9 @@ class FacturaRequest extends FormRequest
     public function rules()
     {
         return [
-            'fecha'=>'date',
+            'fecha_cargo'=>'date',
             'file'=>'required',
-            'referencia'=>'required',
+            'referencia_contrato'=>'required',
             'id_cliente' => 'numeric|required',
         ];
     }

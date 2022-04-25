@@ -135,10 +135,10 @@
                                     </div>
 
                                     <div class="w-1/6 ml-2">
-                                        <label for="anho" class="block font-medium text-sm text-gray-700">Año</label>
-                                        <input type="number" name="anho" id="anho" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old('anho', '') }}" />
-                                        @error('anho')
+                                        <label for="anho_contable" class="block font-medium text-sm text-gray-700">Año contable</label>
+                                        <input type="number" name="anho_contable" id="anho_contable" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old('anho_contable', '') }}" />
+                                        @error('anho_contable')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>

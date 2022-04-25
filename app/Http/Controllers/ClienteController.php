@@ -96,7 +96,7 @@ class ClienteController extends Controller
 
                 if(isset($validated["contratos"]["presupuesto"][$clave_contrato])){
                     $validated["contratos"]["presupuesto"][$clave_contrato] = Storage::disk('public')->putFile('contratos', $validated["contratos"]["presupuesto"][$clave_contrato]);
-                    $contrato->presupuesto = $validated["contratos"]["presupuesto"][$clave_contrato];
+                    $contrato->presu1puesto = $validated["contratos"]["presupuesto"][$clave_contrato];
                 }
 
                 $contrato->save();
@@ -303,7 +303,7 @@ class ClienteController extends Controller
 
     public function contratos(Cliente $cliente){
 
-        return view ('clientes.contratos',compact('cliente'));
+        return view ('contratos.index',compact('cliente'));
     }
 
     public function facturas(Cliente $cliente){

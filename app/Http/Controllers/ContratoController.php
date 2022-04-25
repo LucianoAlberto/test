@@ -60,16 +60,16 @@ class ContratoController extends Controller
 
         $contrato->concepto=$valido['concepto'];
         $contrato->referencia=$valido['referencia'];
-        $contrato->fecha_contrato=$valido['fecha'];
+        $contrato->fecha_firma=$valido['fecha_firma'];
         $contrato->base_imponible=$valido['base_imponible'];
         $contrato->iva=$valido['iva'];
         $contrato->irpf=$valido['irpf'];
         $contrato->total=$valido['total'];
-        $contrato->cliente_id=$valido['cliente_id'];
+        $contrato->cliente_id=$cliente->id;
 
         $contrato->save();
 
-        return redirect()->route('clientes.contratos',compact('cliente'));
+        return redirect()->route('contratos.index',compact('cliente'));
     }
 
     /**

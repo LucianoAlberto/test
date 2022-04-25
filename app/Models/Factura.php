@@ -9,7 +9,7 @@ class Factura extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['cliente_id', 'fecha_cargo', 'factura'];
+    protected $fillable = ['cliente_id', 'fecha_cargo', 'factura', 'referencia_contrato'];
 
     /**
      * Obtiene el cliente asociado a esta factura.

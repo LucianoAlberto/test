@@ -75,11 +75,11 @@
                                 </div>
 
                                 <div class="w-1/4 mr-5">
-                                    <label for="fecha" class="block font-medium text-sm text-gray-700">Fecha</label>
-                                    <input type="date" name="fecha" id="fecha" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                        value="{{ old('fecha', '') }}" >
+                                    <label for="fecha_firma" class="block font-medium text-sm text-gray-700">Fecha</label>
+                                    <input type="date" name="fecha_firma" id="fecha_firma" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old('fecha_firma', '') }}" >
 
-                                    @error('fecha')
+                                    @error('fecha_firma')
                                         <p class="text-sm text-red-600">{{ $message }}</p>
                                     @enderror
                                 </div>
@@ -138,6 +138,25 @@
                                     @enderror
                                 </div>
 
+                            </div>
+                            <div class="flex">
+                                <div>
+                                    <label for="archivo" class="block font-medium text-sm text-gray-700">Adjuntar contrato</label>
+                                    <input type="file" name="archivo" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old("archivo", '') }}" />
+                                    @error('archivo')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div>
+                                    <label for="presupuesto" class="block font-medium text-sm text-gray-700">Adjuntar presupuesto</label>
+                                    <input type="file" name="presupuesto" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old("presupuesto", '') }}" />
+                                    @error('presupuesto')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
 

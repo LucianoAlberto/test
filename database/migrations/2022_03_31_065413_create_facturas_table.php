@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('cliente_id')->constrained();
             $table->date('fecha_cargo')->nullable();
             $table->string('factura');
+            $table->string('referencia_contrato')->nullable();
             $table->timestamps();
         });
     }

@@ -28,7 +28,7 @@ class ClienteRequest extends FormRequest
             'nombre' => 'required|string',
             'apellidos' => 'required|string',
             'dni' => 'nullable|string',
-            'anho' => 'nullable|numeric',
+            'anho_contable' => 'nullable|numeric',
             'direccion_fiscal' => 'nullable|string',
             'domicilio' => 'nullable|string',
             'nombre_comercial' => 'nullable|string',

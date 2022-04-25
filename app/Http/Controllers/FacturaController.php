@@ -19,7 +19,8 @@ class FacturaController extends Controller
     public function index(Cliente $cliente)
     {
         $proyectos = $cliente->proyectos();
-        return view('facturas.index', compact('cliente', 'proyectos'));
+        $facturas = $cliente->facturas();
+        return view('facturas.index', compact('cliente', 'proyectos', 'facturas'));
     }
 
     /**
@@ -49,13 +50,14 @@ class FacturaController extends Controller
         $factura = new Factura;
         $factura->cliente_id = $cliente->id;
 
-        $factura->fecha_cargo = $valido['fecha'];
+        $factura->fecha_cargo = $valido['fecha_cargo'];
         $factura->factura = $valido['file'];
+        $factura->referencia_contrato = $valido['referencia_contrato'];
 
         $factura->save();
 
-        if($valido['referencia']!=0){
-            $contrato = Contrato::where('referencia',$valido['referencia'])->select('id')->get();
+        if($valido['referencia_contrato']!=0){
+            $contrato = Contrato::where('referencia',$valido['referencia_contrato'])->select('id')->get();
             $factura->contratos()->attach($contrato[0]);
         }
 
@@ -91,9 +93,23 @@ class FacturaController extends Controller
      * @param  \App\Models\Factura  $factura
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Factura $factura)
+    public function update(FacturaRequest $request, Cliente $cliente, Factura $factura)
     {
-        //
+
+        $valido=$request->validated();
+
+        $factura->cliente_id = $cliente->id;
+        $factura->fecha_cargo = $valido['fecha_cargo'];
+        $factura->referencia_contrato = $valido['referencia_contrato'];
+
+        if($request->hasFile('file')){
+            $valido['file']=Storage::disk('public')->putFile('facturas',$valido['file']);
+            $factura->factura=$valido['file'];
+        }
+
+        $factura->save();
+
+        return redirect()->route('facturas.index', compact('cliente'));
     }
 
     /**

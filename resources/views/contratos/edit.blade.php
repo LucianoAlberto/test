@@ -74,7 +74,7 @@
 
                                 <div>
                                     <label for="fecha_firma" class="block font-medium text-sm text-gray-700">Fecha de la firma</label>
-                                    <input type="text" name="fecha_firma" id="fecha_firma" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                    <input type="date" name="fecha_firma" id="fecha_firma" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('fecha_firma', $contrato->fecha_firma) }}" />
                                     @error('fecha_firma')
                                         <p class="text-sm text-red-600">{{ $message }}</p>
@@ -94,7 +94,7 @@
                             <div class="flex justify-between mb-4">
                                 <div class="w-5/12">
                                     <label for="presupuesto" class="block font-medium text-sm text-gray-700">Presupuesto</label>
-                                    <input type="text" name="presupuesto" id="presupuesto" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                    <input type="file" name="presupuesto" id="presupuesto" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('presupuesto', $contrato->presupuesto) }}" />
                                     @error('presupuesto')
                                         <p class="text-sm text-red-600">{{ $message }}</p>

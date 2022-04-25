@@ -9,8 +9,8 @@ class Proyecto extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['referencia_contrato', 'concepto', 'proveedor_dominio', 'proveedor_hosting', 'nombre_dominio', 'otros_datos', 'sepa',
-    'preferencias'];
+    protected $fillable = ['referencia', 'concepto', 'proveedor_dominio_usuario', 'proveedor_dominio_contrasenha', 'proveedor_hosting_usuario',
+    'nombre_dominio', 'proveedor_hosting_contrasenha', 'otros_datos', 'sepa', 'preferencias'];
 
     /**
      * Obtiene el cliente asociados a este proyecto.

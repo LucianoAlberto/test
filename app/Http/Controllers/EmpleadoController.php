@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ConceptoFactura;
+use App\Models\Empleado;
 use Illuminate\Http\Request;
 
-class ConceptoFacturaController extends Controller
+class EmpleadoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +24,7 @@ class ConceptoFacturaController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -35,20 +35,16 @@ class ConceptoFacturaController extends Controller
      */
     public function store(Request $request)
     {
-        $conceptoFactura=new ConceptoFactura;
-        $conceptoFactura->nombre=$request['nuevoConcepto'];
-        $conceptoFactura->save();
-
-        return redirect()->back();
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ConceptoFactura  $conceptoFactura
+     * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function show(ConceptoFactura $conceptoFactura)
+    public function show(Empleado $empleado)
     {
         //
     }
@@ -56,10 +52,10 @@ class ConceptoFacturaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ConceptoFactura  $conceptoFactura
+     * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function edit(ConceptoFactura $conceptoFactura)
+    public function edit(Empleado $empleado)
     {
         //
     }
@@ -68,10 +64,10 @@ class ConceptoFacturaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ConceptoFactura  $conceptoFactura
+     * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ConceptoFactura $conceptoFactura)
+    public function update(Request $request, Empleado $empleado)
     {
         //
     }
@@ -79,18 +75,11 @@ class ConceptoFacturaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ConceptoFactura  $conceptoFactura
+     * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ConceptoFactura $conceptoFactura)
+    public function destroy(Empleado $empleado)
     {
-        $conceptoFactura->delete();
-    }
-
-    public function eliminar(Request $request)
-    {
-        DB::table('concepto_facturas')->where('nombre', $request['eliminarConcepto'])->delete();
-
-        return redirect()->back()->with('eliminado','si');
+        //
     }
 }

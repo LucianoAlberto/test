@@ -13,38 +13,6 @@
                 </x-slot>
             </x-boton2>
         </label>
-
-        <label class="mr-5">Añadir Dominio
-            <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="nuevoDominio(event)">
-                <x-slot name="boton">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                </x-slot>
-            </x-boton2>
-        </label>
-
-        <label class="mr-5">Añadir DB
-            <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="nuevaBD(event)">
-                <x-slot name="boton">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                </x-slot>
-            </x-boton2>
-        </label>
-
-        <label class="mr-5">Añadir Email
-            <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="nuevoEmail(event)">
-                <x-slot name="boton">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                </x-slot>
-            </x-boton2>
-        </label>
-
-        <label class="mr-5">Añadir Accesso
-            <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="nuevoAccesso(event)">
-                <x-slot name="boton">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                </x-slot>
-            </x-boton2>
-        </label>
     </x-slot>
 
 
@@ -81,7 +49,7 @@
 
                 {{--Eliminar concepto--}}
 
-                <form class="bg-gray-300 shadow-md rounded px-8 pt-6 pb-8 mb-4" action="{{ route('conceptos.store') }}"
+                <form class="bg-gray-300 shadow-md rounded px-8 pt-6 pb-8 mb-4" action="{{ route('conceptos.eliminar') }}"
                     method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-4">
@@ -164,37 +132,37 @@
 
                                 <div class="flex justify-between mb-4">
                                     <div class="w-1/8">
-                                        <label for="provedor_dominio_usuario"
+                                        <label for="proveedor_dominio_usuario"
                                             class="block font-medium text-sm text-gray-700">Provedor Dominio Usuario</label>
-                                        <input type="text" name="provedor_dominio_usuario" id="provedor_dominio_usuario">
-                                        @error('provedor_dominio_usuario')
+                                        <input type="text" name="proveedor_dominio_usuario" id="proveedor_dominio_usuario">
+                                        @error('proveedor_dominio_usuario')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
 
                                     <div class="w-1/8">
-                                        <label for="provedor_dominio_password"
+                                        <label for="proveedor_dominio_password"
                                             class="block font-medium text-sm text-gray-700">Provedor Dominio Password</label>
-                                        <input type="text" name="provedor_dominio_password" id="provedor_dominio_password">
-                                        @error('provedor_dominio_password')
+                                        <input type="text" name="proveedor_dominio_password" id="proveedor_dominio_password">
+                                        @error('proveedor_dominio_password')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
 
                                     <div class="w-1/8">
-                                        <label for="provedor_hosting_usuario"
+                                        <label for="proveedor_hosting_usuario"
                                             class="block font-medium text-sm text-gray-700">Provedor Hosting Usuario</label>
-                                        <input type="text" name="provedor_hosting_usuario" id="provedor_hosting_usuario">
-                                        @error('provedor_hosting_usuario')
+                                        <input type="text" name="proveedor_hosting_usuario" id="proveedor_hosting_usuario">
+                                        @error('proveedor_hosting_usuario')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
 
                                     <div class="w-1/8">
-                                        <label for="provedor_hosting_password"
+                                        <label for="proveedor_hosting_password"
                                             class="block font-medium text-sm text-gray-700">Provedor Hosting Password</label>
-                                        <input type="text" name="provedor_hosting_password" id="provedor_hosting_password">
-                                        @error('provedor_hosting_password')
+                                        <input type="text" name="proveedor_hosting_password" id="proveedor_hosting_password">
+                                        @error('proveedor_hosting_password')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
@@ -228,8 +196,16 @@
 
                             {{-- Dominios --}}
                             <div class="div_contenedorDominios mb-4">
-                                <h3 class="flex justify-center mt-3 font-bold mb-3 text-2xl">Dominios</h3>
-                                <div class="flex justify-between">
+                                <div class="flex">
+                                    <h3 class="flex justify-center mt-3 font-bold mb-3 text-2xl">Dominios</h3>
+                                    <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="nuevoDominio(event)">
+                                        <x-slot name="boton">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                        </x-slot>
+                                    </x-boton2>
+                                </div>
+
+                                <div class="contenedor_dominio flex justify-between">
                                     <div class="w-1/3 div_nombreDominio">
                                         <label for="dominio_nombre[]"
                                             class="block font-medium text-sm text-gray-700">Nombre Dominio</label>
@@ -262,7 +238,15 @@
 
                             {{-- Base de datos --}}
                             <div class="div_BBDD mb-4">
-                                <h3 class="flex justify-center mt-3 mb-3 font-bold text-2xl">Base De Datos</h3>
+                                <div>
+                                    <h3 class="flex justify-center mt-3 mb-3 font-bold text-2xl">Base De Datos</h3>
+                                    <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="nuevaBD(event)">
+                                        <x-slot name="boton">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                        </x-slot>
+                                    </x-boton2>
+                                </div>
+
                                 <div class="flex justify-between  contenedor_BBDD">
                                     <div class="w-1/3 div_nombreBD">
                                         <label for="bd_nombre[]" class="block font-medium text-sm text-gray-700">Nombre
@@ -296,7 +280,15 @@
 
                             {{-- Emails Coorporativos --}}
                             <div class="div_mail mb-4">
-                                <h3 class="flex justify-center mt-3 mb-3 font-bold text-2xl">Email Corporativo</h3>
+                                <div>
+                                    <h3 class="flex justify-center mt-3 mb-3 font-bold text-2xl">Email Corporativo</h3>
+                                    <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="nuevoEmail(event)">
+                                        <x-slot name="boton">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                        </x-slot>
+                                    </x-boton2>
+                                </div>
+
                                 <div class="flex justify-between  contenedor_mail">
                                     <div class="w-1/3 div_email">
                                         <label for="email[]"
@@ -331,7 +323,15 @@
 
                             {{-- Accesso --}}
                             <div class="div_accesso mb-4">
-                                <h3 class="flex justify-center mt-3 mb-3 font-bold text-2xl">Accesso</h3>
+                                <div>
+                                    <h3 class="flex justify-center mt-3 mb-3 font-bold text-2xl">Accesso</h3>
+                                    <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="nuevoAccesso(event)">
+                                        <x-slot name="boton">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                        </x-slot>
+                                    </x-boton2>
+                                </div>
+
                                 <div class="flex justify-between  contenedor_accesso">
                                     <div class="w-1/3 div_email">
                                         <label for="dominio_accesso[]"

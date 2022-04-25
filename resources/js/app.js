@@ -25,6 +25,9 @@ window.deleteConfirm = function(formId, event)
     else if(event.target.closest("form").classList.contains("contrato")){
         texto = '¿Desea borrar este contrato?';
     }
+    else if(event.target.closest("form").classList.contains("proyecto")){
+        texto = '¿Desea borrar este proyecto?';
+    }
     console.log(texto)
     Swal.fire({
        icon: 'warning',
@@ -378,13 +381,13 @@ window.closeNuevoConcepto=function(){
 }
 
 //repetimos los campos del dominio
-window.nuevoDominio=function(){
+window.nuevoDominio=function(event){
 
-    let div = document.getElementById('contenedorPrincipal').querySelector('.contenedor_dominio').cloneNode(true);
+    let div = event.target.closest(".div_contenedorDominios").querySelector('.contenedor_dominio').cloneNode(true);
     div.querySelectorAll('input').forEach(input => {
         input.value="";
     });
-   document.querySelector('.div_dominios').append(div);
+    event.target.closest(".div_contenedorDominios").append(div);
 
 }
 

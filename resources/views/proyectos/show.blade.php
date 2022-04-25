@@ -14,22 +14,22 @@
 
                 <div class="block mb-8 mx-3">
                     <a href="{{ route('clientes.index') }}"
-                        class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Vovler a la
+                        class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Volver a la
                         lista</a>
                 </div>
 
                 <div class="block mb-8 mx-3">
-                    <a href="{{ route('clientes.contratos', $proyecto->cliente) }}"
+                    <a href="{{ route('contratos.index', $proyecto->cliente) }}"
                         class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Contratos</a>
                 </div>
 
                 <div class="block mb-8 mx-3">
-                    <a href="{{ route('clientes.facturas', $proyecto->cliente) }}"
+                    <a href="{{ route('facturas.index', $proyecto->cliente) }}"
                         class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Facturas</a>
                 </div>
 
                 <div class="block mb-8 mx-3">
-                    <a href="{{ route('clientes.proyectos', $proyecto->cliente) }}"
+                    <a href="{{ route('proyectos.index', $proyecto->cliente) }}"
                         class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Proyectos</a>
                 </div>
             </div>
@@ -147,32 +147,34 @@
                                         <div class=" w-1/2">RUTA ACCESO</div>
                                     </div>
 
-                                    @foreach ($proyecto->emails as $email)
-                                        <div class="flex justify-between ">
+                                    @if(count($proyecto->emailcorporativos) > 0)
+                                        @foreach ($proyecto->emailcorporativos as $email)
+                                            <div class="flex justify-between ">
 
-                                            <div class=" w-1/2">
-                                                @if ($email->email != null)
-                                                    {{ $email->email }}
-                                                @else
-                                                    ---
-                                                @endif
+                                                <div class=" w-1/2">
+                                                    @if ($email->email != null)
+                                                        {{ $email->email }}
+                                                    @else
+                                                        ---
+                                                    @endif
+                                                </div>
+                                                <div class=" w-1/2">
+                                                    @if ($email->password != null)
+                                                        {{ $email->password }}
+                                                    @else
+                                                        ---
+                                                    @endif
+                                                </div>
+                                                <div class=" w-1/2">
+                                                    @if ($email->ruta_accesso != null)
+                                                        {{ $email->ruta_accesso }}
+                                                    @else
+                                                        ---
+                                                    @endif
+                                                </div>
                                             </div>
-                                            <div class=" w-1/2">
-                                                @if ($email->password != null)
-                                                    {{ $email->password }}
-                                                @else
-                                                    ---
-                                                @endif
-                                            </div>
-                                            <div class=" w-1/2">
-                                                @if ($email->ruta_accesso != null)
-                                                    {{ $email->ruta_accesso }}
-                                                @else
-                                                    ---
-                                                @endif
-                                            </div>
-                                        </div>
-                                    @endforeach
+                                        @endforeach
+                                    @endif
                                 </td>
                             </tr>
 
@@ -192,32 +194,34 @@
                                         <div class=" w-1/2">PASSWORD</div>
                                     </div>
 
-                                    @foreach ($proyecto->dominios as $dominio)
-                                        <div class="flex justify-between ">
+                                    @if(count($proyecto->dominios) > 0)
+                                        @foreach ($proyecto->dominios as $dominio)
+                                            <div class="flex justify-between ">
 
-                                            <div class=" w-1/2">
-                                                @if ($dominio->nombre != null)
-                                                    {{ $dominio->nombre }}
-                                                @else
-                                                    ---
-                                                @endif
+                                                <div class=" w-1/2">
+                                                    @if ($dominio->nombre != null)
+                                                        {{ $dominio->nombre }}
+                                                    @else
+                                                        ---
+                                                    @endif
+                                                </div>
+                                                <div class=" w-1/2">
+                                                    @if ($dominio->usuario != null)
+                                                        {{ $dominio->usuario }}
+                                                    @else
+                                                        ---
+                                                    @endif
+                                                </div>
+                                                <div class=" w-1/2">
+                                                    @if ($dominio->password != null)
+                                                        {{ $dominio->password }}
+                                                    @else
+                                                        ---
+                                                    @endif
+                                                </div>
                                             </div>
-                                            <div class=" w-1/2">
-                                                @if ($dominio->usuario != null)
-                                                    {{ $dominio->usuario }}
-                                                @else
-                                                    ---
-                                                @endif
-                                            </div>
-                                            <div class=" w-1/2">
-                                                @if ($dominio->password != null)
-                                                    {{ $dominio->password }}
-                                                @else
-                                                    ---
-                                                @endif
-                                            </div>
-                                        </div>
-                                    @endforeach
+                                        @endforeach
+                                    @endif
                                 </td>
                             </tr>
 
@@ -237,32 +241,34 @@
                                             <div class=" w-1/2">PASSWORD</div>
                                         </div>
 
-                                        @foreach ($proyecto->baseDatos as $bd)
-                                            <div class="flex justify-between ">
+                                        @if(count($proyecto->basedatoss) > 0)
+                                            @foreach ($proyecto->basedatoss as $bd)
+                                                <div class="flex justify-between ">
 
-                                                <div class=" w-1/2">
-                                                    @if ($bd->nombre != null)
-                                                        {{ $bd->nombre }}
-                                                    @else
-                                                        ---
-                                                    @endif
+                                                    <div class=" w-1/2">
+                                                        @if ($bd->nombre != null)
+                                                            {{ $bd->nombre }}
+                                                        @else
+                                                            ---
+                                                        @endif
+                                                    </div>
+                                                    <div class=" w-1/2">
+                                                        @if ($bd->host != null)
+                                                            {{ $bd->host }}
+                                                        @else
+                                                            ---
+                                                        @endif
+                                                    </div>
+                                                    <div class=" w-1/2">
+                                                        @if ($bd->password != null)
+                                                            {{ $bd->password }}
+                                                        @else
+                                                            ---
+                                                        @endif
+                                                    </div>
                                                 </div>
-                                                <div class=" w-1/2">
-                                                    @if ($bd->host != null)
-                                                        {{ $bd->host }}
-                                                    @else
-                                                        ---
-                                                    @endif
-                                                </div>
-                                                <div class=" w-1/2">
-                                                    @if ($bd->password != null)
-                                                        {{ $bd->password }}
-                                                    @else
-                                                        ---
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        @endforeach
+                                            @endforeach
+                                        @endif
                                     </td>
                                 </tr>
 
@@ -281,32 +287,34 @@
                                             <div class=" w-1/2">PASSWORD</div>
                                         </div>
 
-                                        @foreach ($proyecto->accessos as $acceso)
-                                            <div class="flex justify-between ">
+                                        @if(count($proyecto->accesos) > 0)
+                                            @foreach ($proyecto->accesos as $acceso)
+                                                <div class="flex justify-between ">
 
-                                                <div class=" w-1/2">
-                                                    @if ($acceso->dominio != null)
-                                                        {{$acceso->dominio }}
-                                                    @else
-                                                        ---
-                                                    @endif
+                                                    <div class=" w-1/2">
+                                                        @if ($acceso->dominio != null)
+                                                            {{$acceso->dominio }}
+                                                        @else
+                                                            ---
+                                                        @endif
+                                                    </div>
+                                                    <div class=" w-1/2">
+                                                        @if ($acceso->usuario != null)
+                                                            {{ $acceso->usuario }}
+                                                        @else
+                                                            ---
+                                                        @endif
+                                                    </div>
+                                                    <div class=" w-1/2">
+                                                        @if ($acceso->password != null)
+                                                            {{ $acceso->passwod }}
+                                                        @else
+                                                            ---
+                                                        @endif
+                                                    </div>
                                                 </div>
-                                                <div class=" w-1/2">
-                                                    @if ($acceso->usuario != null)
-                                                        {{ $acceso->usuario }}
-                                                    @else
-                                                        ---
-                                                    @endif
-                                                </div>
-                                                <div class=" w-1/2">
-                                                    @if ($acceso->password != null)
-                                                        {{ $acceso->passwod }}
-                                                    @else
-                                                        ---
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        @endforeach
+                                            @endforeach
+                                        @endif
                                     </td>
                                 </tr>
 

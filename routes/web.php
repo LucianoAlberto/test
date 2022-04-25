@@ -75,3 +75,12 @@ Route::put('/proyectos/{cliente}/{proyecto}', [ProyectoController::class, 'updat
 Route::delete('/proyectos/{cliente}/{proyecto}', [ProyectoController::class, 'destroy'])->name('proyectos.destroy');
 
 Route::post('conceptos',[ConceptoFacturaController::class,'store'])->name('conceptos.store');
+Route::post('conceptos/eliminar',[ConceptoFacturaController::class,'eliminar'])->name('conceptos.eliminar');
+
+Route::get('/empleados', [EmpleadoController::class, 'index'])->name('empleados.index');
+Route::get('/empleados/create', [EmpleadoController::class, 'create'])->name('empleados.create');
+Route::post('/empleados', [EmpleadoController::class, 'store'])->name('empleados.store');
+Route::get('/empleados/{empleado}', [EmpleadoController::class, 'show'])->name('empleados.show');
+Route::get('/empleados/{empleado}/edit', [EmpleadoController::class, 'edit'])->name('empleados.edit');
+Route::put('/empleados/{empleado}', [EmpleadoController::class, 'update'])->name('empleados.update');
+Route::delete('/empleados/{empleado}', [EmpleadoController::class, 'destroy'])->name('empleados.destroy');

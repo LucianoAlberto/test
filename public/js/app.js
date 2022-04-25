@@ -5089,6 +5089,8 @@ window.deleteConfirm = function (formId, event) {
     texto = '¿Desea borrar esta factura?';
   } else if (event.target.closest("form").classList.contains("contrato")) {
     texto = '¿Desea borrar este contrato?';
+  } else if (event.target.closest("form").classList.contains("proyecto")) {
+    texto = '¿Desea borrar este proyecto?';
   }
 
   console.log(texto);
@@ -5375,12 +5377,12 @@ window.closeNuevoConcepto = function () {
 }; //repetimos los campos del dominio
 
 
-window.nuevoDominio = function () {
-  var div = document.getElementById('contenedorPrincipal').querySelector('.contenedor_dominio').cloneNode(true);
+window.nuevoDominio = function (event) {
+  var div = event.target.closest(".div_contenedorDominios").querySelector('.contenedor_dominio').cloneNode(true);
   div.querySelectorAll('input').forEach(function (input) {
     input.value = "";
   });
-  document.querySelector('.div_dominios').append(div);
+  event.target.closest(".div_contenedorDominios").append(div);
 };
 
 window.nuevaBD = function () {

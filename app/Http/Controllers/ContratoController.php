@@ -150,6 +150,6 @@ class ContratoController extends Controller
 
         $contrato_destruido->delete();
 
-        return redirect()->route('contratos.index', ['cliente' => $cliente, 'contrato' => $contrato]);
+        return redirect()->back();
     }
 }

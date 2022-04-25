@@ -111,7 +111,7 @@
                                                             </x-slot>
                                                         </x-boton2>
 
-                                                        <form id="{{ $cliente->id }}" class="cliente inline-block" action="{{ route('clientes.destroy', $cliente->id) }}" method="POST" onclick="deleteConfirm('{{ $cliente->id }}', event)">
+                                                        <form id="{{ $cliente->id }}" class="factura inline-block" action="{{ route('facturas.destroy', ['cliente' => $cliente->id, 'factura' => $factura->id]) }}" method="POST" onclick="deleteConfirm('{{ $cliente->id }}', event)">
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 

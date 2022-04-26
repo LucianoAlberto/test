@@ -44,7 +44,7 @@ class FacturaController extends Controller
         $valido=$request->validated();
         //dd($cliente);
         if($request->hasFile('file')){
-            $valido['file']=Storage::disk('public')->putFile('uploads_factura',$valido['file']);
+            $valido['file']=Storage::disk('public')->putFile('uploads_factura',$valido['file'], 'public');
         }
 
         $factura = new Factura;
@@ -103,7 +103,7 @@ class FacturaController extends Controller
         $factura->referencia_contrato = $valido['referencia_contrato'];
 
         if($request->hasFile('file')){
-            $valido['file']=Storage::disk('public')->putFile('facturas',$valido['file']);
+            $valido['file']=Storage::disk('public')->putFile('facturas',$valido['file'], 'public');
             $factura->factura=$valido['file'];
         }
 

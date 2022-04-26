@@ -331,11 +331,9 @@
                                     <td
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
                                         <div>
+                                            <a href="{{ asset("/storage/{$proyecto->sepa}") }}" target="_blank" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-10 border border-green-700 rounded ">Ver</a>
 
-                                               <a href="{{ asset("storage/{$proyecto->sepa}") }}" target="_blank" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-10 border border-green-700 rounded ">Ver</a>
-
-                                                <a href="" download="{{ asset("storage/{$proyecto->sepa}") }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded px-5"> Descargar</a>
-
+                                            <a href="{{ asset("/storage/{$proyecto->sepa}") }}" download class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded px-5"> Descargar</a>
                                       </div>
 
                                     </td>
@@ -354,7 +352,7 @@
 
                                             <a href="{{ asset("storage/{$proyecto->hoja_preferencia}") }}" target="_blank" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-10 border border-green-700 rounded ">Ver</a>
 
-                                             <a href="" download="{{ asset("storage/{$proyecto->hoja_preferencia}") }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded px-5"> Descargar</a>
+                                             <a href="{{ asset("/storage/{$proyecto->sepa}") }}" download class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded px-5"> Descargar</a>
 
                                    </div>
                                     </td>

@@ -27,6 +27,15 @@
                                         @enderror
                                     </div>
 
+                                    <div class="w-2/5 mr-2">
+                                        <label for="apellidos" class="block font-medium text-sm text-gray-700">Apellidos</label>
+                                        <input type="text" name="apellidos" id="apellidos" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old('apellidos', '') }}" />
+                                        @error('apellidos')
+                                            <p class="text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
                                     <div class="w-1/5 ml-2">
                                         <label for="dni" class="block font-medium text-sm text-gray-700">DNI</label>
                                         <input type="text" name="dni" id="dni" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -71,37 +80,64 @@
 
 
                                     <div>
-                                        <label for="contratos[archivo][]" class="block font-medium text-sm text-gray-700">Adjuntar contrato</label>
-                                        <input type="file" name="contratos[archivo][]" id="contratos[archivo][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("contratos[archivo][]", '') }}" />
-                                        @error('contratos[archivo][]')
+                                        <label for="contrato" class="block font-medium text-sm text-gray-700">Adjuntar contrato</label>
+                                        <input type="file" name="contrato" id="contrato" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old("contrato", '') }}" />
+                                        @error('contrato')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
 
                                     <div>
-                                        <label for="contratos[presupuesto][]" class="block font-medium text-sm text-gray-700">Adjuntar presupuesto</label>
-                                        <input type="file" name="contratos[presupuesto][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("contratos[presupuesto][]", '') }}" />
-                                        @error('contratos[presupuesto][]')
+                                        <label for="doc_confidencialidad" class="block font-medium text-sm text-gray-700">Adjuntar documento de confidencialidad</label>
+                                        <input type="file" name="doc_confidencialidad" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old("doc_confidencialidad", '') }}" />
+                                        @error('doc_confidencialidad')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
 
-                                    <div class="divFacturas">
+                                    <div>
+                                        <label for="doc_normas" class="block font-medium text-sm text-gray-700">Adjuntar documento de normas</label>
+                                        <input type="file" name="doc_normas" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old("doc_normas", '') }}" />
+                                        @error('doc_normas')
+                                            <p class="text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                    <div>
+                                        <label for="doc_prevencion_riesgos" class="block font-medium text-sm text-gray-700">Adjuntar documento de Prevención de Riesgos Laborales</label>
+                                        <input type="file" name="doc_prevencion_riesgos" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old("doc_prevencion_riesgos", '') }}" />
+                                        @error('doc_prevencion_riesgos')
+                                            <p class="text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                    <div>
+                                        <label for="doc_reglamento_interno" class="block font-medium text-sm text-gray-700">Adjuntar documento de Reglamento Interno</label>
+                                        <input type="file" name="doc_reglamento_interno" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old("doc_reglamento_interno", '') }}" />
+                                        @error('doc_reglamento_interno')
+                                            <p class="text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                    <div class="divPagos">
                                         <div class="flex justify-between contenedorTituloBotones">
                                             <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-6 mb-2">
-                                                Facturas del contrato 1
+                                                Pagos
                                             </h3>
 
                                             <div class="flex justify-between">
-                                                <x-boton2 tipo="div" nombre="mas" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masFactura(event)">
+                                                <x-boton2 tipo="div" nombre="mas" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masPago(event)">
                                                     <x-slot name="boton">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
                                                     </x-slot>
                                                 </x-boton2>
 
-                                                <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-16" onclick="menosFactura(event)">
+                                                <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-16" onclick="menosPago(event)">
                                                     <x-slot name="boton">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
                                                     </x-slot>
@@ -109,419 +145,162 @@
                                             </div>
                                         </div>
 
-                                        <div class="flex contenedorFacturas justify-between mb-4">
-                                            <div class="w-5/12 divFechaFactura">
-                                                <label for="contratos[0][facturas][fechas][]" class="block font-medium text-sm text-gray-700">Fecha cargo recurrente</label>
-                                                <input type="date" name="contratos[0][facturas][fechas][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                    value="{{ old("contratos[0][facturas][fechas][]", '') }}" />
-                                                @error("contratos[0][facturas][fechas][]")
-                                                    <p class="text-sm text-red-600">{{ $message }}</p>
-                                                @enderror
+                                        <div class="contenedorNominas justify-between mb-4">
+                                            <div class="flex">
+                                                <div class="w-4/12 divFechaInicioNomina">
+                                                    <label for="nominas[0][fecha_inicio]" class="block font-medium text-sm text-gray-700">Fecha inicio</label>
+                                                    <input type="date" name="nominas[0][fecha_inicio]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                        value="{{ old("nominas[0][fecha_inicio]", '') }}" />
+                                                    @error("nominas[0][fecha_inicio]")
+                                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="w-4/12 divFechaFinNomina">
+                                                    <label for="nominas[0][fecha_fin]" class="block font-medium text-sm text-gray-700">Fecha fin</label>
+                                                    <input type="date" name="nominas[0][fecha_fin]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                        value="{{ old("nominas[0][fecha_fin]", '') }}" />
+                                                    @error("nominas[0][fecha_fin]")
+                                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="w-4/12 divFechaPagoNomina">
+                                                    <label for="nominas[0][fecha_pago]" class="block font-medium text-sm text-gray-700">Fecha de pago</label>
+                                                    <input type="date" name="nominas[0][fecha_pago]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                        value="{{ old("nominas[0][fecha_pago]", '') }}" />
+                                                    @error('nominas[0][fecha_pago]')
+                                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
                                             </div>
+                                            <div class="flex">
+                                                <div class="w-4/12 divHorasNomina">
+                                                    <label for="nominas[0][horas_alta_ss]" class="block font-medium text-sm text-gray-700">Horas de alta en la SS</label>
+                                                    <input type="text" name="nominas[0][horas_alta_ss]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                        value="{{ old("nominas[0][horas_alta_ss]", '') }}" />
+                                                    @error('nominas[0][horas_alta_ss]')
+                                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
 
-                                            <div class="w-5/12 divArchivoFactura">
-                                                <label for="contratos[0][facturas][archivos][]" class="block font-medium text-sm text-gray-700">Adjuntar facturas</label>
-                                                <input type="file" name="contratos[0][facturas][archivos][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                    value="{{ old("contratos[0][facturas][archivos][]", '') }}" />
-                                                @error('contratos[0][facturas][archivos][]')
-                                                    <p class="text-sm text-red-600">{{ $message }}</p>
-                                                @enderror
+                                                <div class="w-4/12 divImporteTotalNomina">
+                                                    <label for="nominas[0][importe_total]" class="block font-medium text-sm text-gray-700">Importe nómina</label>
+                                                    <input type="text" name="nominas[0][importe_total]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                        value="{{ old("nominas[0][importe_total]", '') }}" />
+                                                    @error('nominas[0][importe_total]')
+                                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="w-4/12 divImportePagadoNomina">
+                                                    <label for="nominas[0][importe_pagado]" class="block font-medium text-sm text-gray-700">Importe pagado</label>
+                                                    <input type="text" name="nominas[0][importe_pagado]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                        value="{{ old("nominas[0][importe_pagado]", '') }}" />
+                                                    @error('nominas[0][importe_pagado]')
+                                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <div id="divFacturasIndependientes" class="justify-between mb-16">
-                                <div class="flex justify-center relative mt-8">
-                                    <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-6 mb-2">
-                                        Facturas independientes
-                                    </h3>
-
-                                    <div class="flex absolute right-0 bottom-0">
-                                        <x-boton2 tipo="div" nombre="mas" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masFacturaIndependiente(event)">
-                                            <x-slot name="boton">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                            </x-slot>
-                                        </x-boton2>
-
-                                        <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-16" onclick="menosFacturaIndependiente(event)">
-                                            <x-slot name="boton">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                            </x-slot>
-                                        </x-boton2>
-                                    </div>
-                                </div>
-
-                                <div class="contenedorFacturasIndependientes flex justify-between mb-4">
-                                    <div class="w-5/12">
-                                        <label for="facturas[fechas][]" class="block font-medium text-sm text-gray-700">Fecha cargo recurrente</label>
-                                        <input type="date" name="facturas[fechas][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("facturas[fechas][]", '') }}" />
-                                        @error("facturas[fechas][]")
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-
-                                    <div class="w-5/12">
-                                        <label for="facturas[archivos][]" class="block font-medium text-sm text-gray-700">Adjuntar facturas</label>
-                                        <input type="file" name="facturas[archivos][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("facturas[archivos][]", '') }}" />
-                                        @error('facturas[archivos][]')
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="divPagosIndependientes" class="justify-between mb-16">
-                                <div class="flex justify-center relative mt-8">
-                                    <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-6 mb-2">
-                                        Pagos independientes
-                                    </h3>
-
-                                    <div class="flex absolute right-0 bottom-0">
-                                        <x-boton2 tipo="div" nombre="mas" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masPagoIndependiente(event)">
-                                            <x-slot name="boton">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                            </x-slot>
-                                        </x-boton2>
-
-                                        <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-16" onclick="menosPagoIndependiente(event)">
-                                            <x-slot name="boton">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                            </x-slot>
-                                        </x-boton2>
-                                    </div>
-                                </div>
-
-                                <div class="contenedorPagosIndependientes flex justify-between mb-4">
-                                    <div class="w-5/12">
-                                        <label for="pagos[abonado][]" class="block font-medium text-sm text-gray-700">Abonado</label>
-                                        <input type="text" name="pagos[abonado][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("pagos[abonado][]", '') }}" />
-                                        @error("pagos[abonado][]")
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-
-                                    <div class="w-5/12">
-                                        <label for="pagos[pendiente][]" class="block font-medium text-sm text-gray-700">Pendiente</label>
-                                        <input type="text" name="pagos[pendiente][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("pagos[pendiente][]", '') }}" />
-                                        @error("pagos[pendiente][]")
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-
-                                    <div class="w-5/12">
-                                        <label for="pagos[fecha][]" class="block font-medium text-sm text-gray-700">Fecha</label>
-                                        <input type="date" name="pagos[fecha][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("pagos[fecha][]", '') }}" />
-                                        @error("pagos[fecha][]")
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-
-                                    <div class="w-5/12">
-                                        <label for="pagos[referencia][]" class="block font-medium text-sm text-gray-700">Referencia</label>
-                                        <input type="text" name="pagos[referencia][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("pagos[referencia][]", '') }}" />
-                                        @error('pagos[referencia][]')
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="divProyectos" class="mt-8">
-                                <div class="flex justify-center relative mt-8">
-                                    <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-6 mb-2">
-                                        Proyectos
-                                    </h3>
-
-                                    <div class="flex absolute right-0 bottom-0">
-                                        <x-boton2 tipo="div" nombre="mas" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masProyecto(event)">
-                                            <x-slot name="boton">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                            </x-slot>
-                                        </x-boton2>
-
-                                        <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-16" onclick="menosProyecto(event)">
-                                            <x-slot name="boton">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                            </x-slot>
-                                        </x-boton2>
-                                    </div>
-                                </div>
-
-                                <div class="contenedorProyectos">
-                                    <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-6 mb-2">
-                                        Proyecto 1
-                                    </h3>
-                                    <div class="flex">
-                                        <div class="w-1/4 mr-2">
-                                            <label for="proyectos[referencia][]" class="block font-medium text-sm text-gray-700">Referencia</label>
-                                            <input type="number" name="proyectos[referencia][]" id="proyectos[referencia][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                value="{{ old("proyectos[referencia][]", '') }}" />
-                                            @error('proyectos[referencia][]')
-                                                <p class="text-sm text-red-600">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-
-                                        <div class="w-3/4 ml-2">
-                                            <label for="proyectos[concepto][]" class="block font-medium text-sm text-gray-700">Concepto</label>
-                                            <input type="text" name="proyectos[concepto][]" id="proyectos[concepto][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                value="{{ old("proyectos[concepto][]", '') }}" />
-                                            @error('proyectos[concepto][]')
-                                                <p class="text-sm text-red-600">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="flex">
-                                        <div class="w-1/4 mr-2">
-                                            <label for="proyectos[dominio][usuario][]" class="block font-medium text-sm text-gray-700">Usuario dominio</label>
-                                            <input type="text" name="proyectos[dominio][usuario][]" id="proyectos[dominio][usuario][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                value="{{ old("proyectos[dominio][usuario][]", '') }}" />
-                                            @error('proyectos[dominio][usuario][]')
-                                                <p class="text-sm text-red-600">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-
-                                        <div class="w-1/4 mx-2">
-                                            <label for="proyectos[dominio][contrasenha][]" class="block font-medium text-sm text-gray-700">Contraseña dominio</label>
-                                            <input type="text" name="proyectos[dominio][contrasenha][]" id="proyectos[dominio][contrasenha][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                value="{{ old("proyectos[dominio][contrasenha][]", '') }}" />
-                                            @error('proyectos[dominio][contrasenha][]')
-                                                <p class="text-sm text-red-600">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-
-                                        <div class="w-1/4 mx-2">
-                                            <label for="proyectos[hosting][usuario][]" class="block font-medium text-sm text-gray-700">Usuario hosting</label>
-                                            <input type="text" name="proyectos[hosting][usuario][]" id="proyectos[hosting][usuario][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                value="{{ old("proyectos[hosting][usuario][]", '') }}" />
-                                            @error('proyectos[hosting][usuario][]')
-                                                <p class="text-sm text-red-600">{{ $message }}</p>
-                                                @enderror
-                                        </div>
-
-                                        <div class="w-1/4 ml-2">
-                                            <label for="proyectos[hosting][contrasenha][]" class="block font-medium text-sm text-gray-700">Contraseña hosting</label>
-                                            <input type="text" name="proyectos[hosting][contrasenha][]" id="proyectos[hosting][contrasenha][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                value="{{ old("proyectos[hosting][contrasenha][]", '') }}" />
-                                            @error('proyectos[hosting][contrasenha][]')
-                                                <p class="text-sm text-red-600">{{ $message }}</p>
-                                                @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="w-1/4">
-                                        <label for="proyectos[datos][]" class="block font-medium text-sm text-gray-700">Otros datos de interés</label>
-                                        <input type="text" name="proyectos[datos][]" id="proyectos[datos][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("proyectos[datos][]", '') }}" />
-                                        @error('proyectos[datos][]')
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                            @enderror
-                                    </div>
-
-                                    <div>
-                                        <label for="proyectos[sepa][]" class="block font-medium text-sm text-gray-700">Adjuntar SEPA</label>
-                                        <input type="file" name="proyectos[sepa][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("proyectos[sepa][]", '') }}" />
-                                        @error('proyectos[sepa][]')
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-
-                                    <div>
-                                        <label for="proyectos[preferencias][]" class="block font-medium text-sm text-gray-700">Adjuntar hoja de preferencias</label>
-                                        <input type="file" name="proyectos[preferencias][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("proyectos[preferencias][]", '') }}" />
-                                        @error('proyectos[preferencias][]')
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-
-                                    <div class="divNombresDominio justify-between mb-4">
-                                        <div class="flex justify-center relative">
+                                    <div class="divFaltas">
+                                        <div class="flex justify-between contenedorTituloBotones">
                                             <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-6 mb-2">
-                                                Nombres de dominio
+                                                Faltas de asistencia
+                                            </h3>
+                                            <div class="flex justify-between">
+                                                <x-boton2 tipo="div" nombre="mas" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masFalta(event)">
+                                                    <x-slot name="boton">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                                    </x-slot>
+                                                </x-boton2>
+
+                                                <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-16" onclick="menosFalta(event)">
+                                                    <x-slot name="boton">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                                    </x-slot>
+                                                </x-boton2>
+                                            </div>
+                                        </div>
+
+                                        <div class="contenedorFaltas">
+                                            <div class="divFechaFalta">
+                                                <label for="faltas[0][fecha_falta]" class="block font-medium text-sm text-gray-700">Fecha</label>
+                                                <input type="date" name="faltas[0][fecha_falta]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                    value="{{ old("faltas[0][fecha_falta]", '') }}" />
+                                                @error('faltas[0][fecha_falta]')
+                                                    <p class="text-sm text-red-600">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="divJustificacionFalta">
+                                                <label for="faltas[0][justificacion]" class="block font-medium text-sm text-gray-700">Justificacion</label>
+                                                <input type="text" name="faltas[0][justificacion]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                    value="{{ old("faltas[0][justificacion]", '') }}" />
+                                                @error('faltas[0][justificacion]')
+                                                    <p class="text-sm text-red-600">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="divNotaFalta">
+                                                <label for="faltas[0][notas]" class="block font-medium text-sm text-gray-700">Notas</label>
+                                                <input type="text" name="faltas[0][notas]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                    value="{{ old("faltas[0][notas]", '') }}" />
+                                                @error('faltas[0][notas]')
+                                                    <p class="text-sm text-red-600">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="divVacaciones">
+                                        <div class="flex justify-between contenedorTituloBotones">
+                                            <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-6 mb-2">
+                                                Vacaciones
                                             </h3>
 
-                                            <div class="flex absolute right-0 bottom-0">
-                                                <x-boton2 tipo="div" nombre="mas" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masNombreDominio(event)">
-                                                    <x-slot name="boton">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                                    </x-slot>
-                                                </x-boton2>
-
-                                                <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-16" onclick="menosNombreDominio(event)">
-                                                    <x-slot name="boton">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                                    </x-slot>
-                                                </x-boton2>
-                                            </div>
                                         </div>
-
-                                        <div class="w-1/2 contenedorNombreDominio">
-                                            <label for="proyectos[0][dominio][nombre][]" class="block font-medium text-sm text-gray-700">Nombre</label>
-                                            <input type="text" name="proyectos[0][dominio][nombre][]" id="proyectos[0][dominio][nombre][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                value="{{ old("proyectos[0][dominio][nombre][]", '') }}" />
-                                            @error('proyectos[0][dominio][nombre][]')
+                                        <div>
+                                            <label for="vacaciones_total" class="block font-medium text-sm text-gray-700">Total días de vacaciones acumuladas</label>
+                                            <input type="text" name="vacaciones_total" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                value="{{ old("vacaciones_total", '') }}" />
+                                            @error('vacaciones_total')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
-                                                @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="divBasesDatos" class="justify-between mb-4">
-                                        <div class="flex justify-center relative">
-                                            <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-6 mb-2">
-                                                BBDD
-                                            </h3>
-
-                                            <div class="flex absolute right-0 bottom-0">
-                                                <x-boton2 tipo="div" nombre="mas" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masBasesDatos(event)">
-                                                    <x-slot name="boton">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                                    </x-slot>
-                                                </x-boton2>
-
-                                                <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-16" onclick="menosBasesDatos(event)">
-                                                    <x-slot name="boton">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                                    </x-slot>
-                                                </x-boton2>
-                                            </div>
+                                            @enderror
                                         </div>
 
-                                        <div class="contenedorBasesDatos flex">
-                                            <div class="w-1/3 mr-2 divNombreBD">
-                                                <label for="proyectos[0][bd][nombre][]" class="block font-medium text-sm text-gray-700">Nombre BD</label>
-                                                <input type="text" name="proyectos[0][bd][nombre][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                    value="{{ old("proyectos[0][bd][nombre][]", '') }}" />
-                                                @error("proyectos[0][bd][nombre][]")
-                                                    <p class="text-sm text-red-600">{{ $message }}</p>
-                                                @enderror
-                                            </div>
+                                        <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-6 mb-2">
+                                            Vacaciones disfrutadas
+                                        </h3>
+                                        <div class="flex justify-between">
+                                            <x-boton2 tipo="div" nombre="mas" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masVacacion(event)">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                                </x-slot>
+                                            </x-boton2>
 
-                                            <div class="w-1/3 mx-2 divHostBD">
-                                                <label for="proyectos[0][bd][host][]" class="block font-medium text-sm text-gray-700">HOST</label>
-                                                <input type="text" name="proyectos[0][bd][host][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                    value="{{ old("proyectos[0][bd][host][]", '') }}" />
-                                                @error('proyectos[0][bd][host][]')
-                                                    <p class="text-sm text-red-600">{{ $message }}</p>
-                                                @enderror
-                                            </div>
-
-                                            <div class="w-1/3 ml-2 divContrasenhaBD">
-                                                <label for="proyectos[0][bd][contrasenha][]" class="block font-medium text-sm text-gray-700">Contraseña</label>
-                                                <input type="text" name="proyectos[0][bd][contrasenha][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                    value="{{ old("proyectos[0][bd][contrasenha][]", '') }}" />
-                                                @error('proyectos[0][bd][contrasenha][]')
-                                                    <p class="text-sm text-red-600">{{ $message }}</p>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="divEmails justify-between mb-4">
-                                        <div class="flex justify-center relative">
-                                            <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-6 mb-2">
-                                                Email corporativo
-                                            </h3>
-
-                                            <div class="flex absolute right-0 bottom-0">
-                                                <x-boton2 tipo="div" nombre="mas" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masEmail(event)">
-                                                    <x-slot name="boton">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                                    </x-slot>
-                                                </x-boton2>
-
-                                                <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-16" onclick="menosEmail(event)">
-                                                    <x-slot name="boton">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                                    </x-slot>
-                                                </x-boton2>
-                                            </div>
+                                            <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-16" onclick="menosVacacion(event)">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                                </x-slot>
+                                            </x-boton2>
                                         </div>
 
-                                        <div class="contenedorEmails flex">
-                                            <div class="w-1/3 mr-2 divEmailEmail">
-                                                <label for="proyectos[0][email][email][]" class="block font-medium text-sm text-gray-700">Email</label>
-                                                <input type="email" name="proyectos[0][email][email][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                    value="{{ old("proyectos[0][email][email][]", '') }}" />
-                                                @error("proyectos[0][email][email][]")
+                                        <div class="contenedorVacaciones">
+                                            <div class="divInicioVacaciones">
+                                                <label for="vacaciones_disfrutadas[0][fecha_inicio]" class="block font-medium text-sm text-gray-700">Fecha inicio vacaciones</label>
+                                                <input type="date" name="vacaciones_disfrutadas[0][fecha_inicio]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                    value="{{ old("vacaciones_disfrutadas[0][fecha_inicio]", '') }}" />
+                                                @error('vacaciones_disfrutadas[0][fecha_inicio]')
                                                     <p class="text-sm text-red-600">{{ $message }}</p>
                                                 @enderror
                                             </div>
 
-                                            <div class="w-1/3 mx-2 divContrasenhaEmail">
-                                                <label for="proyectos[0][email][contrasenha][]" class="block font-medium text-sm text-gray-700">Contraseña</label>
-                                                <input type="text" name="proyectos[0][email][contrasenha][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                    value="{{ old("proyectos[0][email][contrasenha][]", '') }}" />
-                                                @error('proyectos[0][email][contrasenha][]')
-                                                    <p class="text-sm text-red-600">{{ $message }}</p>
-                                                @enderror
-                                            </div>
-
-                                            <div class="w-1/3 ml-2 divRutaEmail">
-                                                <label for="proyectos[0][email][ruta][]" class="block font-medium text-sm text-gray-700">Ruta acceso</label>
-                                                <input type="text" name="proyectos[0][email][ruta][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                    value="{{ old("proyectos[0][email][ruta][]", '') }}" />
-                                                @error('proyectos[0][email][ruta][]')
-                                                    <p class="text-sm text-red-600">{{ $message }}</p>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="divAccesos justify-between mb-4">
-                                        <div class="flex justify-center relative">
-                                            <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-6 mb-2">
-                                                Accesos
-                                            </h3>
-
-                                            <div class="flex absolute right-0 bottom-0">
-                                                <x-boton2 tipo="div" nombre="mas" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masAcceso(event)">
-                                                    <x-slot name="boton">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                                    </x-slot>
-                                                </x-boton2>
-
-                                                <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-16" onclick="menosAcceso(event)">
-                                                    <x-slot name="boton">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                                    </x-slot>
-                                                </x-boton2>
-                                            </div>
-                                        </div>
-
-                                        <div class="contenedorAccesos flex">
-                                            <div class="w-1/3 mr-2 divDominioAcceso">
-                                                <label for="proyectos[0][acceso][dominio][]" class="block font-medium text-sm text-gray-700">Dominio</label>
-                                                <input type="text" name="proyectos[0][acceso][dominio][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                    value="{{ old("proyectos[0][acceso][dominio][]", '') }}" />
-                                                @error("proyectos[0][acceso][dominio][]")
-                                                    <p class="text-sm text-red-600">{{ $message }}</p>
-                                                @enderror
-                                            </div>
-
-                                            <div class="w-1/3 mx-2 divUsuarioAcceso">
-                                                <label for="proyectos[0][acceso][usuario][]" class="block font-medium text-sm text-gray-700">Usuario</label>
-                                                <input type="text" name="proyectos[0][acceso][usuario][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                    value="{{ old("proyectos[0][acceso][usuario][]", '') }}" />
-                                                @error('proyectos[0][acceso][usuario][]')
-                                                    <p class="text-sm text-red-600">{{ $message }}</p>
-                                                @enderror
-                                            </div>
-
-                                            <div class="w-1/3 ml-2 divContrasenhaAcceso">
-                                                <label for="proyectos[0][acceso][contrasenha][]" class="block font-medium text-sm text-gray-700">Contraseña</label>
-                                                <input type="text" name="proyectos[0][acceso][contrasenha][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                    value="{{ old("proyectos[0][acceso][contrasenha][]", '') }}" />
-                                                @error('proyectos[0][acceso][contrasenha][]')
+                                            <div class="divFinVacaciones">
+                                                <label for="vacaciones_disfrutadas[0][fecha_fin]" class="block font-medium text-sm text-gray-700">Fecha fin vacaciones</label>
+                                                <input type="date" name="vacaciones_disfrutadas[0][fecha_fin]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                    value="{{ old("vacaciones_disfrutadas[0][fecha_fin]", '') }}" />
+                                                @error('vacaciones_disfrutadas[0][fecha_fin]')
                                                     <p class="text-sm text-red-600">{{ $message }}</p>
                                                 @enderror
                                             </div>

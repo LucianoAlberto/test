@@ -16,10 +16,12 @@ return new class extends Migration
         Schema::create('empleados', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->string('apellidos');
             $table->string('dni')->nullable();
             $table->string('numero_ss')->nullable();
             $table->date('fecha_comienzo')->nullable();
             $table->date('fecha_fin')->nullable();
+            $table->string('contrato')->nullable();
             $table->string('doc_confidencialidad')->nullable();
             $table->string('doc_normas')->nullable();
             $table->string('doc_prevencion_riesgos')->nullable();

@@ -90,12 +90,12 @@ class ClienteController extends Controller
                 $contrato->fecha_firma = $validated["contratos"]["fecha"][$clave_contrato];
 
                 if(isset($validated["contratos"]["archivo"][$clave_contrato])){
-                    $validated["contratos"]["archivo"][$clave_contrato] = Storage::disk('public')->putFile('contratos', $validated["contratos"]["archivo"][$clave_contrato]);
+                    $validated["contratos"]["archivo"][$clave_contrato] = Storage::disk('public')->putFile('contratos', $validated["contratos"]["archivo"][$clave_contrato], 'public');
                     $contrato->archivo = $validated["contratos"]["archivo"][$clave_contrato];
                 }
 
                 if(isset($validated["contratos"]["presupuesto"][$clave_contrato])){
-                    $validated["contratos"]["presupuesto"][$clave_contrato] = Storage::disk('public')->putFile('contratos', $validated["contratos"]["presupuesto"][$clave_contrato]);
+                    $validated["contratos"]["presupuesto"][$clave_contrato] = Storage::disk('public')->putFile('contratos', $validated["contratos"]["presupuesto"][$clave_contrato], 'public');
                     $contrato->presu1puesto = $validated["contratos"]["presupuesto"][$clave_contrato];
                 }
 
@@ -107,7 +107,7 @@ class ClienteController extends Controller
 
                         $factura_dependiente->cliente_id = $cliente->id;
                         $factura_dependiente->fecha_cargo= $fecha_factura;
-                        $validated["contratos"][$clave_contrato]["facturas"]["archivos"][$clave_factura] = Storage::disk('public')->putFile('facturas', $validated["contratos"][$clave_contrato]["facturas"]["archivos"][$clave_factura]);
+                        $validated["contratos"][$clave_contrato]["facturas"]["archivos"][$clave_factura] = Storage::disk('public')->putFile('facturas', $validated["contratos"][$clave_contrato]["facturas"]["archivos"][$clave_factura], 'public');
                         $factura_dependiente->factura = $validated["contratos"][$clave_contrato]["facturas"]["archivos"][$clave_factura];
 
                         $factura_dependiente->save();
@@ -125,7 +125,7 @@ class ClienteController extends Controller
 
                 $factura_independiente->cliente_id = $cliente->id;
                 $factura_independiente->fecha_cargo = $fecha_factura_independiente;
-                $validated["facturas"]["archivos"][$clave_factura_independiente] = Storage::disk('public')->putFile('facturas', $validated["facturas"]["archivos"][$clave_factura_independiente]);
+                $validated["facturas"]["archivos"][$clave_factura_independiente] = Storage::disk('public')->putFile('facturas', $validated["facturas"]["archivos"][$clave_factura_independiente], 'public');
                 $factura_independiente->factura = $validated["facturas"]["archivos"][$clave_factura_independiente];
 
                 $factura_independiente->save();
@@ -146,7 +146,7 @@ class ClienteController extends Controller
                 $proyecto->otros_datos = $validated["proyectos"]["datos"][$clave_proyecto];
 
                 if(isset($validated["proyectos"]["sepa"][$clave_proyecto])){
-                    $validated["proyectos"]["sepa"][$clave_proyecto] = Storage::disk('public')->putFile('sepas', $validated["proyectos"]["sepa"][$clave_proyecto]);
+                    $validated["proyectos"]["sepa"][$clave_proyecto] = Storage::disk('public')->putFile('sepas', $validated["proyectos"]["sepa"][$clave_proyecto], 'public');
                     $proyecto->sepa = $validated["proyectos"]["sepa"][$clave_proyecto];
                 }
 

@@ -62,12 +62,12 @@ class ProyectoController extends Controller
         $proyecto=new Proyecto;
 
         if($request->hasFile('sepa')){
-            $valido['sepa']=Storage::disk('public')->putFile('sepa',$valido['sepa']);
-            $proyecto->sepa=$valido['sepa'];
+            $valido['sepa'] = Storage::disk('public')->putFile('sepa', $valido['sepa'], 'public');
+            $proyecto->sepa = $valido['sepa'];
         }
 
         if($request->hasFile('hoja_preferencia')){
-            $valido['hoja_preferencia']=Storage::disk('public')->putFile('hoja_preferencia',$valido['hoja_preferencia']);
+            $valido['hoja_preferencia'] = Storage::disk('public')->putFile('hoja_preferencia', $valido['hoja_preferencia'], 'public');
             $proyecto->preferencias=$valido['hoja_preferencia'];
         }
 
@@ -181,7 +181,7 @@ class ProyectoController extends Controller
         $proyecto->updated_at = now("Europe/Madrid");
 
         if($request->hasFile('sepa')){
-            $valido['sepa']=Storage::disk('public')->putFile('sepa',$valido['sepa']);
+            $valido['sepa']=Storage::disk('public')->putFile('sepa',$valido['sepa'], 'public');
             $proyecto->sepa=$valido['sepa'];
             Storage::delete($sepa_actual);
         }else{
@@ -193,7 +193,7 @@ class ProyectoController extends Controller
         $hoja_preferencia_actual=$proyecto->preferencias;
 
         if($request->hasFile('hoja_preferencia')){
-            $valido['hoja_preferencia']=Storage::disk('public')->putFile('hoja_preferencia',$valido['hoja_preferencia']);
+            $valido['hoja_preferencia']=Storage::disk('public')->putFile('hoja_preferencia',$valido['hoja_preferencia'], 'public');
             $proyecto->preferencias=$valido['hoja_preferencia'];
             Storage::delete($hoja_preferencia_actual);
         }else{

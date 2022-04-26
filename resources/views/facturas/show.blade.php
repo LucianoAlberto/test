@@ -53,8 +53,13 @@
                                         Archivo
                                     </th>
 
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
-                                        {{ $factura->factura }}
+                                    <td
+                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                        <div>
+                                            <a href="{{ asset("/storage/{$factura->factura}") }}" target="_blank" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-10 border border-green-700 rounded ">Ver</a>
+
+                                            <a href="{{ asset("/storage/{$factura->factura}") }}" download class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded px-5"> Descargar</a>
+                                      </div>
                                     </td>
                                 </tr>
 

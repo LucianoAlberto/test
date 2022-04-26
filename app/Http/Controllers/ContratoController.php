@@ -49,12 +49,12 @@ class ContratoController extends Controller
         $contrato=new Contrato;
 
         if($request->hasFile('archivo')){
-            $valido['archivo']=Storage::disk('public')->putFile('contratos/archivos',$valido['archivo']);
+            $valido['archivo']=Storage::disk('public')->putFile('contratos/archivos',$valido['archivo'], 'public');
             $contrato->archivo=$valido['archivo'];
         }
 
         if($request->hasFile('presupuesto')){
-            $valido['presupuesto']=Storage::disk('public')->putFile('contratos/presupuestos',$valido['presupuesto']);
+            $valido['presupuesto']=Storage::disk('public')->putFile('contratos/presupuestos',$valido['presupuesto'], 'public');
             $contrato->presupuesto=$valido['presupuesto'];
         }
 
@@ -108,12 +108,12 @@ class ContratoController extends Controller
         $valido=$request->validated();
 
         if($request->hasFile('archivo')){
-            $valido['archivo']=Storage::disk('public')->putFile('contratos/archivos',$valido['archivo']);
+            $valido['archivo']=Storage::disk('public')->putFile('contratos/archivos',$valido['archivo'], 'public');
             $contrato_editado->archivo=$valido['archivo'];
         }
 
         if($request->hasFile('presupuesto')){
-            $valido['presupuesto']=Storage::disk('public')->putFile('contratos/presupuestos',$valido['presupuesto']);
+            $valido['presupuesto']=Storage::disk('public')->putFile('contratos/presupuestos',$valido['presupuesto'], 'public');
             $contrato_editado->presupuesto=$valido['presupuesto'];
         }
 

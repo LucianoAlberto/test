@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\ContratoController;
+use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\ProyectoController;
 use App\Http\Controllers\ConceptoFacturaController;
 /*

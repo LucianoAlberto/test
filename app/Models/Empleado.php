@@ -4,7 +4,8 @@ namespace App\Models;
 
 use App\Models\Falta;
 use App\Models\Nomina;
-use App\Models\Vacaciones;
+use App\Models\Practica;
+use App\Models\Vacacion;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -34,8 +35,16 @@ class Empleado extends Model
     /**
      * Obtiene las vacaciones asociadas a este empleado.
      */
-    public function vacacioness()
+    public function vacaciones()
     {
-        return $this->hasMany(Vacaciones::class);
+        return $this->hasMany(Vacacion::class);
+    }
+
+    /**
+     * Obtiene las(la) prácticas(práctica) asociada a este empleado.
+     */
+    public function practica()
+    {
+        return $this->hasOne(Practica::class);
     }
 }

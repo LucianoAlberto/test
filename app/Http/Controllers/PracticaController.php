@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Vacaciones;
+use App\Models\Practica;
 use Illuminate\Http\Request;
 
-class VacacionesController extends Controller
+class PracticaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class VacacionesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Vacaciones  $vacaciones
+     * @param  \App\Models\Practica  $practica
      * @return \Illuminate\Http\Response
      */
-    public function show(Vacaciones $vacaciones)
+    public function show(Practica $practica)
     {
         //
     }
@@ -52,10 +52,10 @@ class VacacionesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Vacaciones  $vacaciones
+     * @param  \App\Models\Practica  $practica
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vacaciones $vacaciones)
+    public function edit(Practica $practica)
     {
         //
     }
@@ -64,10 +64,10 @@ class VacacionesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Vacaciones  $vacaciones
+     * @param  \App\Models\Practica  $practica
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vacaciones $vacaciones)
+    public function update(Request $request, Practica $practica)
     {
         //
     }
@@ -75,10 +75,10 @@ class VacacionesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Vacaciones  $vacaciones
+     * @param  \App\Models\Practica $practica
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vacaciones $vacaciones)
+    public function destroy(Practica $practica)
     {
         //
     }

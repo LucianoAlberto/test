@@ -45,7 +45,20 @@ class EmpleadoRequest extends FormRequest
             'faltas.*.justificacion'=>'nullable|string',
             'faltas.*.notas'=>'nullable|string',
             'vacaciones_total'=>'nullable|numeric',
-            'vacaciones_disfrutadas.*'=>'nullable|date',
+            'vacaciones_disfrutadas.*.fecha_inicio'=>'nullable|date',
+            'vacaciones_disfrutadas.*.fecha_fin'=>'nullable|date',
+            'practicas'=>'nullable|boolean',
+            'instituto'=>'nullable|string',
+            'localidad'=>'nullable|string',
+            'provincia'=>'nullable|string',
+            'tutor_practicas'=>'nullable|string',
+            'fecha_inicio_practicas'=>'nullable|date',
+            'fecha_fin_practicas'=>'nullable|date',
+            'convenio_practicas'=>'nullable|mimes:png,jpg,pdf,docx,txt',
+            'doc_confidencialidad_practicas'=>'nullable|mimes:png,jpg,pdf,docx,txt',
+            'faltas_practicas.*.fecha_falta'=>'nullable|date',
+            'faltas_practicas.*.justificacion'=>'nullable|string',
+            'faltas_practicas.*.notas'=>'nullable|string',
         ];
     }
 }

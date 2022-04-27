@@ -458,12 +458,12 @@ window.masPago = function(event)
 
 window.menosPago = function(event)
 {
-    let ultimoHijoContenedorAccesos = event.target.closest(".divAccesos").lastElementChild;
+    let ultimoHijoContenedorPagos = event.target.closest(".divPagos").lastElementChild;
 
-    let listaContenedoresAccesos = event.target.closest(".divAccesos").querySelectorAll(".contenedorAccesos");
+    let listaContenedoresPagos = event.target.closest(".divPagos").querySelectorAll(".contenedorNominas");
 
-    if(ultimoHijoContenedorAccesos.classList.contains("contenedorAccesos") && listaContenedoresAccesos.length > 1){
-        ultimoHijoContenedorAccesos.remove();
+    if(ultimoHijoContenedorPagos.classList.contains("contenedorNominas") && listaContenedoresPagos.length > 1){
+        ultimoHijoContenedorPagos.remove();
     }
 }
 
@@ -489,6 +489,17 @@ window.masFalta = function(event)
     event.target.closest(".divFaltas").appendChild(divContenedorFaltas);
 }
 
+window.menosFalta = function(event)
+{
+    let ultimoHijoContenedorFaltas = event.target.closest(".divFaltas").lastElementChild;
+
+    let listaContenedoresFaltas = event.target.closest(".divFaltas").querySelectorAll(".contenedorFaltas");
+
+    if(ultimoHijoContenedorFaltas.classList.contains("contenedorFaltas") && listaContenedoresFaltas.length > 1){
+        ultimoHijoContenedorFaltas.remove();
+    }
+}
+
 window.masVacacion = function(event)
 {
     let numeroVacaciones = event.target.closest(".divVacaciones").querySelectorAll(".contenedorVacaciones").length;
@@ -505,4 +516,15 @@ window.masVacacion = function(event)
     divContenedorVacaciones.querySelector(".divFinVacaciones").querySelector("input").value = null;
 
     event.target.closest(".divVacaciones").appendChild(divContenedorVacaciones);
+}
+
+window.menosVacacion = function(event)
+{
+    let ultimoHijoContenedorVacaciones = event.target.closest(".divVacaciones").lastElementChild;
+
+    let listaContenedoresVacaciones = event.target.closest(".divVacaciones").querySelectorAll(".contenedorVacaciones");
+
+    if(ultimoHijoContenedorVacaciones.classList.contains("contenedorVacaciones") && listaContenedoresVacaciones.length > 1){
+        ultimoHijoContenedorVacaciones.remove();
+    }
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Falta;
+use App\Models\Empleado;
 use Illuminate\Http\Request;
+use App\Http\Requests\FaltaRequest;
 
 class FaltaController extends Controller
 {
@@ -12,9 +14,11 @@ class FaltaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Empleado $empleado)
     {
-        //
+        $faltas = $empleado->faltas();
+
+        return view('faltas.index', compact('empleado', 'faltas'));
     }
 
     /**
@@ -22,20 +26,30 @@ class FaltaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Empleado $empleado)
     {
-        //
+        return view('faltas.create', compact('empleado'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Requests\FaltaRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FaltaRequest $request, Empleado $empleado)
     {
-        //
+        $validated = $request->validated();
+
+        $falta = new Falta;
+        $falta->empleado_id = $empleado->id;
+        $falta->fecha_falta = $validated["fecha_falta"];
+        $falta->justificacion = $validated["justificacion"];
+        $falta->notas = $validated["notas"];
+
+        $falta->save();
+
+        return redirect()->route('faltas.index', compact('empleado'));
     }
 
     /**
@@ -44,9 +58,9 @@ class FaltaController extends Controller
      * @param  \App\Models\Falta  $falta
      * @return \Illuminate\Http\Response
      */
-    public function show(Falta $falta)
+    public function show(Empleado $empleado, Falta $falta)
     {
-        //
+        return view('faltas.show', compact('empleado', 'falta'));
     }
 
     /**
@@ -55,21 +69,30 @@ class FaltaController extends Controller
      * @param  \App\Models\Falta  $falta
      * @return \Illuminate\Http\Response
      */
-    public function edit(Falta $falta)
+    public function edit(Empleado $empleado, Falta $falta)
     {
-        //
+        return view('faltas.edit', compact('empleado', 'falta'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Requests\FaltaRequest  $request
      * @param  \App\Models\Falta  $falta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Falta $falta)
+    public function update(FaltaRequest $request, Empleado $empleado, Falta $falta)
     {
-        //
+        $validated = $request->validated();
+
+        $falta->empleado_id = $empleado->id;
+        $falta->fecha_falta = $validated["fecha_falta"];
+        $falta->justificacion = $validated["justificacion"];
+        $falta->notas = $validated["notas"];
+
+        $falta->save();
+
+        return redirect()->route('faltas.index', compact('empleado'));
     }
 
     /**

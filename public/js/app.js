@@ -5435,11 +5435,11 @@ window.masPago = function (event) {
 };
 
 window.menosPago = function (event) {
-  var ultimoHijoContenedorAccesos = event.target.closest(".divAccesos").lastElementChild;
-  var listaContenedoresAccesos = event.target.closest(".divAccesos").querySelectorAll(".contenedorAccesos");
+  var ultimoHijoContenedorPagos = event.target.closest(".divPagos").lastElementChild;
+  var listaContenedoresPagos = event.target.closest(".divPagos").querySelectorAll(".contenedorNominas");
 
-  if (ultimoHijoContenedorAccesos.classList.contains("contenedorAccesos") && listaContenedoresAccesos.length > 1) {
-    ultimoHijoContenedorAccesos.remove();
+  if (ultimoHijoContenedorPagos.classList.contains("contenedorNominas") && listaContenedoresPagos.length > 1) {
+    ultimoHijoContenedorPagos.remove();
   }
 };
 
@@ -5459,6 +5459,15 @@ window.masFalta = function (event) {
   event.target.closest(".divFaltas").appendChild(divContenedorFaltas);
 };
 
+window.menosFalta = function (event) {
+  var ultimoHijoContenedorFaltas = event.target.closest(".divFaltas").lastElementChild;
+  var listaContenedoresFaltas = event.target.closest(".divFaltas").querySelectorAll(".contenedorFaltas");
+
+  if (ultimoHijoContenedorFaltas.classList.contains("contenedorFaltas") && listaContenedoresFaltas.length > 1) {
+    ultimoHijoContenedorFaltas.remove();
+  }
+};
+
 window.masVacacion = function (event) {
   var numeroVacaciones = event.target.closest(".divVacaciones").querySelectorAll(".contenedorVacaciones").length;
   var divContenedorVacaciones = event.target.closest(".divVacaciones").querySelector(".contenedorVacaciones").cloneNode(true); //modifico el for del label y el name e id del input
@@ -5470,6 +5479,15 @@ window.masVacacion = function (event) {
   divContenedorVacaciones.querySelector(".divFinVacaciones").querySelector("input").name = "vacaciones_disfrutadas[" + numeroVacaciones + "][fecha_fin]";
   divContenedorVacaciones.querySelector(".divFinVacaciones").querySelector("input").value = null;
   event.target.closest(".divVacaciones").appendChild(divContenedorVacaciones);
+};
+
+window.menosVacacion = function (event) {
+  var ultimoHijoContenedorVacaciones = event.target.closest(".divVacaciones").lastElementChild;
+  var listaContenedoresVacaciones = event.target.closest(".divVacaciones").querySelectorAll(".contenedorVacaciones");
+
+  if (ultimoHijoContenedorVacaciones.classList.contains("contenedorVacaciones") && listaContenedoresVacaciones.length > 1) {
+    ultimoHijoContenedorVacaciones.remove();
+  }
 };
 
 /***/ }),

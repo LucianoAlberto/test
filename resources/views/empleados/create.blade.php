@@ -77,7 +77,136 @@
                                     </div>
                                 </div>
 
+                                <div class="flex justify-between mb-4">
+                                    <div class="">
+                                        <label for="practicas" class="block font-medium text-sm text-gray-700">Prácticas</label>
+                                        <input type="checkbox" name="practicas" id="practicas" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old('practicas', '') }}" />
+                                        @error('practicas')
+                                            <p class="text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
 
+                                <div class="w-3/6 mr-2">
+                                    <label for="instituto" class="block font-medium text-sm text-gray-700">Instituto</label>
+                                    <input type="text" name="instituto" id="instituto" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old('instituto', '') }}" />
+                                    @error('instituto')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="w-3/6 mr-2">
+                                    <label for="localidad" class="block font-medium text-sm text-gray-700">Localidad</label>
+                                    <input type="text" name="localidad" id="localidad" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old('localidad', '') }}" />
+                                    @error('localidad')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="w-3/6 mr-2">
+                                    <label for="provincia" class="block font-medium text-sm text-gray-700">Provincia</label>
+                                    <input type="text" name="provincia" id="provincia" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old('provincia', '') }}" />
+                                    @error('provincia')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="w-3/6 mr-2">
+                                    <label for="tutor_practicas" class="block font-medium text-sm text-gray-700">Tutor de prácticas</label>
+                                    <input type="text" name="tutor_practicas" id="tutor_practicas" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old('tutor_practicas', '') }}" />
+                                    @error('tutor_practicas')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="w-3/6 mr-2">
+                                    <label for="fecha_inicio_practicas" class="block font-medium text-sm text-gray-700">Fecha inicio</label>
+                                    <input type="date" name="fecha_inicio_practicas" id="fecha_inicio_practicas" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old('fecha_inicio_practicas', '') }}" />
+                                    @error('fecha_inicio_practicas')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="w-3/6 mr-2">
+                                    <label for="fecha_fin_practicas" class="block font-medium text-sm text-gray-700">Fecha fin</label>
+                                    <input type="date" name="fecha_fin_practicas" id="fecha_fin_practicas" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old('fecha_fin_practicas', '') }}" />
+                                    @error('fecha_fin_practicas')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="w-3/6 mr-2">
+                                    <label for="convenio_practicas" class="block font-medium text-sm text-gray-700">Adjuntar convenio</label>
+                                    <input type="file" name="convenio_practicas" id="convenio_practicas" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old('convenio_practicas', '') }}" />
+                                    @error('convenio_practicas')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="w-3/6 mr-2">
+                                    <label for="doc_confidencialidad_practicas" class="block font-medium text-sm text-gray-700">Adjuntar documento de confidencialidad</label>
+                                    <input type="file" name="doc_confidencialidad_practicas" id="doc_confidencialidad_practicas" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old('doc_confidencialidad_practicas', '') }}" />
+                                    @error('doc_confidencialidad_practicas')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="divFaltasPracticas">
+                                    <div class="flex justify-between contenedorTituloBotones">
+                                        <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-6 mb-2">
+                                            Faltas de asistencia
+                                        </h3>
+                                        <div class="flex justify-between">
+                                            <x-boton2 tipo="div" nombre="mas" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masFaltasPracticas(event)">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                                </x-slot>
+                                            </x-boton2>
+
+                                            <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-16" onclick="menosFaltasPracticas(event)">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                                </x-slot>
+                                            </x-boton2>
+                                        </div>
+                                    </div>
+
+                                    <div class="contenedorFaltasPracticas">
+                                        <div class="divFechaFaltaPracticas">
+                                            <label for="faltas_practicas[0][fecha_falta]" class="block font-medium text-sm text-gray-700">Fecha</label>
+                                            <input type="date" name="faltas_practicas[0][fecha_falta]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                value="{{ old("faltas_practicas[0][fecha_falta]", '') }}" />
+                                            @error('faltas_practicas[0][fecha_falta]')
+                                                <p class="text-sm text-red-600">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="divJustificacionFaltaPracticas">
+                                            <label for="faltas_practicas[0][justificacion]" class="block font-medium text-sm text-gray-700">Justificacion</label>
+                                            <input type="text" name="faltas_practicas[0][justificacion]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                value="{{ old("faltas_practicas[0][justificacion]", '') }}" />
+                                            @error('faltas_practicas[0][justificacion]')
+                                                <p class="text-sm text-red-600">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="divNotaFaltaPracticas">
+                                            <label for="faltas_practicas[0][notas]" class="block font-medium text-sm text-gray-700">Notas</label>
+                                            <input type="text" name="faltas_practicas[0][notas]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                value="{{ old("faltas_practicas[0][notas]", '') }}" />
+                                            @error('faltas_practicas[0][notas]')
+                                                <p class="text-sm text-red-600">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
 
                                     <div>
                                         <label for="contrato" class="block font-medium text-sm text-gray-700">Adjuntar contrato</label>

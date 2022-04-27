@@ -2,11 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FaltaController;
+use App\Http\Controllers\PagosController;
+use App\Http\Controllers\NominaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\ContratoController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\ProyectoController;
+use App\Http\Controllers\VacacionController;
 use App\Http\Controllers\ConceptoFacturaController;
 /*
 |--------------------------------------------------------------------------
@@ -85,3 +89,29 @@ Route::get('/empleados/{empleado}', [EmpleadoController::class, 'show'])->name('
 Route::get('/empleados/{empleado}/edit', [EmpleadoController::class, 'edit'])->name('empleados.edit');
 Route::put('/empleados/{empleado}', [EmpleadoController::class, 'update'])->name('empleados.update');
 Route::delete('/empleados/{empleado}', [EmpleadoController::class, 'destroy'])->name('empleados.destroy');
+
+Route::get('/empleados/{empleado}/nominas', [NominaController::class, 'index'])->name('nominas.index');
+Route::get('/empleados/{empleado}/nominas/create', [NominaController::class, 'create'])->name('nominas.create');
+Route::post('/empleados/{empleado}/nominas', [NominaController::class, 'store'])->name('nominas.store');
+Route::get('/empleados/{empleado}/nominas/{nomina}', [NominaController::class, 'show'])->name('nominas.show');
+Route::get('/empleados/{empleado}/nominas/{nomina}/edit', [NominaController::class, 'edit'])->name('nominas.edit');
+Route::put('/empleados/{empleado}/nominas/{nomina}', [NominaController::class, 'update'])->name('nominas.update');
+Route::delete('/empleados/{empleado}/nominas/{nomina}', [NominaController::class, 'destroy'])->name('nominas.destroy');
+
+Route::get('/empleados/{empleado}/faltas', [FaltaController::class, 'index'])->name('faltas.index');
+Route::get('/empleados/{empleado}/faltas/create', [FaltaController::class, 'create'])->name('faltas.create');
+Route::post('/empleados/{empleado}/faltas', [FaltaController::class, 'store'])->name('faltas.store');
+Route::get('/empleados/{empleado}/faltas/{falta}', [FaltaController::class, 'show'])->name('faltas.show');
+Route::get('/empleados/{empleado}/faltas/{falta}/edit', [FaltaController::class, 'edit'])->name('faltas.edit');
+Route::put('/empleados/{empleado}/faltas/{falta}', [FaltaController::class, 'update'])->name('faltas.update');
+Route::delete('/empleados/{empleado}/faltas/{falta}', [FaltaController::class, 'destroy'])->name('faltas.destroy');
+
+
+Route::get('/empleados/{empleado}/vacaciones', [VacacionController::class, 'index'])->name('vacaciones.index');
+Route::get('/empleados/{empleado}/vacaciones/create', [VacacionController::class, 'create'])->name('vacaciones.create');
+Route::post('/empleados/{empleado}/vacaciones', [VacacionController::class, 'store'])->name('vacaciones.store');
+Route::get('/empleados/{empleado}/vacaciones/{vacacion}', [VacacionController::class, 'show'])->name('vacaciones.show');
+Route::get('/empleados/{empleado}/vacaciones/{vacacion}/edit', [VacacionController::class, 'edit'])->name('vacaciones.edit');
+Route::put('/empleados/{empleado}/vacaciones/{vacacion}', [VacacionController::class, 'update'])->name('vacaciones.update');
+Route::delete('/empleados/{empleado}/vacaciones/{vacacion}', [VacacionController::class, 'destroy'])->name('vacaciones.destroy');
+

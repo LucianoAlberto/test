@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Falta;
 use App\Models\Nomina;
 use App\Models\Empleado;
+use App\Models\Practicas;
+use App\Models\Vacaciones;
 use Illuminate\Http\Request;
 use App\Http\Requests\EmpleadoRequest;
 use Illuminate\Support\Facades\Storage;
@@ -103,16 +105,38 @@ class EmpleadoController extends Controller
             }
         }
 
-        if($validated["vacaciones"][0]["fecha_inicio"] != null){
-            foreach($validated["vacaciones"] as $vacaciones){
+        if($validated["vacaciones_disfrutadas"][0]["fecha_inicio"] != null){
+            foreach($validated["vacaciones_disfrutadas"] as $vacaciones){
                 $nuevas_vacaciones = new Vacaciones;
 
                 $nuevas_vacaciones->empleado_id = $empleado->id;
-                $nuevas_vacaciones->fecha_inicio = $falta["fecha_inicio"];
-                $nuevas_vacaciones->fecha_fin = $falta["fecha_fin"];
+                $nuevas_vacaciones->fecha_inicio = $vacaciones["fecha_inicio"];
+                $nuevas_vacaciones->fecha_fin = $vacaciones["fecha_fin"];
 
                 $nuevas_vacaciones->save();
             }
+        }
+
+        if($request->has('practicas')){
+            $practicas = new Practicas;
+
+            $practicas->empleado_id = $empleado->id;
+            $practicas->instituto = $validated["instituto"];
+            $practicas->localidad = $validated["localidad"];
+            $practicas->provincia = $validated["provincia"];
+            $practicas->tutor_practicas = $validated["tutor_practicas"];
+            $practicas->fecha_inicio = $validated["fecha_inicio_practicas"];
+            $practicas->fecha_fin = $validated["fecha_fin_practicas"];
+
+            if(isset($validated["convenio_practicas"])){
+                $practicas->convenio = Storage::disk('public')->putFile('practicas/convenios', $validated["convenio_practicas"], 'public');
+            }
+
+            if(isset($validated["doc_confidencialidad_practicas"])){
+                $practicas->doc_confidencialidad = Storage::disk('public')->putFile('practicas/doc_confidencialidad', $validated["doc_confidencialidad_practicas"], 'public');
+            }
+
+            $practicas->save();
         }
 
         return redirect()->route('empleados.index');
@@ -126,7 +150,7 @@ class EmpleadoController extends Controller
      */
     public function show(Empleado $empleado)
     {
-        //
+        return view('empleados.show', compact('empleado'));
     }
 
     /**
@@ -137,7 +161,7 @@ class EmpleadoController extends Controller
      */
     public function edit(Empleado $empleado)
     {
-        //
+        return view('empleados.edit', compact('empleado'));
     }
 
     /**
@@ -147,9 +171,40 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Empleado $empleado)
+    public function update(EmpleadoRequest $request, Empleado $empleado)
     {
-        //
+        $validated = $request->validated();
+
+        $empleado->nombre = $validated["nombre"];
+        $empleado->apellidos = $validated["apellidos"];
+        $empleado->dni = $validated["dni"];
+        $empleado->numero_ss = $validated["numero_ss"];
+        $empleado->fecha_comienzo = $validated["fecha_comienzo"];
+        $empleado->fecha_fin = $validated["fecha_fin"];
+
+        if(isset($validated["contrato"])){
+            $empleado->contrato = Storage::disk('public')->putFile('empleados/contratos', $validated["contrato"], 'public');
+        }
+
+        if(isset($validated["doc_confidencialidad"])){
+            $empleado->doc_confidencialidad = Storage::disk('public')->putFile('empleados/doc_confidencialidad', $validated["doc_confidencialidad"], 'public');
+        }
+
+        if(isset($validated["doc_normas"])){
+            $empleado->doc_normas = Storage::disk('public')->putFile('empleados/doc_normas', $validated["doc_normas"], 'public');
+        }
+
+        if(isset($validated["doc_prevencion_riesgos"])){
+            $empleado->doc_prevencion_riesgos = Storage::disk('public')->putFile('empleados/doc_prevencion_riesgos', $validated["doc_prevencion_riesgos"], 'public');
+        }
+
+        if(isset($validated["doc_reglamento_interno"])){
+            $empleado->doc_reglamento_interno = Storage::disk('public')->putFile('empleados/doc_reglamento_interno', $validated["doc_reglamento_interno"], 'public');
+        }
+
+        $empleado->save();
+
+        return redirect()->route('empleados.index', compact('empleado'));
     }
 
     /**

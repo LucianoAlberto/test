@@ -13,11 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('vacacions', function (Blueprint $table) {
+        Schema::create('practicas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('empleado_id')->constrained();
+            $table->string('instituto');
+            $table->string('localidad');
+            $table->string('provincia');
+            $table->string('tutor_practicas');
             $table->date('fecha_inicio');
-            $table->date('fecha_fin');
+            $table->date('fecha_fin')->nullable();
+            $table->string('convenio')->nullable();
+            $table->string('doc_confidencialidad')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vacacions');
+        Schema::dropIfExists('practicas');
     }
 };

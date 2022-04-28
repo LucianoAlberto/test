@@ -6,6 +6,7 @@ use App\Models\Falta;
 use App\Models\Nomina;
 use App\Models\Practica;
 use App\Models\Vacacion;
+use App\Models\RolTrabajo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -46,5 +47,13 @@ class Empleado extends Model
     public function practica()
     {
         return $this->hasOne(Practica::class);
+    }
+
+    /**
+     * Obtiene los roles asociados a este empleado.
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(RolTrabajo::class);
     }
 }

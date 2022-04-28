@@ -41,12 +41,9 @@
             <div class="mt-5 md:mt-0 md:col-span-2">
                 <form method="post" action="{{ route('contratos.store', $cliente) }}" enctype="multipart/form-data">
                     @csrf
-                    <input type="number" name="cliente_id" id="cliente_id"  value="{{$cliente->id}}"  hidden>
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
-
                             <div class="flex justify-between mb-4">
-
                                 <div class="w-1/3">
                                     <label for="concepto" class="block font-medium text-sm text-gray-700">Concepto</label>
 
@@ -88,16 +85,6 @@
 
                             {{--Formmulario para crear nuevo contrato--}}
                             <div class="flex justify-between mb-4  mt-4">
-
-                                <div class="w-1/3 mr-5">
-                                    <label for="importe" class="block font-medium text-sm text-gray-700">Importe</label>
-                                    <input type="text" name="importe" id="importe" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                        value="{{ old('importe', '') }}" >
-                                 @error('importe')
-                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
                                 <div class="w-1/1 mr-5">
                                     <label for="base_imponible" class="block font-medium text-sm text-gray-700">Base Imponible</label>
                                     <input type="text" name="base_imponible" id="base_imponible" class="form-input rounded-md shadow-sm mt-1 block w-full"

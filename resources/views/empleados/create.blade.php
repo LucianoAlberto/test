@@ -77,6 +77,20 @@
                                     </div>
                                 </div>
 
+                                <div class="mb-3">
+                                    <label class="block text-gray-700 text-sm font-bold mb-2" for="referencia_contrato">Referencia Contrato</label>
+                                    <select class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="referencia" name="referencia_contrato" required>
+                                        <option value="">Seleciona un rol</option>
+                                        <option value="0">Sin rol</option>
+                                    @foreach ($roles as $rol )
+                                        <option value={{$rol->rol}}>{{$rol->rol}}</option>
+                                    @endforeach
+                                    </select>
+                                    @error('referencia_contrato')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
                                 <div class="flex justify-between mb-4">
                                     <div class="">
                                         <label for="practicas" class="block font-medium text-sm text-gray-700">Prácticas</label>
@@ -273,6 +287,7 @@
                                                 </x-boton2>
                                             </div>
                                         </div>
+
 
                                         <div class="contenedorNominas justify-between mb-4">
                                             <div class="flex">

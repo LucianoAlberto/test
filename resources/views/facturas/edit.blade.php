@@ -28,11 +28,25 @@
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="file">
-                Seleciona Fichero
+                Adjunta factura
                 </label>
+                <span>{{$factura->factura}}</span>
+                <div class="flex">
+                    <x-boton2 tipo="linkConAsset" class="bg-blue-500 hover:bg-blue-700 mr-4 w-16" direccion="{{$factura->factura}}">
+                        <x-slot name="boton">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        </x-slot>
+                    </x-boton2>
+
+                    <x-boton2 tipo="descargaConAsset" class="bg-green-500 hover:bg-green-700 mr-4 w-16" direccion="{{$factura->factura}}">
+                        <x-slot name="boton">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </x-slot>
+                    </x-boton2>
+                </div>
                 <input class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                id="password" type="file" name="file" value="{{ old('fichero', $factura->fichero) }}">
-                @error('file')
+                id="factura" type="file" name="factura" value="{{ old('factura', '') }}">
+                @error('factura')
                 <p class="text-sm text-red-600">{{ $message }}</p>
                 @enderror
             </div>
@@ -47,12 +61,7 @@
                     <option value="0">Sin Contrato</option>
                 @foreach ($cliente->contratos as $contrato_cliente)
                     <option value={{$contrato_cliente->referencia}}
-                        @foreach ($factura->contratos as $contrato_factura )
-                            @if($contrato_cliente->id == $contrato_factura->id)
-                                selected
-                            @endif
-                        @endforeach
-                        >{{$contrato_cliente->referencia}}</option>
+                        {{$contrato_cliente->referencia == $factura->referencia_contrato ? 'selected':''}}>{{$contrato_cliente->referencia}}</option>
                 @endforeach
                 </select>
                 @error('referencia_contrato')

@@ -42,30 +42,28 @@ class ContratoController extends Controller
      */
     public function store(ContratoRequest $request, Cliente $cliente)
     {
-        $valido=$request->validated();
+        $valido = $request->validated();
 
         //$cliente=Cliente::where('id',"=",$valido['cliente_id'])->get()->first();
 
-        $contrato=new Contrato;
+        $contrato = new Contrato;
 
         if($request->hasFile('archivo')){
-            $valido['archivo']=Storage::disk('public')->putFile('contratos/archivos',$valido['archivo'], 'public');
-            $contrato->archivo=$valido['archivo'];
+            $contrato->archivo = Storage::disk('public')->putFile('contratos/archivos',$valido['archivo'], 'public');
         }
 
         if($request->hasFile('presupuesto')){
-            $valido['presupuesto']=Storage::disk('public')->putFile('contratos/presupuestos',$valido['presupuesto'], 'public');
-            $contrato->presupuesto=$valido['presupuesto'];
+            $contrato->presupuesto = Storage::disk('public')->putFile('contratos/presupuestos',$valido['presupuesto'], 'public');
         }
 
-        $contrato->concepto=$valido['concepto'];
-        $contrato->referencia=$valido['referencia'];
-        $contrato->fecha_firma=$valido['fecha_firma'];
-        $contrato->base_imponible=$valido['base_imponible'];
-        $contrato->iva=$valido['iva'];
-        $contrato->irpf=$valido['irpf'];
-        $contrato->total=$valido['total'];
-        $contrato->cliente_id=$cliente->id;
+        $contrato->concepto = $valido['concepto'];
+        $contrato->referencia = $valido['referencia'];
+        $contrato->fecha_firma = $valido['fecha_firma'];
+        $contrato->base_imponible = $valido['base_imponible'];
+        $contrato->iva = $valido['iva'];
+        $contrato->irpf = $valido['irpf'];
+        $contrato->total = $valido['total'];
+        $contrato->cliente_id = $cliente->id;
 
         $contrato->save();
 
@@ -91,7 +89,9 @@ class ContratoController extends Controller
      */
     public function edit(Cliente $cliente, Contrato $contrato)
     {
-        return view('contratos.edit', ['cliente' => $cliente, 'contrato' => $contrato]);
+        $conceptos = ConceptoFactura::all();
+
+        return view('contratos.edit', compact('cliente', 'contrato', 'conceptos'));
     }
 
     /**
@@ -103,32 +103,36 @@ class ContratoController extends Controller
      */
     public function update(ContratoRequest $request, Cliente $cliente, Contrato $contrato)
     {
-        $contrato_editado = Contrato::find($contrato->id);
-
-        $valido=$request->validated();
+        $valido = $request->validated();
 
         if($request->hasFile('archivo')){
-            $valido['archivo']=Storage::disk('public')->putFile('contratos/archivos',$valido['archivo'], 'public');
-            $contrato_editado->archivo=$valido['archivo'];
+            //Si tiene un archivo lo elimina y guarda el nuevo
+            if($contrato->archivo != null){
+                Storage::disk('public')->delete($contrato->archivo);
+            }
+            $contrato->archivo = Storage::disk('public')->putFile('contratos/archivos',$valido['archivo'], 'public');
         }
 
         if($request->hasFile('presupuesto')){
-            $valido['presupuesto']=Storage::disk('public')->putFile('contratos/presupuestos',$valido['presupuesto'], 'public');
-            $contrato_editado->presupuesto=$valido['presupuesto'];
+            //Si tiene un presupuesto lo elimina y guarda el nuevo
+            if($contrato->presupuesto != null){
+                Storage::disk('public')->delete($contrato->presupuesto);
+            }
+            $contrato->presupuesto = Storage::disk('public')->putFile('contratos/presupuestos',$valido['presupuesto'], 'public');
         }
 
-        $contrato_editado->concepto=$valido['concepto'];
-        $contrato_editado->referencia=$valido['referencia'];
-        $contrato_editado->fecha_firma=$valido['fecha_firma'];
-        $contrato_editado->base_imponible=$valido['base_imponible'];
-        $contrato_editado->iva=$valido['iva'];
-        $contrato_editado->irpf=$valido['irpf'];
-        $contrato_editado->total=$valido['total'];
-        $contrato_editado->cliente_id=$cliente->id;
+        $contrato->concepto = $valido['concepto'];
+        $contrato->referencia = $valido['referencia'];
+        $contrato->fecha_firma = $valido['fecha_firma'];
+        $contrato->base_imponible = $valido['base_imponible'];
+        $contrato->iva = $valido['iva'];
+        $contrato->irpf = $valido['irpf'];
+        $contrato->total = $valido['total'];
+        $contrato->cliente_id = $cliente->id;
 
-        $contrato_editado->save();
+        $contrato->save();
 
-        return redirect()->route('contratos.index', ['cliente' => $cliente, 'contrato' => $contrato]);
+        return redirect()->route('contratos.index', compact('cliente', 'contrato'));
     }
 
     /**

@@ -141,10 +141,10 @@
                                     </div>
 
                                     <div class="w-1/8">
-                                        <label for="proveedor_dominio_password"
+                                        <label for="proveedor_dominio_contrasenha"
                                             class="block font-medium text-sm text-gray-700">Provedor Dominio Password</label>
-                                        <input type="text" name="proveedor_dominio_password" id="proveedor_dominio_password">
-                                        @error('proveedor_dominio_password')
+                                        <input type="text" name="proveedor_dominio_contrasenha" id="proveedor_dominio_contrasenha">
+                                        @error('proveedor_dominio_contrasenha')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
@@ -159,10 +159,10 @@
                                     </div>
 
                                     <div class="w-1/8">
-                                        <label for="proveedor_hosting_password"
-                                            class="block font-medium text-sm text-gray-700">Provedor Hosting Password</label>
-                                        <input type="text" name="proveedor_hosting_password" id="proveedor_hosting_password">
-                                        @error('proveedor_hosting_password')
+                                        <label for="proveedor_hosting_contrasenha"
+                                            class="block font-medium text-sm text-gray-700">Provedor Hosting Contraseña</label>
+                                        <input type="text" name="proveedor_hosting_contrasenha" id="proveedor_hosting_contrasenha">
+                                        @error('proveedor_hosting_contrasenha')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
@@ -207,28 +207,28 @@
 
                                 <div class="contenedor_dominio flex justify-between">
                                     <div class="w-1/3 div_nombreDominio">
-                                        <label for="dominio_nombre[]"
+                                        <label for="dominio[0][nombre]"
                                             class="block font-medium text-sm text-gray-700">Nombre Dominio</label>
-                                        <input type="text" name="dominio_nombre[]" id="dominio_nombre[]">
-                                        @error('dominio_nombre[]')
+                                        <input type="text" name="dominio[0][nombre]">
+                                        @error('dominio[0][nombre]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
 
                                     <div class="w-1/3">
-                                        <label for="dominio_usuario"
+                                        <label for="dominio[0][usuario]"
                                             class="block font-medium text-sm text-gray-700">Dominio Usuario</label>
-                                        <input type="text" name="dominio_usuario" id="dominio_usuario">
-                                        @error('dominio_usuario[]')
+                                        <input type="text" name="dominio[0][usuario]">
+                                        @error('dominio[0][usuario]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
 
                                     <div class="w-1/3">
-                                        <label for="dominio_password"
-                                            class="block font-medium text-sm text-gray-700">Dominio Password</label>
-                                        <input type="text" name="dominio_password" id="dominio_password">
-                                        @error('dominio_password[]')
+                                        <label for="dominio[0][contrasenha]"
+                                            class="block font-medium text-sm text-gray-700">Dominio Contraseña</label>
+                                        <input type="text" name="dominio[0][contrasenha]">
+                                        @error('dominio[0][contrasenha]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
@@ -249,27 +249,27 @@
 
                                 <div class="flex justify-between  contenedor_BBDD">
                                     <div class="w-1/3 div_nombreBD">
-                                        <label for="bd_nombre[]" class="block font-medium text-sm text-gray-700">Nombre
+                                        <label for="bd[0][nombre]" class="block font-medium text-sm text-gray-700">Nombre
                                             BBDD</label>
-                                        <input type="text" name="bd_nombre[]" id="bd_nombre[]">
-                                        @error('bd_password[]')
+                                        <input type="text" name="bd[0][nombre]">
+                                        @error('bd[0][nombre]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
 
                                     <div class="w-1/3">
-                                        <label for="host[]" class="block font-medium text-sm text-gray-700">Host</label>
-                                        <input type="text" name="host[]" id="host[]">
-                                        @error('host[]')
+                                        <label for="bd[0][host]" class="block font-medium text-sm text-gray-700">Host</label>
+                                        <input type="text" name="bd[0][host]">
+                                        @error('bd[0][host]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
 
                                     <div class="w-1/3">
-                                        <label for="bd_password[]"
-                                            class="block font-medium text-sm text-gray-700">Password</label>
-                                        <input type="text" name="bd_password[]" id="bd_password[]">
-                                        @error('bd_password[]')
+                                        <label for="bd[0][contrasenha]"
+                                            class="block font-medium text-sm text-gray-700">Contraseña</label>
+                                        <input type="text" name="bd[0][contrasenha]">
+                                        @error('bd[0][contrasenha]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
@@ -291,28 +291,28 @@
 
                                 <div class="flex justify-between  contenedor_mail">
                                     <div class="w-1/3 div_email">
-                                        <label for="email[]"
+                                        <label for="email[0][email]"
                                             class="block font-medium text-sm text-gray-700">Email</label>
-                                        <input type="text" name="email[]" id="email[]">
-                                        @error('email[]')
+                                        <input type="text" name="email[0][email]">
+                                        @error('email[0][email]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
 
                                     <div class="w-1/3">
-                                        <label for="password[]"
+                                        <label for="email[0][contrasenha]"
                                             class="block font-medium text-sm text-gray-700">Password</label>
-                                        <input type="text" name="password[]" id="password[]">
-                                        @error('password[]')
+                                        <input type="text" name="email[0][contrasenha]">
+                                        @error('email[0][contrasenha]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
 
                                     <div class="w-1/3">
-                                        <label for="ruta_accesso[]" class="block font-medium text-sm text-gray-700">Ruta
+                                        <label for="email[0][ruta_acceso]" class="block font-medium text-sm text-gray-700">Ruta
                                             Accesso</label>
-                                        <input type="text" name="ruta_accesso[]" id="ruta_accesso[]">
-                                        @error('ruta_accesso[]')
+                                        <input type="text" name="email[0][ruta_acceso]">
+                                        @error('email[0][ruta_acceso]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
@@ -324,8 +324,8 @@
                             {{-- Accesso --}}
                             <div class="div_accesso mb-4">
                                 <div>
-                                    <h3 class="flex justify-center mt-3 mb-3 font-bold text-2xl">Accesso</h3>
-                                    <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="nuevoAccesso(event)">
+                                    <h3 class="flex justify-center mt-3 mb-3 font-bold text-2xl">Acceso</h3>
+                                    <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="nuevoAcceso(event)">
                                         <x-slot name="boton">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
                                         </x-slot>
@@ -334,28 +334,28 @@
 
                                 <div class="flex justify-between  contenedor_accesso">
                                     <div class="w-1/3 div_email">
-                                        <label for="dominio_accesso[]"
+                                        <label for="acceso[0][dominio]"
                                             class="block font-medium text-sm text-gray-700">Dominio</label>
-                                        <input type="text" name="dominio_accesso[]" id="dominio_accesso[]">
-                                        @error('dominio_accesso[]')
+                                        <input type="text" name="acceso[0][dominio]">
+                                        @error('acceso[0][dominio]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
 
                                     <div class="w-1/3">
-                                        <label for="usuario_accesso[]"
+                                        <label for="acceso[0][usuario]"
                                             class="block font-medium text-sm text-gray-700">Usuario</label>
-                                        <input type="text" name="usuario_accesso[]" id="usuario_accesso[]">
-                                        @error('usuario_accesso[]')
+                                        <input type="text" name="acceso[0][usuario]">
+                                        @error('acceso[0][usuario]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
 
                                     <div class="w-1/3">
-                                        <label for="password_accesso[]"
-                                            class="block font-medium text-sm text-gray-700">Password</label>
-                                        <input type="text" name="password_accesso[]" id="password_accesso[]">
-                                        @error('password_accesso[]')
+                                        <label for="acceso[0][contrasenha]"
+                                            class="block font-medium text-sm text-gray-700">Contraseña</label>
+                                        <input type="text" name="acceso[0][contrasenha]">
+                                        @error('acceso[0][contrasenha]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>

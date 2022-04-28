@@ -25,7 +25,7 @@ class FacturaRequest extends FormRequest
     {
         return [
             'fecha_cargo'=>'date',
-            'file'=>'required',
+            'factura'=>'file',
             'referencia_contrato'=>'required',
             'id_cliente' => 'numeric|required',
         ];

@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dominios', function (Blueprint $table) {
+        Schema::create('rol_trabajos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('proyecto_id')->constrained();
-            $table->string('nombre')->nullable();
-            $table->string('usuario')->nullable();
-            $table->string('contrasenha')->nullable();
+            $table->string('rol');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dominios');
+        Schema::dropIfExists('rol_trabajos');
     }
 };

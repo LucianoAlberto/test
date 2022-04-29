@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Falta;
+use App\Models\Ambito;
 use App\Models\Nomina;
 use App\Models\Practica;
 use App\Models\Vacacion;
@@ -50,10 +51,10 @@ class Empleado extends Model
     }
 
     /**
-     * Obtiene los roles asociados a este empleado.
+     * Obtiene los ámbitos asociados a este empleado.
      */
-    public function roles()
+    public function ambitos()
     {
-        return $this->belongsToMany(RolTrabajo::class);
+        return $this->belongsToMany(Ambito::class);
     }
 }

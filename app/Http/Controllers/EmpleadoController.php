@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Falta;
+use App\Models\Ambito;
 use App\Models\Nomina;
 use App\Models\Empleado;
 use App\Models\Practicas;
-use App\Models\RolTrabajo;
 use App\Models\Vacaciones;
 use Illuminate\Http\Request;
 use App\Http\Requests\EmpleadoRequest;
@@ -33,8 +33,8 @@ class EmpleadoController extends Controller
      */
     public function create()
     {
-        $roles = RolTrabajo::all();
-        return view('empleados.create', compact('roles'));
+        $ambitos = Ambito::all();
+        return view('empleados.create', compact('ambitos'));
     }
 
     /**

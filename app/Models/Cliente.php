@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Ambito;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Cliente extends Model
 {
@@ -42,5 +43,13 @@ class Cliente extends Model
     public function pagos()
     {
         return $this->hasMany(Pago::class);
+    }
+
+    /**
+     * Obtiene los ámbitos asociados a este cliente.
+     */
+    public function ambitos()
+    {
+        return $this->belongsToMany(Ambito::class);
     }
 }

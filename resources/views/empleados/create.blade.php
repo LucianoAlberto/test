@@ -78,12 +78,12 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="block text-gray-700 text-sm font-bold mb-2" for="referencia_contrato">Referencia Contrato</label>
+                                    <label class="block text-gray-700 text-sm font-bold mb-2" for="referencia_contrato">Ámbito de trabajo</label>
                                     <select class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="referencia" name="referencia_contrato" required>
-                                        <option value="">Seleciona un rol</option>
-                                        <option value="0">Sin rol</option>
-                                    @foreach ($roles as $rol )
-                                        <option value={{$rol->rol}}>{{$rol->rol}}</option>
+                                        <option value="">Seleciona un ámbito</option>
+                                        <option value="0">Sin ámbito</option>
+                                    @foreach ($ambitos as $ambito )
+                                        <option value={{$ambito->nombre}}>{{$ambito->nombre}}</option>
                                     @endforeach
                                     </select>
                                     @error('referencia_contrato')

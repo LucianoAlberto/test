@@ -143,6 +143,20 @@
                                         @enderror
                                     </div>
                                 </div>
+
+                                <div class="mb-3">
+                                    <label class="block text-gray-700 text-sm font-bold mb-2" for="referencia_contrato">Ámbito de trabajo</label>
+                                    <select class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="referencia" name="referencia_contrato" required>
+                                        <option value="">Seleciona un ámbito</option>
+                                        <option value="0">Sin ámbito</option>
+                                    @foreach ($ambitos as $ambito )
+                                        <option value={{$ambito->nombre}}>{{$ambito->nombre}}</option>
+                                    @endforeach
+                                    </select>
+                                    @error('referencia_contrato')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
                             </div>
 
 
@@ -176,19 +190,19 @@
 
                                     <div class="flex justify-between mb-4">
                                         <div class="w-3/6 mr-2">
-                                            <label for="contratos[concepto][]" class="block font-medium text-sm text-gray-700">Concepto</label>
-                                            <input type="text" name="contratos[concepto][]" id="contratos[concepto][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                value="{{ old("contratos[concepto][]", '') }}" />
-                                            @error("contratos[concepto][]")
+                                            <label for="contratos[0][concepto]" class="block font-medium text-sm text-gray-700">Concepto</label>
+                                            <input type="text" name="contratos[0][concepto]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                value="{{ old("contratos[][concepto]", '') }}" />
+                                            @error("contratos[concepto]")
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
                                         </div>
 
                                         <div class="w-3/6 ml-2">
-                                            <label for="contratos[referencia][]" class="block font-medium text-sm text-gray-700">Referencia</label>
-                                            <input type="text" name="contratos[referencia][]" id="contratos[referencia][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                value="{{ old("contratos[referencia][]", '') }}" />
-                                            @error('contratos[referencia][]')
+                                            <label for="contratos[0][referencia]" class="block font-medium text-sm text-gray-700">Referencia</label>
+                                            <input type="text" name="contratos[0][referencia]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                value="{{ old("contratos[][referencia]", '') }}" />
+                                            @error('contratos[referencia]')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
                                         </div>
@@ -196,65 +210,65 @@
 
                                     <div class="flex justify-between mb-4">
                                         <div class="w-1/4 mr-2">
-                                            <label for="contratos[base_imponible][]" class="block font-medium text-sm text-gray-700">Base imponible</label>
-                                            <input type="number" name="contratos[base_imponible][]" id="contratos[base_imponible][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                value="{{ old("contratos[base_imponible][]", '') }}" />
-                                            @error('contratos[base_imponible][]')
+                                            <label for="contratos[0][base_imponible]" class="block font-medium text-sm text-gray-700">Base imponible</label>
+                                            <input type="number" name="contratos[0][base_imponible]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                value="{{ old("contratos[][base_imponible]", '') }}" />
+                                            @error('contratos[base_imponible]')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
                                         </div>
 
                                         <div class="w-1/4 ml-2 mr-2">
-                                            <label for="contratos[iva][]" class="block font-medium text-sm text-gray-700">IVA</label>
-                                            <input type="number" name="contratos[iva][]" id="contratos[iva][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                value="{{ old("contratos[iva][]", '') }}" />
-                                            @error('contratos[iva][]')
+                                            <label for="contratos[0][iva]" class="block font-medium text-sm text-gray-700">IVA</label>
+                                            <input type="number" name="contratos[0][iva]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                value="{{ old("contratos[][iva]", '') }}" />
+                                            @error('contratos[iva]')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
                                         </div>
 
                                         <div class="w-1/4 ml-2 mr-2">
-                                            <label for="contratos[irpf][]" class="block font-medium text-sm text-gray-700">IRPF</label>
-                                            <input type="number" name="contratos[irpf][]" id="contratos[irpf][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                value="{{ old("contratos[irpf][]", '') }}" />
-                                            @error('contratos[irpf][]')
+                                            <label for="contratos[0][irpf]" class="block font-medium text-sm text-gray-700">IRPF</label>
+                                            <input type="number" name="contratos[0][irpf]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                value="{{ old("contratos[][irpf]", '') }}" />
+                                            @error('contratos[irpf]')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
                                         </div>
 
                                         <div class="w-1/4 ml-2">
-                                            <label for="contratos[total][]" class="block font-medium text-sm text-gray-700">Total</label>
-                                            <input type="number" name="contratos[total][]" id="contratos[total][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                value="{{ old("contratos[total][]", '') }}" />
-                                            @error('contratos[total][]')
+                                            <label for="contratos[0][total]" class="block font-medium text-sm text-gray-700">Total</label>
+                                            <input type="number" name="contratos[0][total]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                value="{{ old("contratos[][total]", '') }}" />
+                                            @error('contratos[total]')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                                 @enderror
                                         </div>
                                     </div>
 
                                     <div>
-                                        <label for="contratos[fecha][]" class="block font-medium text-sm text-gray-700">Fecha firma</label>
-                                        <input type="date" name="contratos[fecha][]" id="contratos[fecha][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("contratos[fecha][]", '') }}" />
-                                        @error('contratos[fecha][]')
+                                        <label for="contratos[0][fecha]" class="block font-medium text-sm text-gray-700">Fecha firma</label>
+                                        <input type="date" name="contratos[0][fecha]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old("contratos[][fecha]", '') }}" />
+                                        @error('contratos[fecha]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
 
                                     <div>
-                                        <label for="contratos[archivo][]" class="block font-medium text-sm text-gray-700">Adjuntar contrato</label>
-                                        <input type="file" name="contratos[archivo][]" id="contratos[archivo][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("contratos[archivo][]", '') }}" />
-                                        @error('contratos[archivo][]')
+                                        <label for="contratos[0][archivo]" class="block font-medium text-sm text-gray-700">Adjuntar contrato</label>
+                                        <input type="file" name="contratos[0][archivo]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old("contratos[][archivo]", '') }}" />
+                                        @error('contratos[archivo]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
 
                                     <div>
-                                        <label for="contratos[presupuesto][]" class="block font-medium text-sm text-gray-700">Adjuntar presupuesto</label>
-                                        <input type="file" name="contratos[presupuesto][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("contratos[presupuesto][]", '') }}" />
-                                        @error('contratos[presupuesto][]')
+                                        <label for="contratos[0][presupuesto]" class="block font-medium text-sm text-gray-700">Adjuntar presupuesto</label>
+                                        <input type="file" name="contratos[0][presupuesto]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old("contratos[][presupuesto]", '') }}" />
+                                        @error('contratos[presupuesto]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
@@ -282,19 +296,19 @@
 
                                         <div class="flex contenedorFacturas justify-between mb-4">
                                             <div class="w-5/12 divFechaFactura">
-                                                <label for="contratos[0][facturas][fechas][]" class="block font-medium text-sm text-gray-700">Fecha cargo recurrente</label>
-                                                <input type="date" name="contratos[0][facturas][fechas][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                <label for="contratos[0][facturas][fechas][0]" class="block font-medium text-sm text-gray-700">Fecha cargo recurrente</label>
+                                                <input type="date" name="contratos[0][facturas][fechas][0]" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                                     value="{{ old("contratos[0][facturas][fechas][]", '') }}" />
-                                                @error("contratos[0][facturas][fechas][]")
+                                                @error("contratos[0][facturas][fechas]")
                                                     <p class="text-sm text-red-600">{{ $message }}</p>
                                                 @enderror
                                             </div>
 
                                             <div class="w-5/12 divArchivoFactura">
-                                                <label for="contratos[0][facturas][archivos][]" class="block font-medium text-sm text-gray-700">Adjuntar facturas</label>
-                                                <input type="file" name="contratos[0][facturas][archivos][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                <label for="contratos[0][facturas][archivos][0]" class="block font-medium text-sm text-gray-700">Adjuntar facturas</label>
+                                                <input type="file" name="contratos[0][facturas][archivos][0]" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                                     value="{{ old("contratos[0][facturas][archivos][]", '') }}" />
-                                                @error('contratos[0][facturas][archivos][]')
+                                                @error('contratos[0][facturas][archivos]')
                                                     <p class="text-sm text-red-600">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -326,19 +340,19 @@
 
                                 <div class="contenedorFacturasIndependientes flex justify-between mb-4">
                                     <div class="w-5/12">
-                                        <label for="facturas[fechas][]" class="block font-medium text-sm text-gray-700">Fecha cargo recurrente</label>
-                                        <input type="date" name="facturas[fechas][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("facturas[fechas][]", '') }}" />
-                                        @error("facturas[fechas][]")
+                                        <label for="facturas[0][fecha]" class="block font-medium text-sm text-gray-700">Fecha cargo recurrente</label>
+                                        <input type="date" name="facturas[0][fecha]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old("facturas[][fecha]", '') }}" />
+                                        @error("facturas[fecha]")
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
 
                                     <div class="w-5/12">
-                                        <label for="facturas[archivos][]" class="block font-medium text-sm text-gray-700">Adjuntar facturas</label>
-                                        <input type="file" name="facturas[archivos][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("facturas[archivos][]", '') }}" />
-                                        @error('facturas[archivos][]')
+                                        <label for="facturas[0][archivo]" class="block font-medium text-sm text-gray-700">Adjuntar facturas</label>
+                                        <input type="file" name="facturas[0][archivo]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old("facturas[][archivo]", '') }}" />
+                                        @error('facturas[archivo]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
@@ -368,37 +382,37 @@
 
                                 <div class="contenedorPagosIndependientes flex justify-between mb-4">
                                     <div class="w-5/12">
-                                        <label for="pagos[abonado][]" class="block font-medium text-sm text-gray-700">Abonado</label>
-                                        <input type="text" name="pagos[abonado][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("pagos[abonado][]", '') }}" />
-                                        @error("pagos[abonado][]")
+                                        <label for="pagos[0][abonado]" class="block font-medium text-sm text-gray-700">Abonado</label>
+                                        <input type="text" name="pagos[0][abonado]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old("pagos[][abonado]", '') }}" />
+                                        @error("pagos[abonado]")
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
 
                                     <div class="w-5/12">
-                                        <label for="pagos[pendiente][]" class="block font-medium text-sm text-gray-700">Pendiente</label>
-                                        <input type="text" name="pagos[pendiente][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("pagos[pendiente][]", '') }}" />
-                                        @error("pagos[pendiente][]")
+                                        <label for="pagos[0][pendiente]" class="block font-medium text-sm text-gray-700">Pendiente</label>
+                                        <input type="text" name="pagos[0][pendiente]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old("pagos[][pendiente]", '') }}" />
+                                        @error("pagos[pendiente]")
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
 
                                     <div class="w-5/12">
-                                        <label for="pagos[fecha][]" class="block font-medium text-sm text-gray-700">Fecha</label>
-                                        <input type="date" name="pagos[fecha][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("pagos[fecha][]", '') }}" />
-                                        @error("pagos[fecha][]")
+                                        <label for="pagos[0][fecha]" class="block font-medium text-sm text-gray-700">Fecha</label>
+                                        <input type="date" name="pagos[0][fecha]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old("pagos[][fecha]", '') }}" />
+                                        @error("pagos[fecha]")
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
 
                                     <div class="w-5/12">
-                                        <label for="pagos[referencia][]" class="block font-medium text-sm text-gray-700">Referencia</label>
-                                        <input type="text" name="pagos[referencia][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("pagos[referencia][]", '') }}" />
-                                        @error('pagos[referencia][]')
+                                        <label for="pagos[0][referencia]" class="block font-medium text-sm text-gray-700">Referencia</label>
+                                        <input type="text" name="pagos[0][referencia]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old("pagos[][referencia]", '') }}" />
+                                        @error('pagos[referencia]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
@@ -432,19 +446,19 @@
                                     </h3>
                                     <div class="flex">
                                         <div class="w-1/4 mr-2">
-                                            <label for="proyectos[referencia][]" class="block font-medium text-sm text-gray-700">Referencia</label>
-                                            <input type="number" name="proyectos[referencia][]" id="proyectos[referencia][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                value="{{ old("proyectos[referencia][]", '') }}" />
-                                            @error('proyectos[referencia][]')
+                                            <label for="proyectos[0][referencia]" class="block font-medium text-sm text-gray-700">Referencia</label>
+                                            <input type="number" name="proyectos[0][referencia]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                value="{{ old("proyectos[][referencia]", '') }}" />
+                                            @error('proyectos[referencia]')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
                                         </div>
 
                                         <div class="w-3/4 ml-2">
-                                            <label for="proyectos[concepto][]" class="block font-medium text-sm text-gray-700">Concepto</label>
-                                            <input type="text" name="proyectos[concepto][]" id="proyectos[concepto][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                value="{{ old("proyectos[concepto][]", '') }}" />
-                                            @error('proyectos[concepto][]')
+                                            <label for="proyectos[0][concepto]" class="block font-medium text-sm text-gray-700">Concepto</label>
+                                            <input type="text" name="proyectos[0][concepto]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                value="{{ old("proyectos[][concepto]", '') }}" />
+                                            @error('proyectos[concepto]')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
                                         </div>
@@ -452,16 +466,16 @@
 
                                     <div class="flex">
                                         <div class="w-1/4 mr-2">
-                                            <label for="proyectos[dominio][usuario][]" class="block font-medium text-sm text-gray-700">Usuario dominio</label>
-                                            <input type="text" name="proyectos[dominio][usuario][]" id="proyectos[dominio][usuario][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                value="{{ old("proyectos[dominio][usuario][]", '') }}" />
-                                            @error('proyectos[dominio][usuario][]')
+                                            <label for="proyectos[0][usuario_dominio]" class="block font-medium text-sm text-gray-700">Usuario dominio</label>
+                                            <input type="text" name="proyectos[0][usuario_dominio]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                value="{{ old("proyectos[][usuario_dominio]", '') }}" />
+                                            @error('proyectos[usuario_dominio]')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
                                         </div>
 
                                         <div class="w-1/4 mx-2">
-                                            <label for="proyectos[dominio][contrasenha][]" class="block font-medium text-sm text-gray-700">Contraseña dominio</label>
+                                            <label for="proyectos[0][dominio][contrasenha][]" class="block font-medium text-sm text-gray-700">Contraseña dominio</label>
                                             <input type="text" name="proyectos[dominio][contrasenha][]" id="proyectos[dominio][contrasenha][]" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                                 value="{{ old("proyectos[dominio][contrasenha][]", '') }}" />
                                             @error('proyectos[dominio][contrasenha][]')

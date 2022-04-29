@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Factura;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ConceptoFactura extends Model
 {
@@ -12,10 +13,10 @@ class ConceptoFactura extends Model
     protected $fillable = ['nombre'];
 
     /**
-     * Obtiene los contratos asociados a este cliente.
+     * Obtiene las facturas asociados a este concepto.
      */
     public function facturas()
     {
-        return $this->hasMany(Factura::class);
+        return $this->belongsToMany(Factura::class);
     }
 }

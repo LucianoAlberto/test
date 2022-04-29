@@ -21,7 +21,7 @@ class Proyecto extends Model
     }
 
     /**
-     * Obtiene las bases de datos asociadas a este contrato.
+     * Obtiene las bases de datos asociadas a este proyecto.
      */
     public function basedatoss()
     {
@@ -29,7 +29,7 @@ class Proyecto extends Model
     }
 
     /**
-     * Obtiene los dominios asociados a este contrato.
+     * Obtiene los dominios asociados a este proyecto.
      */
     public function dominios()
     {
@@ -37,7 +37,7 @@ class Proyecto extends Model
     }
 
     /**
-     * Obtiene los emailcorporativos asociados a este contrato.
+     * Obtiene los emailcorporativos asociados a este proyecto.
      */
     public function emailcorporativos()
     {
@@ -45,7 +45,7 @@ class Proyecto extends Model
     }
 
     /**
-     * Obtiene los accesos asociados a este contrato.
+     * Obtiene los accesos asociados a este proyecto.
      */
     public function accesos()
     {

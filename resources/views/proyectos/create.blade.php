@@ -142,7 +142,7 @@
 
                                     <div class="w-1/8">
                                         <label for="proveedor_dominio_contrasenha"
-                                            class="block font-medium text-sm text-gray-700">Provedor Dominio Password</label>
+                                            class="block font-medium text-sm text-gray-700">Provedor Dominio Contraseña</label>
                                         <input type="text" name="proveedor_dominio_contrasenha" id="proveedor_dominio_contrasenha">
                                         @error('proveedor_dominio_contrasenha')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
@@ -195,18 +195,18 @@
                             <hr>
 
                             {{-- Dominios --}}
-                            <div class="div_contenedorDominios mb-4">
+                            <div class="divDominios mb-4">
                                 <div class="flex">
                                     <h3 class="flex justify-center mt-3 font-bold mb-3 text-2xl">Dominios</h3>
-                                    <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="nuevoDominio(event)">
+                                    <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masDominio(event)">
                                         <x-slot name="boton">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
                                         </x-slot>
                                     </x-boton2>
                                 </div>
 
-                                <div class="contenedor_dominio flex justify-between">
-                                    <div class="w-1/3 div_nombreDominio">
+                                <div class="contenedorDominios flex justify-between">
+                                    <div class="w-1/3 divNombreDominio">
                                         <label for="dominio[0][nombre]"
                                             class="block font-medium text-sm text-gray-700">Nombre Dominio</label>
                                         <input type="text" name="dominio[0][nombre]">
@@ -215,7 +215,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="w-1/3">
+                                    <div class="w-1/3 divUsuarioDominio">
                                         <label for="dominio[0][usuario]"
                                             class="block font-medium text-sm text-gray-700">Dominio Usuario</label>
                                         <input type="text" name="dominio[0][usuario]">
@@ -224,7 +224,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="w-1/3">
+                                    <div class="w-1/3 divContrasenhaDominio">
                                         <label for="dominio[0][contrasenha]"
                                             class="block font-medium text-sm text-gray-700">Dominio Contraseña</label>
                                         <input type="text" name="dominio[0][contrasenha]">
@@ -237,18 +237,18 @@
                             <hr>
 
                             {{-- Base de datos --}}
-                            <div class="div_BBDD mb-4">
+                            <div class="divBasesDatos mb-4">
                                 <div>
                                     <h3 class="flex justify-center mt-3 mb-3 font-bold text-2xl">Base De Datos</h3>
-                                    <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="nuevaBD(event)">
+                                    <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masBasesDatos(event)">
                                         <x-slot name="boton">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
                                         </x-slot>
                                     </x-boton2>
                                 </div>
 
-                                <div class="flex justify-between  contenedor_BBDD">
-                                    <div class="w-1/3 div_nombreBD">
+                                <div class="flex justify-between contenedorBasesDatos">
+                                    <div class="divNombreBD w-1/3">
                                         <label for="bd[0][nombre]" class="block font-medium text-sm text-gray-700">Nombre
                                             BBDD</label>
                                         <input type="text" name="bd[0][nombre]">
@@ -257,7 +257,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="w-1/3">
+                                    <div class="divHostBD w-1/3">
                                         <label for="bd[0][host]" class="block font-medium text-sm text-gray-700">Host</label>
                                         <input type="text" name="bd[0][host]">
                                         @error('bd[0][host]')
@@ -265,7 +265,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="w-1/3">
+                                    <div class="divContrasenhaBD w-1/3">
                                         <label for="bd[0][contrasenha]"
                                             class="block font-medium text-sm text-gray-700">Contraseña</label>
                                         <input type="text" name="bd[0][contrasenha]">
@@ -279,18 +279,18 @@
 
 
                             {{-- Emails Coorporativos --}}
-                            <div class="div_mail mb-4">
+                            <div class="divEmail mb-4">
                                 <div>
                                     <h3 class="flex justify-center mt-3 mb-3 font-bold text-2xl">Email Corporativo</h3>
-                                    <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="nuevoEmail(event)">
+                                    <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masEmail(event)">
                                         <x-slot name="boton">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
                                         </x-slot>
                                     </x-boton2>
                                 </div>
 
-                                <div class="flex justify-between  contenedor_mail">
-                                    <div class="w-1/3 div_email">
+                                <div class="contenedorEmails flex justify-between">
+                                    <div class="divEmailEmail w-1/3">
                                         <label for="email[0][email]"
                                             class="block font-medium text-sm text-gray-700">Email</label>
                                         <input type="text" name="email[0][email]">
@@ -299,7 +299,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="w-1/3">
+                                    <div class="divEmailcontrasenha w-1/3">
                                         <label for="email[0][contrasenha]"
                                             class="block font-medium text-sm text-gray-700">Password</label>
                                         <input type="text" name="email[0][contrasenha]">
@@ -308,7 +308,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="w-1/3">
+                                    <div class="divEmailRuta w-1/3">
                                         <label for="email[0][ruta_acceso]" class="block font-medium text-sm text-gray-700">Ruta
                                             Accesso</label>
                                         <input type="text" name="email[0][ruta_acceso]">
@@ -322,18 +322,18 @@
 
 
                             {{-- Accesso --}}
-                            <div class="div_accesso mb-4">
+                            <div class="divAccesos mb-4">
                                 <div>
                                     <h3 class="flex justify-center mt-3 mb-3 font-bold text-2xl">Acceso</h3>
-                                    <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="nuevoAcceso(event)">
+                                    <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masAcceso(event)">
                                         <x-slot name="boton">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
                                         </x-slot>
                                     </x-boton2>
                                 </div>
 
-                                <div class="flex justify-between  contenedor_accesso">
-                                    <div class="w-1/3 div_email">
+                                <div class="contenedorAccesos flex justify-between">
+                                    <div class="divDominioAcceso w-1/3">
                                         <label for="acceso[0][dominio]"
                                             class="block font-medium text-sm text-gray-700">Dominio</label>
                                         <input type="text" name="acceso[0][dominio]">
@@ -342,7 +342,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="w-1/3">
+                                    <div class="divUsuarioAcceso w-1/3">
                                         <label for="acceso[0][usuario]"
                                             class="block font-medium text-sm text-gray-700">Usuario</label>
                                         <input type="text" name="acceso[0][usuario]">
@@ -351,7 +351,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="w-1/3">
+                                    <div class="divContrasenhaAcceso w-1/3">
                                         <label for="acceso[0][contrasenha]"
                                             class="block font-medium text-sm text-gray-700">Contraseña</label>
                                         <input type="text" name="acceso[0][contrasenha]">

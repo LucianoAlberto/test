@@ -7,6 +7,7 @@ use App\Models\Factura;
 use App\Models\Contrato;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RoleSeeder;
+use Database\Seeders\AmbitoSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
@@ -20,7 +21,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             RoleSeeder::class,
-            RolTrabajoSeeder::class,
+            AmbitoSeeder::class,
         ]);
 
         Cliente::factory(15)->create();

@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Cliente;
+use App\Models\Contrato;
+use App\Models\ConceptoFactura;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Factura extends Model
 {
@@ -32,6 +35,6 @@ class Factura extends Model
      */
     public function concepto_factura()
     {
-        return $this->belongsTo(ConceptoFactura::class);
+        return $this->belongsToMany(ConceptoFactura::class);
     }
 }

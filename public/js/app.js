@@ -5190,39 +5190,44 @@ window.menosFacturaIndependiente = function (event) {
 
 var contador_proyectos = 0;
 
-window.masNombreDominio = function (event) {
-  var numeroProyecto = event.target.closest(".divNombresDominio").querySelector(".contenedorNombreDominio").querySelector("input").getAttribute("name").match(/\d+/);
-  var divInput = event.target.closest(".divNombresDominio").querySelector(".contenedorNombreDominio").cloneNode(true); //modifico el for del label y el name e id del input
+window.masDominio = function (event) {
+  var numeroDominios = event.target.closest(".divDominios").querySelectorAll(".contenedorDominios").length;
+  var divContenedorDominios = event.target.closest(".divDominios").querySelector(".contenedorDominios").cloneNode(true); //modifico el for del label y el name e id del input
 
-  divInput.querySelector("label").htmlFor = "proyectos[" + numeroProyecto + "][dominio][nombre][]";
-  divInput.querySelector("input").name = "proyectos[" + numeroProyecto + "][dominio][nombre][]";
-  divInput.querySelector("input").id = "proyectos[" + numeroProyecto + "][dominio][nombre][]";
-  divInput.querySelector("input").value = null;
-  event.target.closest(".divNombresDominio").appendChild(divInput);
+  divContenedorDominios.querySelector(".divNombreDominio").querySelector("label").htmlFor = "dominio[" + numeroDominios + "][nombre]";
+  divContenedorDominios.querySelector(".divNombreDominio").querySelector("input").name = "dominio[" + numeroDominios + "][nombre]";
+  divContenedorDominios.querySelector(".divNombreDominio").querySelector("input").value = null;
+  divContenedorDominios.querySelector(".divUsuarioDominio").querySelector("label").htmlFor = "dominio[" + numeroDominios + "][usuario]";
+  divContenedorDominios.querySelector(".divUsuarioDominio").querySelector("input").name = "dominio[" + numeroDominios + "][usuario]";
+  divContenedorDominios.querySelector(".divUsuarioDominio").querySelector("input").value = null;
+  divContenedorDominios.querySelector(".divContrasenhaDominio").querySelector("label").htmlFor = "dominio[" + numeroDominios + "][contrasenha]";
+  divContenedorDominios.querySelector(".divContrasenhaDominio").querySelector("input").name = "dominio[" + numeroDominios + "][contrasenha]";
+  divContenedorDominios.querySelector(".divContrasenhaDominio").querySelector("input").value = null;
+  event.target.closest(".divDominios").appendChild(divContenedorDominios);
 };
 
-window.menosNombreDominio = function (event) {
-  var ultimoHijoContenedorDominio = event.target.closest(".divNombresDominio").lastElementChild;
-  var listaContenedoresDominio = event.target.closest(".divNombresDominio").querySelectorAll(".contenedorNombreDominio");
+window.menosDominio = function (event) {
+  var ultimoHijoContenedorDominio = event.target.closest(".divDominios").lastElementChild;
+  var listaContenedoresDominio = event.target.closest(".divDominios").querySelectorAll(".contenedorDominio");
 
-  if (ultimoHijoContenedorDominio.classList.contains("contenedorNombreDominio") && listaContenedoresDominio.length > 1) {
+  if (ultimoHijoContenedorDominio.classList.contains("contenedorDominio") && listaContenedoresDominio.length > 1) {
     ultimoHijoContenedorDominio.remove();
   }
 };
 
 window.masBasesDatos = function (event) {
-  var numeroProyecto = event.target.closest(".divBasesDatos").querySelector(".contenedorBasesDatos").querySelector("input").getAttribute("name").match(/\d+/);
+  var numeroBasesDatos = event.target.closest(".divBasesDatos").querySelectorAll(".contenedorBasesDatos").length;
   var divContenedorBasesDatos = event.target.closest(".divBasesDatos").querySelector(".contenedorBasesDatos").cloneNode(true); //modifico el for del label y el name e id del input
 
-  divContenedorBasesDatos.children[0].querySelector("label").htmlFor = "proyectos[" + numeroProyecto + "][bd][nombre][]";
-  divContenedorBasesDatos.children[0].querySelector("input").name = "proyectos[" + numeroProyecto + "][bd][nombre][]";
-  divContenedorBasesDatos.children[0].querySelector("input").value = null;
-  divContenedorBasesDatos.children[1].querySelector("label").htmlFor = "proyectos[" + numeroProyecto + "][bd][host][]";
-  divContenedorBasesDatos.children[1].querySelector("input").name = "proyectos[" + numeroProyecto + "][bd][host][]";
-  divContenedorBasesDatos.children[1].querySelector("input").value = null;
-  divContenedorBasesDatos.children[2].querySelector("label").htmlFor = "proyectos[" + numeroProyecto + "][bd][contrasenha][]";
-  divContenedorBasesDatos.children[2].querySelector("input").name = "proyectos[" + numeroProyecto + "][bd][contrasenha][]";
-  divContenedorBasesDatos.children[2].querySelector("input").value = null;
+  divContenedorBasesDatos.querySelector(".divNombreBD").querySelector("label").htmlFor = "bd[" + numeroBasesDatos + "][nombre]";
+  divContenedorBasesDatos.querySelector(".divNombreBD").querySelector("input").name = "bd[" + numeroBasesDatos + "][nombre]";
+  divContenedorBasesDatos.querySelector(".divNombreBD").querySelector("input").value = null;
+  divContenedorBasesDatos.querySelector(".divHostBD").querySelector("label").htmlFor = "bd[" + numeroBasesDatos + "][host]";
+  divContenedorBasesDatos.querySelector(".divHostBD").querySelector("input").name = "bd[" + numeroBasesDatos + "][host]";
+  divContenedorBasesDatos.querySelector(".divHostBD").querySelector("input").value = null;
+  divContenedorBasesDatos.querySelector(".divContrasenhaBD").querySelector("label").htmlFor = "bd[" + numeroBasesDatos + "][contrasenha]";
+  divContenedorBasesDatos.querySelector(".divContrasenhaBD").querySelector("input").name = "bd[" + numeroBasesDatos + "][contrasenha]";
+  divContenedorBasesDatos.querySelector(".divContrasenhaBD").querySelector("input").value = null;
   event.target.closest(".divBasesDatos").appendChild(divContenedorBasesDatos);
 };
 
@@ -5236,19 +5241,19 @@ window.menosBasesDatos = function (event) {
 };
 
 window.masEmail = function (event) {
-  var numeroProyecto = event.target.closest(".divEmails").querySelector(".contenedorEmails").querySelector("input").getAttribute("name").match(/\d+/);
-  var divContenedorEmails = event.target.closest(".divEmails").querySelector(".contenedorEmails").cloneNode(true); //modifico el for del label y el name e id del input
+  var numeroEmail = event.target.closest(".divEmail").querySelectorAll(".contenedorEmails").length;
+  var divContenedorEmails = event.target.closest(".divEmail").querySelector(".contenedorEmails").cloneNode(true); //modifico el for del label y el name e id del input
 
-  divContenedorEmails.children[0].querySelector("label").htmlFor = "proyectos[" + numeroProyecto + "][email][email][]";
-  divContenedorEmails.children[0].querySelector("input").name = "proyectos[" + numeroProyecto + "][email][email][]";
-  divContenedorEmails.children[0].querySelector("input").value = null;
-  divContenedorEmails.children[1].querySelector("label").htmlFor = "proyectos[" + numeroProyecto + "][email][contrasenha][]";
-  divContenedorEmails.children[1].querySelector("input").name = "proyectos[" + numeroProyecto + "][email][contrasenha][]";
-  divContenedorEmails.children[1].querySelector("input").value = null;
-  divContenedorEmails.children[2].querySelector("label").htmlFor = "proyectos[" + numeroProyecto + "][email][ruta][]";
-  divContenedorEmails.children[2].querySelector("input").name = "proyectos[" + numeroProyecto + "][email][ruta][]";
-  divContenedorEmails.children[2].querySelector("input").value = null;
-  event.target.closest(".divEmails").appendChild(divContenedorEmails);
+  divContenedorEmails.querySelector(".divEmailEmail").querySelector("label").htmlFor = "email[" + numeroEmail + "][email]";
+  divContenedorEmails.querySelector(".divEmailEmail").querySelector("input").name = "email[" + numeroEmail + "][email]";
+  divContenedorEmails.querySelector(".divEmailEmail").querySelector("input").value = null;
+  divContenedorEmails.querySelector(".divEmailcontrasenha").querySelector("label").htmlFor = "email[" + numeroEmail + "][contrasenha]";
+  divContenedorEmails.querySelector(".divEmailcontrasenha").querySelector("input").name = "email[" + numeroEmail + "][contrasenha]";
+  divContenedorEmails.querySelector(".divEmailcontrasenha").querySelector("input").value = null;
+  divContenedorEmails.querySelector(".divEmailRuta").querySelector("label").htmlFor = "email[" + numeroEmail + "][ruta_acceso]";
+  divContenedorEmails.querySelector(".divEmailRuta").querySelector("input").name = "email[" + numeroEmail + "][ruta_acceso]";
+  divContenedorEmails.querySelector(".divEmailRuta").querySelector("input").value = null;
+  event.target.closest(".divEmail").appendChild(divContenedorEmails);
 };
 
 window.menosEmail = function (event) {
@@ -5261,18 +5266,18 @@ window.menosEmail = function (event) {
 };
 
 window.masAcceso = function (event) {
-  var numeroProyecto = event.target.closest(".divAccesos").querySelector(".contenedorAccesos").querySelector("input").getAttribute("name").match(/\d+/);
+  var numeroAcceso = event.target.closest(".divAccesos").querySelectorAll(".contenedorAccesos").length;
   var divContenedorAccesos = event.target.closest(".divAccesos").querySelector(".contenedorAccesos").cloneNode(true); //modifico el for del label y el name e id del input
 
-  divContenedorAccesos.children[0].querySelector("label").htmlFor = "proyectos[" + numeroProyecto + "][acceso][dominio][]";
-  divContenedorAccesos.children[0].querySelector("input").name = "proyectos[" + numeroProyecto + "][acceso][dominio][]";
-  divContenedorAccesos.children[0].querySelector("input").value = null;
-  divContenedorAccesos.children[1].querySelector("label").htmlFor = "proyectos[" + numeroProyecto + "][acceso][usuario][]";
-  divContenedorAccesos.children[1].querySelector("input").name = "proyectos[" + numeroProyecto + "][acceso][usuario][]";
-  divContenedorAccesos.children[1].querySelector("input").value = null;
-  divContenedorAccesos.children[2].querySelector("label").htmlFor = "proyectos[" + numeroProyecto + "][acceso][contrasenha][]";
-  divContenedorAccesos.children[2].querySelector("input").name = "proyectos[" + numeroProyecto + "][acceso][contrasenha][]";
-  divContenedorAccesos.children[2].querySelector("input").value = null;
+  divContenedorAccesos.querySelector(".divDominioAcceso").querySelector("label").htmlFor = "acceso[" + numeroAcceso + "][dominio]";
+  divContenedorAccesos.querySelector(".divDominioAcceso").querySelector("input").name = "acceso[" + numeroAcceso + "][dominio]";
+  divContenedorAccesos.querySelector(".divDominioAcceso").querySelector("input").value = null;
+  divContenedorAccesos.querySelector(".divUsuarioAcceso").querySelector("label").htmlFor = "acceso[" + numeroAcceso + "][usuario]";
+  divContenedorAccesos.querySelector(".divUsuarioAcceso").querySelector("input").name = "acceso[" + numeroAcceso + "][usuario]";
+  divContenedorAccesos.querySelector(".divUsuarioAcceso").querySelector("input").value = null;
+  divContenedorAccesos.querySelector(".divContrasenhaAcceso").querySelector("label").htmlFor = "acceso[" + numeroAcceso + "][contrasenha]";
+  divContenedorAccesos.querySelector(".divContrasenhaAcceso").querySelector("input").name = "acceso[" + numeroAcceso + "][contrasenha]";
+  divContenedorAccesos.querySelector(".divContrasenhaAcceso").querySelector("input").value = null;
   event.target.closest(".divAccesos").appendChild(divContenedorAccesos);
 };
 
@@ -5374,15 +5379,6 @@ window.nuevoConcepto = function () {
 window.closeNuevoConcepto = function () {
   var div = document.getElementById('nuevoConcepto');
   div.style.display = 'none';
-}; //repetimos los campos del dominio
-
-
-window.nuevoDominio = function (event) {
-  var div = event.target.closest(".div_contenedorDominios").querySelector('.contenedor_dominio').cloneNode(true);
-  div.querySelectorAll('input').forEach(function (input) {
-    input.value = "";
-  });
-  event.target.closest(".div_contenedorDominios").append(div);
 };
 
 window.nuevaBD = function () {

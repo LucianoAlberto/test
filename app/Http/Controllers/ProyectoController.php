@@ -81,39 +81,47 @@ class ProyectoController extends Controller
         $proyecto->save();
 
         foreach($valido['dominio'] as $dominio){
-            $nuevo_dominio = new Dominio;
-            $nuevo_dominio->nombre = $dominio['nombre'];
-            $nuevo_dominio->usuario = $dominio['usuario'];
-            $nuevo_dominio->contrasenha = $dominio['contrasenha'];
-            $nuevo_dominio->proyecto_id = $proyecto->id;
-            $nuevo_dominio->save();
+            if(in_array( !null, $dominio)){
+                $nuevo_dominio = new Dominio;
+                $nuevo_dominio->nombre = $dominio['nombre'];
+                $nuevo_dominio->usuario = $dominio['usuario'];
+                $nuevo_dominio->contrasenha = $dominio['contrasenha'];
+                $nuevo_dominio->proyecto_id = $proyecto->id;
+                $nuevo_dominio->save();
+            }
         }
 
         foreach($valido['bd'] as $bd){
-            $nueva_bd = new BaseDatos;
-            $nueva_bd->nombre = $bd['nombre'];
-            $nueva_bd->host = $bd['host'];
-            $nueva_bd->contrasenha = $bd['contrasenha'];
-            $nueva_bd->proyecto_id = $proyecto->id;
-            $nueva_bd->save();
+            if(in_array( !null, $bd)){
+                $nueva_bd = new BaseDatos;
+                $nueva_bd->nombre = $bd['nombre'];
+                $nueva_bd->host = $bd['host'];
+                $nueva_bd->contrasenha = $bd['contrasenha'];
+                $nueva_bd->proyecto_id = $proyecto->id;
+                $nueva_bd->save();
+            }
         }
 
         foreach($valido['email'] as $email){
-            $nuevo_email = new EmailCorporativo;
-            $nuevo_email->email = $email['email'];
-            $nuevo_email->contrasenha = $email['contrasenha'];
-            $nuevo_email->ruta_acceso = $email['ruta_acceso'];
-            $nuevo_email->proyecto_id = $proyecto->id;
-            $nuevo_email->save();
+            if(in_array( !null, $email)){
+                $nuevo_email = new EmailCorporativo;
+                $nuevo_email->email = $email['email'];
+                $nuevo_email->contrasenha = $email['contrasenha'];
+                $nuevo_email->ruta_acceso = $email['ruta_acceso'];
+                $nuevo_email->proyecto_id = $proyecto->id;
+                $nuevo_email->save();
+            }
         }
 
         foreach($valido['acceso'] as $acceso){
-            $nuevo_acceso = new Acceso;
-            $nuevo_acceso->dominio = $acceso['dominio'];
-            $nuevo_acceso->usuario = $acceso['usuario'];
-            $nuevo_acceso->contrasenha = $acceso['contrasenha'];
-            $nuevo_acceso->proyecto_id = $proyecto->id;
-            $nuevo_acceso->save();
+            if(in_array( !null, $acceso)){
+                $nuevo_acceso = new Acceso;
+                $nuevo_acceso->dominio = $acceso['dominio'];
+                $nuevo_acceso->usuario = $acceso['usuario'];
+                $nuevo_acceso->contrasenha = $acceso['contrasenha'];
+                $nuevo_acceso->proyecto_id = $proyecto->id;
+                $nuevo_acceso->save();
+            }
         }
 
         return redirect()->route('proyectos.index',compact('cliente'));
@@ -195,56 +203,51 @@ class ProyectoController extends Controller
 
         $proyecto->save();
 
-
-        //recuperamos los dominios de este proyecto y los eliminamos y guardaremos los nuevos
-        $dominios_antiguos = Dominio::where('proyecto_id',$proyecto->id)->delete();
-        foreach($valido['dominio_nombre'] as $key => $valor){
-            if($valido['dominio_nombre'][$key] != null && $valido['dominio_usuario'][$key] != null && $valido['dominio_password'][$key] != null){
-            $dominio = new Dominio;
-            $dominio->nombre = $valor;
-            $dominio->usuario = $valido['dominio_usuario'][$key];
-            $dominio->password = $valido['dominio_password'][$key];
-            $dominio->proyecto_id = $proyecto->id;
-            $dominio->save();
+        Dominio::where('proyecto_id', $proyecto->id)->delete();
+        foreach($valido['dominio'] as $dominio){
+            if(in_array( !null, $dominio)){
+                $nuevo_dominio = new Dominio;
+                $nuevo_dominio->nombre = $dominio['nombre'];
+                $nuevo_dominio->usuario = $dominio['usuario'];
+                $nuevo_dominio->contrasenha = $dominio['contrasenha'];
+                $nuevo_dominio->proyecto_id = $proyecto->id;
+                $nuevo_dominio->save();
             }
         }
 
-        //recuperamos las BBDD de este proyecto y los eliminamos y guardaremos los nuevos
-        $bd_antiguas = BaseDatos::where('proyecto_id',$proyecto->id)->delete();
-        foreach($valido['bd_nombre'] as $key => $valor){
-            if($valido['bd_nombre'][$key] != null && $valido['host'][$key] != null && $valido['bd_password'][$key] != null){
-            $bd = new BaseDatos;
-            $bd->nombre = $valor;
-            $bd->host = $valido['host'][$key];
-            $bd->password = $valido['bd_password'][$key];
-            $bd->proyecto_id = $proyecto->id;
+        BaseDatos::where('proyecto_id', $proyecto->id)->delete();
+        foreach($valido['bd'] as $bd){
+            if(in_array( !null, $bd)){
+                $nueva_bd = new BaseDatos;
+                $nueva_bd->nombre = $bd['nombre'];
+                $nueva_bd->host = $bd['host'];
+                $nueva_bd->contrasenha = $bd['contrasenha'];
+                $nueva_bd->proyecto_id = $proyecto->id;
+                $nueva_bd->save();
             }
         }
 
-
-        //recuperamos los emails de este proyecto y los eliminamos y guardaremos los nuevos
-        $emails_antiguos=EmailCorporativo::where('proyecto_id',$proyecto->id)->delete();
-        foreach($valido['email'] as $key => $valor){
-            if($valido['email'][$key] != null && $valido['password'][$key] != null && $valido['ruta_accesso'][$key] != null){
-                $email = new EmailCorporativo;
-                $email->email = $valor;
-                $email->password = $valido['password'][$key];
-                $email->ruta_accesso = $valido['ruta_accesso'][$key];
-                $email->proyecto_id = $proyecto->id;
-                $email->save();
+        EmailCorporativo::where('proyecto_id', $proyecto->id)->delete();
+        foreach($valido['email'] as $email){
+            if(in_array( !null, $email)){
+                $nuevo_email = new EmailCorporativo;
+                $nuevo_email->email = $email['email'];
+                $nuevo_email->contrasenha = $email['contrasenha'];
+                $nuevo_email->ruta_acceso = $email['ruta_acceso'];
+                $nuevo_email->proyecto_id = $proyecto->id;
+                $nuevo_email->save();
             }
         }
 
-        //recuperamos los accesos de este proyecto y los eliminamos y guardaremos los nuevos
-        $accesos_antiguos=Acceso::where('proyecto_id',$proyecto->id)->delete();
-        foreach($valido['dominio_accesso'] as $key => $valor){
-            if($valido['dominio_accesso'][$key] != null && $valido['usuario_accesso'][$key] != null && $valido['password_accesso'][$key] != null){
-            $acceso = new Acceso;
-            $acceso->dominio = $valor;
-            $acceso->usuario = $valido['usuario_accesso'][$key];
-            $acceso->password = $valido['password_accesso'][$key];
-            $acceso->proyecto_id = $proyecto->id;
-            $acceso->save();
+        Acceso::where('proyecto_id', $proyecto->id)->delete();
+        foreach($valido['acceso'] as $acceso){
+            if(in_array( !null, $acceso)){
+                $nuevo_acceso = new Acceso;
+                $nuevo_acceso->dominio = $acceso['dominio'];
+                $nuevo_acceso->usuario = $acceso['usuario'];
+                $nuevo_acceso->contrasenha = $acceso['contrasenha'];
+                $nuevo_acceso->proyecto_id = $proyecto->id;
+                $nuevo_acceso->save();
             }
         }
 

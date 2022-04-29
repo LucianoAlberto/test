@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Request;
 use App\Models\Pago;
 use App\Models\Acceso;
+use App\Models\Ambito;
 use App\Models\Cliente;
 use App\Models\Dominio;
 use App\Models\Factura;
@@ -39,7 +40,9 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        return view('clientes.create');
+        $ambitos = Ambito::all();
+
+        return view('clientes.create', compact('ambitos'));
     }
 
     /**

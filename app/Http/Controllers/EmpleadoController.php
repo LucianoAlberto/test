@@ -79,6 +79,11 @@ class EmpleadoController extends Controller
 
         $empleado->save();
 
+        if($validated['ambito'] != 0){
+            $ambito = Ambito::where('nombre', $validated['ambito'])->select('id')->first();
+            $empleado->ambitos()->attach($ambito);
+        }
+
         if($validated["nominas"][0]["fecha_inicio"] != null){
             foreach($validated["nominas"] as $nomina){
                 $nueva_nomina = new Nomina;

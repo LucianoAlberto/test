@@ -15,11 +15,18 @@
         </h2>
     </x-slot>
 
+    <form id="formulario" method="post" action="{{ route('clientes.index') }}" enctype="multipart/form-data">
+        @csrf
+
+        <div class="form-group mb-2">
+          <label for="filter" class="col-sm-2 col-form-label">Filtro</label>
+          <input type="text" class="form-control" id="filter" name="filter" placeholder="Product name..." value="{{$filter}}">
+        </div>
+        <button type="submit" class="btn btn-default mb-2">Filter</button>
+    </form>
+
     <div class="pt-4 pb-12">
         <div class="mx-auto sm:px-6 lg:px-8">
-
-
-
                 <div>
                     <div class="mx-auto pb-10 sm:px-6 lg:px-8">
                         <div class="flex flex-col">

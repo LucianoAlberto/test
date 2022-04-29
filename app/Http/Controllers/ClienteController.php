@@ -79,156 +79,11 @@ class ClienteController extends Controller
 
         $cliente->save();
 
-        if($validated["contratos"]["referencia"][0] != null){
-            foreach($validated["contratos"]["concepto"] as $clave_contrato => $concepto){
-                $contrato = new Contrato;
-
-                $contrato->cliente_id = $cliente->id;
-                $contrato->concepto = $concepto;
-                $contrato->referencia = $validated["contratos"]["referencia"][$clave_contrato];
-                $contrato->base_imponible = $validated["contratos"]["base_imponible"][$clave_contrato];
-                $contrato->iva = $validated["contratos"]["iva"][$clave_contrato];
-                $contrato->irpf = $validated["contratos"]["irpf"][$clave_contrato];
-                $contrato->total = $validated["contratos"]["total"][$clave_contrato];
-                $contrato->fecha_firma = $validated["contratos"]["fecha"][$clave_contrato];
-
-                if(isset($validated["contratos"]["archivo"][$clave_contrato])){
-                    $validated["contratos"]["archivo"][$clave_contrato] = Storage::disk('public')->putFile('contratos', $validated["contratos"]["archivo"][$clave_contrato], 'public');
-                    $contrato->archivo = $validated["contratos"]["archivo"][$clave_contrato];
-                }
-
-                if(isset($validated["contratos"]["presupuesto"][$clave_contrato])){
-                    $validated["contratos"]["presupuesto"][$clave_contrato] = Storage::disk('public')->putFile('contratos', $validated["contratos"]["presupuesto"][$clave_contrato], 'public');
-                    $contrato->presu1puesto = $validated["contratos"]["presupuesto"][$clave_contrato];
-                }
-
-                $contrato->save();
-
-                if(isset($validated["contratos"][$clave_contrato]["facturas"]["archivos"])){
-                    foreach($validated["contratos"][$clave_contrato]["facturas"]["fechas"] as $clave_factura => $fecha_factura){
-                        $factura_dependiente = new Factura;
-
-                        $factura_dependiente->cliente_id = $cliente->id;
-                        $factura_dependiente->fecha_cargo= $fecha_factura;
-                        $validated["contratos"][$clave_contrato]["facturas"]["archivos"][$clave_factura] = Storage::disk('public')->putFile('facturas', $validated["contratos"][$clave_contrato]["facturas"]["archivos"][$clave_factura], 'public');
-                        $factura_dependiente->factura = $validated["contratos"][$clave_contrato]["facturas"]["archivos"][$clave_factura];
-
-                        $factura_dependiente->save();
-
-                        $contrato->facturas()->attach($factura_dependiente->id);
-                    }
-                }
-
-            }
+        if($validated['ambito'] != 0){
+            $ambito = Ambito::where('nombre', $validated['ambito'])->select('id')->first();
+            $cliente->ambitos()->attach($ambito);
         }
 
-        if(isset($validated["facturas"]["archivos"][0])){
-            foreach($validated["facturas"]["fechas"] as $clave_factura_independiente => $fecha_factura_independiente){
-                $factura_independiente = new Factura;
-
-                $factura_independiente->cliente_id = $cliente->id;
-                $factura_independiente->fecha_cargo = $fecha_factura_independiente;
-                $validated["facturas"]["archivos"][$clave_factura_independiente] = Storage::disk('public')->putFile('facturas', $validated["facturas"]["archivos"][$clave_factura_independiente], 'public');
-                $factura_independiente->factura = $validated["facturas"]["archivos"][$clave_factura_independiente];
-
-                $factura_independiente->save();
-            }
-        }
-
-        if($validated["proyectos"]["referencia"][0] != null){
-            foreach($validated["proyectos"]["referencia"] as $clave_proyecto => $referencia){
-                $proyecto = new Proyecto;
-
-                $proyecto->cliente_id = $cliente->id;
-                $proyecto->referencia = $validated["proyectos"]["referencia"][$clave_proyecto];
-                $proyecto->concepto = $validated["proyectos"]["concepto"][$clave_proyecto];
-                $proyecto->proveedor_dominio_usuario = $validated["proyectos"]["dominio"]["usuario"][$clave_proyecto];
-                $proyecto->proveedor_dominio_contrasenha = $validated["proyectos"]["dominio"]["contrasenha"][$clave_proyecto];
-                $proyecto->proveedor_hosting_usuario = $validated["proyectos"]["hosting"]["usuario"][$clave_proyecto];
-                $proyecto->proveedor_hosting_contrasenha = $validated["proyectos"]["hosting"]["contrasenha"][$clave_proyecto];
-                $proyecto->otros_datos = $validated["proyectos"]["datos"][$clave_proyecto];
-
-                if(isset($validated["proyectos"]["sepa"][$clave_proyecto])){
-                    $validated["proyectos"]["sepa"][$clave_proyecto] = Storage::disk('public')->putFile('sepas', $validated["proyectos"]["sepa"][$clave_proyecto], 'public');
-                    $proyecto->sepa = $validated["proyectos"]["sepa"][$clave_proyecto];
-                }
-
-
-                $proyecto->save();
-
-                if($validated["proyectos"][$clave_proyecto]["dominio"]["nombre"][0] != null){
-                    foreach($validated["proyectos"][$clave_proyecto]["dominio"]["nombre"] as $nombre_dominio){
-                        $objeto_dominio = new Dominio;
-
-                        $objeto_dominio->proyecto_id = $proyecto->id;
-                        $objeto_dominio->nombre = $nombre_dominio;
-
-                        $objeto_dominio->save();
-                    }
-                }
-
-                if($validated["proyectos"][$clave_proyecto]["bd"]["nombre"][0] != null){
-                    foreach($validated["proyectos"][$clave_proyecto]["bd"]["nombre"] as $clave_bd => $nombre_bd){
-                        $objeto_bd = new BaseDatos;
-
-                        $objeto_bd->proyecto_id = $proyecto->id;
-                        $objeto_bd->nombre = $nombre_bd;
-                        $objeto_bd->host = $validated["proyectos"][$clave_proyecto]["bd"]["host"][$clave_bd];
-                        $objeto_bd->contrasenha = $validated["proyectos"][$clave_proyecto]["bd"]["contrasenha"][$clave_bd];
-
-                        $objeto_bd->save();
-                    }
-                }
-
-                if($validated["proyectos"][$clave_proyecto]["email"]["email"][0] != null){
-                    foreach($validated["proyectos"][$clave_proyecto]["email"]["email"] as $clave_email => $email){
-                        $objeto_email = new EmailCorporativo;
-
-                        $objeto_email->proyecto_id = $proyecto->id;
-                        $objeto_email->email = $email;
-                        $objeto_email->contrasenha = $validated["proyectos"][$clave_proyecto]["email"]["contrasenha"][$clave_email];
-                        $objeto_email->ruta_acceso = $validated["proyectos"][$clave_proyecto]["email"]["ruta"][$clave_email];
-
-                        $objeto_email->save();
-                    }
-                }
-
-                if($validated["proyectos"][$clave_proyecto]["acceso"]["dominio"][0] != null){
-                    foreach($validated["proyectos"][$clave_proyecto]["acceso"]["dominio"] as $clave_acceso => $acceso_dominio){
-                        $objeto_acceso = new Acceso;
-
-                        $objeto_acceso->proyecto_id = $proyecto->id;
-                        $objeto_acceso->dominio = $acceso_dominio;
-                        $objeto_acceso->usuario = $validated["proyectos"][$clave_proyecto]["acceso"]["usuario"][$clave_acceso];
-                        $objeto_acceso->contrasenha = $validated["proyectos"][$clave_proyecto]["acceso"]["contrasenha"][$clave_acceso];
-
-                        $objeto_acceso->save();
-                    }
-                }
-
-            }
-        }
-
-        if($validated["pagos"]["fecha"][0]){
-            foreach($validated["pagos"]["fecha"] as $clave_pago => $fecha_pago){
-                $objeto_pago = new Pago;
-
-                $objeto_pago->cliente_id = $cliente->id;
-                $objeto_pago->abonado = $validated["pagos"]["abonado"][$clave_pago];
-                $objeto_pago->pendiente = $validated["pagos"]["pendiente"][$clave_pago];
-                $objeto_pago->fecha = $fecha_pago;
-                $objeto_pago->referencia = $validated["pagos"]["referencia"][$clave_pago];
-
-                if($objeto_pago->referencia != null){
-                    $objeto_pago->contrato_id = Contrato::where('referencia', '=', $objeto_pago->referencia)->get('id')->first()->id;
-                }
-
-
-
-                //dd($objeto_pago->contrato_id);
-                $objeto_pago->save();
-            }
-        }
         return redirect()->route('clientes.index');
     }
 
@@ -304,13 +159,13 @@ class ClienteController extends Controller
         return redirect()->route('clientes.index');
     }
 
-    public function contratos(Cliente $cliente){
+    public function filtrado(Request $request){
+
+        $clientes = Cliente::where('nombre', $validated['ambito'])->select('id')->first();
+
+        return view('clientes.index', ['clientes' => $clientes]);
 
         return view ('contratos.index',compact('cliente'));
     }
 
-    public function facturas(Cliente $cliente){
-
-        return view ('clientes.facturas',compact('cliente'));
-    }
 }

@@ -24,6 +24,7 @@ class EmpleadoRequest extends FormRequest
     public function rules()
     {
         return [
+            'ambito'=>'nullable',
             'nombre'=>'required|string',
             'apellidos'=>'required|string',
             'dni'=>'required|numeric',

@@ -15,9 +15,11 @@ use App\Models\BaseDatos;
 use App\Models\ConceptoFactura;
 use App\Models\EmailCorporativo;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\FiltroRequest;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\ClienteRequest;
 use Illuminate\Support\Facades\Storage;
+
 
 class ClienteController extends Controller
 {
@@ -29,8 +31,9 @@ class ClienteController extends Controller
     public function index()
     {
         $clientes = Cliente::paginate(10);
+        $ambitos = Ambito::all();
 
-        return view('clientes.index', ['clientes' => $clientes]);
+        return view('clientes.index', compact('clientes', 'ambitos'));
     }
 
     /**
@@ -79,9 +82,14 @@ class ClienteController extends Controller
 
         $cliente->save();
 
-        if($validated['ambito'] != 0){
-            $ambito = Ambito::where('nombre', $validated['ambito'])->select('id')->first();
-            $cliente->ambitos()->attach($ambito);
+        if(!isset($validated['ambito']['sin'])){
+
+            foreach($validated['ambito'] as $clave => $ambito){
+                //dd($ambito);
+                $ambito = Ambito::where('id', $clave)->select('id')->first();
+
+                $cliente->ambitos()->attach($ambito);
+            }
         }
 
         return redirect()->route('clientes.index');
@@ -159,13 +167,24 @@ class ClienteController extends Controller
         return redirect()->route('clientes.index');
     }
 
-    public function filtrado(Request $request){
+    public function filtro(FiltroRequest $request){
 
-        $clientes = Cliente::where('nombre', $validated['ambito'])->select('id')->first();
+        $validated = $request->validated();
+        dd($validated);
+        //$query->whereIn('clientes.id', '=', $ambitoId)->paginate(10);
+        $arrayIds = [];
+        foreach($validated['ambito'] as $clave => $valor){
+            array_push($arrayIds, $clave);)
+        }
+        $ambitoId = Ambito::whereId($arrayIds)->first()->value('id');
 
-        return view('clientes.index', ['clientes' => $clientes]);
 
-        return view ('contratos.index',compact('cliente'));
+        $clientes = Cliente::whereHas('ambitos', function($query) use($ambitoId){
+            $query->where("ambito_id", "=", $ambitoId);
+        })->paginate(10);
+
+
+        return view('clientes.index',compact('clientes'));
     }
 
 }

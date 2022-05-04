@@ -40,12 +40,15 @@ Route::resource('clientes', ClienteController::class);
 Route::group(['middleware' => ['role:superusuario']], function () {
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::get('/users/register', [UserController::class, 'register'])->name('users.register');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
     Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 });
+
+Route::post('/clientes/filtro',[ClienteController::class,'filtro'])->name('clientes.filtro');
 
 Route::get('clientes/{cliente}/contratos',[ClienteController::class,'contratos'])->name('clientes.contratos');
 Route::get('clientes/{cliente}/facturas',[ClienteController::class,'facturas'])->name('clientes.facturas');

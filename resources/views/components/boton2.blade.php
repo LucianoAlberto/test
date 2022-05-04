@@ -38,3 +38,11 @@
         <a href="{{ asset("/storage/$direccion") }}" {{ $attributes->merge(['class' => 'flex justify-center text-white px-4 py-2 rounded-md text-1xl font-medium transition duration-300'])}} download>{{ $boton }}</a>
     </div>
 @endif
+
+@if ($tipo == "submit")
+    <div class="flex space-x-2 justify-center">
+        <button type="submit" {{ $attributes->merge(['class' => 'flex justify-center text-white px-4 py-2 rounded-md text-1xl font-medium transition duration-300'])}}>
+            {{ $boton }}
+        </button>
+    </div>
+@endif

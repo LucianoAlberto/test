@@ -21,7 +21,8 @@ class FacturaController extends Controller
         $proyectos = $cliente->proyectos();
         $facturas = $cliente->facturas();
 
-        return view('facturas.index', compact('cliente', 'proyectos', 'facturas'));
+        $rolConPoderes = self::ROLCONPODERES;
+        return view('facturas.index', compact('cliente', 'proyectos', 'facturas', 'rolConPoderes'));
     }
 
     /**
@@ -62,7 +63,8 @@ class FacturaController extends Controller
             $factura->contratos()->attach($contrato[0]);
         }
 
-        return redirect()->back();
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('facturas.index', compact('rolConPoderes'));
     }
 
     /**
@@ -113,7 +115,8 @@ class FacturaController extends Controller
 
         $factura->save();
 
-        return redirect()->route('facturas.index', compact('cliente'));
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('facturas.index', compact('cliente', 'rolConPoderes'));
     }
 
     /**
@@ -131,6 +134,7 @@ class FacturaController extends Controller
         $factura->contratos()->detach();
         $factura->delete();
 
-        return redirect()->route('facturas.index', compact('cliente', 'factura'));
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('facturas.index', compact('cliente', 'factura', 'rolConPoderes'));
     }
 }

@@ -78,17 +78,13 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="block text-gray-700 text-sm font-bold mb-2" for="ambito">Ámbito de trabajo</label>
-                                    <select class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="ambito" required>
-                                        <option value="">Seleciona un ámbito</option>
-                                        <option value="0">Sin ámbito</option>
-                                    @foreach ($ambitos as $ambito )
-                                        <option value={{$ambito->nombre}}>{{$ambito->nombre}}</option>
-                                    @endforeach
-                                    </select>
-                                    @error('ambito')
-                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
+                                    <fieldset>
+                                        <legend>Ámbitos de trabajo:</legend>
+                                        @foreach ($ambitos as $ambito )
+                                            <label for='ambito[{{$ambito->id}}]'>{{ $ambito->nombre }}</label>
+                                            <input type="checkbox" name='ambito[{{$ambito->id}}]'>
+                                        @endforeach
+                                    </fieldset>
                                 </div>
 
                                 <div class="flex justify-between mb-4">

@@ -525,3 +525,47 @@ window.menosVacacion = function(event)
         ultimoHijoContenedorVacaciones.remove();
     }
 }
+
+/**Comprobueba si el IBAN introducido tiene el formato correcto
+ * Además introduce un guión de forma automática según el número de caracteres introducidos
+*/
+window.mascaraIban=function() {
+    let entradaIban=document.getElementById('cuenta_bancaria');
+    if(entradaIban.value.length==2){
+        entradaIban.value=entradaIban.value+"-";
+    }
+    if(entradaIban.value.length===5){
+        entradaIban.value=entradaIban.value+"-";
+    }
+    if(entradaIban.value.length>5){
+        entradaIban.value=entradaIban.value;
+    }
+    if(entradaIban.value.length===10){
+        entradaIban.value=entradaIban.value+"-";
+    }
+    if(entradaIban.value.length===15){
+        entradaIban.value=entradaIban.value+"-";
+    }
+    if(entradaIban.value.length===18){
+        entradaIban.value=entradaIban.value+"-";
+    }
+}
+
+/**Comprueba si la tarjeta bancaria introducida tiene el formato correcto
+ * Además introduce un guión de forma automática según el número de caracteres introducidos
+*/
+window.numero_tarjeta=function() {
+    let entradaIban=document.getElementById('n_tarjeta');
+    if(entradaIban.value.length==4){
+        entradaIban.value=entradaIban.value+"-";
+    }
+    if(entradaIban.value.length===9){
+        entradaIban.value=entradaIban.value+"-";
+    }
+    if(entradaIban.value.length===14){
+        entradaIban.value=entradaIban.value+"-";
+    }
+    if(entradaIban.value.length>14){
+        entradaIban.value=entradaIban.value;
+    }
+}

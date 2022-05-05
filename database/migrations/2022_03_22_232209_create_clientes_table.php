@@ -25,9 +25,9 @@ return new class extends Migration
             $table->string('nombre_sociedad')->nullable();
             $table->string('cif')->nullable();
             $table->string('cuenta_bancaria')->nullable();
-            $table->biginteger('n_tarjeta')->nullable();
+            $table->string('n_tarjeta')->nullable();
             $table->string('email')->nullable();
-            $table->biginteger('telefono')->nullable();
+            $table->string('telefono')->nullable();
             $table->timestamps();
         });
     }

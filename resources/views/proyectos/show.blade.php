@@ -72,9 +72,12 @@
                                         REFERENCIA CONTRATO
                                     </th>
 
-                                    <td
-                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
-                                        {{ $proyecto->referencia }}
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                        @if($proyecto->referencia == 0)
+                                            Sin referencia
+                                        @else
+                                            {{ $proyecto->referencia }}
+                                        @endif
                                     </td>
 
                                 </tr>
@@ -88,14 +91,17 @@
                                     <td
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200  ">
                                         <div class="flex justify-between ">
-                                            <div class=" w-1/2">Usuario: @if ($proyecto->provedor_dominio_usuario != null)
-                                                    {{ $proyecto->provedor_dominio_usuario }}
+                                            <div class=" w-1/2">Usuario:
+
+                                                @if ($proyecto->proveedor_dominio_usuario != null)
+                                                    {{ $proyecto->proveedor_dominio_usuario }}
                                                 @else
                                                     ---
                                                 @endif
                                             </div>
-                                            <div class=" w-1/2"> Password: @if ($proyecto->provedor_dominio_password != null)
-                                                    {{ $proyecto->provedor_dominio_password }}
+                                            <div class=" w-1/2"> Contraseña:
+                                                @if ($proyecto->proveedor_dominio_contrasenha != null)
+                                                    {{ $proyecto->proveedor_dominio_contrasenha }}
                                                 @else
                                                     ---
                                                 @endif
@@ -115,14 +121,16 @@
                                     <td
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200  ">
                                         <div class="flex justify-between ">
-                                            <div class=" w-1/2">Usuario: @if ($proyecto->provedor_hosting_usuario != null)
-                                                    {{ $proyecto->provedor_hosting_usuario }}
+                                            <div class=" w-1/2">Usuario:
+                                                @if ($proyecto->proveedor_hosting_usuario != null)
+                                                    {{ $proyecto->proveedor_hosting_usuario }}
                                                 @else
                                                     ---
                                                 @endif
                                             </div>
-                                            <div class=" w-1/2"> Password: @if ($proyecto->provedor_hosting_password != null)
-                                                    {{ $proyecto->provedor_hosting_password }}
+                                            <div class=" w-1/2"> Contraseña:
+                                                @if ($proyecto->proveedor_hosting_contrasenha != null)
+                                                    {{ $proyecto->proveedor_hosting_contrasenha }}
                                                 @else
                                                     ---
                                                 @endif
@@ -143,7 +151,7 @@
                                     class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200  ">
                                     <div class="flex justify-between  bg-gray-200">
                                         <div class=" w-1/2">EMAIL</div>
-                                        <div class=" w-1/2">PASSWORD</div>
+                                        <div class=" w-1/2">CONTRASEÑA</div>
                                         <div class=" w-1/2">RUTA ACCESO</div>
                                     </div>
 
@@ -159,15 +167,15 @@
                                                     @endif
                                                 </div>
                                                 <div class=" w-1/2">
-                                                    @if ($email->password != null)
-                                                        {{ $email->password }}
+                                                    @if ($email->contrasenha != null)
+                                                        {{ $email->contrasenha }}
                                                     @else
                                                         ---
                                                     @endif
                                                 </div>
                                                 <div class=" w-1/2">
-                                                    @if ($email->ruta_accesso != null)
-                                                        {{ $email->ruta_accesso }}
+                                                    @if ($email->ruta_acceso != null)
+                                                        {{ $email->ruta_acceso }}
                                                     @else
                                                         ---
                                                     @endif
@@ -191,7 +199,7 @@
                                     <div class="flex justify-between  bg-gray-200">
                                         <div class=" w-1/2">NOMBRE DOMINIO</div>
                                         <div class=" w-1/2">USUARIO</div>
-                                        <div class=" w-1/2">PASSWORD</div>
+                                        <div class=" w-1/2">CONTRASEÑA</div>
                                     </div>
 
                                     @if(count($proyecto->dominios) > 0)
@@ -213,8 +221,8 @@
                                                     @endif
                                                 </div>
                                                 <div class=" w-1/2">
-                                                    @if ($dominio->password != null)
-                                                        {{ $dominio->password }}
+                                                    @if ($dominio->contrasenha != null)
+                                                        {{ $dominio->contrasenha }}
                                                     @else
                                                         ---
                                                     @endif
@@ -238,7 +246,7 @@
                                         <div class="flex justify-between  bg-gray-200">
                                             <div class=" w-1/2">NOMBRE</div>
                                             <div class=" w-1/2">HOST</div>
-                                            <div class=" w-1/2">PASSWORD</div>
+                                            <div class=" w-1/2">CONTRASEÑA</div>
                                         </div>
 
                                         @if(count($proyecto->basedatoss) > 0)
@@ -260,8 +268,8 @@
                                                         @endif
                                                     </div>
                                                     <div class=" w-1/2">
-                                                        @if ($bd->password != null)
-                                                            {{ $bd->password }}
+                                                        @if ($bd->contrasenha != null)
+                                                            {{ $bd->contrasenha }}
                                                         @else
                                                             ---
                                                         @endif
@@ -284,7 +292,7 @@
                                         <div class="flex justify-between  bg-gray-200">
                                             <div class=" w-1/2">DOMINIO</div>
                                             <div class=" w-1/2">USUARIO</div>
-                                            <div class=" w-1/2">PASSWORD</div>
+                                            <div class=" w-1/2">CONTRASEÑA</div>
                                         </div>
 
                                         @if(count($proyecto->accesos) > 0)
@@ -306,8 +314,8 @@
                                                         @endif
                                                     </div>
                                                     <div class=" w-1/2">
-                                                        @if ($acceso->password != null)
-                                                            {{ $acceso->passwod }}
+                                                        @if ($acceso->contrasenha != null)
+                                                            {{ $acceso->contrasenha }}
                                                         @else
                                                             ---
                                                         @endif
@@ -323,21 +331,36 @@
                                         class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         SEPA
                                     </th>
-                                    <td
-                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
-                                        <div class="flex">
-                                            <x-boton2 tipo="linkConAsset" class="bg-blue-500 hover:bg-blue-700 mr-4 w-16" direccion="{{$proyecto->sepa}}">
-                                                <x-slot name="boton">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                                                </x-slot>
-                                            </x-boton2>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                        @if($proyecto->sepa != null)
+                                            <div class="flex">
+                                                <x-boton2 tipo="linkConAsset" class="bg-blue-500 hover:bg-blue-700 mr-4 w-16" direccion="{{$proyecto->sepa}}">
+                                                    <x-slot name="boton">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                                    </x-slot>
+                                                </x-boton2>
 
-                                            <x-boton2 tipo="descargaConAsset" class="bg-green-500 hover:bg-green-700 mr-4 w-16" direccion="{{$proyecto->sepa}}">
-                                                <x-slot name="boton">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                                                </x-slot>
-                                            </x-boton2>
-                                      </div>
+                                                <x-boton2 tipo="descargaConAsset" class="bg-green-500 hover:bg-green-700 mr-4 w-16" direccion="{{$proyecto->sepa}}">
+                                                    <x-slot name="boton">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                                    </x-slot>
+                                                </x-boton2>
+                                            </div>
+                                        @else
+                                            <div class="flex">
+                                                <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                    <x-slot name="boton">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                                    </x-slot>
+                                                </x-boton2>
+
+                                                <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                    <x-slot name="boton">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                                    </x-slot>
+                                                </x-boton2>
+                                            </div>
+                                        @endif
                                     </td>
                                 </tr>
 
@@ -347,20 +370,33 @@
                                         HOJA DE PREFERENCIAS
                                     </th>
 
-                                    <td
-                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
                                         <div class="flex">
-                                            <x-boton2 tipo="linkConAsset" class="bg-blue-500 hover:bg-blue-700 mr-4 w-16" direccion="{{$proyecto->preferencias}}">
-                                                <x-slot name="boton">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                                                </x-slot>
-                                            </x-boton2>
+                                            @if($proyecto->preferencias)
+                                                <x-boton2 tipo="linkConAsset" class="bg-blue-500 hover:bg-blue-700 mr-4 w-16" direccion="{{$proyecto->preferencias}}">
+                                                    <x-slot name="boton">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                                    </x-slot>
+                                                </x-boton2>
 
-                                            <x-boton2 tipo="descargaConAsset" class="bg-green-500 hover:bg-green-700 mr-4 w-16" direccion="{{$proyecto->preferencias}}">
-                                                <x-slot name="boton">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                                                </x-slot>
-                                            </x-boton2>
+                                                <x-boton2 tipo="descargaConAsset" class="bg-green-500 hover:bg-green-700 mr-4 w-16" direccion="{{$proyecto->preferencias}}">
+                                                    <x-slot name="boton">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                                    </x-slot>
+                                                </x-boton2>
+                                            @else
+                                                <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                    <x-slot name="boton">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                                    </x-slot>
+                                                </x-boton2>
+
+                                                <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                    <x-slot name="boton">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                                    </x-slot>
+                                                </x-boton2>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>

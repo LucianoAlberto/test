@@ -116,6 +116,18 @@
                                 @enderror
                             </div>
 
+                            <div class="mb-3">
+                                <fieldset>
+                                    <legend>Ámbitos de trabajo:</legend>
+
+                                    @foreach ($ambitos as $ambito )
+
+                                        <label for='ambito[{{$ambito->id}}]'>{{ $ambito->nombre }}</label>
+                                        <input type="checkbox" name='ambito[{{$ambito->id}}]' {{in_array($ambito->id, $empleado->ambitos->pluck('id')->toArray())?'checked':''}}>
+                                    @endforeach
+                                </fieldset>
+                            </div>
+
                         </div>
 
                         <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">

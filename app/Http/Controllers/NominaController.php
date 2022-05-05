@@ -51,7 +51,8 @@ class NominaController extends Controller
 
         $nomina->save();
 
-        return redirect()->route('nominas.index', compact('empleado'));
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('nominas.index', compact('empleado', 'rolConPoderes'));
     }
 
     /**
@@ -96,7 +97,8 @@ class NominaController extends Controller
 
         $nomina->save();
 
-        return redirect()->route('nominas.index', compact('empleado'));
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('nominas.index', compact('empleado', 'rolConPoderes'));
     }
 
     /**

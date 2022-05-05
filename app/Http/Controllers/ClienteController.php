@@ -32,8 +32,10 @@ class ClienteController extends Controller
     {
         $clientes = Cliente::paginate(10);
         $ambitos = Ambito::all();
+        //dd($this->rolConPoderes);
+        $rolConPoderes = self::ROLCONPODERES;
 
-        return view('clientes.index', compact('clientes', 'ambitos'));
+        return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes'));
     }
 
     /**
@@ -56,15 +58,9 @@ class ClienteController extends Controller
      */
     public function store(ClienteRequest $request)
     {
-
         $validated = $request->validated();
 
         //dd($validated);
-        //$datos = $request->except('_token');
-
-        //$errors = $request->errors();
-        //dd($validated);
-        //Cliente::insert($validated);
         $cliente = new Cliente;
         $cliente->nombre = $validated["nombre"];
         $cliente->apellidos = $validated["apellidos"];
@@ -82,8 +78,7 @@ class ClienteController extends Controller
 
         $cliente->save();
 
-        if(!isset($validated['ambito']['sin'])){
-
+        if(isset($validated['ambito'])){
             foreach($validated['ambito'] as $clave => $ambito){
                 //dd($ambito);
                 $ambito = Ambito::where('id', $clave)->select('id')->first();
@@ -92,7 +87,8 @@ class ClienteController extends Controller
             }
         }
 
-        return redirect()->route('clientes.index');
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('clientes.index', compact('rolConPoderes'));
     }
 
     /**
@@ -114,7 +110,9 @@ class ClienteController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        return view('clientes.edit', compact('cliente'));
+        $ambitos = Ambito::all();
+
+        return view('clientes.edit', compact('cliente', 'ambitos'));
     }
 
     /**
@@ -124,11 +122,9 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ClienteRequest $request, $id)
+    public function update(ClienteRequest $request, Cliente $cliente)
     {
-        $cliente = Cliente::findOrFail($id);
-
-        $validated = $request->except('_token');
+        $validated = $request->validated();
 
         $cliente->nombre = $validated["nombre"];
         $cliente->apellidos = $validated["apellidos"];
@@ -146,8 +142,8 @@ class ClienteController extends Controller
 
         $cliente->save();
 
-        return redirect()->route('clientes.index');
-
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('clientes.index', compact('rolConPoderes'));
     }
 
     /**
@@ -164,27 +160,36 @@ class ClienteController extends Controller
 
         $cliente->delete();
 
-        return redirect()->route('clientes.index');
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('clientes.index', compact('rolConPoderes'));
     }
 
     public function filtro(FiltroRequest $request){
-
         $validated = $request->validated();
-        dd($validated);
+        //dd($validated);
         //$query->whereIn('clientes.id', '=', $ambitoId)->paginate(10);
         $arrayIds = [];
         foreach($validated['ambito'] as $clave => $valor){
-            array_push($arrayIds, $clave);)
+            array_push($arrayIds, $clave);
         }
-        $ambitoId = Ambito::whereId($arrayIds)->first()->value('id');
 
+        //$ambitoId = Ambito::whereId($arrayIds)->first()->value('id');
+        if(isset($validated['ambito']['sin'])){
+            $clientesSin = Cliente::whereDoesntHave('ambitos' , function($query) use ($id) {
+                $query->whereIn('cliente.id', '!=', $id);
+              })->get();
+              )
+        }
 
-        $clientes = Cliente::whereHas('ambitos', function($query) use($ambitoId){
-            $query->where("ambito_id", "=", $ambitoId);
+        $clientes = Cliente::whereHas('ambitos', function($query) use($arrayIds){
+            $query->whereIn("ambito_id",  $arrayIds);
         })->paginate(10);
 
 
-        return view('clientes.index',compact('clientes'));
+
+        $ambitos = Ambito::all();
+        $rolConPoderes = self::ROLCONPODERES;
+        return view('clientes.index',compact('clientes', 'ambitos', 'rolConPoderes'));
     }
 
 }

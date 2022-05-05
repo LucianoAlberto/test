@@ -1285,6 +1285,9 @@ select {
 .cursor-pointer {
   cursor: pointer;
 }
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
 .list-inside {
   list-style-position: inside;
 }
@@ -1554,6 +1557,10 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(21 128 61 / var(--tw-bg-opacity));
 }
+.bg-slate-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(203 213 225 / var(--tw-bg-opacity));
+}
 .bg-opacity-25 {
   --tw-bg-opacity: 0.25;
 }
@@ -1686,17 +1693,14 @@ select {
 .pb-12 {
   padding-bottom: 3rem;
 }
+.pr-16 {
+  padding-right: 4rem;
+}
 .pl-0 {
   padding-left: 0px;
 }
 .pt-8 {
   padding-top: 2rem;
-}
-.pr-16 {
-  padding-right: 4rem;
-}
-.pl-2 {
-  padding-left: 0.5rem;
 }
 .text-left {
   text-align: left;

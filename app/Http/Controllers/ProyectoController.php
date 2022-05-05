@@ -24,7 +24,8 @@ class ProyectoController extends Controller
     {
         $proyectos = $cliente->proyectos;
 
-        return view('proyectos.index', compact('cliente','proyectos'));
+        $rolConPoderes = self::ROLCONPODERES;
+        return view('proyectos.index', compact('cliente','proyectos', 'rolConPoderes'));
     }
 
     /**
@@ -124,7 +125,8 @@ class ProyectoController extends Controller
             }
         }
 
-        return redirect()->route('proyectos.index',compact('cliente'));
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('proyectos.index',compact('cliente', 'rolConPoderes'));
     }
 
 
@@ -265,6 +267,7 @@ class ProyectoController extends Controller
         //dd($proyecto);
         $proyecto->delete();
 
-        return redirect()->route('proyectos.index', compact('cliente'));
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('proyectos.index', compact('cliente', 'rolConPoderes'));
     }
 }

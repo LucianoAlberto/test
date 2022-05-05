@@ -18,7 +18,8 @@ class FaltaController extends Controller
     {
         $faltas = $empleado->faltas();
 
-        return view('faltas.index', compact('empleado', 'faltas'));
+        $rolConPoderes = self::ROLCONPODERES;
+        return view('faltas.index', compact('empleado', 'faltas', 'rolConPoderes'));
     }
 
     /**
@@ -49,7 +50,8 @@ class FaltaController extends Controller
 
         $falta->save();
 
-        return redirect()->route('faltas.index', compact('empleado'));
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('faltas.index', compact('empleado', 'rolConPoderes'));
     }
 
     /**
@@ -92,7 +94,8 @@ class FaltaController extends Controller
 
         $falta->save();
 
-        return redirect()->route('faltas.index', compact('empleado'));
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('faltas.index', compact('empleado', 'rolConPoderes'));
     }
 
     /**

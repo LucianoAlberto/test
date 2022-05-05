@@ -9,6 +9,7 @@ use App\Models\Empleado;
 use App\Models\Practicas;
 use App\Models\Vacaciones;
 use Illuminate\Http\Request;
+use App\Http\Requests\FiltroRequest;
 use App\Http\Requests\EmpleadoRequest;
 use Illuminate\Support\Facades\Storage;
 
@@ -22,8 +23,10 @@ class EmpleadoController extends Controller
     public function index()
     {
         $empleados = Empleado::paginate(10);
+        $ambitos = Ambito::all();
+        $rolConPoderes = self::ROLCONPODERES;
 
-        return view('empleados.index', compact('empleados'));
+        return view('empleados.index', compact('empleados', 'ambitos', 'rolConPoderes'));
     }
 
     /**
@@ -79,9 +82,13 @@ class EmpleadoController extends Controller
 
         $empleado->save();
 
-        if($validated['ambito'] != 0){
-            $ambito = Ambito::where('nombre', $validated['ambito'])->select('id')->first();
-            $empleado->ambitos()->attach($ambito);
+        if(isset($validated['ambito'])){
+            foreach($validated['ambito'] as $clave => $ambito){
+                //dd($ambito);
+                $ambito = Ambito::where('id', $clave)->select('id')->first();
+
+                $empleado->ambitos()->attach($ambito);
+            }
         }
 
         if($validated["nominas"][0]["fecha_inicio"] != null){
@@ -146,7 +153,8 @@ class EmpleadoController extends Controller
             $practicas->save();
         }
 
-        return redirect()->route('empleados.index');
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('empleados.index', compact('rolConPoderes'));
     }
 
     /**
@@ -168,7 +176,9 @@ class EmpleadoController extends Controller
      */
     public function edit(Empleado $empleado)
     {
-        return view('empleados.edit', compact('empleado'));
+        $ambitos = Ambito::all();
+
+        return view('empleados.edit', compact('empleado', 'ambitos'));
     }
 
     /**
@@ -211,7 +221,8 @@ class EmpleadoController extends Controller
 
         $empleado->save();
 
-        return redirect()->route('empleados.index', compact('empleado'));
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('empleados.index', compact('empleado', 'rolConPoderes'));
     }
 
     /**
@@ -223,5 +234,26 @@ class EmpleadoController extends Controller
     public function destroy(Empleado $empleado)
     {
         //
+    }
+
+    public function filtro(FiltroRequest $request){
+        $validated = $request->validated();
+        //dd($validated);
+        //$query->whereIn('clientes.id', '=', $ambitoId)->paginate(10);
+        $arrayIds = [];
+        foreach($validated['ambito'] as $clave => $valor){
+            array_push($arrayIds, $clave);
+        }
+        //$ambitoId = Ambito::whereId($arrayIds)->first()->value('id');
+
+
+        $empleados = Empleado::whereHas('ambitos', function($query) use($arrayIds){
+            $query->whereIn("ambito_id",  $arrayIds);
+        })->paginate(10);
+
+
+        $ambitos = Ambito::all();
+        $rolConPoderes = self::ROLCONPODERES;
+        return view('empleados.index',compact('empleados', 'ambitos', 'rolConPoderes'));
     }
 }

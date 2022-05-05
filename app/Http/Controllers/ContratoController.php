@@ -18,9 +18,10 @@ class ContratoController extends Controller
      */
     public function index(Cliente $cliente)
     {
-        //$contratos = $cliente->contratos;
+        $contratos = Contrato::where('cliente_id', $cliente->id)->paginate(10);
 
-        return view('contratos.index', compact('cliente'));
+        $rolConPoderes = self::ROLCONPODERES;
+        return view('contratos.index', compact('cliente', 'contratos', 'rolConPoderes'));
     }
 
     /**
@@ -67,7 +68,8 @@ class ContratoController extends Controller
 
         $contrato->save();
 
-        return redirect()->route('contratos.index',compact('cliente'));
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('contratos.index',compact('cliente', 'rolConPoderes'));
     }
 
     /**
@@ -132,7 +134,8 @@ class ContratoController extends Controller
 
         $contrato->save();
 
-        return redirect()->route('contratos.index', compact('cliente', 'contrato'));
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('contratos.index', compact('cliente', 'contrato', 'rolConPoderes'));
     }
 
     /**
@@ -154,6 +157,6 @@ class ContratoController extends Controller
 
         $contrato_destruido->delete();
 
-        return redirect()->back();
+        return redirect()->route('contratos.index', compact('rolConPoderes'));
     }
 }

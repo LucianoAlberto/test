@@ -46,10 +46,11 @@
                                                 <th scope="col" class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Fecha pago
                                                 </th>
+                                                @role($rol)
                                                 <th scope="col" width="200" class="px-6 py-3 bg-gray-50">
                                                     Opciones
                                                 </th>
-
+                                                @endrole
                                             </tr>
                                             </thead>
 
@@ -79,7 +80,7 @@
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
                                                         {{ $nomina->fecha_pago }}
                                                     </td>
-
+                                                    @role($rol)
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex items-start">
                                                         <x-boton2 tipo="link" class="bg-yellow-400 hover:bg-yellow-600 mr-4 w-16" direccion="{{ route('nominas.edit', ['empleado' => $empleado->id, 'nomina' => $nomina->id]) }}">
                                                             <x-slot name="boton">
@@ -98,6 +99,7 @@
                                                             </x-boton2>
                                                         </form>
                                                     </td>
+                                                    @endrole
                                                 </tr>
                                             @endforeach
                                             </tbody>

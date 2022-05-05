@@ -89,10 +89,11 @@
                                                 <th scope="col" class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Archivo
                                                 </th>
+                                                @role($rolConPoderes)
                                                 <th scope="col" width="200" class="px-6 py-3 bg-gray-50">
                                                     Opciones
                                                 </th>
-
+                                                @endrole
                                             </tr>
                                             </thead>
 
@@ -118,7 +119,7 @@
                                                             </x-slot>
                                                         </x-boton2>
                                                     </td>
-
+                                                    @role($rolConPoderes)
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex items-start">
                                                         <x-boton2 tipo="link" class="bg-yellow-400 hover:bg-yellow-600 mr-4 w-16" direccion="{{ route('facturas.edit', ['cliente' => $cliente->id, 'factura' => $factura->id]) }}">
                                                             <x-slot name="boton">
@@ -137,6 +138,7 @@
                                                             </x-boton2>
                                                         </form>
                                                     </td>
+                                                    @endrole
                                                 </tr>
                                             @endforeach
                                             </tbody>

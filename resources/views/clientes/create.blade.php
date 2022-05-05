@@ -39,7 +39,7 @@
                                     <div class="w-1/5 ml-2">
                                         <label for="dni" class="block font-medium text-sm text-gray-700">DNI</label>
                                         <input type="text" name="dni" id="dni" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old('dni', '') }}" />
+                                            value="{{ old('dni', '') }}" placeholder="DNI or NIE"/>
                                         @error('dni')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
@@ -99,7 +99,8 @@
                                     <div class="w-3/6 mr-2">
                                         <label for="cuenta_bancaria" class="block font-medium text-sm text-gray-700">Cuenta bancaria</label>
                                         <input type="text" name="cuenta_bancaria" id="cuenta_bancaria" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old('cuenta_bancaria', '') }}" />
+                                            value="{{ old('cuenta_bancaria', '') }}" placeholder="ES-XX-XXXX-XXXX-XX-XXXXXXXXXX" maxlength="29"
+                                            onkeyup="mascaraIban()"/>
                                         @error('cuenta_bancaria')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
@@ -108,7 +109,7 @@
                                     <div class="w-3/6 ml-2">
                                         <label for="n_tarjeta" class="block font-medium text-sm text-gray-700">Número de tarjeta</label>
                                         <input type="text" name="n_tarjeta" id="n_tarjeta" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old('n_tarjeta', '') }}" />
+                                            value="{{ old('n_tarjeta', '') }}" onkeyup="numero_tarjeta()" maxlength="19" placeholder="XXXX-XXXX-XXXX-XXXX" />
                                         @error('n_tarjeta')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
@@ -127,8 +128,8 @@
 
                                     <div class="w-2/6 ml-2 mr-2">
                                         <label for="telefono" class="block font-medium text-sm text-gray-700">Teléfono</label>
-                                        <input type="number" name="telefono" id="telefono" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old('telefono', '') }}" />
+                                        <input type="text" name="telefono" id="telefono" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old('telefono', '') }}" placeholder="(+34|0034) xxxxxxxxx" />
                                         @error('telefono')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
@@ -136,7 +137,7 @@
 
                                     <div class="w-1/6 ml-2">
                                         <label for="anho_contable" class="block font-medium text-sm text-gray-700">Año contable</label>
-                                        <input type="number" name="anho_contable" id="anho_contable" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        <input type="text" name="anho_contable" id="anho_contable" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old('anho_contable', '') }}" />
                                         @error('anho_contable')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
@@ -147,10 +148,6 @@
                                 <div class="mb-3">
                                     <fieldset>
                                         <legend>Ámbitos de trabajo:</legend>
-
-                                        <label for='ambitos[0]'>Sin ámbito</label>
-                                        <input type="checkbox" name='ambitos[0]'>
-
                                         @foreach ($ambitos as $ambito )
                                             <label for='ambito[{{$ambito->id}}]'>{{ $ambito->nombre }}</label>
                                             <input type="checkbox" name='ambito[{{$ambito->id}}]'>

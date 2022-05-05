@@ -13,6 +13,7 @@ use App\Actions\Fortify\PasswordValidationRules;
 class UserController extends Controller
 {
     use PasswordValidationRules;
+
     /**
      * Display a listing of the resource.
      *
@@ -20,9 +21,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $usuarios = User::paginate(10);
+        $users = User::paginate(10);
 
-        return view('users.index', ['users' => $usuarios]);
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -41,27 +42,11 @@ class UserController extends Controller
      * @param  \Illuminate\Http\UserRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         //dd($request);
-        // $validated = $request->validated();
 
-        // $datos = $request->except('_token');
-        // $usuario = new User;
-        // $usuario->name = $validated["nombre"];
-        // $usuario->email = $validated["email"];
-        // $usuario->password = $validated["contrasenha"];
-        // $usuario->save();
-
-        // return redirect()->route('users.index');
-        Validator::make($request, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => $this->passwordRules(),
-            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
-        ])->validate();
-
-         User::create([
+        User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
@@ -105,7 +90,6 @@ class UserController extends Controller
     {
         $validated = $request->validated();
 
-        $datos = $request->except('_token');
         $user = User::find($id);
 
         $user->name = $validated["nombre"];

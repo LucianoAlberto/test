@@ -1,12 +1,30 @@
 <x-app-layout>
 
-    <div class="pl-8 ml-8 mt-4 flex justify-start">
+    <div class="pl-8 ml-8 mt-4 flex justify-between">
         <x-boton2 tipo="link" class="bg-green-600 hover:bg-green-700 flex justify-around w-44" direccion="{{ route('empleados.create') }}">
             <x-slot name="boton">
                 Añadir empleado
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
             </x-slot>
         </x-boton2>
+
+        <form method="post" action="{{ route('empleados.filtro') }}" enctype="multipart/form-data" class="flex pr-16 mt-4 items-center">
+            @csrf
+            <x-boton2 tipo="submit" class="bg-green-600 hover:bg-green-700 flex justify-around w-16 h-10">
+                <x-slot name="boton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                </x-slot>
+            </x-boton2>
+            <div class="ml-3">
+                <label for='ambito["sin"]'>Sin ámbito</label>
+                <input type="checkbox" name='ambito["sin"]'>
+
+                @foreach ($ambitos as $ambito )
+                    <label for='ambito[{{$ambito->id}}]'>{{ $ambito->nombre }}</label>
+                    <input type="checkbox" name='ambito[{{$ambito->id}}]'>
+                @endforeach
+            </div>
+        </form>
     </div>
 
     <x-slot name="header">
@@ -38,9 +56,14 @@
                                             <th scope="col" class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Número SS
                                             </th>
+                                            <th scope="col" class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Ámbitos
+                                            </th>
+                                            @role($rolConPoderes)
                                             <th scope="col" width="200" class="px-6 py-3 bg-gray-50">
                                                 Opciones
                                             </th>
+                                            @endrole
                                         </tr>
                                         </thead>
                                         <tbody class="bg-white divide-y divide-gray-200">
@@ -61,7 +84,12 @@
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
                                                     {{ $empleado->numero_ss }}
                                                 </td>
-
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                                                    @foreach ($empleado->ambitos as $ambito)
+                                                        {{ $ambito->nombre }}
+                                                    @endforeach
+                                                </td>
+                                                @role($rolConPoderes)
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex items-start">
                                                     <x-boton2 tipo="link" class="bg-yellow-400 hover:bg-yellow-600 mr-4 w-16" direccion="{{ route('empleados.edit', $empleado->id) }}">
                                                         <x-slot name="boton">
@@ -80,6 +108,7 @@
                                                         </x-boton2>
                                                     </form>
                                                 </td>
+                                                @endrole
                                             </tr>
                                         @endforeach
                                         </tbody>

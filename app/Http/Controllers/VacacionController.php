@@ -18,7 +18,8 @@ class VacacionController extends Controller
     {
         $vacaciones = $empleado->vacaciones();
 
-        return view('vacaciones.index', compact('empleado', 'vacaciones'));
+        $rolConPoderes = self::ROLCONPODERES;
+        return view('vacaciones.index', compact('empleado', 'vacaciones', 'rolConPoderes'));
     }
 
     /**
@@ -48,7 +49,8 @@ class VacacionController extends Controller
 
         $vacacion->save();
 
-        return redirect()->route('vacaciones.index', compact('empleado'));
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('vacaciones.index', compact('empleado', 'rolConPoderes'));
     }
 
     /**
@@ -90,7 +92,8 @@ class VacacionController extends Controller
 
         $vacacion->save();
 
-        return redirect()->route('vacaciones.index', compact('empleado'));
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('vacaciones.index', compact('empleado', 'rolConPoderes'));
     }
 
     /**

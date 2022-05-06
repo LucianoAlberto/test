@@ -39,7 +39,7 @@ class ConceptoFacturaController extends Controller
         $conceptoFactura->nombre=$request['nuevoConcepto'];
         $conceptoFactura->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('creado','si');
     }
 
     /**
@@ -89,7 +89,8 @@ class ConceptoFacturaController extends Controller
 
     public function eliminar(Request $request)
     {
-        DB::table('concepto_facturas')->where('nombre', $request['eliminarConcepto'])->delete();
+        //dd($request);
+        ConceptoFactura::where('nombre', $request['eliminarConcepto'])->delete();
 
         return redirect()->back()->with('eliminado','si');
     }

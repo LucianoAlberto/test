@@ -167,25 +167,20 @@ class ClienteController extends Controller
     public function filtro(FiltroRequest $request){
         $validated = $request->validated();
         //dd($validated);
-        //$query->whereIn('clientes.id', '=', $ambitoId)->paginate(10);
+
         $arrayIds = [];
         foreach($validated['ambito'] as $clave => $valor){
             array_push($arrayIds, $clave);
         }
 
-        //$ambitoId = Ambito::whereId($arrayIds)->first()->value('id');
         if(isset($validated['ambito']['sin'])){
-            $clientesSin = Cliente::whereDoesntHave('ambitos' , function($query) use ($id) {
-                $query->whereIn('cliente.id', '!=', $id);
-              })->get();
-              )
+            $clientes = Cliente::doesntHave('ambitos')->paginate(10);
         }
-
-        $clientes = Cliente::whereHas('ambitos', function($query) use($arrayIds){
-            $query->whereIn("ambito_id",  $arrayIds);
-        })->paginate(10);
-
-
+        else{
+            $clientes = Cliente::whereHas('ambitos', function($query) use ($arrayIds){
+                $query->whereIn("ambito_id",  $arrayIds);
+            })->paginate(10);
+        }
 
         $ambitos = Ambito::all();
         $rolConPoderes = self::ROLCONPODERES;

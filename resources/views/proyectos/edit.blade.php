@@ -251,7 +251,7 @@
                                             <label for="dominio[0][nombre]"
                                                 class="block font-medium text-sm text-gray-700">Nombre Dominio</label>
                                             <input type="text" name="dominio[0][nombre]"
-                                                value="{{ old("dominio[$key][nombre]", "$dominio->nombre") }}">
+                                                value="{{ old("dominio[0][nombre]", "") }}">
                                             @error('dominio[0][nombre]')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
@@ -261,7 +261,7 @@
                                             <label for="dominio[0][usuario]"
                                                 class="block font-medium text-sm text-gray-700">Dominio Usuario</label>
                                             <input type="text" name="dominio[0][usuario]"
-                                                value="{{ old("dominio[$key][usuario]", "$dominio->usuario") }}">
+                                                value="{{ old("dominio[0][usuario]", "") }}">
                                             @error('dominio[0][usuario]')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
@@ -271,7 +271,7 @@
                                             <label for="dominio[0][contrasenha]"
                                                 class="block font-medium text-sm text-gray-700">Dominio Contraseña</label>
                                             <input type="text" name="dominio[0][contrasenha]"
-                                                value="{{ old("dominio[$key][contrasenha]", "$dominio->contrasenha") }}">
+                                                value="{{ old("dominio[0][contrasenha]", "") }}">
                                             @error('dominio[0][contrasenha]')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
@@ -325,35 +325,35 @@
                                     @endforeach
                                 @else
                                     <div class="flex justify-between  contenedor_BBDD">
-                                    <div class="w-1/3 div_nombreBD">
-                                        <label for="bd[0][nombre]" class="block font-medium text-sm text-gray-700">Nombre
-                                            BBDD</label>
-                                        <input type="text" name="bd[0][nombre]"
-                                            value="{{ old("bd[$key][nombre]", "$bd->nombre") }}">
-                                        @error('bd[][nombre]')
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
-                                    </div>
+                                        <div class="w-1/3 div_nombreBD">
+                                            <label for="bd[0][nombre]" class="block font-medium text-sm text-gray-700">Nombre
+                                                BBDD</label>
+                                            <input type="text" name="bd[0][nombre]"
+                                                value="{{ old("bd[0][nombre]", "") }}">
+                                            @error('bd[][nombre]')
+                                                <p class="text-sm text-red-600">{{ $message }}</p>
+                                            @enderror
+                                        </div>
 
-                                    <div class="w-1/3">
-                                        <label for="bd[0][host]" class="block font-medium text-sm text-gray-700">Host</label>
-                                        <input type="text" name="bd[0][host]"
-                                            value="{{ old("bd[$key][host]", "$bd->host") }}">
-                                        @error('bd[][host]')
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
-                                    </div>
+                                        <div class="w-1/3">
+                                            <label for="bd[0][host]" class="block font-medium text-sm text-gray-700">Host</label>
+                                            <input type="text" name="bd[0][host]"
+                                                value="{{ old("bd[0][host]", "") }}">
+                                            @error('bd[][host]')
+                                                <p class="text-sm text-red-600">{{ $message }}</p>
+                                            @enderror
+                                        </div>
 
-                                    <div class="w-1/3">
-                                        <label for="bd[0][contrasenha]"
-                                            class="block font-medium text-sm text-gray-700">Contraseña</label>
-                                        <input type="text" name="bd[0][contrasenha]"
-                                            value="{{ old("bd[$key][contrasenha]", "$bd->contrasenha") }}">
-                                        @error('bd[0][contrasenha]')
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        <div class="w-1/3">
+                                            <label for="bd[0][contrasenha]"
+                                                class="block font-medium text-sm text-gray-700">Contraseña</label>
+                                            <input type="text" name="bd[0][contrasenha]"
+                                                value="{{ old("bd[0][contrasenha]", "") }}">
+                                            @error('bd[0][contrasenha]')
+                                                <p class="text-sm text-red-600">{{ $message }}</p>
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
                                 @endif
                             </div>
                             <hr>

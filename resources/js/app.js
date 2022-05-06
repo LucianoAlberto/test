@@ -172,9 +172,9 @@ window.menosDominio = function(event)
 {
     let ultimoHijoContenedorDominio = event.target.closest(".divDominios").lastElementChild;
 
-    let listaContenedoresDominio = event.target.closest(".divDominios").querySelectorAll(".contenedorDominio");
+    let listaContenedoresDominio = event.target.closest(".divDominios").querySelectorAll(".contenedorDominios");
 
-    if(ultimoHijoContenedorDominio.classList.contains("contenedorDominio") && listaContenedoresDominio.length > 1){
+    if(ultimoHijoContenedorDominio.classList.contains("contenedorDominios") && listaContenedoresDominio.length > 1){
         ultimoHijoContenedorDominio.remove();
     }
 }
@@ -237,9 +237,9 @@ window.masEmail = function(event)
 
 window.menosEmail = function(event)
 {
-    let ultimoHijoContenedorEmails = event.target.closest(".divEmails").lastElementChild;
+    let ultimoHijoContenedorEmails = event.target.closest(".divEmail").lastElementChild;
 
-    let listaContenedoresEmails = event.target.closest(".divEmails").querySelectorAll(".contenedorEmails");
+    let listaContenedoresEmails = event.target.closest(".divEmail").querySelectorAll(".contenedorEmails");
 
     if(ultimoHijoContenedorEmails.classList.contains("contenedorEmails") && listaContenedoresEmails.length > 1){
         ultimoHijoContenedorEmails.remove();

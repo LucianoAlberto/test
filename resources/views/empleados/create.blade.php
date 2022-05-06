@@ -18,7 +18,7 @@
                                     Datos personales
                                 </h3>
                                 <div class="flex justify-between mb-4">
-                                    <div class="w-2/5 mr-2">
+                                    <div class="w-1/2 mr-2">
                                         <label for="nombre" class="block font-medium text-sm text-gray-700">Nombre</label>
                                         <input type="text" name="nombre" id="nombre" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old('nombre', '') }}" />
@@ -27,7 +27,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="w-2/5 mr-2">
+                                    <div class="w-1/2 ml-2">
                                         <label for="apellidos" class="block font-medium text-sm text-gray-700">Apellidos</label>
                                         <input type="text" name="apellidos" id="apellidos" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old('apellidos', '') }}" />
@@ -35,8 +35,10 @@
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
+                                </div>
 
-                                    <div class="w-1/5 ml-2">
+                                <div class="flex justify-between mb-4">
+                                    <div class="w-1/2 mr-2">
                                         <label for="dni" class="block font-medium text-sm text-gray-700">DNI</label>
                                         <input type="text" name="dni" id="dni" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old('dni', '') }}" />
@@ -44,10 +46,8 @@
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
-                                </div>
 
-                                <div class="flex justify-between mb-4">
-                                    <div class="w-3/6 mr-2">
+                                    <div class="w-1/2 ml-2">
                                         <label for="numero_ss" class="block font-medium text-sm text-gray-700">Número de la Seguridad Social</label>
                                         <input type="text" name="numero_ss" id="numero_ss" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old('numero_ss', '') }}" />
@@ -55,8 +55,10 @@
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
+                                </div>
 
-                                    <div class="w-3/6 ml-2">
+                                <div class="flex justify-between mb-4">
+                                    <div class="w-1/2 mr-2">
                                         <label for="fecha_comienzo" class="block font-medium text-sm text-gray-700">Fecha comienzo</label>
                                         <input type="date" name="fecha_comienzo" id="fecha_comienzo" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old('fecha_comienzo', '') }}" />
@@ -64,10 +66,8 @@
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
-                                </div>
 
-                                <div class="flex justify-between mb-4">
-                                    <div class="w-2/5 mr-2">
+                                    <div class="w-1/2 ml-2">
                                         <label for="fecha_fin" class="block font-medium text-sm text-gray-700">Fecha fin</label>
                                         <input type="date" name="fecha_fin" id="fecha_fin" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old('fecha_fin', '') }}" />
@@ -90,7 +90,7 @@
                                 <div class="flex justify-between mb-4">
                                     <div class="">
                                         <label for="practicas" class="block font-medium text-sm text-gray-700">Prácticas</label>
-                                        <input type="checkbox" name="practicas" id="practicas" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        <input type="checkbox" name="practicas" id="practicas" class="form-input rounded-md shadow-sm mt-1 block w-full h-10"
                                             value="{{ old('practicas', '') }}" />
                                         @error('practicas')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
@@ -98,79 +98,85 @@
                                     </div>
                                 </div>
 
-                                <div class="w-3/6 mr-2">
-                                    <label for="instituto" class="block font-medium text-sm text-gray-700">Instituto</label>
-                                    <input type="text" name="instituto" id="instituto" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                        value="{{ old('instituto', '') }}" />
-                                    @error('instituto')
-                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
+                                <div class="flex mb-4">
+                                    <div class="w-1/2 mr-2">
+                                        <label for="instituto" class="block font-medium text-sm text-gray-700">Instituto</label>
+                                        <input type="text" name="instituto" id="instituto" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old('instituto', '') }}" />
+                                        @error('instituto')
+                                            <p class="text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                    <div class="w-1/2 mx-2">
+                                        <label for="localidad" class="block font-medium text-sm text-gray-700">Localidad</label>
+                                        <input type="text" name="localidad" id="localidad" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old('localidad', '') }}" />
+                                        @error('localidad')
+                                            <p class="text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                    <div class="w-1/2 ml-2">
+                                        <label for="provincia" class="block font-medium text-sm text-gray-700">Provincia</label>
+                                        <input type="text" name="provincia" id="provincia" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old('provincia', '') }}" />
+                                        @error('provincia')
+                                            <p class="text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
                                 </div>
 
-                                <div class="w-3/6 mr-2">
-                                    <label for="localidad" class="block font-medium text-sm text-gray-700">Localidad</label>
-                                    <input type="text" name="localidad" id="localidad" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                        value="{{ old('localidad', '') }}" />
-                                    @error('localidad')
-                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
+                                <div class="flex mb-4">
+                                    <div class="w-1/2 mr-2">
+                                        <label for="tutor_practicas" class="block font-medium text-sm text-gray-700">Tutor de prácticas</label>
+                                        <input type="text" name="tutor_practicas" id="tutor_practicas" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old('tutor_practicas', '') }}" />
+                                        @error('tutor_practicas')
+                                            <p class="text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                    <div class="w-1/2 mx-2">
+                                        <label for="fecha_inicio_practicas" class="block font-medium text-sm text-gray-700">Fecha inicio</label>
+                                        <input type="date" name="fecha_inicio_practicas" id="fecha_inicio_practicas" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old('fecha_inicio_practicas', '') }}" />
+                                        @error('fecha_inicio_practicas')
+                                            <p class="text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                    <div class="w-1/2 ml-2">
+                                        <label for="fecha_fin_practicas" class="block font-medium text-sm text-gray-700">Fecha fin</label>
+                                        <input type="date" name="fecha_fin_practicas" id="fecha_fin_practicas" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old('fecha_fin_practicas', '') }}" />
+                                        @error('fecha_fin_practicas')
+                                            <p class="text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
                                 </div>
 
-                                <div class="w-3/6 mr-2">
-                                    <label for="provincia" class="block font-medium text-sm text-gray-700">Provincia</label>
-                                    <input type="text" name="provincia" id="provincia" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                        value="{{ old('provincia', '') }}" />
-                                    @error('provincia')
-                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
+                                <div class="flex mb-8">
+                                    <div class="w-3/6 mr-2">
+                                        <label for="convenio_practicas" class="block font-medium text-sm text-gray-700">Adjuntar convenio</label>
+                                        <input type="file" name="convenio_practicas" id="convenio_practicas" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old('convenio_practicas', '') }}" />
+                                        @error('convenio_practicas')
+                                            <p class="text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                    <div class="w-3/6 mr-2">
+                                        <label for="doc_confidencialidad_practicas" class="block font-medium text-sm text-gray-700">Adjuntar documento de confidencialidad</label>
+                                        <input type="file" name="doc_confidencialidad_practicas" id="doc_confidencialidad_practicas" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old('doc_confidencialidad_practicas', '') }}" />
+                                        @error('doc_confidencialidad_practicas')
+                                            <p class="text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
                                 </div>
 
-                                <div class="w-3/6 mr-2">
-                                    <label for="tutor_practicas" class="block font-medium text-sm text-gray-700">Tutor de prácticas</label>
-                                    <input type="text" name="tutor_practicas" id="tutor_practicas" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                        value="{{ old('tutor_practicas', '') }}" />
-                                    @error('tutor_practicas')
-                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-                                <div class="w-3/6 mr-2">
-                                    <label for="fecha_inicio_practicas" class="block font-medium text-sm text-gray-700">Fecha inicio</label>
-                                    <input type="date" name="fecha_inicio_practicas" id="fecha_inicio_practicas" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                        value="{{ old('fecha_inicio_practicas', '') }}" />
-                                    @error('fecha_inicio_practicas')
-                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-                                <div class="w-3/6 mr-2">
-                                    <label for="fecha_fin_practicas" class="block font-medium text-sm text-gray-700">Fecha fin</label>
-                                    <input type="date" name="fecha_fin_practicas" id="fecha_fin_practicas" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                        value="{{ old('fecha_fin_practicas', '') }}" />
-                                    @error('fecha_fin_practicas')
-                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-                                <div class="w-3/6 mr-2">
-                                    <label for="convenio_practicas" class="block font-medium text-sm text-gray-700">Adjuntar convenio</label>
-                                    <input type="file" name="convenio_practicas" id="convenio_practicas" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                        value="{{ old('convenio_practicas', '') }}" />
-                                    @error('convenio_practicas')
-                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-                                <div class="w-3/6 mr-2">
-                                    <label for="doc_confidencialidad_practicas" class="block font-medium text-sm text-gray-700">Adjuntar documento de confidencialidad</label>
-                                    <input type="file" name="doc_confidencialidad_practicas" id="doc_confidencialidad_practicas" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                        value="{{ old('doc_confidencialidad_practicas', '') }}" />
-                                    @error('doc_confidencialidad_practicas')
-                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-                                <div class="divFaltasPracticas">
+                                <div class="divFaltasPracticas mb-8">
                                     <div class="flex justify-between contenedorTituloBotones">
                                         <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-6 mb-2">
                                             Faltas de asistencia
@@ -190,8 +196,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="contenedorFaltasPracticas">
-                                        <div class="divFechaFaltaPracticas">
+                                    <div class="contenedorFaltasPracticas flex ">
+                                        <div class="divFechaFaltaPracticas w-1/3 mr-2">
                                             <label for="faltas_practicas[0][fecha_falta]" class="block font-medium text-sm text-gray-700">Fecha</label>
                                             <input type="date" name="faltas_practicas[0][fecha_falta]" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                                 value="{{ old("faltas_practicas[0][fecha_falta]", '') }}" />
@@ -199,7 +205,8 @@
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
                                         </div>
-                                        <div class="divJustificacionFaltaPracticas">
+
+                                        <div class="divJustificacionFaltaPracticas w-1/3 mx-2">
                                             <label for="faltas_practicas[0][justificacion]" class="block font-medium text-sm text-gray-700">Justificacion</label>
                                             <input type="text" name="faltas_practicas[0][justificacion]" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                                 value="{{ old("faltas_practicas[0][justificacion]", '') }}" />
@@ -207,7 +214,8 @@
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
                                         </div>
-                                        <div class="divNotaFaltaPracticas">
+
+                                        <div class="divNotaFaltaPracticas w-1/3 ml-2">
                                             <label for="faltas_practicas[0][notas]" class="block font-medium text-sm text-gray-700">Notas</label>
                                             <input type="text" name="faltas_practicas[0][notas]" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                                 value="{{ old("faltas_practicas[0][notas]", '') }}" />
@@ -218,7 +226,8 @@
                                     </div>
                                 </div>
 
-                                    <div>
+                                <div class="flex mb-4">
+                                    <div class="w-1/3 mr-2">
                                         <label for="contrato" class="block font-medium text-sm text-gray-700">Adjuntar contrato</label>
                                         <input type="file" name="contrato" id="contrato" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old("contrato", '') }}" />
@@ -227,7 +236,7 @@
                                         @enderror
                                     </div>
 
-                                    <div>
+                                    <div class="w-1/3 mx-2">
                                         <label for="doc_confidencialidad" class="block font-medium text-sm text-gray-700">Adjuntar documento de confidencialidad</label>
                                         <input type="file" name="doc_confidencialidad" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old("doc_confidencialidad", '') }}" />
@@ -236,7 +245,7 @@
                                         @enderror
                                     </div>
 
-                                    <div>
+                                    <div class="w-1/3 ml-2">
                                         <label for="doc_normas" class="block font-medium text-sm text-gray-700">Adjuntar documento de normas</label>
                                         <input type="file" name="doc_normas" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old("doc_normas", '') }}" />
@@ -244,7 +253,8 @@
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
-
+                                </div>
+                                <div class="flex">
                                     <div>
                                         <label for="doc_prevencion_riesgos" class="block font-medium text-sm text-gray-700">Adjuntar documento de Prevención de Riesgos Laborales</label>
                                         <input type="file" name="doc_prevencion_riesgos" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -262,7 +272,7 @@
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
-
+                                </div>
                                     <div class="divPagos">
                                         <div class="flex justify-between contenedorTituloBotones">
                                             <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-6 mb-2">

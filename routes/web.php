@@ -12,6 +12,7 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\ProyectoController;
 use App\Http\Controllers\VacacionController;
 use App\Http\Controllers\ConceptoFacturaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,11 +25,16 @@ use App\Http\Controllers\ConceptoFacturaController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/clientes', function () {
+    $clientes = Cliente::paginate(10);
+    $ambitos = Ambito::all();
+    //dd($this->rolConPoderes);
+    $rolConPoderes = "superusuario";
+
+    return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes'));
 })->name('dashboard');
 
 Route::resource('clientes', ClienteController::class);

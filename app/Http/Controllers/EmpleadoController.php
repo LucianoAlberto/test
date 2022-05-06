@@ -246,11 +246,9 @@ class EmpleadoController extends Controller
         }
         //$ambitoId = Ambito::whereId($arrayIds)->first()->value('id');
 
-
         $empleados = Empleado::whereHas('ambitos', function($query) use($arrayIds){
             $query->whereIn("ambito_id",  $arrayIds);
         })->paginate(10);
-
 
         $ambitos = Ambito::all();
         $rolConPoderes = self::ROLCONPODERES;

@@ -17,8 +17,8 @@
                 </x-slot>
             </x-boton2>
             <div class="ml-3">
-                <label for='ambito["sin"]'>Sin ámbito</label>
-                <input type="checkbox" name='ambito["sin"]'>
+                <label for='ambito[sin]'>Sin ámbito</label>
+                <input type="checkbox" name='ambito[sin]'>
 
                 @foreach ($ambitos as $ambito )
                     <label for='ambito[{{$ambito->id}}]'>{{ $ambito->nombre }}</label>

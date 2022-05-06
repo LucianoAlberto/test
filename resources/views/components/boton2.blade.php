@@ -2,8 +2,14 @@
 
 
 @if ($tipo == "div")
-    <div class="flex space-x-2 justify-center">
-        <div {{ $attributes->merge(['class' => 'flex justify-center text-white px-4 py-2 rounded-md text-1xl font-medium transition duration-300 cursor-pointer'])}}>{{ $boton }}</div>
+    <div {{ $attributes->merge(['class' => 'flex justify-center text-white px-4 py-2 rounded-md text-1xl font-medium transition duration-300 cursor-pointer'])}}>
+        {{ $boton }}
+    </div>
+@endif
+
+@if ($tipo == "divAbsolute")
+    <div {{ $attributes->merge(['class' => 'flex space-x-2 justify-start absolute flex justify-center text-white px-4 py-2 rounded-md text-1xl font-medium transition duration-300 cursor-pointer'])}}>
+        {{ $boton }}
     </div>
 @endif
 

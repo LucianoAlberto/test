@@ -5208,9 +5208,9 @@ window.masDominio = function (event) {
 
 window.menosDominio = function (event) {
   var ultimoHijoContenedorDominio = event.target.closest(".divDominios").lastElementChild;
-  var listaContenedoresDominio = event.target.closest(".divDominios").querySelectorAll(".contenedorDominio");
+  var listaContenedoresDominio = event.target.closest(".divDominios").querySelectorAll(".contenedorDominios");
 
-  if (ultimoHijoContenedorDominio.classList.contains("contenedorDominio") && listaContenedoresDominio.length > 1) {
+  if (ultimoHijoContenedorDominio.classList.contains("contenedorDominios") && listaContenedoresDominio.length > 1) {
     ultimoHijoContenedorDominio.remove();
   }
 };
@@ -5257,8 +5257,8 @@ window.masEmail = function (event) {
 };
 
 window.menosEmail = function (event) {
-  var ultimoHijoContenedorEmails = event.target.closest(".divEmails").lastElementChild;
-  var listaContenedoresEmails = event.target.closest(".divEmails").querySelectorAll(".contenedorEmails");
+  var ultimoHijoContenedorEmails = event.target.closest(".divEmail").lastElementChild;
+  var listaContenedoresEmails = event.target.closest(".divEmail").querySelectorAll(".contenedorEmails");
 
   if (ultimoHijoContenedorEmails.classList.contains("contenedorEmails") && listaContenedoresEmails.length > 1) {
     ultimoHijoContenedorEmails.remove();

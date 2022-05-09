@@ -15,7 +15,28 @@ class AmbitoSeeder extends Seeder
      */
     public function run()
     {
-        Ambito::create(['nombre' => 'Ingeniería']);
-        Ambito::create(['nombre' => 'Publicidad']);
+        Ambito::insert([
+            [
+                'nombre' => 'Pagina-Web',
+                "created_at" => now('Europe/Madrid'),
+                "updated_at" => now('Europe/Madrid'),
+            ],       
+        ]);
+
+        Ambito::insert([
+            [
+                'nombre' => 'Publicidad',
+                "created_at" => now('Europe/Madrid'),
+                "updated_at" => now('Europe/Madrid'),
+            ],       
+        ]);
+
+        Ambito::insert([
+            [
+                'nombre' => 'Servicios',
+                "created_at" => now('Europe/Madrid'),
+                "updated_at" => now('Europe/Madrid'),
+            ],       
+        ]);
     }
 }

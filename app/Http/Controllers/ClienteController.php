@@ -99,7 +99,10 @@ class ClienteController extends Controller
      */
     public function show(Cliente $cliente)
     {
-        return view('clientes.show', compact('cliente'));
+         //recuperamos los ambitos existentes
+         $ambitos=Ambito::all();
+
+        return view('clientes.show', compact('cliente','ambitos'));
     }
 
     /**

@@ -19,13 +19,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+      
+        Cliente::factory(15)->create();
+        Contrato::factory(15)->create();
+
         $this->call([
             RoleSeeder::class,
             AmbitoSeeder::class,
+            AmbitoClienteSeeder::class,
         ]);
-
-        Cliente::factory(15)->create();
-        Contrato::factory(15)->create();
-        //Factura::factory(5)->create();
+      
     }
 }

@@ -6,5 +6,5 @@ use Illuminate\Http\Request;
 
 class AccesoController extends Controller
 {
-    //Prueba Merge
+    //Prueba Merge 2try
 }

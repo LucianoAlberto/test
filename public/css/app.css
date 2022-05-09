@@ -992,6 +992,10 @@ select {
   margin-left: 0.75rem;
   margin-right: 0.75rem;
 }
+.my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
+}
 .ml-3 {
   margin-left: 0.75rem;
 }
@@ -1214,14 +1218,11 @@ select {
 .w-1\/6 {
   width: 16.666667%;
 }
-.w-1 {
-  width: 0.25rem;
-}
-.w-80 {
-  width: 20rem;
-}
 .w-52 {
   width: 13rem;
+}
+.w-1 {
+  width: 0.25rem;
 }
 .min-w-0 {
   min-width: 0px;
@@ -1946,6 +1947,9 @@ select {
 }
 .ease-in {
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+.hover\:cursor-pointer:hover {
+  cursor: pointer;
 }
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;

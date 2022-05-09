@@ -10,14 +10,13 @@
             <div class="mt-5 md:mt-0 md:col-span-2">
                 <form id="formulario" method="post" action="{{ route('clientes.store') }}" enctype="multipart/form-data">
                     @csrf
-
                     <div class="shadow overflow-hidden sm:rounded-md ">
                         <div class="px-4 py-5 bg-white sm:p-6 divide-y-4">
-                            <div class="divDatosPersonales mb-16">
-                                <h3 class="flex justify-center font-semibold text-xl text-gray-800 leading-tight mb-2">
+                            <div class="divDatosPersonales mb-4">
+                                <h3 class="flex justify-center font-semibold text-xl text-gray-800 leading-tight mb-8">
                                     Datos personales
                                 </h3>
-                                <div class="flex justify-between mb-4">
+                                <div class="flex justify-between mb-8">
                                     <div class="w-2/5 mr-2">
                                         <label for="nombre" class="block font-medium text-sm text-gray-700">Nombre</label>
                                         <input type="text" name="nombre" id="nombre" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -46,7 +45,7 @@
                                     </div>
                                 </div>
 
-                                <div class="flex justify-between mb-4">
+                                <div class="flex justify-between mb-8">
                                     <div class="w-3/6 mr-2">
                                         <label for="direccion_fiscal" class="block font-medium text-sm text-gray-700">Dirección fiscal</label>
                                         <input type="text" name="direccion_fiscal" id="direccion_fiscal" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -66,7 +65,7 @@
                                     </div>
                                 </div>
 
-                                <div class="flex justify-between mb-4">
+                                <div class="flex justify-between mb-8">
                                     <div class="w-2/5 mr-2">
                                         <label for="nombre_comercial" class="block font-medium text-sm text-gray-700">Nombre comercial</label>
                                         <input type="text" name="nombre_comercial" id="nombre_comercial" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -95,7 +94,7 @@
                                     </div>
                                 </div>
 
-                                <div class="flex justify-between mb-4">
+                                <div class="flex justify-between mb-8">
                                     <div class="w-3/6 mr-2">
                                         <label for="cuenta_bancaria" class="block font-medium text-sm text-gray-700">Cuenta bancaria</label>
                                         <input type="text" name="cuenta_bancaria" id="cuenta_bancaria" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -116,7 +115,7 @@
                                     </div>
                                 </div>
 
-                                <div class="flex justify-between mb-4">
+                                <div class="flex justify-between mb-8">
                                     <div class="w-3/6 mr-2">
                                         <label for="email" class="block font-medium text-sm text-gray-700">E-mail</label>
                                         <input type="text" name="email" id="email" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -145,19 +144,17 @@
                                     </div>
                                 </div>
 
-                                <div class="mb-3">
+                                <div class="font-medium text-sm text-gray-700">
                                     <fieldset>
-                                        <legend>Ámbitos de trabajo:</legend>
+                                        <legend class="mb-4">Ámbitos de trabajo:</legend>
                                         @foreach ($ambitos as $ambito )
                                             <label for='ambito[{{$ambito->id}}]'>{{ $ambito->nombre }}</label>
-                                            <input type="checkbox" name='ambito[{{$ambito->id}}]'>
+                                            <input type="checkbox" name='ambito[{{$ambito->id}}]' class="ml-2 mr-4">
                                         @endforeach
                                     </fieldset>
                                 </div>
                             </div>
                         </div>
-
-
 
                         <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
                             <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">

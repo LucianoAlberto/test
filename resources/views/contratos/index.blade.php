@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="pl-8 ml-8 mt-4 flex justify-start">
-        <x-boton2 tipo="link" class="bg-green-600 hover:bg-green-700 flex justify-around w-44" direccion="{{route('contratos.create',$cliente)}}">
+        <x-boton2 tipo="link" class="bg-green-600 hover:bg-green-700 flex justify-between w-44" direccion="{{route('contratos.create',$cliente)}}">
             <x-slot name="boton">
                 Añadir contrato
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-plus"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
@@ -34,17 +34,17 @@
                                             <th scope="col" class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Referencia
                                             </th>
-                                            <th scope="col" width="200" class="px-6 py-3 bg-gray-50">
+                                            <th scope="col" width="200" class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 TOTAL
                                             </th>
-                                            <th scope="col" width="200" class="px-6 py-3 bg-gray-50">
+                                            <th scope="col" width="200" class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Fecha Firma
                                             </th>
-                                            <th scope="col" width="200" class="px-6 py-3 bg-gray-50">
+                                            <th scope="col" width="200" class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Archivo
                                             </th>
                                             @role($rolConPoderes)
-                                            <th scope="col" width="200" class="px-6 py-3 bg-gray-50">
+                                            <th scope="col" width="200" class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Opciones
                                             </th>
                                             @endrole
@@ -52,7 +52,7 @@
                                         </thead>
                                         <tbody class="bg-white divide-y divide-gray-200">
                                         @foreach ($cliente->contratos as $contrato)
-                                            <tr class="hover:bg-green-200" onclick="detalles('{{ route('contratos.show', ['cliente' => $cliente->id, 'contrato' => $contrato->id]) }}', event)">
+                                            <tr class="hover:bg-green-200 hover:cursor-pointer" onclick="detalles('{{ route('contratos.show', ['cliente' => $cliente->id, 'contrato' => $contrato->id]) }}', event)">
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
                                                     {{ $contrato->id }}
                                                 </td>
@@ -75,15 +75,15 @@
 
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
                                                     @if($contrato->archivo != null)
-                                                        <x-boton2 tipo="linkConAsset" class="bg-blue-500 hover:bg-blue-700 mr-4 w-16 h-12" direccion="{{$contrato->archivo}}">
+                                                        <x-boton2 tipo="linkConAsset" class="bg-blue-500 hover:bg-blue-700 w-16 h-12 m-auto" direccion="{{$contrato->archivo}}">
                                                             <x-slot name="boton">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                                                             </x-slot>
                                                         </x-boton2>
                                                     @else
-                                                        <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed mr-4 w-16 h-12">
+                                                        <x-boton2 tipo="div" class="bg-slate-300 w-16 cursor-not-allowed h-12 m-auto">
                                                             <x-slot name="boton">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                                                             </x-slot>
                                                         </x-boton2>
                                                     @endif

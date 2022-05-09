@@ -11,18 +11,18 @@
 
         <form method="post" action="{{ route('clientes.filtro') }}" enctype="multipart/form-data" class="flex pr-16 mt-4 items-center">
             @csrf
-            <x-boton2 tipo="submit" class="bg-green-600 hover:bg-green-700 flex justify-around w-16 h-10">
+            <x-boton2 tipo="submit" class="bg-green-600 hover:bg-green-700 flex justify-around w-16 h-10 mr-2">
                 <x-slot name="boton">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
                 </x-slot>
             </x-boton2>
             <div class="ml-3">
                 <label for='ambito[sin]'>Sin ámbito</label>
-                <input type="checkbox" name='ambito[sin]'>
+                <input type="checkbox" name='ambito[sin]' class="ml-2 mr-4">
 
                 @foreach ($ambitos as $ambito )
                     <label for='ambito[{{$ambito->id}}]'>{{ $ambito->nombre }}</label>
-                    <input type="checkbox" name='ambito[{{$ambito->id}}]'>
+                    <input type="checkbox" name='ambito[{{$ambito->id}}]' class="ml-2 mr-4">
                 @endforeach
             </div>
         </form>
@@ -67,7 +67,7 @@
                                                     Ámbitos
                                                 </th>
                                                 @role($rolConPoderes)
-                                                <th scope="col" width="200" class="px-6 py-3 bg-gray-50">
+                                                <th scope="col" width="200" class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Opciones
                                                 </th>
                                                 @endrole
@@ -75,7 +75,7 @@
                                             </thead>
                                             <tbody class="bg-white divide-y divide-gray-200">
                                             @foreach ($clientes as $cliente)
-                                                <tr class="hover:bg-green-200" onclick="detalles('{{ route('clientes.show', $cliente->id) }}', event)">
+                                                <tr class="hover:bg-green-200 hover:cursor-pointer" onclick="detalles('{{ route('clientes.show', $cliente->id) }}', event)">
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
                                                         {{ $cliente->id }}
                                                     </td>

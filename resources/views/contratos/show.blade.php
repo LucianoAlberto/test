@@ -66,7 +66,7 @@
                                     </th>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
-                                        {{ $contrato->base_imponible }}
+                                        {{ $contrato->base_imponible }} €
                                     </td>
 
                                 <tr class="border-b">
@@ -75,7 +75,7 @@
                                     </th>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
-                                        {{ $contrato->iva }}
+                                        {{ $contrato->iva }} %
                                     </td>
 
                                 </tr>
@@ -86,7 +86,7 @@
                                     </th>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
-                                        {{ $contrato->irpf }}
+                                        {{ $contrato->irpf }} €
                                     </td>
                                 </tr>
 
@@ -96,7 +96,7 @@
                                     </th>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
-                                        {{ $contrato->total }}
+                                        {{ $contrato->total }} €
                                     </td>
                                 </tr>
 

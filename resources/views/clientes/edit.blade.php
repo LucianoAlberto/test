@@ -13,36 +13,41 @@
                     @method('PUT')
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
-                            <div class="flex justify-between mb-4">
-                                <div class="w-2/5 mr-">
-                                    <label for="nombre" class="block font-medium text-sm text-gray-700">Nombre</label>
-                                    <input type="text" name="nombre" id="nombre" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                        value="{{ old('nombre', $cliente->nombre) }}" />
-                                    @error('nombre')
-                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                            <div class="mb-4">
+                                <h3 class="flex justify-center font-semibold text-xl text-gray-800 leading-tight mb-8">
+                                    Datos personales
+                                </h3>
+                                <div class="flex justify-between mb-8">
+                                    <div class="w-2/5 mr-2">
+                                        <label for="nombre" class="block font-medium text-sm text-gray-700">Nombre</label>
+                                        <input type="text" name="nombre" id="nombre" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old('nombre', $cliente->nombre) }}" />
+                                        @error('nombre')
+                                            <p class="text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
 
-                                <div class="w-2/5 ml-2 mr-2">
-                                    <label for="apellidos" class="block font-medium text-sm text-gray-700">Apellidos</label>
-                                    <input type="text" name="apellidos" id="apellidos" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                        value="{{ old('apellidos', $cliente->apellidos) }}" />
-                                    @error('apellidos')
-                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                                    <div class="w-2/5 ml-2 mr-2">
+                                        <label for="apellidos" class="block font-medium text-sm text-gray-700">Apellidos</label>
+                                        <input type="text" name="apellidos" id="apellidos" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old('apellidos', $cliente->apellidos) }}" />
+                                        @error('apellidos')
+                                            <p class="text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
 
-                                <div class="w-1/5 ml-2">
-                                    <label for="dni" class="block font-medium text-sm text-gray-700">DNI</label>
-                                    <input type="text" name="dni" id="dni" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                        value="{{ old('dni', $cliente->apellidos) }}" />
-                                    @error('dni')
-                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
+                                    <div class="w-1/5 ml-2">
+                                        <label for="dni" class="block font-medium text-sm text-gray-700">DNI</label>
+                                        <input type="text" name="dni" id="dni" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old('dni', $cliente->apellidos) }}" />
+                                        @error('dni')
+                                            <p class="text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="flex justify-between mb-4">
+                            <div class="flex justify-between mb-8">
                                 <div class="w-3/6 mr-2">
                                     <label for="direccion_fiscal" class="block font-medium text-sm text-gray-700">Dirección fiscal</label>
                                     <input type="text" name="direccion_fiscal" id="direccion_fiscal" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -62,7 +67,7 @@
                                 </div>
                             </div>
 
-                            <div class="flex justify-between mb-4">
+                            <div class="flex justify-between mb-8">
                                 <div class="w-2/5 mr-2">
                                     <label for="nombre_comercial" class="block font-medium text-sm text-gray-700">Nombre comercial</label>
                                     <input type="text" name="nombre_comercial" id="nombre_comercial" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -91,7 +96,7 @@
                                 </div>
                             </div>
 
-                            <div class="flex justify-between mb-4">
+                            <div class="flex justify-between mb-8">
                                 <div class="w-3/6 mr-2">
                                     <label for="cuenta_bancaria" class="block font-medium text-sm text-gray-700">Cuenta bancaria</label>
                                     <input type="text" name="cuenta_bancaria" id="cuenta_bancaria" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -111,7 +116,7 @@
                                 </div>
                             </div>
 
-                            <div class="flex justify-between mb-4">
+                            <div class="flex justify-between mb-8">
                                 <div class="w-3/6 mr-2">
                                     <label for="email" class="block font-medium text-sm text-gray-700">E-mail</label>
                                     <input type="text" name="email" id="email" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -140,14 +145,12 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="font-medium text-sm text-gray-700">
                                 <fieldset>
-                                    <legend>Ámbitos de trabajo:</legend>
-
+                                    <legend class="mb-4">Ámbitos de trabajo:</legend>
                                     @foreach ($ambitos as $ambito )
-
                                         <label for='ambito[{{$ambito->id}}]'>{{ $ambito->nombre }}</label>
-                                        <input type="checkbox" name='ambito[{{$ambito->id}}]' {{in_array($ambito->id, $cliente->ambitos->pluck('id')->toArray())?'checked':''}}>
+                                        <input type="checkbox" name='ambito[{{$ambito->id}}]' {{in_array($ambito->id, $cliente->ambitos->pluck('id')->toArray())?'checked':''}} class="ml-2 mr-4">
                                     @endforeach
                                 </fieldset>
                             </div>

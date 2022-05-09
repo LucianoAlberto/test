@@ -34,10 +34,15 @@ class ClienteController extends Controller
         //$validated = $request->validated();
         //dd($request['ambito'][0]);
         //dd($_POST);
-        dd($request->get('ambito'));
+        //dd($request->get('ambito'));
         if($request->get('formName') == "category"){
             foreach($request->get('ambito') as $key => $valor){
-                if()
+                if($key == "sin"){
+                    $clientes = Cliente::filtro(0);
+                }
+                else{
+                    $clientes = Cliente::filtro($key);
+                }
             }
 
             //$clientes = Cliente::filtro(2000);

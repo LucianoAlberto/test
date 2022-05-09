@@ -46,7 +46,7 @@
                                             <thead>
                                             <tr>
                                                 <th scope="col" width="50" class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    ID
+                                                    ID 
                                                 </th>
                                                 <th scope="col" class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Nombre
@@ -132,7 +132,7 @@
                                         </table>
 
                                     </div>
-                                        {{ $clientes->links() }}
+                                        {{ $clientes->links()}}
                                     </div>
 
                                     </div>

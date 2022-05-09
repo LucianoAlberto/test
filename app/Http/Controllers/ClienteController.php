@@ -167,27 +167,6 @@ class ClienteController extends Controller
         return redirect()->route('clientes.index', compact('rolConPoderes'));
     }
 
-    public function filtro(FiltroRequest $request){
-        $validated = $request->validated();
-        //dd($validated);
 
-        $arrayIds = [];
-        foreach($validated['ambito'] as $clave => $valor){
-            array_push($arrayIds, $clave);
-        }
-
-        if(isset($validated['ambito']['sin'])){
-            $clientes = Cliente::doesntHave('ambitos')->paginate(10);
-        }
-        else{
-            $clientes = Cliente::whereHas('ambitos', function($query) use ($arrayIds){
-                $query->whereIn("ambito_id",  $arrayIds);
-            })->paginate(10);
-        }
-
-        $ambitos = Ambito::all();
-        $rolConPoderes = self::ROLCONPODERES;
-        return view('clientes.index',compact('clientes', 'ambitos', 'rolConPoderes'));
-    }
 
 }

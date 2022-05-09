@@ -27,9 +27,10 @@ class RoleSeeder extends Seeder
 
         //crear los usuarios demo
         $usuarioAdmin = User::factory()->create([
-            'name' => 'Superusuario',
+            'name' => 'Ana',
             'email' => 'admin@admin.com',
             'password' => bcrypt('12345678'),
+            'rol'=>'1'
         ]);
         $usuarioAdmin->assignRole($admin);
 
@@ -37,6 +38,7 @@ class RoleSeeder extends Seeder
             'name' => 'Usuario Random',
            'email' => 'user@user.com',
            'password' => bcrypt('12345678'),
+           'rol'=>'2',
         ]);
         $usuarioUser->assignRole($user);
     }

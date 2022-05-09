@@ -1,56 +1,90 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Editar usuario
-        </h2>
-    </x-slot>
+<x-guest-layout>
+    <x-jet-authentication-card>
+        <x-slot name="logo">
+            <a href="">
+                {{--<x-jet-application-mark class="block h-9 w-auto" />--}}
+                <img class="w-20" src="{{ url('logo.png') }}" />
+             </a>
+        </x-slot>
 
-    <div>
-        <div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8">
-            <div class="mt-5 md:mt-0 md:col-span-2">
-                <form method="post" action="{{ route('users.update', $user->id) }}" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
-                    <div class="shadow overflow-hidden sm:rounded-md">
-                        <div class="px-4 py-5 bg-white sm:p-6">
-                            <div class="flex justify-between mb-4">
-                                <div class="w-1/4">
-                                    <label for="nombre" class="block font-medium text-sm text-gray-700">Nombre</label>
-                                    <input type="text" name="nombre" id="nombre" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                        value="{{ old('nombre', $user->name) }}" />
-                                    @error('nombre')
-                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
-                                </div>
+        {{--<x-jet-validation-errors class="mb-4" />--}}
 
-                                <div class="w-1/3">
-                                    <label for="email" class="block font-medium text-sm text-gray-700">E-mail</label>
-                                    <input type="text" name="email" id="email" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                        value="{{ old('email', $user->email) }}" />
-                                    @error('email')
-                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
-                                </div>
+        <form method="POST" action="{{ route('users.update',$user) }}">
+            @csrf
+            @method('PUT')
 
-                                <div class="w-1/4">
-                                    <label for="contrasenha" class="block font-medium text-sm text-gray-700">Contraseña</label>
-                                    <input type="text" name="contrasenha" id="contrasenha" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                        value="{{ old('contrasenha', $user->password) }}" />
-                                    @error('contrasenha')
-                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
-                                </div>
+            <div>
+                <x-jet-label for="name" value="{{ __('Name') }}" />
+                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name',$user->name)" required autofocus autocomplete="name" />
+                 @error('name')
+                    <p class="text-sm text-red-600">{{ $message }}</p>
+                @enderror
+                </div>
+
+            <div class="mt-4">
+                <x-jet-label for="email" value="{{ __('Email') }}" />
+                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email',$user->email)" required />
+                @error('email')
+                     <p class="text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="password" value="{{ __('Password') }}" />
+                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required  value="{{old('password',$user->password)}}" />
+                 @error('password')
+                     <p class="text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
+                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" value="{{$user->password}}"/>
+                @error('password_confirmation')
+                    <p class="text-sm text-red-600">{{ $message }}</p>
+               @enderror      
+                </div>
+
+
+            <div class="mt-4">
+                <x-jet-label for="rol" value="{{ __('Asignar Rol') }}" />
+                <select id="rol" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md mt-1 w-full"  name="rol" required >
+                    <
+                    @foreach ($roles as $rol)
+                    <option value="{{ $rol->id}}"
+                        {{ $rol->id == $user->rol ? 'selected' :'' }}>
+                        {{ $rol->name }}</option>
+                    @endforeach
+
+                </select>   
+            </div>
+
+            
+
+            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
+                <div class="mt-4">
+                    <x-jet-label for="terms">
+                        <div class="flex items-center">
+                            <x-jet-checkbox name="terms" id="terms"/>
+
+                            <div class="ml-2">
+                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
+                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',
+                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
+                                ]) !!}
                             </div>
                         </div>
+                    </x-jet-label>
+                </div>
+            @endif
 
-                        <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
-                            <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
-                                Editar
-                            </button>
-                        </div>
-                    </div>
-                </form>
+            <div class="flex items-center justify-end mt-4">
+               
+
+                <x-jet-button class="ml-4">
+                    {{ __('Guardar cambios') }}
+                </x-jet-button>
             </div>
-        </div>
-    </div>
-</x-app-layout>
+        </form>
+    </x-jet-authentication-card>
+</x-guest-layout>

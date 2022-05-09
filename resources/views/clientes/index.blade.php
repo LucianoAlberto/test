@@ -9,9 +9,10 @@
             </x-boton2>
         </div>
 
-        <form method="post" action="{{ route('clientes.filtro') }}" enctype="multipart/form-data" class="flex pr-16 mt-4 items-center">
+        <form method="POST" action="{{ route('clientes.index') }}" enctype="multipart/form-data" class="flex pr-16 mt-4 items-center">
             @csrf
-            <x-boton2 tipo="submit" class="bg-green-600 hover:bg-green-700 flex justify-around w-16 h-10 mr-2">
+            <input type="hidden" name="formName" value="category">
+            <x-boton2 tipo="submit" name="submit" class="bg-green-600 hover:bg-green-700 flex justify-around w-16 h-10 mr-2">
                 <x-slot name="boton">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
                 </x-slot>
@@ -132,7 +133,11 @@
                                         </table>
 
                                     </div>
+<<<<<<< HEAD
                                         {{ $clientes->links()}}
+=======
+                                        {{ $clientes->appends($_GET)->links() }}
+>>>>>>> af2c4a374d2a3ba5cabc5e7e3b437fb893fed0a2
                                     </div>
 
                                     </div>

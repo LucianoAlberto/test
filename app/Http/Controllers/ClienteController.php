@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Request;
+
+use Illuminate\Http\Request;
 use App\Models\Pago;
 use App\Models\Acceso;
 use App\Models\Ambito;
@@ -28,12 +29,30 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $clientes = Cliente::paginate(10);
+        //$validated = $request->validated();
+        //dd($request['ambito'][0]);
+        //dd($_POST);
+        dd($request->get('ambito'));
+        if($request->get('formName') == "category"){
+            foreach($request->get('ambito') as $key => $valor){
+                if()
+            }
+
+            //$clientes = Cliente::filtro(2000);
+            $clientes = Cliente::paginate(50);
+            //dd($clientes);
+        }
+        else{
+            $clientes = Cliente::paginate(10);
+            //dd($_POST);
+        }
+        //dd($request);
         $ambitos = Ambito::all();
         //dd($this->rolConPoderes);
         $rolConPoderes = self::ROLCONPODERES;
+        //$clientes = Cliente::paginate(10);
 
         return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes'));
     }
@@ -167,6 +186,34 @@ class ClienteController extends Controller
         return redirect()->route('clientes.index', compact('rolConPoderes'));
     }
 
+<<<<<<< HEAD
 
+=======
+    public function filtro(FiltroRequest $request){
+        $validated = $request->validated();
+        // //dd($validated);
+
+        // $arrayIds = [];
+        // foreach($validated['ambito'] as $clave => $valor){
+        //     array_push($arrayIds, $clave);
+        // }
+
+        // if(isset($validated['ambito']['sin'])){
+        //     $clientes = Cliente::doesntHave('ambitos')->paginate(10);
+        // }
+        // else{
+        //     $clientes = Cliente::whereHas('ambitos', function($query) use ($arrayIds){
+        //         $query->whereIn("ambito_id",  $arrayIds);
+        //     })->paginate(10);
+        // }
+
+        $clientes = Cliente::filtro(0);
+        $ambitos = Ambito::all();
+        $rolConPoderes = self::ROLCONPODERES;
+        //dd($clientes);
+        return view('clientes.index',compact('clientes', 'ambitos', 'rolConPoderes'));
+    }
+>>>>>>> af2c4a374d2a3ba5cabc5e7e3b437fb893fed0a2
 
 }
+

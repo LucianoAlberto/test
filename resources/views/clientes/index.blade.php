@@ -9,7 +9,7 @@
             </x-boton2>
         </div>
 
-        <form method="POST" action="{{ route('clientes.index') }}" enctype="multipart/form-data" class="flex pr-16 mt-4 items-center">
+        <form method="POST" action="{{ route('clientes.index') }}" class="flex pr-16 mt-4 items-center">
             @csrf
             <input type="hidden" name="formName" value="category">
             <x-boton2 tipo="submit" name="submit" class="bg-green-600 hover:bg-green-700 flex justify-around w-16 h-10 mr-2">

@@ -53,8 +53,16 @@ class Cliente extends Model
         return $this->belongsToMany(Ambito::class);
     }
 
-    public function scopeFiltro($query, $anho)
+    public function scopeSinAmbitos($query)
     {
-        return $query->where('anho_contable', '>', $anho)->paginate(10);
+        return $query->doesntHave('ambitos')->paginate(10);
+    }
+
+    public function scopeConAmbitos($query, $ambito)
+    {
+        return $query->whereHas('ambitos', function($q, $ambito) {
+            $q->where('ambito_id', $ambito);
+        })
+        ->paginate(10);
     }
 }

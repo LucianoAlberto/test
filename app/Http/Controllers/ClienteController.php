@@ -35,18 +35,30 @@ class ClienteController extends Controller
         //dd($request['ambito'][0]);
         //dd($_POST);
         //dd($request->get('ambito'));
+        $contador = 0;
+        //dd($request->get('ambito'));
+        //dd($request);
         if($request->get('formName') == "category"){
+
             foreach($request->get('ambito') as $key => $valor){
-                if($key == "sin"){
-                    $clientes = Cliente::filtro(0);
+                if($contador == 0){
+                    if($key == "sin"){
+                        $clientes = Cliente::sinAmbitos();
+                    }
+                    else{
+                        $clientes = Cliente::conAmbitos($key);
+                    }
                 }
                 else{
-                    $clientes = Cliente::filtro($key);
+                    $clientes = $clientes->merge(Cliente::conAmbitos($key));
                 }
-            }
 
+                $contador++;
+                //dd($clientes);
+            }
+            //dd($contador);
             //$clientes = Cliente::filtro(2000);
-            $clientes = Cliente::paginate(50);
+            //$clientes = Cliente::paginate(50);
             //dd($clientes);
         }
         else{

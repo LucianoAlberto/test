@@ -37,7 +37,16 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/clientes', function () {
     return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes'));
 })->name('dashboard');
 
-Route::resource('clientes', ClienteController::class);
+//Route::resource('clientes', ClienteController::class);
+Route::match(['get', 'post'], '/clientes', [ClienteController::class, 'index'])->name('clientes.index');
+
+Route::get('/clientes/create', [ClienteController::class, 'create'])->name('clientes.create');
+Route::get('/clientes/register', [ClienteController::class, 'register'])->name('clientes.register');
+Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store');
+Route::get('/clientes/{cliente}', [ClienteController::class, 'show'])->name('clientes.show');
+Route::get('/clientes/{cliente}/edit', [ClienteController::class, 'edit'])->name('clientes.edit');
+Route::put('/clientes/{cliente}', [ClienteController::class, 'update'])->name('clientes.update');
+Route::delete('/clientes/{cliente}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
 
 Route::group(['middleware' => ['role:superusuario']], function () {
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
@@ -78,7 +87,7 @@ Route::group(['middleware' => ['role:superusuario']], function () {
     Route::delete('/empleados/{empleado}/vacaciones/{vacacion}', [VacacionController::class, 'destroy'])->name('vacaciones.destroy');
 });
 
-Route::post('/clientes/filtro',[ClienteController::class,'filtro'])->name('clientes.filtro');
+Route::match(['get', 'post'], '/clientes/filtro',[ClienteController::class,'filtro'])->name('clientes.filtro');
 Route::post('/empleados/filtro',[EmpleadoController::class,'filtro'])->name('empleados.filtro');
 
 Route::get('/contratos/{cliente}', [ContratoController::class, 'index'])->name('contratos.index');

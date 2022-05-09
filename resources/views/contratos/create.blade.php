@@ -14,38 +14,49 @@
 
         {{--Formulario para un Nuevo concepto--}}
     {{-- Formulario para un Nuevo concepto --}}
-    <div class="w-full max-w-xs  m-auto mt-5 mb-5 bg-gray-200" id='nuevoConcepto' hidden>
+    <div class="w-full max-w-xs  m-auto mt-5 mb-5" id='nuevoConcepto' hidden>
 
-        <form class="bg-gray-300 shadow-md rounded px-8 pt-6 pb-8 mb-4" action="{{ route('conceptos.store') }}"
+        <form class="bg-gray-300 shadow-md rounded mb-4" action="{{ route('conceptos.store') }}"
             method="POST" enctype="multipart/form-data">
-            <div class="flex justify-end ">
-                <x-ocultar_Div></x-ocultar_Div>
+            <div class="flex justify-end">
+                <x-boton2 tipo="div" class="bg-red-600 hover:bg-red-700 w-8 h-8" onclick="closeNuevoConcepto()">
+                    <x-slot name="boton">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </x-slot>
+                </x-boton2>
             </div>
             @csrf
             <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="nuevoConcepto">
+                <label class="block text-gray-700 text-sm font-bold mb-2 px-8" for="nuevoConcepto">
                     Nombre Concepto
                 </label>
                 <input
-                    class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="shadow appearance-none border border-black rounded py-2 mx-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text" name="nuevoConcepto" required>
                 @error('nuevoConcepto')
                     <p class="text-sm text-red-600">{{ $message }}</p>
                 @enderror
             </div>
 
-            <div class="flex items-center justify-center">
+            <div class="flex items-center justify-center mb-4">
                 <button
                     class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                     Crear Concepto
                 </button>
             </div>
-        </form><hr>
+        </form>
 
         {{--Eliminar concepto--}}
 
-        <form class="bg-gray-300 shadow-md rounded px-8 pt-6 pb-8 mb-4" action="{{ route('conceptos.eliminar') }}"
+        <form class="bg-gray-300 shadow-md rounded pt-6 mb-4" action="{{ route('conceptos.eliminar') }}"
             method="POST" enctype="multipart/form-data">
+            <div class="flex justify-end">
+                <x-boton2 tipo="div" class="bg-red-600 hover:bg-red-700 w-8 h-8" onclick="closeNuevoConcepto()">
+                    <x-slot name="boton">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </x-slot>
+                </x-boton2>
+            </div>
             @csrf
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="nuevoConcepto">

@@ -52,4 +52,9 @@ class Cliente extends Model
     {
         return $this->belongsToMany(Ambito::class);
     }
+
+    public function scopeFiltro($query, $anho)
+    {
+        return $query->where('anho_contable', '>', $anho)->paginate(10);
+    }
 }

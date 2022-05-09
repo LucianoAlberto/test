@@ -38,6 +38,26 @@
                                         {{ $cliente->id }}
                                     </td>
                                 </tr>
+
+                                <tr class="border-b ">
+                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Areas 
+                                    </th>
+                                   
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200 flex">                                                                         
+                                        <div >     
+                                            @foreach ($ambitos as $ambito )
+                                            
+                                              <label for="$ambito->id[{{$ambito->id}}]">{{$ambito->nombre}}</label>
+                                              <input  class="mr-5" type="checkbox" name="ambito[{{$ambito->id}}]"  {{in_array($ambito->id, $cliente->ambitos->pluck('id')->toArray()) ? 'checked' : ''}} disabled>                          
+                                                                          
+                                              @endforeach
+                                           
+                                       </div>                                                                                     
+                                    </td>
+
+                                </tr>
+
                                 <tr class="border-b">
                                     <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Nombre

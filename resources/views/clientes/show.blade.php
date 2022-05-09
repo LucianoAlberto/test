@@ -6,7 +6,6 @@
     </x-slot>
 
     <div>
-        <h1>cambio dos </h1>
         <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8">
             <div class="flex justify-start">
                 <div class="block mb-8 mr-2">

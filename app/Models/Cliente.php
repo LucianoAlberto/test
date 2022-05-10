@@ -14,14 +14,6 @@ class Cliente extends Model
     protected $fillable = ['nombre', 'apellidos', 'dni', 'anho_contable', 'direccion_fiscal', 'domicilio', 'nombre_comercial',
     'nombre_sociedad', 'cif', 'cuenta_bancaria', 'n_tarjeta', 'email', 'telefono'];
 
-    public function scopeFiltro($query, $anho)
-    {
-        return $query->where('anho_contable', $anho);
-            
-    }
-
-
-
     /**
      * Obtiene los contratos asociados a este cliente.
      */

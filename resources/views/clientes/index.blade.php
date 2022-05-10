@@ -133,11 +133,9 @@
                                         </table>
 
                                     </div>
-<<<<<<< HEAD
+
                                         {{ $clientes->links()}}
-=======
-                                        {{ $clientes->appends($_GET)->links() }}
->>>>>>> af2c4a374d2a3ba5cabc5e7e3b437fb893fed0a2
+
                                     </div>
 
                                     </div>

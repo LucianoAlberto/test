@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Laravel\Jetstream\Jetstream;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Actions\Fortify\PasswordValidationRules;
 
@@ -23,7 +24,8 @@ class UserController extends Controller
     {
         $users = User::paginate(10);
 
-        return view('users.index', compact('users'));
+        $roles=DB::table('roles')->get();
+        return view('users.index', compact('users','roles'));
     }
 
     /**
@@ -33,7 +35,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        //recuperamos los roles existentes
+        $roles=DB::table('roles')->get();
+
+        return view('users.create',compact('roles'));
     }
 
     /**
@@ -46,15 +51,17 @@ class UserController extends Controller
     {
         //dd($request);
 
-        User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-        ]);
+        $validated = $request->validated(); 
+        $datos = $request->except('_token');
 
-        $usuarios = User::paginate(10);
-
-        return view('users.index', ['users' => $usuarios]);
+        $usuario = new User;
+        $usuario->name = $validated["name"];
+        $usuario->email = $validated["email"];
+        $usuario->password =bcrypt($validated["password"]);
+        $usuario->rol=$validated['rol'];
+        $usuario->save();  
+        
+        return redirect()->route('users.index');
     }
 
     /**
@@ -76,7 +83,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        $roles=DB::table('roles')->get();
+
+        return view('users.edit', compact('user','roles'));
     }
 
     /**
@@ -92,11 +101,13 @@ class UserController extends Controller
 
         $user = User::find($id);
 
-        $user->name = $validated["nombre"];
+        $user->name = $validated["name"];
         $user->email = $validated["email"];
-        $user->password = bcrypt($validated["contrasenha"]);
+        $user->password = bcrypt($validated["password"]);
+        $user->rol=$validated['rol'];
 
-        $user->save();
+
+        $user->update();
 
         return redirect()->route('users.index');
 

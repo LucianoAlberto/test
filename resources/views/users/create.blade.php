@@ -1,61 +1,71 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Añadir cliente
-        </h2>
-    </x-slot>
+<x-guest-layout>
+    <x-jet-authentication-card>
+        <x-slot name="logo">
+            {{--<x-jet-authentication-card-logo />--}}
+            <img class="w-10" src="{{ url('logo.png') }}" />
+        </x-slot>
 
-    <div>
-        <div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8">
-            <div class="mt-5 md:mt-0 md:col-span-2">
-                <form id="formulario" method="post" action="{{ route('users.store') }}" enctype="multipart/form-data">
-                    @csrf
+        <x-jet-validation-errors class="mb-4" />
 
-                    <div class="shadow overflow-hidden sm:rounded-md ">
-                        <div class="px-4 py-5 bg-white sm:p-6 divide-y-4">
-                            <div class="divDatosPersonales mb-16">
-                                <h3 class="flex justify-center font-semibold text-xl text-gray-800 leading-tight mb-2">
-                                    Datos usuario
-                                </h3>
-                                <div class="flex justify-between mb-4">
-                                    <div class="w-2/5 mr-2">
-                                        <label for="nombre" class="block font-medium text-sm text-gray-700">Nombre</label>
-                                        <input type="text" name="nombre" id="nombre" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old('nombre', '') }}" />
-                                        @error('nombre')
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
-                                    </div>
+        <form method="POST" action="{{ route('users.store') }}">
+            @csrf
 
-                                    <div class="w-2/5 ml-2 mr-2">
-                                        <label for="email" class="block font-medium text-sm text-gray-700">E-mail</label>
-                                        <input type="email" name="email" id="email" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old('email', '') }}" />
-                                        @error('email')
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
-                                    </div>
+            <div>
+                <x-jet-label for="name" value="{{ __('Name') }}" />
+                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            </div>
 
-                                    <div class="w-1/5 ml-2">
-                                        <label for="contrasenha" class="block font-medium text-sm text-gray-700">Contraseña</label>
-                                        <input type="text" name="contrasenha" id="contrasenha" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old('contrasenha', '') }}" />
-                                        @error('contrasenha')
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-                                </div>
+            <div class="mt-4">
+                <x-jet-label for="email" value="{{ __('Email') }}" />
+                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="password" value="{{ __('Password') }}" />
+                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
+                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="rol" value="{{ __('Asignar Rol') }}" />
+                <select id="rol" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-center rounded-md mt-1 w-full"  name="rol" required >
+                    <option value="0">--- Seleciona un rol ---</option>
+                    @foreach ($roles as $rol)
+                        <option value="{{$rol->id}}"> {{$rol->name}}</option>
+                    @endforeach
+                </select>   
+            </div>
+
+            
+
+            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
+                <div class="mt-4">
+                    <x-jet-label for="terms">
+                        <div class="flex items-center">
+                            <x-jet-checkbox name="terms" id="terms"/>
+
+                            <div class="ml-2">
+                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
+                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',
+                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
+                                ]) !!}
                             </div>
                         </div>
+                    </x-jet-label>
+                </div>
+            @endif
 
-                        <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
-                            <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
-                                Añadir
-                            </button>
-                        </div>
-                    </div>
-                </form>
+            <div class="flex items-center justify-end mt-4">
+                
+
+                <x-jet-button class="ml-4">
+                    {{ __('Register') }}
+                </x-jet-button>
             </div>
-        </div>
-    </div>
-</x-app-layout>
+        </form>
+    </x-jet-authentication-card>
+</x-guest-layout>

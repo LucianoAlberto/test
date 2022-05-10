@@ -5,15 +5,6 @@
                 href="{{ route('clientes.show', $proyecto->cliente->id) }} {{ $proyecto->cliente->apellidos }}"> {{ $proyecto->cliente->nombre }}
                 {{ $proyecto->cliente->apellidos }}</a>
         </h2>
-        <label class="mr-5">Conceptos
-            <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="nuevoConcepto(event)">
-                <x-slot name="boton">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                </x-slot>
-            </x-boton2>
-        </label>
-
-
     </x-slot>
 
 
@@ -21,53 +12,63 @@
         <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8">
 
             {{-- Formulario para un Nuevo concepto --}}
-            <div class="w-full max-w-xs  m-auto mt-5 mb-5 bg-gray-200" id='nuevoConcepto' hidden>
-                <div class="flex justify-end ">
-                    <x-ocultar_Div></x-ocultar_Div>
+            <div class="w-1/2 max-w-xs  m-auto mt-5 mb-5 bg-gray-300 border-2" id='nuevoConcepto' hidden >
+
+                <div class="flex justify-end mb-5">
+                    <x-boton2 tipo="div" class="bg-red-600 hover:bg-red-700 w-6 h-6 " onclick="closeNuevoConcepto()">
+                        <x-slot name="boton">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </x-slot>
+                    </x-boton2>
                 </div>
-                <form class="bg-gray-300 shadow-md rounded px-8 pt-6 pb-8 mb-4" action="{{ route('conceptos.store') }}"
-                    method="POST" enctype="multipart/form-data">
+        
+                <form class="bg-gray-300  rounded mb-4" action="{{ route('conceptos.store') }}"
+                    method="POST" enctype="multipart/form-data">            
                     @csrf
-                    <div class="mb-4">
+                    <div class="flex justify-between mx-5 place-content-center py-2">
                         <input
-                            class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="nombre concepto"
-                            type="text" name="nuevoConcepto" required>
+                            class="shadow appearance-none border border-black rounded py-2 mx-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-3/4"
+                            type="text" name="nuevoConcepto" placeholder="Crear nuevo concepto" required>
+        
+                            <x-boton2 tipo="input" nombre="Borrar" class="bg-green-600 hover:bg-green-700 w-12">
+                                <x-slot name="boton">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                      </svg>
+                                </x-slot>
+                            </x-boton2>
                         @error('nuevoConcepto')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
-                    </div>
-
-                    <div class="flex items-center justify-center">
-                        <button
-                            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                            Crear Concepto
-                        </button>
-                    </div>
-                </form><hr>
-
-                {{--Eliminar concepto--}}
-
-                <form class="bg-gray-300 shadow-md rounded px-8 pt-6 pb-8 mb-4" action="{{ route('conceptos.eliminar') }}"
-                    method="GET" onsubmit="estasSeguro(event)"  id="formulario_eliminar_concepto">
+                    </div>           
+                </form>
+        
+                {{--Eliminar concepto--}}       
+                <form class="bg-gray-300  rounded  mb-4" action="{{ route('conceptos.eliminar') }}"
+                    method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="mb-4">
-                        <select name="eliminarConcepto" id="eliminarConcepto">
+                    <div class=" flex justify-between mx-5 place-content-center py-2">
+                    
+                        <select name="eliminarConcepto" id="eliminarConcepto"  class="form-input rounded-md shadow-sm mt-1 block w-3/4 mx-auto">
+                            <option value="">Seleciona concepto</option>
                             @foreach ($conceptos as $concepto)
                                 <option value="{{ $concepto->nombre }}"
                                     {{ old('concepto') == $concepto->id ? 'selected' : '' }}>
-                                        {{$concepto->nombre}}</option>
+                                        {{$concepto->nombre}}
+                                </option>
                             @endforeach
                         </select>
-                        @error('eliminarConcepto')
+        
+                        <x-boton2 tipo="input" nombre="Borrar" class="bg-red-600 hover:bg-red-700 w-12 ">
+                            <x-slot name="boton">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                            </x-slot>
+                        </x-boton2>
+                        
+                        @error('eliminaConcepto')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
-                    </div>
-
-                    <div class="flex items-center justify-center">
-                        <button
-                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" >
-                            Eliminar Concepto
-                        </button>
                     </div>
                 </form><hr>
             </div>
@@ -85,7 +86,15 @@
                                 <div class="flex justify-between mb-4">
                                     <div class="w-1/3">
                                         <label for="concepto"
-                                            class="block font-medium text-sm text-gray-700">Concepto</label>
+                                            class="flex font-medium text-sm text-gray-700">Concepto
+                                            <x-boton2 tipo="div" class="ml-1 bg-gray-400 hover:bg-gray-300 w-6 h-6 fill-none " onclick="nuevoConcepto()">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-slash-minus" viewBox="0 0 16 16">
+                                                        <path d="m1.854 14.854 13-13a.5.5 0 0 0-.708-.708l-13 13a.5.5 0 0 0 .708.708ZM4 1a.5.5 0 0 1 .5.5v2h2a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2h-2a.5.5 0 0 1 0-1h2v-2A.5.5 0 0 1 4 1Zm5 11a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5A.5.5 0 0 1 9 12Z"/>
+                                                      </svg>
+                                                </x-slot>
+                                            </x-boton2>
+                                        </label>
 
 
                                         <select name="concepto" id="concepto"
@@ -108,7 +117,7 @@
 
                                     <div class="w-1/3">
                                         <label for="referencia"
-                                            class="block font-medium text-sm text-gray-700">Referencia</label>
+                                            class="block font-medium text-sm text-gray-700 mt-1">Referencia</label>
 
                                         <select name="referencia" id="referencia"
                                             class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -196,20 +205,23 @@
                             <hr>
 
                             {{-- Dominios --}}
-
-                            <div class="divDominios mb-4">
+                            <div class="divDominios mb-4 pb-b relative">
                                 <h3 class="flex justify-center mt-3 font-bold mb-3 text-2xl">Dominios</h3>
-                                <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masDominio(event)">
-                                    <x-slot name="boton">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                    </x-slot>
-                                </x-boton2>
+                                <div class="absolute right-0 flex -mt-10">
+                                    <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masDominio(event)">
+                                        <x-slot name="boton">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                        </x-slot>
+                                    </x-boton2>
+    
+                                    <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-16" onclick="menosDominio(event)">
+                                        <x-slot name="boton">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                        </x-slot>
+                                    </x-boton2>
 
-                                <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-16" onclick="menosDominio(event)">
-                                    <x-slot name="boton">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                    </x-slot>
-                                </x-boton2>
+                                </div>
+                               
 
                                 @if (count($proyecto->dominios) > 0)
                                     @foreach ($proyecto->dominios as $key => $dominio)
@@ -282,18 +294,26 @@
                             <hr>
 
                             {{-- Base de datos --}}
-                            <div class="div_BBDD mb-4">
+                            <div class=" divBasesDatos  mb-4 relative">
                                 <h3 class="flex justify-center mt-3 mb-3 font-bold text-2xl">Base De Datos</h3>
-                                <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="nuevaBD(event)">
-                                    <x-slot name="boton">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                    </x-slot>
-                                </x-boton2>
+                                <div class="absolute right-0 flex -mt-10">
+                                    <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masBasesDatos(event)">
+                                        <x-slot name="boton">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                        </x-slot>
+                                    </x-boton2>
 
+                                    <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-16" onclick="menosBasesDatos(event)">
+                                        <x-slot name="boton">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                        </x-slot>
+                                    </x-boton2>
+                                </div>
+                              
                                 @if (count($proyecto->baseDatoss) > 0)
                                      @foreach ($proyecto->baseDatoss as $key => $bd)
-                                        <div class="flex justify-between  contenedor_BBDD">
-                                            <div class="w-1/3 div_nombreBD">
+                                        <div class="flex justify-between  contenedorBasesDatos">
+                                            <div class="w-1/3 divNombreBD">
                                                 <label for="bd[{{$key}}][nombre]" class="block font-medium text-sm text-gray-700">Nombre
                                                     BBDD</label>
                                                 <input type="text" name="bd[{{$key}}][nombre]"
@@ -303,7 +323,7 @@
                                                 @enderror
                                             </div>
 
-                                            <div class="w-1/3">
+                                            <div class="w-1/3 divHostBD">
                                                 <label for="bd[{{$key}}][host]" class="block font-medium text-sm text-gray-700">Host</label>
                                                 <input type="text" name="bd[{{$key}}][host]"
                                                     value="{{ old("bd[$key][host]", "$bd->host") }}">
@@ -312,7 +332,7 @@
                                                 @enderror
                                             </div>
 
-                                            <div class="w-1/3">
+                                            <div class="w-1/3 divContrasenhaBD">
                                                 <label for="bd[{{$key}}][contrasenha]"
                                                     class="block font-medium text-sm text-gray-700">Password</label>
                                                 <input type="text" name="bd[{{$key}}][contrasenha]"
@@ -324,8 +344,8 @@
                                         </div>
                                     @endforeach
                                 @else
-                                    <div class="flex justify-between  contenedor_BBDD">
-                                        <div class="w-1/3 div_nombreBD">
+                                    <div class="flex justify-between  contenedorBasesDatos">
+                                        <div class="w-1/3 divNombreBD">
                                             <label for="bd[0][nombre]" class="block font-medium text-sm text-gray-700">Nombre
                                                 BBDD</label>
                                             <input type="text" name="bd[0][nombre]"
@@ -335,7 +355,7 @@
                                             @enderror
                                         </div>
 
-                                        <div class="w-1/3">
+                                        <div class="w-1/3 divHostBD">
                                             <label for="bd[0][host]" class="block font-medium text-sm text-gray-700">Host</label>
                                             <input type="text" name="bd[0][host]"
                                                 value="{{ old("bd[0][host]", "") }}">
@@ -344,7 +364,7 @@
                                             @enderror
                                         </div>
 
-                                        <div class="w-1/3">
+                                        <div class="w-1/3 divContrasenhaBD">
                                             <label for="bd[0][contrasenha]"
                                                 class="block font-medium text-sm text-gray-700">Contraseña</label>
                                             <input type="text" name="bd[0][contrasenha]"
@@ -361,12 +381,23 @@
 
                             {{-- Emails Coorporativos --}}
                             <div class="divEmail mb-4">
-                                <h3 class="flex justify-center mt-3 mb-3 font-bold text-2xl">Email Corporativo</h3>
-                                <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="nuevoEmail(event)">
-                                    <x-slot name="boton">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                    </x-slot>
-                                </x-boton2>
+                                <div class="flex items-center justify-center relative">
+                                    <h3 class="flex justify-center mt-3 mb-3 font-bold text-2xl">Email Corporativo</h3>
+                                    <div class="absolute right-0 flex">
+                                        <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masEmail(event)">
+                                            <x-slot name="boton">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                            </x-slot>
+                                        </x-boton2>
+
+                                        <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-16" onclick="menosEmail(event)">
+                                            <x-slot name="boton">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                            </x-slot>
+                                        </x-boton2>
+                                    </div>
+                                </div>
+
                                 @if (count($proyecto->emailcorporativos) > 0)
                                     @foreach ($proyecto->emailcorporativos as $key => $email)
                                     <div class="contenedorEmails flex justify-between">
@@ -440,13 +471,23 @@
 
 
                             {{-- Accesso --}}
-                            <div class="div_accesso mb-4">
-                                <h3 class="flex justify-center mt-3 mb-3 font-bold text-2xl">Accesso</h3>
-                                <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="nuevoAccesso(event)">
-                                    <x-slot name="boton">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                    </x-slot>
-                                </x-boton2>
+                            <div class="divAccesos mb-4">
+                                <div class="flex items-center justify-center relative">
+                                    <h3 class="flex justify-center mt-3 mb-3 font-bold text-2xl">Acceso</h3>
+                                    <div class="absolute right-0 flex">
+                                        <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masAcceso(event)">
+                                            <x-slot name="boton">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                            </x-slot>
+                                        </x-boton2>
+
+                                        <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-16" onclick="menosAcceso(event)">
+                                            <x-slot name="boton">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                            </x-slot>
+                                        </x-boton2>
+                                    </div>
+                                </div>
                                 @if (count($proyecto->accesos) > 0)
                                     @foreach ($proyecto->accesos as $key => $acceso)
                                         <div class="contenedorAccesos flex justify-between">
@@ -543,7 +584,7 @@
 
             @if(session('creado')=='si')
             <script>alert('Concepto Creado con Exito');</script>
-        @endif
+          @endif
         </div>
     </div>
 </x-app-layout>

@@ -5217,7 +5217,8 @@ window.menosDominio = function (event) {
 
 window.masBasesDatos = function (event) {
   var numeroBasesDatos = event.target.closest(".divBasesDatos").querySelectorAll(".contenedorBasesDatos").length;
-  var divContenedorBasesDatos = event.target.closest(".divBasesDatos").querySelector(".contenedorBasesDatos").cloneNode(true); //modifico el for del label y el name e id del input
+  var divContenedorBasesDatos = event.target.closest(".divBasesDatos").querySelector(".contenedorBasesDatos").cloneNode(true);
+  console.log(divContenedorBasesDatos); //modifico el for del label y el name e id del input
 
   divContenedorBasesDatos.querySelector(".divNombreBD").querySelector("label").htmlFor = "bd[" + numeroBasesDatos + "][nombre]";
   divContenedorBasesDatos.querySelector(".divNombreBD").querySelector("input").name = "bd[" + numeroBasesDatos + "][nombre]";
@@ -5247,9 +5248,9 @@ window.masEmail = function (event) {
   divContenedorEmails.querySelector(".divEmailEmail").querySelector("label").htmlFor = "email[" + numeroEmail + "][email]";
   divContenedorEmails.querySelector(".divEmailEmail").querySelector("input").name = "email[" + numeroEmail + "][email]";
   divContenedorEmails.querySelector(".divEmailEmail").querySelector("input").value = null;
-  divContenedorEmails.querySelector(".divEmailcontrasenha").querySelector("label").htmlFor = "email[" + numeroEmail + "][contrasenha]";
-  divContenedorEmails.querySelector(".divEmailcontrasenha").querySelector("input").name = "email[" + numeroEmail + "][contrasenha]";
-  divContenedorEmails.querySelector(".divEmailcontrasenha").querySelector("input").value = null;
+  divContenedorEmails.querySelector(".divEmailContrasenha").querySelector("label").htmlFor = "email[" + numeroEmail + "][contrasenha]";
+  divContenedorEmails.querySelector(".divEmailContrasenha").querySelector("input").name = "email[" + numeroEmail + "][contrasenha]";
+  divContenedorEmails.querySelector(".divEmailContrasenha").querySelector("input").value = null;
   divContenedorEmails.querySelector(".divEmailRuta").querySelector("label").htmlFor = "email[" + numeroEmail + "][ruta_acceso]";
   divContenedorEmails.querySelector(".divEmailRuta").querySelector("input").name = "email[" + numeroEmail + "][ruta_acceso]";
   divContenedorEmails.querySelector(".divEmailRuta").querySelector("input").value = null;

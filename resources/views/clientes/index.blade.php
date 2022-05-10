@@ -9,8 +9,9 @@
             </x-boton2>
         </div>
 
-        <form method="POST" action="{{ route('clientes.index') }}" class="flex pr-16 mt-4 items-center">
+        <form method="GET" action="{{ route('clientes.index') }}" class="flex pr-16 mt-4 items-center">
             @csrf
+            
             <input type="hidden" name="formName" value="category">
             <x-boton2 tipo="submit" name="submit" class="bg-green-600 hover:bg-green-700 flex justify-around w-16 h-10 mr-2">
                 <x-slot name="boton">
@@ -23,8 +24,9 @@
 
                 @foreach ($ambitos as $ambito )
                     <label for='ambito[{{$ambito->id}}]'>{{ $ambito->nombre }}</label>
-                    <input type="checkbox" name='ambito[{{$ambito->id}}]' class="ml-2 mr-4">
+                    <input type="checkbox" name='ambito[{{$ambito->id}}]' value="{{$ambito->id}}" class="ml-2 mr-4">
                 @endforeach
+               
             </div>
         </form>
     </div>

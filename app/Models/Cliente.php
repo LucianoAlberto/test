@@ -60,7 +60,7 @@ class Cliente extends Model
 
     public function scopeConAmbitos($query, $ambito)
     {
-        return $query->whereHas('ambitos', function($q, $ambito) {
+        return $query->whereHas('ambitos', function($q) use($ambito){
             $q->where('ambito_id', $ambito);
         })
         ->paginate(10);

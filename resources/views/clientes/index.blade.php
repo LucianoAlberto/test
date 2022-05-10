@@ -18,13 +18,15 @@
                 </x-slot>
             </x-boton2>
             <div class="ml-3">
-                <label for='ambito[sin]'>Sin ámbito</label>
-                <input type="checkbox" name='ambito[sin]' class="ml-2 mr-4">
-
-                @foreach ($ambitos as $ambito )
-                    <label for='ambito[{{$ambito->id}}]'>{{ $ambito->nombre }}</label>
-                    <input type="checkbox" name='ambito[{{$ambito->id}}]' class="ml-2 mr-4">
-                @endforeach
+                <select type="text" name="ambito" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                    value="{{ old('ambito', '') }}" >
+                    <option value="">---  Selecionar Ámbito  ---</option>
+                    <option value="sin">Sin ámbito</option>
+                    {{--recuperamos todos los conceptos de la BD para poder selecionar alguno--}}
+                    @foreach ($ambitos as $ambito)
+                        <option value="{{$ambito->id}}" >{{$ambito->nombre}}</option>
+                    @endforeach
+                </select>
             </div>
         </form>
     </div>
@@ -133,7 +135,7 @@
                                         </table>
 
                                     </div>
-                                        {{ $clientes->appends($_GET)->links() }}
+                                    {{ $clientes->appends($_GET)->links() }}
                                     </div>
 
                                     </div>

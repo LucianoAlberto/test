@@ -31,45 +31,19 @@ class ClienteController extends Controller
      */
     public function index(Request $request)
     {
-        //$validated = $request->validated();
-        //dd($request['ambito'][0]);
-        //dd($_POST);
+        //$clientes = Cliente::sinAmbitos();
         //dd($request->get('ambito'));
-        $contador = 0;
-        //dd($request->get('ambito'));
-        //dd($request);
-        if($request->get('formName') == "category"){
-
-            foreach($request->get('ambito') as $key => $valor){
-                if($contador == 0){
-                    if($key == "sin"){
-                        $clientes = Cliente::sinAmbitos();
-                    }
-                    else{
-                        $clientes = Cliente::conAmbitos($key);
-                    }
-                }
-                else{
-                    $clientes = $clientes->merge(Cliente::conAmbitos($key));
-                }
-
-                $contador++;
-                //dd($clientes);
+        if($request->get('ambito')){
+            if($request->get('ambito') == "sin"){
+                $clientes = Cliente::sinAmbitos();
             }
-            //dd($contador);
-            //$clientes = Cliente::filtro(2000);
-            //$clientes = Cliente::paginate(50);
-            //dd($clientes);
+            else{
+                $clientes = Cliente::conAmbitos($request->get('ambito'));
+            }
         }
-        else{
-            $clientes = Cliente::paginate(10);
-            //dd($_POST);
-        }
-        //dd($request);
+        $clientes=Cliente::paginate(10);
         $ambitos = Ambito::all();
-        //dd($this->rolConPoderes);
         $rolConPoderes = self::ROLCONPODERES;
-        //$clientes = Cliente::paginate(10);
 
         return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes'));
     }
@@ -202,31 +176,5 @@ class ClienteController extends Controller
         $rolConPoderes = self::ROLCONPODERES;
         return redirect()->route('clientes.index', compact('rolConPoderes'));
     }
-
-    public function filtro(FiltroRequest $request){
-        $validated = $request->validated();
-        // //dd($validated);
-
-        // $arrayIds = [];
-        // foreach($validated['ambito'] as $clave => $valor){
-        //     array_push($arrayIds, $clave);
-        // }
-
-        // if(isset($validated['ambito']['sin'])){
-        //     $clientes = Cliente::doesntHave('ambitos')->paginate(10);
-        // }
-        // else{
-        //     $clientes = Cliente::whereHas('ambitos', function($query) use ($arrayIds){
-        //         $query->whereIn("ambito_id",  $arrayIds);
-        //     })->paginate(10);
-        // }
-
-        $clientes = Cliente::filtro(0);
-        $ambitos = Ambito::all();
-        $rolConPoderes = self::ROLCONPODERES;
-        //dd($clientes);
-        return view('clientes.index',compact('clientes', 'ambitos', 'rolConPoderes'));
-    }
-
 }
 

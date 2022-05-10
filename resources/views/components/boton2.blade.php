@@ -20,8 +20,8 @@
 @endif
 
 @if ($tipo == "linkConAsset")
-    <div class="flex space-x-2 justify-center items-center">
-        <a href="{{ asset("/storage/$direccion") }}" {{ $attributes->merge(['class' => 'flex justify-center items-center text-white px-4 py-2 rounded-md text-1xl font-medium transition duration-300'])}}>{{ $boton }}</a>
+    <div {{ $attributes->merge(['class' => 'flex space-x-2 justify-center items-center text-white px-4 py-2 rounded-md text-1xl font-medium transition duration-300'])}}>
+        <a href="{{ asset("/storage/$direccion") }}" >{{ $boton }}</a>
     </div>
 @endif
 

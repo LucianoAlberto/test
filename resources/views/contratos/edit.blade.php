@@ -44,8 +44,8 @@
                     @method('PUT')
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
-                            <div class="flex justify-between mb-4">
-                                <div class="w-1/3">
+                            <div class="flex justify-between mb-8">
+                                <div class="w-2/5 mr-2">
                                     <label for="concepto" class="block font-medium text-sm text-gray-700">Concepto</label>
                                     <select type="text" name="concepto" id="concepto" class="form-input rounded-md shadow-sm mt-1 block w-full">
                                         <option value="">---  Seleccionar Concepto  ---</option>
@@ -62,7 +62,7 @@
                                 </div>
 
 
-                                <div class="w-1/20 mr-5">
+                                <div class="w-2/5 mx-2">
                                     <label for="referencia" class="block font-medium text-sm text-gray-700">Referencia</label>
                                     <input type="text" name="referencia" id="referencia" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('referencia', $contrato->referencia) }}" >
@@ -72,7 +72,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="w-1/4 mr-5">
+                                <div class="w-1/5 ml-2">
                                     <label for="fecha_firma" class="block font-medium text-sm text-gray-700">Fecha</label>
                                     <input type="date" name="fecha_firma" id="fecha_firma" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('fecha_firma', $contrato->fecha_firma) }}" >
@@ -82,11 +82,11 @@
                                     @enderror
                                 </div>
 
-                            </div><hr>
+                            </div>
 
                             {{--Formmulario para crear nuevo contrato--}}
-                            <div class="flex justify-between mb-4  mt-4">
-                                <div class="w-1/1 mr-5">
+                            <div class="flex justify-between mb-8">
+                                <div class="w-1/5 mr-2">
                                     <label for="base_imponible" class="block font-medium text-sm text-gray-700">Base Imponible</label>
                                     <input type="text" name="base_imponible" id="base_imponible" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('base_imponible', $contrato->base_imponible) }}" >
@@ -96,7 +96,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="w-1/20 mr-5">
+                                <div class="w-1/5 mx-2">
                                     <label for="iva" class="block font-medium text-sm text-gray-700">IVA</label>
                                     <input type="text" name="iva" id="iva" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('iva', $contrato->iva) }}" >
@@ -106,7 +106,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="w-1/10 mr-5">
+                                <div class="w-1/5 mx-2">
                                     <label for="irpf" class="block font-medium text-sm text-gray-700">IRPF</label>
                                     <input type="text" name="irpf" id="irpf" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('irpf', $contrato->irpf) }}" >
@@ -116,7 +116,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="w-1/2 mr-5">
+                                <div class="w-2/5 ml-2">
                                     <label for="total" class="block font-medium text-sm text-gray-700">TOTAL</label>
                                     <input type="text" name="total" id="total" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('total', $contrato->total) }}" >
@@ -126,7 +126,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="flex mt-4">
+                            <div class="flex mb-8 justify-between">
                                 <div>
                                     <label for="archivo" class="block font-medium text-sm text-gray-700">Adjuntar contrato</label>
                                     @if($contrato->archivo != null)

@@ -89,9 +89,6 @@ Route::group(['middleware' => ['role:superusuario']], function () {
     Route::delete('/empleados/{empleado}/vacaciones/{vacacion}', [VacacionController::class, 'destroy'])->name('vacaciones.destroy');
 });
 
-Route::match(['get', 'post'], '/clientes/filtro',[ClienteController::class,'filtro'])->name('clientes.filtro');
-Route::post('/empleados/filtro',[EmpleadoController::class,'filtro'])->name('empleados.filtro');
-
 Route::get('/contratos/{cliente}', [ContratoController::class, 'index'])->name('contratos.index');
 Route::get('/contratos/{cliente}/create', [ContratoController::class, 'create'])->name('contratos.create');
 Route::post('/contratos/{cliente}', [ContratoController::class, 'store'])->name('contratos.store');

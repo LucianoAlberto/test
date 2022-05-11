@@ -109,7 +109,7 @@
                                 <div class="w-3/6 ml-2">
                                     <label for="n_tarjeta" class="block font-medium text-sm text-gray-700">Número de tarjeta</label>
                                     <input type="text" name="n_tarjeta" id="n_tarjeta" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                        value="{{ old('n_tarjeta', $cliente->n_tarjeta) }}" maxlength="19"/>
+                                        value="{{ old('n_tarjeta', $cliente->n_tarjeta) }}"  onkeyup="numero_tarjeta()" maxlength="19"/>
                                     @error('n_tarjeta')
                                         <p class="text-sm text-red-600">{{ $message }}</p>
                                     @enderror

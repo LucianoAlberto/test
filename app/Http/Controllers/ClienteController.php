@@ -31,31 +31,31 @@ class ClienteController extends Controller
      */
     public function index(Request $request)
     {
-      
-       if(is_null($request->ambito)){
-        $ambitos = Ambito::all();
-        $rolConPoderes = self::ROLCONPODERES;
-        $clientes = Cliente::paginate(10);
 
-          return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes'));
-
-       }else{
-
-        $buscar=$request->ambito;
-        $ambitos = Ambito::where('id',$buscar)->get();
-    
-        foreach($ambitos as $a){
-          $clientes=Cliente::find( $a->id)->paginate(3);
-          $rolConPoderes = self::ROLCONPODERES;
-           return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes'));
+        if(is_null($request->ambito)){
+            $clientes = Cliente::paginate(10);
         }
-         
-       
+        else{
+            //dd($request->ambito);
+            if(array_key_first($request->ambito) == "sin"){
+                $clientes = Cliente::sinAmbito();
+            }
+            else{
+                //dd($request->ambito);
+                $clientes = Cliente::conAmbito(array_key_first($request->ambito));
+            }
+
+
+
+
        // return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes'));
           // dd($buscar);
-      
-       }
-         
+        }
+
+        $ambitos = Ambito::all();
+        $rolConPoderes = self::ROLCONPODERES;
+
+       return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes'));
     }
 
     /**
@@ -187,7 +187,7 @@ class ClienteController extends Controller
         return redirect()->route('clientes.index', compact('rolConPoderes'));
     }
 
-  
+
 
 }
 

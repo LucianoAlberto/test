@@ -54,14 +54,14 @@ class Cliente extends Model
         return $this->belongsToMany(Ambito::class);
     }
 
-    public function scopeSinAmbitos($query)
+    public function scopeSinAmbito($query)
     {
         return $query->doesntHave('ambitos')->paginate(10);
     }
 
-    public function scopeConAmbitos($query, $ambito)
+    public function scopeConAmbito($query, $ambito)
     {
-        return $query->whereHas('ambitos', function($q, $ambito) {
+        return $query->whereHas('ambitos', function($q) use($ambito){
             $q->where('ambito_id', $ambito);
         })
         ->paginate(10);

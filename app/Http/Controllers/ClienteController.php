@@ -31,28 +31,25 @@ class ClienteController extends Controller
      */
     public function index(Request $request)
     {
-      
-       if(is_null($request->ambito)){
+
+        if(is_null($request->ambito)){
+            $clientes = Cliente::paginate(10);
+        }
+        else{
+          
+            if(array_key_first($request->ambito) == "sin"){
+                $clientes = Cliente::sinAmbito();
+            }
+            else{
+                
+                $clientes = Cliente::conAmbito(array_key_first($request->ambito));
+            }
+        }
+
         $ambitos = Ambito::all();
         $rolConPoderes = self::ROLCONPODERES;
-        $clientes = Cliente::paginate(10);
 
-          return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes'));
-
-       }else{
-
-        $buscar=$request->ambito;
-       $ambitos = Ambito::where('id',$buscar)->get();
-       $clientes=[];
-    
-        foreach($ambitos as $a){
-             array_push($clientes,$a->clientes);
-            $rolConPoderes = self::ROLCONPODERES;
-           return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes'));
-        }
-      
-       }
-         
+       return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes'));
     }
 
     /**
@@ -97,7 +94,6 @@ class ClienteController extends Controller
 
         if(isset($validated['ambito'])){
             foreach($validated['ambito'] as $clave => $ambito){
-                //dd($ambito);
                 $ambito = Ambito::where('id', $clave)->select('id')->first();
 
                 $cliente->ambitos()->attach($ambito);
@@ -145,10 +141,9 @@ class ClienteController extends Controller
     public function update(ClienteRequest $request, Cliente $cliente)
     {
         $validated = $request->validated();
-
-        $cliente->nombre = $validated["nombre"];
-        $cliente->apellidos = $validated["apellidos"];
-        $cliente->dni = $validated["dni"];
+        $cliente->nombre=$validated["nombre"];
+        $cliente->apellidos=$validated["apellidos"];
+        $cliente->dni=$validated['dni'];
         $cliente->anho_contable = $validated["anho_contable"];
         $cliente->direccion_fiscal = $validated["direccion_fiscal"];
         $cliente->domicilio = $validated["domicilio"];
@@ -159,6 +154,7 @@ class ClienteController extends Controller
         $cliente->n_tarjeta = $validated["n_tarjeta"];
         $cliente->email = $validated["email"];
         $cliente->telefono = $validated["telefono"];
+        $cliente->updated_at=now("Europe/Madrid");
 
         $cliente->save();
 
@@ -184,7 +180,7 @@ class ClienteController extends Controller
         return redirect()->route('clientes.index', compact('rolConPoderes'));
     }
 
-  
+
 
 }
 

@@ -5448,15 +5448,40 @@ window.masFalta = function (event) {
   divContenedorFaltas.querySelector(".divFechaFalta").querySelector("input").name = "faltas[" + numeroFalta + "][fecha_falta]";
   divContenedorFaltas.querySelector(".divFechaFalta").querySelector("input").value = null;
   divContenedorFaltas.querySelector(".divJustificacionFalta").querySelector("label").htmlFor = "faltas[" + numeroFalta + "][justificacion]";
-  divContenedorFaltas.querySelector(".divJustificacionFalta").querySelector("input").name = "faltas[" + numeroFalta + "][justificacion]";
-  divContenedorFaltas.querySelector(".divJustificacionFalta").querySelector("input").value = null;
+  divContenedorFaltas.querySelector(".divJustificacionFalta").querySelector("textarea").name = "faltas[" + numeroFalta + "][justificacion]";
+  divContenedorFaltas.querySelector(".divJustificacionFalta").querySelector("textarea").value = null;
   divContenedorFaltas.querySelector(".divNotaFalta").querySelector("label").htmlFor = "faltas[" + numeroFalta + "][notas]";
-  divContenedorFaltas.querySelector(".divNotaFalta").querySelector("input").name = "faltas[" + numeroFalta + "][notas]";
-  divContenedorFaltas.querySelector(".divNotaFalta").querySelector("input").value = null;
+  divContenedorFaltas.querySelector(".divNotaFalta").querySelector("textarea").name = "faltas[" + numeroFalta + "][notas]";
+  divContenedorFaltas.querySelector(".divNotaFalta").querySelector("textarea").value = null;
   event.target.closest(".divFaltas").appendChild(divContenedorFaltas);
 };
 
 window.menosFalta = function (event) {
+  var ultimoHijoContenedorFaltas = event.target.closest(".divFaltas").lastElementChild;
+  var listaContenedoresFaltas = event.target.closest(".divFaltas").querySelectorAll(".contenedorFaltas");
+
+  if (ultimoHijoContenedorFaltas.classList.contains("contenedorFaltas") && listaContenedoresFaltas.length > 1) {
+    ultimoHijoContenedorFaltas.remove();
+  }
+};
+
+window.masFaltasPracticas = function (event) {
+  var numeroFalta = event.target.closest(".divFaltasPracticas").querySelectorAll(".contenedorFaltas").length;
+  var divContenedorFaltas = event.target.closest(".divFaltasPracticas").querySelector(".contenedorFaltas").cloneNode(true); //modifico el for del label y el name e id del input
+
+  divContenedorFaltas.querySelector(".divFechaFaltaPracticas").querySelector("label").htmlFor = "faltas[" + numeroFalta + "][fecha_falta]";
+  divContenedorFaltas.querySelector(".divFechaFaltaPracticas").querySelector("input").name = "faltas[" + numeroFalta + "][fecha_falta]";
+  divContenedorFaltas.querySelector(".divFechaFaltaPracticas").querySelector("input").value = null;
+  divContenedorFaltas.querySelector(".divJustificacionFaltaPracticas").querySelector("label").htmlFor = "faltas[" + numeroFalta + "][justificacion]";
+  divContenedorFaltas.querySelector(".divJustificacionFaltaPracticas").querySelector("textarea").name = "faltas[" + numeroFalta + "][justificacion]";
+  divContenedorFaltas.querySelector(".divJustificacionFaltaPracticas").querySelector("textarea").value = null;
+  divContenedorFaltas.querySelector(".divNotaFaltaPracticas").querySelector("label").htmlFor = "faltas[" + numeroFalta + "][notas]";
+  divContenedorFaltas.querySelector(".divNotaFaltaPracticas").querySelector("textarea").name = "faltas[" + numeroFalta + "][notas]";
+  divContenedorFaltas.querySelector(".divNotaFaltaPracticas").querySelector("textarea").value = null;
+  event.target.closest(".divFaltasPracticas").appendChild(divContenedorFaltas);
+};
+
+window.menosFaltasPracticas = function (event) {
   var ultimoHijoContenedorFaltas = event.target.closest(".divFaltas").lastElementChild;
   var listaContenedoresFaltas = event.target.closest(".divFaltas").querySelectorAll(".contenedorFaltas");
 
@@ -5545,6 +5570,14 @@ window.numero_tarjeta = function () {
 
 window.mandarFormAmbito = function () {
   document.getElementById('filtroForm').submit();
+};
+
+window.mostrarPracticas = function (event) {
+  if (event.target.checked) {
+    document.getElementById("divPracticas").style.display = "block";
+  } else {
+    document.getElementById("divPracticas").style.display = "none";
+  }
 };
 
 /***/ }),

@@ -77,12 +77,12 @@
                                     </div>
                                 </div>
 
-                                <div class="mb-3">
+                                <div class="mb-8">
                                     <fieldset>
                                         <legend>Ámbitos de trabajo:</legend>
                                         @foreach ($ambitos as $ambito )
                                             <label for='ambito[{{$ambito->id}}]'>{{ $ambito->nombre }}</label>
-                                            <input type="checkbox" name='ambito[{{$ambito->id}}]'>
+                                            <input type="checkbox" name='ambito[{{$ambito->id}}]' class="mr-4">
                                         @endforeach
                                     </fieldset>
                                 </div>
@@ -91,13 +91,14 @@
                                     <div class="">
                                         <label for="practicas" class="block font-medium text-sm text-gray-700">Prácticas</label>
                                         <input type="checkbox" name="practicas" id="practicas" class="form-input rounded-md shadow-sm mt-1 block w-full h-10"
-                                            value="{{ old('practicas', '') }}" />
+                                            value="{{ old('practicas', '') }}" onChange="mostrarPracticas(event)" />
                                         @error('practicas')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
                                 </div>
 
+                                <div id="divPracticas" class="hidden">
                                 <div class="flex mb-4">
                                     <div class="w-1/2 mr-2">
                                         <label for="instituto" class="block font-medium text-sm text-gray-700">Instituto</label>
@@ -196,7 +197,7 @@
                                         </div>
                                     </div>
 
-
+                                    <div class="contenedorFaltas">
                                         <div class="divFechaFaltaPracticas w-1/3 mb-4">
                                             <label for="faltas_practicas[0][fecha_falta]" class="block font-medium text-sm text-gray-700">Fecha</label>
                                             <input type="date" name="faltas_practicas[0][fecha_falta]" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -223,9 +224,9 @@
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
                                         </div>
-
+                                    </div>
                                 </div>
-
+                            </div>
                                 <div class="flex mb-8">
                                     <div class="w-1/2 mr-2">
                                         <label for="contrato" class="block font-medium text-sm text-gray-700">Adjuntar contrato</label>

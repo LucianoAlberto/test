@@ -37,12 +37,14 @@ class ClienteController extends Controller
         }
         else{
             //dd($request->ambito);
-            if(array_key_first($request->ambito) == "sin"){
+            //dd($request->ambito);
+            if($request->ambito == "sin"){
                 $clientes = Cliente::sinAmbito();
             }
             else{
                 //dd($request->ambito);
-                $clientes = Cliente::conAmbito(array_key_first($request->ambito));
+                //dd($request->ambito);
+                $clientes = Cliente::conAmbito($request->ambito);
             }
 
 

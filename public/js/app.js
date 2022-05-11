@@ -5543,6 +5543,10 @@ window.numero_tarjeta = function () {
   }
 };
 
+window.mandarFormAmbito = function () {
+  document.getElementById('filtroForm').submit();
+};
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

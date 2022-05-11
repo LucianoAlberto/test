@@ -20,9 +20,31 @@ class EmpleadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $empleados = Empleado::paginate(10);
+        // $empleados = Empleado::paginate(10);
+        // $ambitos = Ambito::all();
+        // $rolConPoderes = self::ROLCONPODERES;
+
+        // return view('empleados.index', compact('empleados', 'ambitos', 'rolConPoderes'));
+        if(is_null($request->ambito)){
+            $empleados = Empleado::paginate(10);
+        }
+        else{
+            //dd($request->ambito);
+            //dd($request->ambito);
+            if($request->ambito == "sin"){
+                $empleados = Empleado::sinAmbito();
+            }
+            else{
+                //dd($request->ambito);
+                //dd($request->ambito);
+                $empleados = Empleado::conAmbito($request->ambito);
+            }
+        // return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes'));
+          // dd($buscar);
+        }
+
         $ambitos = Ambito::all();
         $rolConPoderes = self::ROLCONPODERES;
 

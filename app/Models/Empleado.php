@@ -57,4 +57,17 @@ class Empleado extends Model
     {
         return $this->belongsToMany(Ambito::class);
     }
+
+    public function scopeSinAmbito($query)
+    {
+        return $query->doesntHave('ambitos')->paginate(10);
+    }
+
+    public function scopeConAmbito($query, $ambito)
+    {
+        return $query->whereHas('ambitos', function($q) use($ambito){
+            $q->where('ambito_id', $ambito);
+        })
+        ->paginate(10);
+    }
 }

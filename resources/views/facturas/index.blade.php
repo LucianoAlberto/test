@@ -5,7 +5,7 @@
             Facturas del cliente : <a class="text-red-500 uppercase underline" href="{{route('clientes.show',$cliente)}}"> {{$cliente->nombre}} {{$cliente->apellidos}}
             </a>
         </h2>
-        <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-44 mr-6 justify-between" onclick="anadirFactura(event)">
+        <x-boton2 tipo="div" nombre="Añadir" class="flex justify-around bg-green-600 hover:bg-green-700 w-44 mr-6 justify-between" onclick="anadirFactura(event)">
             <x-slot name="boton">
                 <span>Añadir factura</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-plus"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
@@ -41,7 +41,7 @@
 
           <div class="mb-3">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="referencia_contrato">
-             Referencia Contrato
+                Referencia Contrato
             </label>
             <select class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="referencia" name="referencia_contrato" required>
                 <option value="">Seleciona una referencia</option>
@@ -113,7 +113,7 @@
                                                     </td>
 
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                                                        <x-boton2 tipo="linkConAsset" class="bg-blue-500 hover:bg-blue-700 mr-4 w-16 h-12" direccion="{{$contrato->archivo}}">
+                                                        <x-boton2 tipo="linkConAsset" class="bg-blue-500 hover:bg-blue-700 w-16 h-12" direccion="{{$factura->archivo}}">
                                                             <x-slot name="boton">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                                                             </x-slot>

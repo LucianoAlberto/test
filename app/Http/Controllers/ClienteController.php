@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 
-use Illuminate\Http\Request;
 use App\Models\Pago;
 use App\Models\Acceso;
 use App\Models\Ambito;
@@ -13,13 +12,15 @@ use App\Models\Factura;
 use App\Models\Contrato;
 use App\Models\Proyecto;
 use App\Models\BaseDatos;
+use Illuminate\Http\Request;
 use App\Models\ConceptoFactura;
 use App\Models\EmailCorporativo;
-use Illuminate\Support\Facades\DB;https://www.google.com/search?channel=fs&client=ubuntu&q=dev
 use App\Http\Requests\FiltroRequest;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\ClienteRequest;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;https://www.google.com/search?channel=fs&client=ubuntu&q=dev
 
 
 class ClienteController extends Controller
@@ -35,19 +36,27 @@ class ClienteController extends Controller
         if(is_null($request->ambito)){
             $clientes = Cliente::paginate(10);
         }
-        else{      
+        else{
             if($request->ambito == "sin"){
                 $clientes = Cliente::sinAmbito();
             }
-            else{       
+            else{
                 $clientes = Cliente::conAmbito($request->ambito);
             }
         }
 
+        if(!is_null($request->busqueda)){
+            //dd($request);
+            $clientes = Cliente::where($request->criterio, 'LIKE','%'.$request->busqueda.'%')->paginate(10);
+        }
+
         $ambitos = Ambito::all();
         $rolConPoderes = self::ROLCONPODERES;
+        $cliente = Cliente::first();
+        $criterios = Schema::getColumnListing($cliente->getTable());
 
-       return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes'));
+        //dd($criterios);
+       return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes', 'criterios'));
     }
 
     /**

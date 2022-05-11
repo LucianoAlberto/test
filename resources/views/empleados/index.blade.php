@@ -12,7 +12,7 @@
             @csrf
 
             <div class="ml-3">
-                <select name="ambito" class="form-input rounded-md shadow-sm mt-1 block w-3/4 mx-auto"  onChange="mandarFormAmbito()">
+                <select name="ambito" class="form-input rounded-md shadow-sm mt-1 block"  onChange="mandarFormAmbito()">
                     <option value="">--Selecciona ámbito--</option>
                     <option value="sin">Sin ámbito</option>
                     @foreach ($ambitos as $ambito)

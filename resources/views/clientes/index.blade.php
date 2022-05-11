@@ -9,10 +9,86 @@
             </x-boton2>
         </div>
 
+        <form method="POST" action="{{ route('clientes.index') }}" class="flex pr-16 mt-4 items-center">
+
+            @csrf
+            <div class="ml-3">
+                <select name="criterio" class="form-input rounded-md shadow-sm mt-1 block">
+                    <option value="">--Selecciona criterio--</option>
+                    @foreach ($criterios as $criterio)
+                        <option value="{{ $criterio }}" name='criterio[{{$criterio}}]'>
+                            @switch($criterio)
+                                @case("nombre")
+                                    Nombre
+                                    @break
+                                @case("apellidos")
+                                    Apellidos
+                                    @break
+                                @case("dni")
+                                    DNI
+                                    @break
+                                @case("anho_contable")
+                                    Año contable
+                                    @break
+                                @case("direccion_fiscal")
+                                    Dirección fiscal
+                                    @break
+                                @case("domicilio")
+                                    Domicilio
+                                    @break
+                                @case("nombre_comercial")
+                                    Nombre comercial
+                                    @break
+                                @case("nombre_sociedad")
+                                    Nombre comercial
+                                    @break
+                                @case("cif")
+                                    CIF
+                                    @break
+                                @case("cuenta_bancaria")
+                                    Cuenta bancaria
+                                    @break
+                                @case("n_tarjeta")
+                                    Número de tarjeta
+                                    @break
+                                @case("email")
+                                    E-mail
+                                    @break
+                                @case("telefono")
+                                    Teléfono
+                                    @break
+                                @case("created_at")
+                                    Fecha de creación
+                                    @break
+                                @case("updated_at")
+                                    Fecha de actualización
+                                    @break
+                            @endswitch
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="w-2/5 ml-2 mr-2">
+                <input placeholder="Búsqueda" type="text" name="busqueda" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                    value="{{ old('busqueda', '') }}" />
+                @error('busqueda')
+                    <p class="text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <x-boton2 tipo="input" nombre="Borrar" class="bg-red-600 hover:bg-red-700 w-16">
+                <x-slot name="boton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </x-slot>
+            </x-boton2>
+        </form>
+
+
         <form method="POST" action="{{ route('clientes.index') }}" class="flex pr-16 mt-4 items-center" id="filtroForm">
             @csrf
             <div class="ml-3">
-                <select name="ambito" class="form-input rounded-md shadow-sm mt-1 block w-3/4 mx-auto" onChange="mandarFormAmbito()">
+                <select name="ambito" class="form-input rounded-md shadow-sm mt-1 block" onChange="mandarFormAmbito()">
                     <option value="">--Selecciona ámbito--</option>
                     <option value="sin">Sin ámbito</option>
                     @foreach ($ambitos as $ambito)
@@ -21,7 +97,6 @@
                         </option>
                     @endforeach
                 </select>
-
             </div>
         </form>
     </div>

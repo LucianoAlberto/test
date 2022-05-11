@@ -46,9 +46,6 @@ Route::get('/clientes/create', [ClienteController::class, 'create'])->name('clie
 Route::get('/clientes/register', [ClienteController::class, 'register'])->name('clientes.register');
 Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store');
 Route::get('/clientes/{cliente}', [ClienteController::class, 'show'])->name('clientes.show');
-Route::get('/clientes/{cliente}/edit', [ClienteController::class, 'edit'])->name('clientes.edit');
-Route::put('/clientes/{cliente}', [ClienteController::class, 'update'])->name('clientes.update');
-Route::delete('/clientes/{cliente}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
 
 Route::group(['middleware' => ['role:superusuario']], function () {
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
@@ -59,6 +56,10 @@ Route::group(['middleware' => ['role:superusuario']], function () {
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
+    Route::get('/clientes/{cliente}/edit', [ClienteController::class, 'edit'])->name('clientes.edit');
+    Route::put('/clientes/{cliente}', [ClienteController::class, 'update'])->name('clientes.update');
+    Route::delete('/clientes/{cliente}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
 
     Route::get('/contratos/{cliente}/{contrato}/edit', [ContratoController::class, 'edit'])->name('contratos.edit');
     Route::put('/contratos/{cliente}/{contrato}', [ContratoController::class, 'update'])->name('contratos.update');

@@ -127,7 +127,7 @@
                                     </div>
                                 </div>
 
-                                <div class="flex mb-4">
+                                <div class="flex mb-8">
                                     <div class="w-1/2 mr-2">
                                         <label for="tutor_practicas" class="block font-medium text-sm text-gray-700">Tutor de prácticas</label>
                                         <input type="text" name="tutor_practicas" id="tutor_practicas" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -177,18 +177,18 @@
                                 </div>
 
                                 <div class="divFaltasPracticas mb-8">
-                                    <div class="flex justify-between contenedorTituloBotones">
+                                    <div class="flex justify-center relative contenedorTituloBotones">
                                         <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-6 mb-2">
                                             Faltas de asistencia
                                         </h3>
-                                        <div class="flex justify-between">
-                                            <x-boton2 tipo="div" nombre="mas" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masFaltasPracticas(event)">
+                                        <div class="flex justify-between absolute right-0">
+                                            <x-boton2 tipo="div" nombre="mas" class="bg-green-600 hover:bg-green-700 w-12 h-12 mr-6" onclick="masFaltasPracticas(event)">
                                                 <x-slot name="boton">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
                                                 </x-slot>
                                             </x-boton2>
 
-                                            <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-16" onclick="menosFaltasPracticas(event)">
+                                            <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-12 -h-12" onclick="menosFaltasPracticas(event)">
                                                 <x-slot name="boton">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
                                                 </x-slot>
@@ -196,8 +196,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="contenedorFaltasPracticas flex ">
-                                        <div class="divFechaFaltaPracticas w-1/3 mr-2">
+
+                                        <div class="divFechaFaltaPracticas w-1/3 mb-4">
                                             <label for="faltas_practicas[0][fecha_falta]" class="block font-medium text-sm text-gray-700">Fecha</label>
                                             <input type="date" name="faltas_practicas[0][fecha_falta]" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                                 value="{{ old("faltas_practicas[0][fecha_falta]", '') }}" />
@@ -206,28 +206,28 @@
                                             @enderror
                                         </div>
 
-                                        <div class="divJustificacionFaltaPracticas w-1/3 mx-2">
+                                        <div class="divJustificacionFaltaPracticas w-1/3 mb-4">
                                             <label for="faltas_practicas[0][justificacion]" class="block font-medium text-sm text-gray-700">Justificacion</label>
-                                            <input type="text" name="faltas_practicas[0][justificacion]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                value="{{ old("faltas_practicas[0][justificacion]", '') }}" />
+                                            <textarea type="text" name="faltas_practicas[0][justificacion]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                value="{{ old("faltas_practicas[0][justificacion]", '') }}" ></textarea>
                                             @error('faltas_practicas[0][justificacion]')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
                                         </div>
 
-                                        <div class="divNotaFaltaPracticas w-1/3 ml-2">
+                                        <div class="divNotaFaltaPracticas w-1/3 mb-4">
                                             <label for="faltas_practicas[0][notas]" class="block font-medium text-sm text-gray-700">Notas</label>
-                                            <input type="text" name="faltas_practicas[0][notas]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                value="{{ old("faltas_practicas[0][notas]", '') }}" />
+                                            <textarea type="text" name="faltas_practicas[0][notas]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                value="{{ old("faltas_practicas[0][notas]", '') }}" ></textarea>
                                             @error('faltas_practicas[0][notas]')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
                                         </div>
-                                    </div>
+
                                 </div>
 
-                                <div class="flex mb-4">
-                                    <div class="w-1/3 mr-2">
+                                <div class="flex mb-8">
+                                    <div class="w-1/2 mr-2">
                                         <label for="contrato" class="block font-medium text-sm text-gray-700">Adjuntar contrato</label>
                                         <input type="file" name="contrato" id="contrato" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old("contrato", '') }}" />
@@ -236,7 +236,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="w-1/3 mx-2">
+                                    <div class="w-1/2 ml-2">
                                         <label for="doc_confidencialidad" class="block font-medium text-sm text-gray-700">Adjuntar documento de confidencialidad</label>
                                         <input type="file" name="doc_confidencialidad" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old("doc_confidencialidad", '') }}" />
@@ -244,8 +244,9 @@
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
-
-                                    <div class="w-1/3 ml-2">
+                                </div>
+                                <div class="flex mb-8">
+                                    <div class="w-1/2 mr-2">
                                         <label for="doc_normas" class="block font-medium text-sm text-gray-700">Adjuntar documento de normas</label>
                                         <input type="file" name="doc_normas" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old("doc_normas", '') }}" />
@@ -253,9 +254,8 @@
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
-                                </div>
-                                <div class="flex">
-                                    <div>
+
+                                    <div class="w-1/2 ml-2">
                                         <label for="doc_prevencion_riesgos" class="block font-medium text-sm text-gray-700">Adjuntar documento de Prevención de Riesgos Laborales</label>
                                         <input type="file" name="doc_prevencion_riesgos" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old("doc_prevencion_riesgos", '') }}" />
@@ -263,30 +263,31 @@
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
-
-                                    <div>
-                                        <label for="doc_reglamento_interno" class="block font-medium text-sm text-gray-700">Adjuntar documento de Reglamento Interno</label>
-                                        <input type="file" name="doc_reglamento_interno" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("doc_reglamento_interno", '') }}" />
-                                        @error('doc_reglamento_interno')
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
-                                    </div>
                                 </div>
-                                    <div class="divPagos">
-                                        <div class="flex justify-between contenedorTituloBotones">
-                                            <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-6 mb-2">
+
+                                <div class="w-1/2 mb-16">
+                                    <label for="doc_reglamento_interno" class="block font-medium text-sm text-gray-700">Adjuntar documento de Reglamento Interno</label>
+                                    <input type="file" name="doc_reglamento_interno" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        value="{{ old("doc_reglamento_interno", '') }}" />
+                                    @error('doc_reglamento_interno')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                    <div class="divPagos mb-16">
+                                        <div class="flex justify-center items-center relative contenedorTituloBotones mb-4">
+                                            <h3 class="font-semibold text-xl text-gray-800 leading-tight m2-6 mb-2">
                                                 Pagos
                                             </h3>
 
-                                            <div class="flex justify-between">
-                                                <x-boton2 tipo="div" nombre="mas" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masPago(event)">
+                                            <div class="flex justify-between absolute right-0">
+                                                <x-boton2 tipo="div" nombre="mas" class="bg-green-600 hover:bg-green-700 w-12 h-12 mr-6" onclick="masPago(event)">
                                                     <x-slot name="boton">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
                                                     </x-slot>
                                                 </x-boton2>
 
-                                                <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-16" onclick="menosPago(event)">
+                                                <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-12 h-12" onclick="menosPago(event)">
                                                     <x-slot name="boton">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
                                                     </x-slot>
@@ -296,8 +297,8 @@
 
 
                                         <div class="contenedorNominas justify-between mb-4">
-                                            <div class="flex">
-                                                <div class="w-4/12 divFechaInicioNomina">
+                                            <div class="flex mb-4">
+                                                <div class="w-1/3 divFechaInicioNomina mr-2">
                                                     <label for="nominas[0][fecha_inicio]" class="block font-medium text-sm text-gray-700">Fecha inicio</label>
                                                     <input type="date" name="nominas[0][fecha_inicio]" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                                         value="{{ old("nominas[0][fecha_inicio]", '') }}" />
@@ -306,7 +307,7 @@
                                                     @enderror
                                                 </div>
 
-                                                <div class="w-4/12 divFechaFinNomina">
+                                                <div class="w-1/3 divFechaFinNomina mx-2">
                                                     <label for="nominas[0][fecha_fin]" class="block font-medium text-sm text-gray-700">Fecha fin</label>
                                                     <input type="date" name="nominas[0][fecha_fin]" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                                         value="{{ old("nominas[0][fecha_fin]", '') }}" />
@@ -315,7 +316,7 @@
                                                     @enderror
                                                 </div>
 
-                                                <div class="w-4/12 divFechaPagoNomina">
+                                                <div class="w-1/3 divFechaPagoNomina ml-2">
                                                     <label for="nominas[0][fecha_pago]" class="block font-medium text-sm text-gray-700">Fecha de pago</label>
                                                     <input type="date" name="nominas[0][fecha_pago]" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                                         value="{{ old("nominas[0][fecha_pago]", '') }}" />
@@ -325,7 +326,7 @@
                                                 </div>
                                             </div>
                                             <div class="flex">
-                                                <div class="w-4/12 divHorasNomina">
+                                                <div class="w-1/3 divHorasNomina mr-2">
                                                     <label for="nominas[0][horas_alta_ss]" class="block font-medium text-sm text-gray-700">Horas de alta en la SS</label>
                                                     <input type="text" name="nominas[0][horas_alta_ss]" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                                         value="{{ old("nominas[0][horas_alta_ss]", '') }}" />
@@ -334,7 +335,7 @@
                                                     @enderror
                                                 </div>
 
-                                                <div class="w-4/12 divImporteTotalNomina">
+                                                <div class="w-1/3 divImporteTotalNomina mx-2">
                                                     <label for="nominas[0][importe_total]" class="block font-medium text-sm text-gray-700">Importe nómina</label>
                                                     <input type="text" name="nominas[0][importe_total]" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                                         value="{{ old("nominas[0][importe_total]", '') }}" />
@@ -343,7 +344,7 @@
                                                     @enderror
                                                 </div>
 
-                                                <div class="w-4/12 divImportePagadoNomina">
+                                                <div class="w-1/3 divImportePagadoNomina ml-2">
                                                     <label for="nominas[0][importe_pagado]" class="block font-medium text-sm text-gray-700">Importe pagado</label>
                                                     <input type="text" name="nominas[0][importe_pagado]" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                                         value="{{ old("nominas[0][importe_pagado]", '') }}" />
@@ -355,19 +356,19 @@
                                         </div>
                                     </div>
 
-                                    <div class="divFaltas">
-                                        <div class="flex justify-between contenedorTituloBotones">
-                                            <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-6 mb-2">
+                                    <div class="divFaltas mb-8">
+                                        <div class="flex justify-center contenedorTituloBotones relative">
+                                            <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-2 mb-2">
                                                 Faltas de asistencia
                                             </h3>
-                                            <div class="flex justify-between">
-                                                <x-boton2 tipo="div" nombre="mas" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masFalta(event)">
+                                            <div class="flex justify-between absolute right-0">
+                                                <x-boton2 tipo="div" nombre="mas" class="bg-green-600 hover:bg-green-700 w-12 h-12 mr-6" onclick="masFalta(event)">
                                                     <x-slot name="boton">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
                                                     </x-slot>
                                                 </x-boton2>
 
-                                                <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-16" onclick="menosFalta(event)">
+                                                <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-12 h-12" onclick="menosFalta(event)">
                                                     <x-slot name="boton">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
                                                     </x-slot>
@@ -376,7 +377,7 @@
                                         </div>
 
                                         <div class="contenedorFaltas">
-                                            <div class="divFechaFalta">
+                                            <div class="divFechaFalta w-1/3 mb-4">
                                                 <label for="faltas[0][fecha_falta]" class="block font-medium text-sm text-gray-700">Fecha</label>
                                                 <input type="date" name="faltas[0][fecha_falta]" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                                     value="{{ old("faltas[0][fecha_falta]", '') }}" />
@@ -384,18 +385,18 @@
                                                     <p class="text-sm text-red-600">{{ $message }}</p>
                                                 @enderror
                                             </div>
-                                            <div class="divJustificacionFalta">
+                                            <div class="divJustificacionFalta mb-4">
                                                 <label for="faltas[0][justificacion]" class="block font-medium text-sm text-gray-700">Justificacion</label>
-                                                <input type="text" name="faltas[0][justificacion]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                    value="{{ old("faltas[0][justificacion]", '') }}" />
+                                                <textarea type="text" name="faltas[0][justificacion]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                    value="{{ old("faltas[0][justificacion]", '') }}" ></textarea>
                                                 @error('faltas[0][justificacion]')
                                                     <p class="text-sm text-red-600">{{ $message }}</p>
                                                 @enderror
                                             </div>
-                                            <div class="divNotaFalta">
+                                            <div class="divNotaFalta mb-4">
                                                 <label for="faltas[0][notas]" class="block font-medium text-sm text-gray-700">Notas</label>
-                                                <input type="text" name="faltas[0][notas]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                    value="{{ old("faltas[0][notas]", '') }}" />
+                                                <textarea type="text" name="faltas[0][notas]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                    value="{{ old("faltas[0][notas]", '') }}" ></textarea>
                                                 @error('faltas[0][notas]')
                                                     <p class="text-sm text-red-600">{{ $message }}</p>
                                                 @enderror
@@ -404,13 +405,12 @@
                                     </div>
 
                                     <div class="divVacaciones">
-                                        <div class="flex justify-between contenedorTituloBotones">
-                                            <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-6 mb-2">
+                                        <div class="flex justify-center">
+                                            <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-6 mb-4">
                                                 Vacaciones
                                             </h3>
-
                                         </div>
-                                        <div>
+                                        <div class="mb-4 w-1/3">
                                             <label for="vacaciones_total" class="block font-medium text-sm text-gray-700">Total días de vacaciones acumuladas</label>
                                             <input type="text" name="vacaciones_total" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                                 value="{{ old("vacaciones_total", '') }}" />
@@ -419,25 +419,27 @@
                                             @enderror
                                         </div>
 
-                                        <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-6 mb-2">
-                                            Vacaciones disfrutadas
-                                        </h3>
-                                        <div class="flex justify-between">
-                                            <x-boton2 tipo="div" nombre="mas" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="masVacacion(event)">
-                                                <x-slot name="boton">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                                </x-slot>
-                                            </x-boton2>
+                                        <div class="flex relative justify-center items-center">
+                                            <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-2 mb-8">
+                                                Vacaciones disfrutadas
+                                            </h3>
+                                            <div class="flex justify-between absolute right-0">
+                                                <x-boton2 tipo="div" nombre="mas" class="bg-green-600 hover:bg-green-700 w-12 h-12 mr-6" onclick="masVacacion(event)">
+                                                    <x-slot name="boton">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                                    </x-slot>
+                                                </x-boton2>
 
-                                            <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-16" onclick="menosVacacion(event)">
-                                                <x-slot name="boton">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                                </x-slot>
-                                            </x-boton2>
+                                                <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-12 h-12" onclick="menosVacacion(event)">
+                                                    <x-slot name="boton">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                                    </x-slot>
+                                                </x-boton2>
+                                            </div>
                                         </div>
 
-                                        <div class="contenedorVacaciones">
-                                            <div class="divInicioVacaciones">
+                                        <div class="contenedorVacaciones flex mb-4">
+                                            <div class="divInicioVacaciones w-1/3">
                                                 <label for="vacaciones_disfrutadas[0][fecha_inicio]" class="block font-medium text-sm text-gray-700">Fecha inicio vacaciones</label>
                                                 <input type="date" name="vacaciones_disfrutadas[0][fecha_inicio]" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                                     value="{{ old("vacaciones_disfrutadas[0][fecha_inicio]", '') }}" />
@@ -446,7 +448,7 @@
                                                 @enderror
                                             </div>
 
-                                            <div class="divFinVacaciones">
+                                            <div class="divFinVacaciones w-1/3 ml-4">
                                                 <label for="vacaciones_disfrutadas[0][fecha_fin]" class="block font-medium text-sm text-gray-700">Fecha fin vacaciones</label>
                                                 <input type="date" name="vacaciones_disfrutadas[0][fecha_fin]" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                                     value="{{ old("vacaciones_disfrutadas[0][fecha_fin]", '') }}" />

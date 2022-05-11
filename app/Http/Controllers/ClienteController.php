@@ -15,7 +15,7 @@ use App\Models\Proyecto;
 use App\Models\BaseDatos;
 use App\Models\ConceptoFactura;
 use App\Models\EmailCorporativo;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;https://www.google.com/search?channel=fs&client=ubuntu&q=dev
 use App\Http\Requests\FiltroRequest;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\ClienteRequest;
@@ -42,17 +42,14 @@ class ClienteController extends Controller
        }else{
 
         $buscar=$request->ambito;
-        $ambitos = Ambito::where('id',$buscar)->get();
+       $ambitos = Ambito::where('id',$buscar)->get();
+       $clientes=[];
     
         foreach($ambitos as $a){
-          $clientes=Cliente::find( $a->id)->paginate(3);
-          $rolConPoderes = self::ROLCONPODERES;
+             array_push($clientes,$a->clientes);
+            $rolConPoderes = self::ROLCONPODERES;
            return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes'));
         }
-         
-       
-       // return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes'));
-          // dd($buscar);
       
        }
          

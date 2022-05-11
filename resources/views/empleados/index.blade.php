@@ -8,21 +8,19 @@
             </x-slot>
         </x-boton2>
 
-        <form method="post" action="{{ route('empleados.filtro') }}" enctype="multipart/form-data" class="flex pr-16 mt-4 items-center">
+        <form method="POST" action="{{ route('empleados.index') }}" enctype="multipart/form-data" class="flex pr-16 mt-4 items-center" id="filtroForm">
             @csrf
-            <x-boton2 tipo="submit" class="bg-green-600 hover:bg-green-700 flex justify-around w-16 h-10">
-                <x-slot name="boton">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
-                </x-slot>
-            </x-boton2>
-            <div class="ml-3">
-                <label for='ambito["sin"]'>Sin ámbito</label>
-                <input type="checkbox" name='ambito["sin"]'>
 
-                @foreach ($ambitos as $ambito )
-                    <label for='ambito[{{$ambito->id}}]'>{{ $ambito->nombre }}</label>
-                    <input type="checkbox" name='ambito[{{$ambito->id}}]'>
-                @endforeach
+            <div class="ml-3">
+                <select name="ambito" class="form-input rounded-md shadow-sm mt-1 block w-3/4 mx-auto"  onChange="mandarFormAmbito()">
+                    <option value="">--Selecciona ámbito--</option>
+                    <option value="sin">Sin ámbito</option>
+                    @foreach ($ambitos as $ambito)
+                        <option value="{{ $ambito->id }}" name='ambito[{{$ambito->id}}]'>
+                                {{$ambito->nombre}}
+                        </option>
+                    @endforeach
+                </select>
             </div>
         </form>
     </div>

@@ -555,7 +555,7 @@ window.mascaraIban=function() {
 /**Comprueba si la tarjeta bancaria introducida tiene el formato correcto
  * Además introduce un guión de forma automática según el número de caracteres introducidos
 */
-window.numero_tarjeta=function() {
+window.numero_tarjeta = function() {
     let entradaIban=document.getElementById('n_tarjeta');
     if(entradaIban.value.length==4){
         entradaIban.value=entradaIban.value+"-";
@@ -569,4 +569,8 @@ window.numero_tarjeta=function() {
     if(entradaIban.value.length>14){
         entradaIban.value=entradaIban.value;
     }
+}
+
+window.mandarFormAmbito = function() {
+    document.getElementById('filtroForm').submit();
 }

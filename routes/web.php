@@ -89,9 +89,6 @@ Route::group(['middleware' => ['role:superusuario']], function () {
     Route::delete('/empleados/{empleado}/vacaciones/{vacacion}', [VacacionController::class, 'destroy'])->name('vacaciones.destroy');
 });
 
-Route::match(['get', 'post'], '/clientes/filtro',[ClienteController::class,'filtro'])->name('clientes.filtro');
-Route::post('/empleados/filtro',[EmpleadoController::class,'filtro'])->name('empleados.filtro');
-
 Route::get('/contratos/{cliente}', [ContratoController::class, 'index'])->name('contratos.index');
 Route::get('/contratos/{cliente}/create', [ContratoController::class, 'create'])->name('contratos.create');
 Route::post('/contratos/{cliente}', [ContratoController::class, 'store'])->name('contratos.store');
@@ -110,7 +107,7 @@ Route::get('/proyectos/{cliente}/{proyecto}', [ProyectoController::class, 'show'
 Route::post('conceptos',[ConceptoFacturaController::class,'store'])->name('conceptos.store');
 Route::post('conceptos/eliminar',[ConceptoFacturaController::class,'eliminar'])->name('conceptos.eliminar');
 
-Route::get('/empleados', [EmpleadoController::class, 'index'])->name('empleados.index');
+Route::match(['get', 'post'], '/empleados', [EmpleadoController::class, 'index'])->name('empleados.index');
 Route::get('/empleados/create', [EmpleadoController::class, 'create'])->name('empleados.create');
 Route::post('/empleados', [EmpleadoController::class, 'store'])->name('empleados.store');
 Route::get('/empleados/{empleado}', [EmpleadoController::class, 'show'])->name('empleados.show');

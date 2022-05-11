@@ -9,24 +9,19 @@
             </x-boton2>
         </div>
 
-        <form method="GET" action="{{ route('clientes.index') }}" class="flex pr-16 mt-4 items-center">
+        <form method="POST" action="{{ route('clientes.index') }}" class="flex pr-16 mt-4 items-center" id="filtroForm">
             @csrf
-            
-            <input type="hidden" name="formName" value="category">
-            <x-boton2 tipo="submit" name="submit" class="bg-green-600 hover:bg-green-700 flex justify-around w-16 h-10 mr-2">
-                <x-slot name="boton">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
-                </x-slot>
-            </x-boton2>
             <div class="ml-3">
-                <label for='ambito[sin]'>Sin ámbito</label>
-                <input type="checkbox" name='ambito[sin]' class="ml-2 mr-4">
+                <select name="ambito" class="form-input rounded-md shadow-sm mt-1 block w-3/4 mx-auto" onChange="mandarFormAmbito()">
+                    <option value="">--Selecciona ámbito--</option>
+                    <option value="sin">Sin ámbito</option>
+                    @foreach ($ambitos as $ambito)
+                        <option value="{{ $ambito->id }}" name='ambito[{{$ambito->id}}]'>
+                                {{$ambito->nombre}}
+                        </option>
+                    @endforeach
+                </select>
 
-                @foreach ($ambitos as $ambito )
-                    <label for='ambito[{{$ambito->id}}]'>{{ $ambito->nombre }}</label>
-                    <input type="checkbox" name='ambito[{{$ambito->id}}]' value="{{$ambito->id}}" class="ml-2 mr-4">
-                @endforeach
-               
             </div>
         </form>
     </div>
@@ -49,7 +44,7 @@
                                             <thead>
                                             <tr>
                                                 <th scope="col" width="50" class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    ID 
+                                                    ID
                                                 </th>
                                                 <th scope="col" class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Nombre

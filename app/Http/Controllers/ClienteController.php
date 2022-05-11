@@ -15,7 +15,7 @@ use App\Models\Proyecto;
 use App\Models\BaseDatos;
 use App\Models\ConceptoFactura;
 use App\Models\EmailCorporativo;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;https://www.google.com/search?channel=fs&client=ubuntu&q=dev
 use App\Http\Requests\FiltroRequest;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\ClienteRequest;
@@ -35,23 +35,13 @@ class ClienteController extends Controller
         if(is_null($request->ambito)){
             $clientes = Cliente::paginate(10);
         }
-        else{
-            //dd($request->ambito);
-            //dd($request->ambito);
+        else{      
             if($request->ambito == "sin"){
                 $clientes = Cliente::sinAmbito();
             }
-            else{
-                //dd($request->ambito);
-                //dd($request->ambito);
+            else{       
                 $clientes = Cliente::conAmbito($request->ambito);
             }
-
-
-
-
-       // return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes'));
-          // dd($buscar);
         }
 
         $ambitos = Ambito::all();
@@ -102,7 +92,6 @@ class ClienteController extends Controller
 
         if(isset($validated['ambito'])){
             foreach($validated['ambito'] as $clave => $ambito){
-                //dd($ambito);
                 $ambito = Ambito::where('id', $clave)->select('id')->first();
 
                 $cliente->ambitos()->attach($ambito);
@@ -150,10 +139,9 @@ class ClienteController extends Controller
     public function update(ClienteRequest $request, Cliente $cliente)
     {
         $validated = $request->validated();
-
-        $cliente->nombre = $validated["nombre"];
-        $cliente->apellidos = $validated["apellidos"];
-        $cliente->dni = $validated["dni"];
+        $cliente->nombre=$validated["nombre"];
+        $cliente->apellidos=$validated["apellidos"];
+        $cliente->dni=$validated['dni'];
         $cliente->anho_contable = $validated["anho_contable"];
         $cliente->direccion_fiscal = $validated["direccion_fiscal"];
         $cliente->domicilio = $validated["domicilio"];
@@ -164,6 +152,7 @@ class ClienteController extends Controller
         $cliente->n_tarjeta = $validated["n_tarjeta"];
         $cliente->email = $validated["email"];
         $cliente->telefono = $validated["telefono"];
+        $cliente->updated_at=now("Europe/Madrid");
 
         $cliente->save();
 

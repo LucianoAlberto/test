@@ -1,21 +1,13 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Añadir cliente
-        </h2>
-    </x-slot>
-
     <div>
         <div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8">
             <div class="mt-5 md:mt-0 md:col-span-2">
                 <form id="formulario" method="post" action="{{ route('clientes.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="shadow overflow-hidden sm:rounded-md ">
+                        <h3 class="text-center font-bold uppercase w-full py-5 bg-gray-300">Nuevo Cliente</h3>
                         <div class="px-4 py-5 bg-white sm:p-6 divide-y-4">
-                            <div class="divDatosPersonales mb-4">
-                                <h3 class="flex justify-center font-semibold text-xl text-gray-800 leading-tight mb-8">
-                                    Datos personales
-                                </h3>
+                            <div class="divDatosPersonales mb-4">                              
                                 <div class="flex justify-between mb-8">
                                     <div class="w-2/5 mr-2">
                                         <label for="nombre" class="block font-medium text-sm text-gray-700">Nombre</label>

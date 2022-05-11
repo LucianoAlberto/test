@@ -14,7 +14,7 @@
             @csrf
             <div class="ml-3">
                 <select name="criterio" class="form-input rounded-md shadow-sm mt-1 block">
-                    <option value="">--Selecciona criterio--</option>
+                    <option value="">-- Selecciona criterio --</option>
                     @foreach ($criterios as $criterio)
                         <option value="{{ $criterio }}" name='criterio[{{$criterio}}]'>
                             @switch($criterio)
@@ -89,7 +89,7 @@
             @csrf
             <div class="ml-3">
                 <select name="ambito" class="form-input rounded-md shadow-sm mt-1 block" onChange="mandarFormAmbito()">
-                    <option value="">--Selecciona ámbito--</option>
+                    <option value="">-- Selecciona ámbito --</option>
                     <option value="sin">Sin ámbito</option>
                     @foreach ($ambitos as $ambito)
                         <option value="{{ $ambito->id }}" name='ambito[{{$ambito->id}}]'>
@@ -100,12 +100,6 @@
             </div>
         </form>
     </div>
-
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Clientes
-        </h2>
-    </x-slot>
 
     <div class="pt-4 pb-12">
         <div class="mx-auto sm:px-6 lg:px-8">

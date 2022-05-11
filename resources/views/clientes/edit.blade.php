@@ -1,22 +1,38 @@
 <x-app-layout>
+    <!--Menu superior-->
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Editar cliente
-        </h2>
-    </x-slot>
+        <div class="flex justify-between ">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+              <a class="text-red-500 uppercase underline" href="{{route('clientes.show', $cliente)}}"> {{$cliente->nombre}} {{$cliente->apellidos}}</a>
+            </h2>
+
+            <div class="flex justify-end "> 
+                <div class="block  mx-2">
+                    <a href="{{ route('contratos.index', $cliente) }}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Contratos</a>
+                </div>
+    
+                <div class="block  mx-2">
+                    <a href="{{ route('facturas.index',$cliente) }}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Facturas</a>
+                </div>
+    
+                <div class="block  mx-2">
+                    <a href="{{route('proyectos.index',$cliente)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Proyectos</a>
+                </div>
+            </div>
+        </div>
+        </x-slot>
+        <!---Fin menu superior-->
 
     <div>
         <div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8">
             <div class="mt-5 md:mt-0 md:col-span-2">
+                <h3 class="text-center font-bold uppercase w-full py-5 bg-gray-300">Editando cliente . . . </h3>
                 <form method="post" action="{{ route('clientes.update', $cliente) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
-                            <div class="mb-4">
-                                <h3 class="flex justify-center font-semibold text-xl text-gray-800 leading-tight mb-8">
-                                    Datos personales
-                                </h3>
+                            <div class="mb-4">                             
                                 <div class="flex justify-between mb-8">
                                     <div class="w-2/5 mr-2">
                                         <label for="nombre" class="block font-medium text-sm text-gray-700">Nombre</label>

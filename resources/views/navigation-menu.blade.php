@@ -3,35 +3,28 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
-                {{-- <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+            <!-- Logo -->
+                <div class="shrink-0 flex items-center ">
+                    <a href="{{ route('clientes.index') }}">     
                         <img class="w-10" src="{{ url('logo.png') }}" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-jet-nav-link>
-                </div> --}}
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('clientes.index') }}" :active="request()->routeIs('clientes.index')">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex uppercase ">
+                    <x-jet-nav-link href="{{ route('clientes.index') }}" :active="request()->routeIs(['clientes.index','clientes.show','clientes.create','clientes.edit','contratos.index','contratos.show','contratos.edit','contratos.create'])">
                         {{ __('Clientes') }}
                     </x-jet-nav-link>
                 </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('empleados.index') }}" :active="request()->routeIs('empleados.index')">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex uppercase">
+                    <x-jet-nav-link href="{{ route('empleados.index') }}" :active="request()->routeIs(['empleados.index','empleados.show','empleados.create','empleados.edit'])">
                         {{ __('Empleados') }}
                     </x-jet-nav-link>
                 </div>
 
                 @role ('superusuario')
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex uppercase">
                         <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
                             {{ __('Usuarios') }}
                         </x-jet-nav-link>

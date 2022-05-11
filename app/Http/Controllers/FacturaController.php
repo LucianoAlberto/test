@@ -64,7 +64,7 @@ class FacturaController extends Controller
         }
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('facturas.index', compact('rolConPoderes'));
+        return redirect()->route('facturas.index', compact('cliente', 'rolConPoderes'));
     }
 
     /**

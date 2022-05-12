@@ -15,56 +15,80 @@
             <div class="ml-3">
                 <select name="criterio" class="form-input rounded-md shadow-sm mt-1 block">
                     <option value="">-- Selecciona criterio --</option>
-                    @foreach ($criterios as $criterio)
-                        <option value="{{ $criterio }}" name='criterio[{{$criterio}}]'>
+                    @foreach ($criterios as $criterio)                       
                             @switch($criterio)
                                 @case("nombre")
+                                <option value="{{ $criterio }}" name='criterio[{{$criterio}}]'>
                                     Nombre
+                                </option>
                                     @break
+
                                 @case("apellidos")
+                                <option value="{{ $criterio }}" name='criterio[{{$criterio}}]'>
                                     Apellidos
                                     @break
+
                                 @case("dni")
+                                <option value="{{ $criterio }}" name='criterio[{{$criterio}}]'>
                                     DNI
                                     @break
+
                                 @case("anho_contable")
+                                <option value="{{ $criterio }}" name='criterio[{{$criterio}}]'>
                                     Año contable
                                     @break
+
                                 @case("direccion_fiscal")
+                                <option value="{{ $criterio }}" name='criterio[{{$criterio}}]'>
                                     Dirección fiscal
                                     @break
+
                                 @case("domicilio")
+                                <option value="{{ $criterio }}" name='criterio[{{$criterio}}]'>
                                     Domicilio
                                     @break
+                                    
                                 @case("nombre_comercial")
+                                <option value="{{ $criterio }}" name='criterio[{{$criterio}}]'>
                                     Nombre comercial
                                     @break
+
                                 @case("nombre_sociedad")
+                                <option value="{{ $criterio }}" name='criterio[{{$criterio}}]'>
                                     Nombre comercial
                                     @break
+
                                 @case("cif")
+                                <option value="{{ $criterio }}" name='criterio[{{$criterio}}]'>
                                     CIF
                                     @break
+
                                 @case("cuenta_bancaria")
+                                <option value="{{ $criterio }}" name='criterio[{{$criterio}}]'>
                                     Cuenta bancaria
                                     @break
+
                                 @case("n_tarjeta")
+                                <option value="{{ $criterio }}" name='criterio[{{$criterio}}]'>
                                     Número de tarjeta
                                     @break
+
                                 @case("email")
+                                <option value="{{ $criterio }}" name='criterio[{{$criterio}}]'>
                                     E-mail
                                     @break
+
                                 @case("telefono")
+                                <option value="{{ $criterio }}" name='criterio[{{$criterio}}]'>
                                     Teléfono
                                     @break
+
                                 @case("created_at")
+                                <option value="{{ $criterio }}" name='criterio[{{$criterio}}]'>
                                     Fecha de creación
-                                    @break
-                                @case("updated_at")
-                                    Fecha de actualización
-                                    @break
+                                    @break                           
                             @endswitch
-                        </option>
+                       
                     @endforeach
                 </select>
             </div>

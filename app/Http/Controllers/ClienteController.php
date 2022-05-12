@@ -44,11 +44,11 @@ class ClienteController extends Controller
                 $clientes = Cliente::conAmbito($request->ambito);
             }
         }
-
-        if(!is_null($request->busqueda)){
-            //dd($request);
+      //  dd($request->busqueda);
+        if(!is_null($request->busqueda) && !is_null($request->criterio)){
             $clientes = Cliente::where($request->criterio, 'LIKE','%'.$request->busqueda.'%')->paginate(10);
         }
+
 
         $ambitos = Ambito::all();
         $rolConPoderes = self::ROLCONPODERES;

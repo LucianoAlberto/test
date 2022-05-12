@@ -62,7 +62,7 @@ class FacturaController extends Controller
         }
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('facturas.index', compact('cliente', 'rolConPoderes'));
+        return redirect()->route('facturas.index', compact('cliente', 'rolConPoderes'))->with('creado','si');
     }
 
     /**
@@ -116,7 +116,7 @@ class FacturaController extends Controller
         $factura->save();
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('facturas.index', compact('cliente', 'rolConPoderes'));
+        return redirect()->route('facturas.index', compact('cliente', 'rolConPoderes'))->with('editado','si');
     }
 
     /**
@@ -135,6 +135,6 @@ class FacturaController extends Controller
         $factura->delete();
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('facturas.index', compact('cliente', 'factura', 'rolConPoderes'));
+        return redirect()->route('facturas.index', compact('cliente', 'factura', 'rolConPoderes'))->with('eliminado','si');
     }
 }

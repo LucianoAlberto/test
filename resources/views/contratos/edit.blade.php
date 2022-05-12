@@ -158,7 +158,7 @@
 
                                 <div class="w-1/20 mr-5">
                                     <label for="referencia"
-                                        class="block font-medium text-sm text-gray-700 mt-1">Referencia</label>
+                                        class="block font-medium text-sm text-gray-700 mt-1">Referencia Contrato</label>
                                     <input type="text" name="referencia" id="referencia"
                                         class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('referencia', $contrato->referencia) }}">
@@ -198,7 +198,7 @@
                                 </div>
 
                                 <div class="w-1/20 mr-5">
-                                    <label for="iva" class="block font-medium text-sm text-gray-700">IVA</label>
+                                    <label for="iva" class="block font-medium text-sm text-gray-700">IVA % </label>
                                     <input type="text" name="iva" id="iva"
                                         class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('iva', $contrato->iva) }}">
@@ -209,7 +209,7 @@
                                 </div>
 
                                 <div class="w-1/10 mr-5">
-                                    <label for="irpf" class="block font-medium text-sm text-gray-700">IRPF</label>
+                                    <label for="irpf" class="block font-medium text-sm text-gray-700">IRPF % </label>
                                     <input type="text" name="irpf" id="irpf"
                                         class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('irpf', $contrato->irpf) }}">
@@ -232,7 +232,7 @@
                             </div>
                             <div class="flex mt-4">
                                 <div>
-                                    <label for="archivo" class="block font-medium text-sm text-gray-700">Adjuntar
+                                    <label for="archivo" class="block font-medium text-sm text-gray-700 py-1">Adjuntar
                                         contrato</label>
                                     @if ($contrato->archivo != null)
                                         <div class="flex">
@@ -294,7 +294,7 @@
                                         </div>
                                     @endif
                                     <input type="file" name="archivo"
-                                        class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        class="form-input rounded-md shadow-sm mt-1 block w-full py-1"
                                         value="{{ old('archivo', '') }}" />
                                     @error('archivo')
                                         <p class="text-sm text-red-600">{{ $message }}</p>
@@ -302,7 +302,7 @@
                                 </div>
 
                                 <div>
-                                    <label for="presupuesto" class="block font-medium text-sm text-gray-700">Adjuntar
+                                    <label for="presupuesto" class="block font-medium text-sm text-gray-700 py-1">Adjuntar
                                         presupuesto</label>
                                     @if ($contrato->archivo != null)
                                         <div class="flex">
@@ -364,7 +364,7 @@
                                         </div>
                                     @endif
                                     <input type="file" name="presupuesto"
-                                        class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        class="form-input rounded-md shadow-sm mt-1 block w-full py-1"
                                         value="{{ old('presupuesto', '') }}" />
                                     @error('presupuesto')
                                         <p class="text-sm text-red-600">{{ $message }}</p>
@@ -383,29 +383,62 @@
                 </form>
             </div>
         </div>
+ {{--aviso usando la variable de session--}}
+ @if (session('creado') == 'si')
+ <script>
+     Swal.fire({
+         position: 'center',
+         icon: 'success',
+         title: 'Contrato creado con exito',
+         showConfirmButton: false,
+         timer: 1500
+     })
+ </script>
+ 
+@elseif (session('eliminado') == 'si')
+ <script>
+     Swal.fire({
+         position: 'center',
+         icon: 'success',
+         title: 'Contrato Eliminado',
+         showConfirmButton: false,
+         timer: 1500
+     })
+ </script>
 
-        @if (session('conceptoEliminado') == 'si')
-            <script>
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Concepto Eliminado',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            </script>
-        @endif
+@elseif (session('editado') == 'si')
+ <script>
+     Swal.fire({
+         position: 'center',
+         icon: 'success',
+         title: 'Datos guardados',
+         showConfirmButton: false,
+         timer: 1500
+     })
+ </script>
 
-        @if (session('conceptoCreado') == 'si')
-            <script>
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Concepto Creado',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            </script>
-        @endif
+@elseif (session('conceptoCreado') == 'si')
+<script>
+Swal.fire({
+ position: 'center',
+ icon: 'success',
+ title: 'Nuevo concepto creado',
+ showConfirmButton: false,
+ timer: 1500
+})
+</script>
+
+@elseif (session('conceptoEliminado') == 'si')
+<script>
+Swal.fire({
+ position: 'center',
+ icon: 'success',
+ title: 'Concepto eliminado',
+ showConfirmButton: false,
+ timer: 1500
+})
+</script>
+@endif
+{{--fin avisos sessiones--}}
     </div>
 </x-app-layout>

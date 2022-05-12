@@ -126,7 +126,7 @@ class ProyectoController extends Controller
         }
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('proyectos.index',compact('cliente', 'rolConPoderes'));
+        return redirect()->route('proyectos.index',compact('cliente', 'rolConPoderes'))->with('creado','si');
     }
 
 
@@ -170,7 +170,7 @@ class ProyectoController extends Controller
     {
         //obtenemos todos los conceptos de la BD
         $conceptos = ConceptoFactura::all(['id','nombre']);
-        //dd($proyecto);
+    
         //recuperamos los contratos de este cliente
         $contratos = $proyecto->cliente->contratos;
 
@@ -253,7 +253,9 @@ class ProyectoController extends Controller
             }
         }
 
-        return redirect()->back();
+       // return redirect()->back();
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('proyectos.index', compact('cliente', 'rolConPoderes'))->with('editado','si');
     }
 
     /**
@@ -264,10 +266,9 @@ class ProyectoController extends Controller
      */
     public function destroy(Cliente $cliente, Proyecto $proyecto)
     {
-        //dd($proyecto);
         $proyecto->delete();
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('proyectos.index', compact('cliente', 'rolConPoderes'));
+        return redirect()->route('proyectos.index', compact('cliente', 'rolConPoderes'))->with('eliminado','si');
     }
 }

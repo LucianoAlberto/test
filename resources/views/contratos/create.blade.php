@@ -123,7 +123,7 @@
 
 
                                 <div class="w-1/20 mr-5 mt-1">
-                                    <label for="referencia" class="block font-medium text-sm text-gray-700">Referencia</label>
+                                    <label for="referencia" class="block font-medium text-sm text-gray-700">Referencia Contrato</label>
                                     <input type="text" name="referencia" id="referencia" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('referencia', '') }}" >
 
@@ -157,7 +157,7 @@
                                 </div>
 
                                 <div class="w-1/20 mr-5">
-                                    <label for="iva" class="block font-medium text-sm text-gray-700">IVA</label>
+                                    <label for="iva" class="block font-medium text-sm text-gray-700">IVA % </label>
                                     <input type="text" name="iva" id="iva" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('iva', '') }}" >
 
@@ -167,7 +167,7 @@
                                 </div>
 
                                 <div class="w-1/10 mr-5">
-                                    <label for="irpf" class="block font-medium text-sm text-gray-700">IRPF</label>
+                                    <label for="irpf" class="block font-medium text-sm text-gray-700">IRPF % </label>
                                     <input type="text" name="irpf" id="irpf" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('irpf', '') }}" >
 
@@ -209,7 +209,7 @@
                         </div>
 
                         <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
-                            <button class="inline-flex items-center px-4 py-2 bg-gray-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-500 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
+                            <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-500 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                                 Crear
                             </button>
                         </div>
@@ -275,6 +275,7 @@
     })
 </script>
     @endif
+    {{--fin avisos sessiones--}}
     
     </div>
 </x-app-layout>

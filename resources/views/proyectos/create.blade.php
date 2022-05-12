@@ -416,28 +416,41 @@
                                     Otros Datos
                                  </label>
                                  <textarea name="otros_datos" id="otros_datos" cols="102" rows="10" scroll>
-
                                  </textarea>
-
                             </div>
-
 
                             <div class="flex items-center justify-end px-4 py-3 text-right sm:px-6">
                                 <button
-                                    class="inline-flex items-center px-4 py-2 bg-gray-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-500 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
+                                    class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-500 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                                     Crear
                                 </button>
                             </div>
                         </div>
                 </form>
             </div>
-            @if(session('eliminado')=='si')
-                <script>alert('Concepto Eliminado con Exito');</script>
-            @endif
-
-            @if(session('creado')=='si')
-                <script>alert('Concepto Creado con Exito');</script>
-            @endif
         </div>
+        {{--Aviso sessiones--}}
+        @if(session('conceptoCreado') == 'si')
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Nuevo concepto creado',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+    @elseif (session('conceptoEliminado') == 'si')
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Concepto eliminado',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+    @endif
+    {{-- fin avisos sessiones --}}
     </div>
 </x-app-layout>

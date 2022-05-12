@@ -39,7 +39,7 @@
                                             </thead>
                                             <tbody class="bg-white divide-y divide-gray-200">
                                             @foreach ($users as $user)
-                                                <tr class="hover:bg-green-200" onclick="detalles('{{ route('users.show', $user->id) }}', event)">
+                                                <tr class="hover:bg-green-200 hover:cursor-pointer" onclick="detalles('{{ route('users.show', $user->id) }}', event)">
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
                                                         {{ $user->id }}
                                                     </td>

@@ -24,7 +24,7 @@ class UserController extends Controller
     {
         $users = User::paginate(10);
 
-        $roles=DB::table('roles')->get();
+        $roles = DB::table('roles')->get();
         return view('users.index', compact('users','roles'));
     }
 
@@ -36,7 +36,7 @@ class UserController extends Controller
     public function create()
     {
         //recuperamos los roles existentes
-        $roles=DB::table('roles')->get();
+        $roles = DB::table('roles')->get();
 
         return view('users.create',compact('roles'));
     }
@@ -51,7 +51,7 @@ class UserController extends Controller
     {
         //dd($request);
 
-        $validated = $request->validated(); 
+        $validated = $request->validated();
         $datos = $request->except('_token');
 
         $usuario = new User;
@@ -59,8 +59,8 @@ class UserController extends Controller
         $usuario->email = $validated["email"];
         $usuario->password =bcrypt($validated["password"]);
         $usuario->rol=$validated['rol'];
-        $usuario->save();  
-        
+        $usuario->save();
+
         return redirect()->route('users.index');
     }
 
@@ -103,11 +103,12 @@ class UserController extends Controller
 
         $user->name = $validated["name"];
         $user->email = $validated["email"];
-        $user->password = bcrypt($validated["password"]);
+        if($validated["password"] != $user->password){
+            $user->password = bcrypt($validated["password"]);
+        }
         $user->rol=$validated['rol'];
 
-
-        $user->update();
+        $user->save();
 
         return redirect()->route('users.index');
 

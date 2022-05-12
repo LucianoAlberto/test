@@ -263,12 +263,11 @@ class EmpleadoController extends Controller
         }
 
         $empleado->save();
-        dd($empleado->ambitos());
+
+        $empleado->ambitos()->detach();
         if(isset($validated['ambito'])){
             foreach($validated['ambito'] as $clave => $ambito){
-                //dd($ambito);
                 $ambito = Ambito::where('id', $clave)->select('id')->first();
-
                 $empleado->ambitos()->attach($ambito);
             }
         }

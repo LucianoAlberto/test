@@ -478,7 +478,7 @@
                                             <div class="contenedorFaltas">
                                                 <div class="divFechaFalta w-1/3 mb-4">
                                                     <label for="faltas[{{$key}}][fecha_falta]" class="block font-medium text-sm text-gray-700">Fecha</label>
-                                                    <input type="date" name="faltas[$key][fecha_falta]" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                                    <input type="date" name="faltas[{{$key}}][fecha_falta]" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                                         value="{{ old("faltas[$key][fecha_falta]", $falta->fecha_falta) }}" />
                                                     @error('faltas[{{$key}}][fecha_falta]')
                                                         <p class="text-sm text-red-600">{{ $message }}</p>

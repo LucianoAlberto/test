@@ -24,7 +24,7 @@ class EmpleadoRequest extends FormRequest
     public function rules()
     {
         return [
-            'ambito'=>'nullable',
+            'ambito.*'=>'nullable',
             'nombre'=>'required|string',
             'apellidos'=>'required|string',
             'dni'=>'required|numeric',
@@ -48,7 +48,7 @@ class EmpleadoRequest extends FormRequest
             'vacaciones_total'=>'nullable|numeric',
             'vacaciones_disfrutadas.*.fecha_inicio'=>'nullable|date',
             'vacaciones_disfrutadas.*.fecha_fin'=>'nullable|date',
-            'practicas'=>'nullable|boolean',
+            'practicas'=>'nullable',
             'instituto'=>'nullable|string',
             'localidad'=>'nullable|string',
             'provincia'=>'nullable|string',

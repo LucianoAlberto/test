@@ -8,12 +8,12 @@
     <div>
         <div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8">
             <div class="mt-5 md:mt-0 md:col-span-2">
+
                 <form id="formulario" method="post" action="{{ route('empleados.store') }}" enctype="multipart/form-data">
                     @csrf
-
                     <div class="shadow overflow-hidden sm:rounded-md ">
                         <div class="px-4 py-5 bg-white sm:p-6 divide-y-4">
-                            <div class="divDatosPersonales mb-16">
+                            <div class="divDatosPersonales mb-8">
                                 <h3 class="flex justify-center font-semibold text-xl text-gray-800 leading-tight mb-2">
                                     Datos personales
                                 </h3>
@@ -40,7 +40,7 @@
                                 <div class="flex justify-between mb-4">
                                     <div class="w-1/2 mr-2">
                                         <label for="dni" class="block font-medium text-sm text-gray-700">DNI</label>
-                                        <input type="text" name="dni" id="dni" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        <input type="text" name="dni" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old('dni', '') }}" />
                                         @error('dni')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
@@ -49,7 +49,7 @@
 
                                     <div class="w-1/2 ml-2">
                                         <label for="numero_ss" class="block font-medium text-sm text-gray-700">Número de la Seguridad Social</label>
-                                        <input type="text" name="numero_ss" id="numero_ss" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        <input type="text" name="numero_ss" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old('numero_ss', '') }}" />
                                         @error('numero_ss')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
@@ -60,7 +60,7 @@
                                 <div class="flex justify-between mb-4">
                                     <div class="w-1/2 mr-2">
                                         <label for="fecha_comienzo" class="block font-medium text-sm text-gray-700">Fecha comienzo</label>
-                                        <input type="date" name="fecha_comienzo" id="fecha_comienzo" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        <input type="date" name="fecha_comienzo" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old('fecha_comienzo', '') }}" />
                                         @error('fecha_comienzo')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
@@ -69,7 +69,7 @@
 
                                     <div class="w-1/2 ml-2">
                                         <label for="fecha_fin" class="block font-medium text-sm text-gray-700">Fecha fin</label>
-                                        <input type="date" name="fecha_fin" id="fecha_fin" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        <input type="date" name="fecha_fin" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old('fecha_fin', '') }}" />
                                         @error('fecha_fin')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
@@ -86,11 +86,11 @@
                                         @endforeach
                                     </fieldset>
                                 </div>
-
-                                <div class="flex justify-between mb-4">
+                                <hr>
+                                <div class="flex justify-between mt-8 mb-8">
                                     <div class="">
                                         <label for="practicas" class="block font-medium text-sm text-gray-700">Prácticas</label>
-                                        <input type="checkbox" name="practicas" id="practicas" class="form-input rounded-md shadow-sm mt-1 block w-full h-10"
+                                        <input type="checkbox" name="practicas" class="form-input rounded-md shadow-sm mt-1 block w-full h-10"
                                             value="{{ old('practicas', '') }}" onChange="mostrarPracticas(event)" />
                                         @error('practicas')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
@@ -102,7 +102,7 @@
                                 <div class="flex mb-4">
                                     <div class="w-1/2 mr-2">
                                         <label for="instituto" class="block font-medium text-sm text-gray-700">Instituto</label>
-                                        <input type="text" name="instituto" id="instituto" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        <input type="text" name="instituto" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old('instituto', '') }}" />
                                         @error('instituto')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
@@ -111,7 +111,7 @@
 
                                     <div class="w-1/2 mx-2">
                                         <label for="localidad" class="block font-medium text-sm text-gray-700">Localidad</label>
-                                        <input type="text" name="localidad" id="localidad" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        <input type="text" name="localidad" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old('localidad', '') }}" />
                                         @error('localidad')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
@@ -120,7 +120,7 @@
 
                                     <div class="w-1/2 ml-2">
                                         <label for="provincia" class="block font-medium text-sm text-gray-700">Provincia</label>
-                                        <input type="text" name="provincia" id="provincia" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        <input type="text" name="provincia" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old('provincia', '') }}" />
                                         @error('provincia')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
@@ -177,7 +177,7 @@
                                     </div>
                                 </div>
 
-                                <div class="divFaltasPracticas mb-8">
+                                <div class="divFaltasPracticas mt-8 mb-8">
                                     <div class="flex justify-center relative contenedorTituloBotones">
                                         <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-6 mb-2">
                                             Faltas de asistencia
@@ -207,7 +207,7 @@
                                             @enderror
                                         </div>
 
-                                        <div class="divJustificacionFaltaPracticas w-1/3 mb-4">
+                                        <div class="divJustificacionFaltaPracticas mb-4">
                                             <label for="faltas_practicas[0][justificacion]" class="block font-medium text-sm text-gray-700">Justificacion</label>
                                             <textarea type="text" name="faltas_practicas[0][justificacion]" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                                 value="{{ old("faltas_practicas[0][justificacion]", '') }}" ></textarea>
@@ -216,7 +216,7 @@
                                             @enderror
                                         </div>
 
-                                        <div class="divNotaFaltaPracticas w-1/3 mb-4">
+                                        <div class="divNotaFaltaPracticas mb-4">
                                             <label for="faltas_practicas[0][notas]" class="block font-medium text-sm text-gray-700">Notas</label>
                                             <textarea type="text" name="faltas_practicas[0][notas]" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                                 value="{{ old("faltas_practicas[0][notas]", '') }}" ></textarea>
@@ -227,7 +227,8 @@
                                     </div>
                                 </div>
                             </div>
-                                <div class="flex mb-8">
+                            <hr>
+                                <div class="flex mt-8 mb-4">
                                     <div class="w-1/2 mr-2">
                                         <label for="contrato" class="block font-medium text-sm text-gray-700">Adjuntar contrato</label>
                                         <input type="file" name="contrato" id="contrato" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -246,7 +247,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="flex mb-8">
+                                <div class="flex mb-4">
                                     <div class="w-1/2 mr-2">
                                         <label for="doc_normas" class="block font-medium text-sm text-gray-700">Adjuntar documento de normas</label>
                                         <input type="file" name="doc_normas" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -266,7 +267,7 @@
                                     </div>
                                 </div>
 
-                                <div class="w-1/2 mb-16">
+                                <div class="w-1/2 mb-8">
                                     <label for="doc_reglamento_interno" class="block font-medium text-sm text-gray-700">Adjuntar documento de Reglamento Interno</label>
                                     <input type="file" name="doc_reglamento_interno" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old("doc_reglamento_interno", '') }}" />
@@ -274,9 +275,9 @@
                                         <p class="text-sm text-red-600">{{ $message }}</p>
                                     @enderror
                                 </div>
-
-                                    <div class="divPagos mb-16">
-                                        <div class="flex justify-center items-center relative contenedorTituloBotones mb-4">
+                                <hr>
+                                    <div class="divPagos mt-8 mb-8">
+                                        <div class="flex justify-center items-center relative contenedorTituloBotones mb-8">
                                             <h3 class="font-semibold text-xl text-gray-800 leading-tight m2-6 mb-2">
                                                 Pagos
                                             </h3>
@@ -356,8 +357,8 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="divFaltas mb-8">
+                                    <hr>
+                                    <div class="divFaltas mt-8 mb-8">
                                         <div class="flex justify-center contenedorTituloBotones relative">
                                             <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-2 mb-2">
                                                 Faltas de asistencia
@@ -404,7 +405,7 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <hr>
                                     <div class="divVacaciones">
                                         <div class="flex justify-center">
                                             <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-6 mb-4">
@@ -462,8 +463,6 @@
                                 </div>
                             </div>
                         </div>
-
-
 
                         <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
                             <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">

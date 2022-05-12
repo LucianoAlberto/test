@@ -522,9 +522,9 @@ window.masFaltasPracticas = function(event)
 
 window.menosFaltasPracticas = function(event)
 {
-    let ultimoHijoContenedorFaltas = event.target.closest(".divFaltas").lastElementChild;
+    let ultimoHijoContenedorFaltas = event.target.closest(".divFaltasPracticas").lastElementChild;
 
-    let listaContenedoresFaltas = event.target.closest(".divFaltas").querySelectorAll(".contenedorFaltas");
+    let listaContenedoresFaltas = event.target.closest(".divFaltasPracticas").querySelectorAll(".contenedorFaltas");
 
     if(ultimoHijoContenedorFaltas.classList.contains("contenedorFaltas") && listaContenedoresFaltas.length > 1){
         ultimoHijoContenedorFaltas.remove();

@@ -44,7 +44,7 @@ Route::match(['get', 'post'], '/clientes', [ClienteController::class, 'index'])-
 
 Route::get('/clientes/create', [ClienteController::class, 'create'])->name('clientes.create');
 Route::get('/clientes/register', [ClienteController::class, 'register'])->name('clientes.register');
-Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store');
+Route::post('/clientes/store', [ClienteController::class, 'store'])->name('clientes.store');
 Route::get('/clientes/{cliente}', [ClienteController::class, 'show'])->name('clientes.show');
 
 Route::group(['middleware' => ['role:superusuario']], function () {
@@ -110,7 +110,7 @@ Route::post('conceptos/eliminar',[ConceptoFacturaController::class,'eliminar'])-
 
 Route::match(['get', 'post'], '/empleados', [EmpleadoController::class, 'index'])->name('empleados.index');
 Route::get('/empleados/create', [EmpleadoController::class, 'create'])->name('empleados.create');
-Route::post('/empleados', [EmpleadoController::class, 'store'])->name('empleados.store');
+Route::post('/empleados/store', [EmpleadoController::class, 'store'])->name('empleados.store');
 Route::get('/empleados/{empleado}', [EmpleadoController::class, 'show'])->name('empleados.show');
 
 Route::get('/empleados/{empleado}/nominas', [NominaController::class, 'index'])->name('nominas.index');

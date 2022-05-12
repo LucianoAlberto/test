@@ -21,6 +21,7 @@ return new class extends Migration
             $table->smallInteger('importe_total');
             $table->smallInteger('importe_pagado');
             $table->date('fecha_pago');
+            $table->smallInteger('horas_alta_ss');
             $table->timestamps();
         });
     }

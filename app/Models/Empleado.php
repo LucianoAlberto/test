@@ -16,7 +16,7 @@ class Empleado extends Model
     use HasFactory;
 
     protected $fillable = ['dni', 'numero_ss', 'fecha_comienzo', 'fecha_fin', 'doc_confidencialidad', 'doc_normas', 'doc_prevencion_riesgos',
-    'doc_reglamento_interno',];
+    'doc_reglamento_interno', 'vacaciones_total'];
 
     /**
      * Obtiene las nóminas asociadas a este empleado.

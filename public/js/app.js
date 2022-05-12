@@ -5482,8 +5482,8 @@ window.masFaltasPracticas = function (event) {
 };
 
 window.menosFaltasPracticas = function (event) {
-  var ultimoHijoContenedorFaltas = event.target.closest(".divFaltas").lastElementChild;
-  var listaContenedoresFaltas = event.target.closest(".divFaltas").querySelectorAll(".contenedorFaltas");
+  var ultimoHijoContenedorFaltas = event.target.closest(".divFaltasPracticas").lastElementChild;
+  var listaContenedoresFaltas = event.target.closest(".divFaltasPracticas").querySelectorAll(".contenedorFaltas");
 
   if (ultimoHijoContenedorFaltas.classList.contains("contenedorFaltas") && listaContenedoresFaltas.length > 1) {
     ultimoHijoContenedorFaltas.remove();

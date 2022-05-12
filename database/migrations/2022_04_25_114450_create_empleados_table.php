@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('doc_normas')->nullable();
             $table->string('doc_prevencion_riesgos')->nullable();
             $table->string('doc_reglamento_interno')->nullable();
+            $table->integer('vacaciones_total')->nullable();
             $table->timestamps();
         });
     }

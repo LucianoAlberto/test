@@ -1,13 +1,27 @@
 <x-app-layout>
-    <x-slot name="header">
+  <!--Menu superior-->
+<x-slot name="header">
+    <div class="flex justify-between ">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Nuevo Contrato : <a class="text-red-500 uppercase underline"
-                href="{{ route('clientes.show', $proyecto->cliente->id) }} {{ $proyecto->cliente->apellidos }}"> {{ $proyecto->cliente->nombre }}
-                {{ $proyecto->cliente->apellidos }}</a>
+          <a class="text-red-500 uppercase underline" href="{{route('clientes.show', $proyecto->cliente)}}"> {{$proyecto->cliente->nombre}} {{$proyecto->cliente->apellidos}}</a>
         </h2>
+
+        <div class="flex justify-end "> 
+            <div class="block  mx-2">
+                <a href="{{ route('contratos.index', $proyecto->cliente) }}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Contratos</a>
+            </div>
+
+            <div class="block  mx-2">
+                <a href="{{ route('facturas.index',$proyecto->cliente) }}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Facturas</a>
+            </div>
+
+            <div class="block  mx-2">
+                <a href="{{route('proyectos.index',$proyecto->cliente)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Proyectos</a>
+            </div>
+        </div>
+    </div>
     </x-slot>
-
-
+    <!---Fin menu superior-->
     <div>
         <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8">
 
@@ -74,6 +88,7 @@
             </div>
 
             <div class="mt-5 md:mt-0 md:col-span-2" id="contenedorPrincipal">
+                <h3 class="text-center font-bold uppercase w-full py-5 bg-gray-300">Editando Proyecto . . . </h3>
                 <form method="post" action="{{route('proyectos.update',['cliente' => $proyecto->cliente, 'proyecto' => $proyecto])}}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')

@@ -44,7 +44,7 @@ Route::match(['get', 'post'], '/clientes', [ClienteController::class, 'index'])-
 
 Route::get('/clientes/create', [ClienteController::class, 'create'])->name('clientes.create');
 Route::get('/clientes/register', [ClienteController::class, 'register'])->name('clientes.register');
-Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store');
+Route::post('/clientes/store', [ClienteController::class, 'store'])->name('clientes.store');
 Route::get('/clientes/{cliente}', [ClienteController::class, 'show'])->name('clientes.show');
 
 Route::group(['middleware' => ['role:superusuario']], function () {

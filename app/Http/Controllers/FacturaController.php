@@ -44,9 +44,7 @@ class FacturaController extends Controller
     public function store(FacturaRequest $request, Cliente $cliente)
     {
         $validated = $request->validated();
-        //dd($valido);
-
-
+    
         $factura = new Factura;
         $factura->cliente_id = $cliente->id;
         $factura->fecha_cargo = $validated['fecha_cargo'];
@@ -98,11 +96,13 @@ class FacturaController extends Controller
      */
     public function update(FacturaRequest $request, Cliente $cliente, Factura $factura)
     {
-
+  
+        $facutra_antigua=$factura; 
         $validated = $request->validated();
 
         $factura->cliente_id = $cliente->id;
         $factura->fecha_cargo = $validated['fecha_cargo'];
+      //  if($validated['referencia_contrato']==)
         $factura->referencia_contrato = $validated['referencia_contrato'];
 
         if($request->hasFile('factura')){

@@ -2,7 +2,7 @@
     <!--Menu superior-->
     <x-slot name="header">
         <div class="flex justify-between ">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight uppercase font-bold">
+            <h2 class="text-xl text-gray-800 leading-tight uppercase font-bold">
               CONTRATOS <a class="text-red-500 uppercase underline" href="{{route('clientes.show', $cliente)}}"> {{$cliente->nombre}} {{$cliente->apellidos}}</a>
             </h2>
 
@@ -134,6 +134,41 @@
                 </div>
             </div>
         </div>
+
+    @if (session('creado') == 'si')
+    <script>
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Contrato creado con exito',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    </script>
+    
+@elseif (session('eliminado') == 'si')
+    <script>
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Contrato Eliminado',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    </script>
+
+@elseif (session('editado') == 'si')
+    <script>
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Datos guardados',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    </script>
+@endif
+
     </div>
 </x-app-layout>
 

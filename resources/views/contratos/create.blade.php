@@ -218,12 +218,63 @@
             </div>
 
         </div>
-        @if(session('eliminado')=='si')
-                <script>alert('Concepto Eliminado con Exito');</script>
-            @endif
 
-            @if(session('creado')=='si')
-                <script>alert('Concepto Creado con Exito');</script>
-            @endif
+        {{--aviso usando la variable de session--}}
+        @if (session('creado') == 'si')
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Contrato creado con exito',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+        
+    @elseif (session('eliminado') == 'si')
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Contrato Eliminado',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+    
+    @elseif (session('editado') == 'si')
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Datos guardados',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+
+@elseif (session('conceptoCreado') == 'si')
+<script>
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Nuevo concepto creado',
+        showConfirmButton: false,
+        timer: 1500
+    })
+</script>
+
+@elseif (session('conceptoEliminado') == 'si')
+<script>
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Concepto eliminado',
+        showConfirmButton: false,
+        timer: 1500
+    })
+</script>
+    @endif
+    
     </div>
 </x-app-layout>

@@ -5093,9 +5093,8 @@ window.deleteConfirm = function (formId, event) {
     texto = '¿Desea borrar este proyecto?';
   }
 
-  console.log(texto);
   sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
-    icon: 'warning',
+    icon: 'question',
     text: texto,
     showCancelButton: true,
     confirmButtonText: 'Borrar',
@@ -5108,7 +5107,7 @@ window.deleteConfirm = function (formId, event) {
   });
 };
 
-window.detalles = function (vista, event) {
+window.window.detalles = function (vista, event) {
   //console.log(event.target.tagName);
   if (event.target.tagName == "TD") {
     window.location.href = vista;
@@ -5370,6 +5369,11 @@ window.menosProyecto = function (event) {
 window.anadirFactura = function () {
   var div = document.getElementById('nueva_factura');
   div.style.display = 'block';
+};
+
+window.cerrarNuevaFactura = function () {
+  var div = document.getElementById('nueva_factura');
+  div.style.display = 'none';
 };
 
 window.nuevoConcepto = function () {

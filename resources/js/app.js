@@ -28,9 +28,8 @@ window.deleteConfirm = function(formId, event)
     else if(event.target.closest("form").classList.contains("proyecto")){
         texto = '¿Desea borrar este proyecto?';
     }
-    console.log(texto)
     Swal.fire({
-       icon: 'warning',
+       icon: 'question',
         text: texto,
         showCancelButton: true,
        confirmButtonText: 'Borrar',
@@ -42,7 +41,7 @@ window.deleteConfirm = function(formId, event)
        }
    });
 }
-
+window.
 window.detalles = function(vista, event)
 {
     //console.log(event.target.tagName);
@@ -376,6 +375,13 @@ window.anadirFactura=function(){
 
     let div = document.getElementById('nueva_factura');
     div.style.display = 'block';
+
+}
+
+window.cerrarNuevaFactura=function(){
+
+    let div = document.getElementById('nueva_factura');
+    div.style.display = 'none';
 
 }
 

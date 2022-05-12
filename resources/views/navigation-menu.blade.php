@@ -12,7 +12,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex uppercase ">
-                    <x-jet-nav-link href="{{ route('clientes.index') }}" :active="request()->routeIs(['clientes.index','clientes.show','clientes.create','clientes.edit','contratos.index','contratos.show','contratos.edit','contratos.create'])">
+                    <x-jet-nav-link href="{{ route('clientes.index') }}" :active="request()->routeIs(['clientes.index','clientes.show','clientes.create','clientes.edit','contratos.index','contratos.show','contratos.edit','contratos.create','facturas.index','facturas.create','facturas.show','facturas.edit','proyectos.index','proyectos.create','proyectos.edit','proyectos.show'])">
                         {{ __('Clientes') }}
                     </x-jet-nav-link>
                 </div>

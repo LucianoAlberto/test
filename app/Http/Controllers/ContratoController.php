@@ -69,7 +69,7 @@ class ContratoController extends Controller
         $contrato->save();
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('contratos.index',compact('cliente', 'rolConPoderes'));
+        return redirect()->route('contratos.index',compact('cliente', 'rolConPoderes'))->with('creado','si');
     }
 
     /**
@@ -135,7 +135,7 @@ class ContratoController extends Controller
         $contrato->save();
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('contratos.index', compact('cliente', 'contrato', 'rolConPoderes'));
+        return redirect()->route('contratos.index', compact('cliente', 'contrato', 'rolConPoderes'))->with('editado','si');
     }
 
     /**
@@ -156,7 +156,8 @@ class ContratoController extends Controller
         }
 
         $contrato_destruido->delete();
+        $rolConPoderes = self::ROLCONPODERES;
 
-        return redirect()->route('contratos.index', compact('rolConPoderes'));
+        return redirect()->route('contratos.index', compact('rolConPoderes','cliente'))->with('eliminado','si');
     }
 }

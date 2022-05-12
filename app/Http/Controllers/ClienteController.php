@@ -108,7 +108,7 @@ class ClienteController extends Controller
         }
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('clientes.index', compact('rolConPoderes'));
+        return redirect()->route('clientes.index', compact('rolConPoderes'))->with('creado','si');
     }
 
     /**
@@ -166,7 +166,7 @@ class ClienteController extends Controller
         $cliente->save();
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('clientes.index', compact('rolConPoderes'));
+        return redirect()->route('clientes.index', compact('rolConPoderes'))->with('editado','si');
     }
 
     /**
@@ -184,7 +184,7 @@ class ClienteController extends Controller
         $cliente->delete();
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('clientes.index', compact('rolConPoderes'));
+        return redirect()->route('clientes.index', compact('rolConPoderes'))->with('eliminado','si');
     }
 
 

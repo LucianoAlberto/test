@@ -127,5 +127,3 @@ Route::get('/empleados/{empleado}/vacaciones', [VacacionController::class, 'inde
 Route::get('/empleados/{empleado}/vacaciones/create', [VacacionController::class, 'create'])->name('vacaciones.create');
 Route::post('/empleados/{empleado}/vacaciones', [VacacionController::class, 'store'])->name('vacaciones.store');
 Route::get('/empleados/{empleado}/vacaciones/{vacacion}', [VacacionController::class, 'show'])->name('vacaciones.show');
-
-

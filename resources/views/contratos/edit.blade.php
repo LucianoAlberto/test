@@ -82,7 +82,7 @@
                             class="form-input rounded-md shadow-sm mt-1 block w-3/4 mx-auto">
                             <option value="">Seleciona concepto</option>
                             @foreach ($conceptos as $concepto)
-                                <option value="{{ $concepto->nombre }}"
+                                <option value="{{ $concepto->id }}"
                                     {{ old('concepto') == $concepto->id ? 'selected' : '' }}>
                                     {{ $concepto->nombre }}
                                 </option>
@@ -146,7 +146,7 @@
 
                                         @foreach ($conceptos as $concepto)
                                             <option value="{{ $concepto->id }}"
-                                                {{ $contrato->concepto == $concepto->id ? 'selected' : '' }}>
+                                                {{ $contrato->concepto_facturas_id == $concepto->id ? 'selected' : '' }}>
                                                 {{ $concepto->nombre }}</option>
                                         @endforeach
                                     </select>
@@ -394,7 +394,7 @@
          timer: 1500
      })
  </script>
- 
+
 @elseif (session('eliminado') == 'si')
  <script>
      Swal.fire({

@@ -59,8 +59,7 @@ class ContratoController extends Controller
             $contrato->presupuesto = Storage::disk('public')->putFile('contratos/presupuestos',$valido['presupuesto'], 'public');
         }
 
-        $concepto = Concepto::where("nombre", $valido['concepto']);
-        $contrato->concepto = $concepto->id;
+        $contrato->concepto_facturas_id = $valido['concepto'];
 
         $contrato->referencia = $valido['referencia'];
         $contrato->fecha_firma = $valido['fecha_firma'];
@@ -84,7 +83,9 @@ class ContratoController extends Controller
      */
     public function show(Cliente $cliente, Contrato $contrato)
     {
-        return view('contratos.show', ['cliente' => $cliente, 'contrato' => $contrato]);
+        $conceptos = ConceptoFactura::all();
+
+        return view('contratos.show', compact('cliente', 'contrato', 'conceptos'));
     }
 
     /**
@@ -127,7 +128,8 @@ class ContratoController extends Controller
             $contrato->presupuesto = Storage::disk('public')->putFile('contratos/presupuestos',$valido['presupuesto'], 'public');
         }
 
-        $contrato->concepto = $valido['concepto'];
+        $contrato->concepto_facturas_id = $valido['concepto'];
+
         $contrato->referencia = $valido['referencia'];
         $contrato->fecha_firma = $valido['fecha_firma'];
         $contrato->base_imponible = $valido['base_imponible'];

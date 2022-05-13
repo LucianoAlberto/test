@@ -6,7 +6,7 @@
           <a class="text-red-500 uppercase underline" href="{{route('clientes.show', $cliente)}}"> {{$cliente->nombre}} {{$cliente->apellidos}}</a>
         </h2>
 
-        <div class="flex justify-end "> 
+        <div class="flex justify-end ">
             <div class="block  mx-2">
                 <a href="{{ route('contratos.index', $cliente) }}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Contratos</a>
             </div>
@@ -45,7 +45,7 @@
                                     </th>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
-                                        {{ $contrato->concepto }}
+                                        {{ $conceptos->find($contrato->concepto_facturas_id)->nombre }}
                                     </td>
 
                                 </tr>
@@ -126,7 +126,7 @@
                                                     </x-slot>
                                                 </x-boton2>
 
-                                                <x-boton2 tipo="descargaConAsset" class="bg-green-500 hover:bg-green-700 mr-4 w-16 h-12" direccion="{{$contrato->archivo}}">
+                                                <x-boton2 tipo="descargaConAsset" class="bg-green-400 hover:bg-green-700 mr-4 w-16 h-12" direccion="{{$contrato->archivo}}">
                                                     <x-slot name="boton">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                                                     </x-slot>
@@ -164,7 +164,7 @@
                                                 </x-slot>
                                             </x-boton2>
 
-                                            <x-boton2 tipo="descargaConAsset" class="bg-green-500 hover:bg-green-700 mr-4 w-16" direccion="{{$contrato->presupuesto}}">
+                                            <x-boton2 tipo="descargaConAsset" class="bg-green-400 hover:bg-green-700 mr-4 w-16" direccion="{{$contrato->presupuesto}}">
                                                 <x-slot name="boton">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                                                 </x-slot>

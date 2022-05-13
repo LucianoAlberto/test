@@ -18,7 +18,7 @@ class ContratoFactory extends Factory
     {
         return [
             'cliente_id' => $this->faker->numberBetween(1, 2),
-            'concepto' => $this->faker->sentence($nbWords = 6, $variableNbWords = true),
+            'concepto_facturas_id' => $this->faker->numberBetween(1, 2),
             'referencia' => $this->faker->randomNumber(),
             'base_imponible' => $this->faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 1000),
             'iva' => $this->faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 100),

@@ -55,7 +55,7 @@ class ClienteController extends Controller
         $cliente = Cliente::first();
         $criterios = Schema::getColumnListing($cliente->getTable());
 
-        //dd($criterios);
+        //dd($clientes);
        return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes', 'criterios'));
     }
 
@@ -148,9 +148,10 @@ class ClienteController extends Controller
     public function update(ClienteRequest $request, Cliente $cliente)
     {
         $validated = $request->validated();
-        $cliente->nombre=$validated["nombre"];
-        $cliente->apellidos=$validated["apellidos"];
-        $cliente->dni=$validated['dni'];
+
+        $cliente->nombre = $validated["nombre"];
+        $cliente->apellidos = $validated["apellidos"];
+        $cliente->dni = $validated['dni'];
         $cliente->anho_contable = $validated["anho_contable"];
         $cliente->direccion_fiscal = $validated["direccion_fiscal"];
         $cliente->domicilio = $validated["domicilio"];
@@ -161,12 +162,22 @@ class ClienteController extends Controller
         $cliente->n_tarjeta = $validated["n_tarjeta"];
         $cliente->email = $validated["email"];
         $cliente->telefono = $validated["telefono"];
-        $cliente->updated_at=now("Europe/Madrid");
+        $cliente->updated_at = now("Europe/Madrid");
 
         $cliente->save();
 
+        $cliente->ambitos()->detach();
+        //dd($validated['ambito']);
+        if(isset($validated['ambito'])){
+            foreach($validated['ambito'] as $clave => $ambito){
+                //dd($clave);
+                //$ambito = Ambito::where('id', $clave)->select('id')->first();
+                $cliente->ambitos()->attach($clave);
+            }
+        }
+
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('clientes.index', compact('rolConPoderes'))->with('editado','si');
+        return redirect()->route('clientes.index')->with('editado','si');
     }
 
     /**
@@ -181,10 +192,11 @@ class ClienteController extends Controller
         Factura::where('cliente_id', $cliente->id)->delete();
         Proyecto::where('cliente_id', $cliente->id)->delete();
 
+        $cliente->ambitos()->detach();
         $cliente->delete();
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('clientes.index', compact('rolConPoderes'))->with('eliminado','si');
+        return redirect()->route('clientes.index')->with('eliminado','si');
     }
 
 

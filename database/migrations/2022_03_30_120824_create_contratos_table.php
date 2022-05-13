@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('contratos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('cliente_id')->constrained();
-            $table->string('concepto')->nullable();
+            $table->foreignId('concepto_facturas_id')->constrained()->nullable();
             $table->string('referencia');
             $table->decimal('base_imponible', 8, 2)->nullable();
             $table->decimal('iva', 5, 2)->nullable();

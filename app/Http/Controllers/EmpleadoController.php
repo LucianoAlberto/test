@@ -200,6 +200,7 @@ class EmpleadoController extends Controller
      */
     public function edit(Empleado $empleado)
     {
+        //dd($empleado);
         $ambitos = Ambito::all();
 
         return view('empleados.edit', compact('empleado', 'ambitos'));
@@ -214,11 +215,11 @@ class EmpleadoController extends Controller
      */
     public function update(EmpleadoRequest $request, Empleado $empleado)
     {
+        //dd($empleado);
         $validated = $request->validated();
 
         //dd($validated);
 
-        $empleado = new Empleado;
         $empleado->nombre = $validated["nombre"];
         $empleado->apellidos = $validated["apellidos"];
         $empleado->dni = $validated["dni"];
@@ -265,13 +266,17 @@ class EmpleadoController extends Controller
         $empleado->save();
 
         $empleado->ambitos()->detach();
+        //dd($validated['ambito']);
         if(isset($validated['ambito'])){
             foreach($validated['ambito'] as $clave => $ambito){
-                $ambito = Ambito::where('id', $clave)->select('id')->first();
-                $empleado->ambitos()->attach($ambito);
+                //dd($clave);
+                //$ambito = Ambito::where('id', $clave)->select('id')->first();
+                $empleado->ambitos()->attach($clave);
+
             }
         }
-
+        //dd($empleado->id);
+        //dd($empleado->ambitos()->get());
         if($validated["nominas"][0]["fecha_inicio"] != null){
             foreach($validated["nominas"] as $nomina){
                 $nueva_nomina = new Nomina;
@@ -336,7 +341,7 @@ class EmpleadoController extends Controller
         }
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('empleados.index', compact('rolConPoderes'));
+        return redirect()->route('empleados.index');
     }
 
     /**

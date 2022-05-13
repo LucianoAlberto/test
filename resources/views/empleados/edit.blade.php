@@ -144,7 +144,7 @@
                                         <div class="w-1/2 mx-2">
                                             <label for="fecha_inicio_practicas" class="block font-medium text-sm text-gray-700">Fecha inicio</label>
                                             <input type="date" name="fecha_inicio_practicas" id="fecha_inicio_practicas" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                value="{{ old('fecha_inicio_practicas', isset($empleado->practica->fecha_inicio_practicas) ? $empleado->practica->fecha_inicio_practicas:'') }}"  />
+                                                value="{{ old('fecha_inicio_practicas', isset($empleado->practica->fecha_inicio) ? $empleado->practica->fecha_inicio:'') }}"  />
                                             @error('fecha_inicio_practicas')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
@@ -153,7 +153,7 @@
                                         <div class="w-1/2 ml-2">
                                             <label for="fecha_fin_practicas" class="block font-medium text-sm text-gray-700">Fecha fin</label>
                                             <input type="date" name="fecha_fin_practicas" id="fecha_fin_practicas" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                value="{{ old('fecha_fin_practicas', isset($empleado->practica->fecha_fin_practicas) ? $empleado->practica->fecha_fin_practicas:'') }}"  />
+                                                value="{{ old('fecha_fin_practicas', isset($empleado->practica->fecha_fin) ? $empleado->practica->fecha_fin:'') }}"  />
                                             @error('fecha_fin_practicas')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror

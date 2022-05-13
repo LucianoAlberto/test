@@ -89,8 +89,8 @@
             </div>
 
             <div class="flex items-center justify-center">
-                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                Enviar
+                <button class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Guardar
                 </button>
             </div>
         </form>

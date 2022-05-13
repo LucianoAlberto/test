@@ -41,7 +41,13 @@ window.deleteConfirm = function(formId, event)
        }
    });
 }
-window.
+
+//abrir ventana modal
+window.ventana=function(e){
+    window.open("http://gestioninterna.loc/storage/contratos/archivos/pq05sFzUHeQBM3s405f0aRbNRGrfmvO9jJbUTfRE.txt", "_blank", "scrollbars=yes,top=500,left=500,width=900,height=800"); 
+}
+
+
 window.detalles = function(vista, event)
 {
     //console.log(event.target.tagName);

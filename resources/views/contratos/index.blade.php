@@ -89,11 +89,13 @@
 
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
                                                     @if($contrato->archivo != null)
-                                                        <x-boton2 tipo="linkConAsset" class="bg-blue-500 hover:bg-blue-700 w-16 h-12 m-auto" direccion="{{$contrato->archivo}}">
+                                                       {{-- <x-boton2 tipo="linkConAsset" class="bg-blue-500 hover:bg-blue-700 w-16 h-12 m-auto" direccion="{{$contrato->archivo}}">
                                                             <x-slot name="boton">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                                                             </x-slot>
-                                                        </x-boton2>
+                                                        </x-boton2> --}}
+                                                        <button onclick="ventana();"> Ver</button>
+
                                                     @else
                                                         <x-boton2 tipo="div" class="bg-slate-300 w-16 cursor-not-allowed h-12 m-auto">
                                                             <x-slot name="boton">

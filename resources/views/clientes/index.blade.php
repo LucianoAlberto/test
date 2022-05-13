@@ -296,7 +296,7 @@
     </div>
 
     </div>
-
+{{--avisos mensages --}}
     @if (session('creado') == 'si')
         <script>
             Swal.fire({
@@ -330,6 +330,8 @@
             })
         </script>
     @endif
+
+    {{--fin avisos--}}
 
     </div>
 </x-app-layout>

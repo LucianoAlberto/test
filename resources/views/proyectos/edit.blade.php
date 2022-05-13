@@ -18,6 +18,10 @@
             <div class="block  mx-2">
                 <a href="{{route('proyectos.index',$proyecto->cliente)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Proyectos</a>
             </div>
+
+            <div class="block  mx-2">
+                <a href="{{route('pagos.index',$proyecto->cliente)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Pagos</a>
+            </div>
         </div>
     </div>
     </x-slot>

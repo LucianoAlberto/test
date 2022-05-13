@@ -17,27 +17,14 @@
                     <a href="{{ route('facturas.index', $cliente) }}"
                         class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Facturas</a>
                 </div>
+
+                <div class="block  mx-2">
+                    <a href="{{route('pagos.index',$cliente)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Pagos</a>
+                </div>
             </div>
         </div>
     </x-slot>
     <!---Fin menu superior-->
-    <div class="pl-8 ml-8 mt-4 flex justify-start">
-        <x-boton2 tipo="link" class="bg-green-600 hover:bg-green-700 flex justify-around w-44 h-10"
-            direccion="{{ route('proyectos.create', $cliente) }}">
-            <x-slot name="boton">
-                Añadir Proyecto
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-file-plus">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                    <polyline points="14 2 14 8 20 8"></polyline>
-                    <line x1="12" y1="18" x2="12" y2="12"></line>
-                    <line x1="9" y1="15" x2="15" y2="15"></line>
-                </svg>
-            </x-slot>
-        </x-boton2>
-    </div>
-
     <div class="pt-4 pb-12 ">
         <div class="mx-auto sm:px-6 lg:px-8">
             <div class="mx-auto pb-10 sm:px-6 lg:px-8 ">
@@ -46,7 +33,19 @@
                         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                                 <table class="min-w-full divide-y divide-gray-200 w-full">
-                                    <h3 class="text-center font-bold uppercase w-full py-5 bg-gray-300">Proyectos</h3>
+                                   
+                                    <div >
+                                        <label class=" justify-center font-bold uppercase w-full py-5 bg-gray-300 flex items-center ">
+                                            Proyectos
+                                            <x-boton2 tipo="link"
+                                            class=" ml-2 bg-green-800 hover:bg-green-700  py-2 px-2 w-10 "
+                                            direccion="{{ route('proyectos.create', $cliente) }}">
+                                            <x-slot name="boton">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-plus"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+                                            </x-slot>
+                                        </x-boton2>
+                                        </label>
+                                    </div>
                                     <thead>
                                         <tr>
                                             <th scope="col" width="50"

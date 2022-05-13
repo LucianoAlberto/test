@@ -5091,6 +5091,8 @@ window.deleteConfirm = function (formId, event) {
     texto = '¿Desea borrar este contrato?';
   } else if (event.target.closest("form").classList.contains("proyecto")) {
     texto = '¿Desea borrar este proyecto?';
+  } else if (event.target.closest("form").classList.contains("pago")) {
+    texto = '¿Desea borrar este pago?';
   }
 
   sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
@@ -5105,18 +5107,25 @@ window.deleteConfirm = function (formId, event) {
       document.getElementById(formId).submit();
     }
   });
-}; //abrir ventana modal
-
-
-window.ventana = function (e) {
-  window.open("http://gestioninterna.loc/storage/contratos/archivos/pq05sFzUHeQBM3s405f0aRbNRGrfmvO9jJbUTfRE.txt", "_blank", "scrollbars=yes,top=500,left=500,width=900,height=800");
 };
+/*abrir ventana modal
+window.ventana=function(e){
+   console.log(document.getElementById('bbb').getAttribute('direccion'));
+ window.open(document.getElementById('bbb').getAttribute('direccion'), "_blank", "scrollbars=yes,top=500,left=500,width=900,height=800"); 
+}
+*/
+
 
 window.detalles = function (vista, event) {
   //console.log(event.target.tagName);
   if (event.target.tagName == "TD") {
     window.location.href = vista;
   }
+};
+
+window.anadirPago = function () {
+  var div = document.getElementById('nuevo_pago');
+  div.style.display = 'block';
 };
 
 window.masFactura = function (event) {

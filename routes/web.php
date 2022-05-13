@@ -3,9 +3,9 @@
 use App\Models\Ambito;
 use App\Models\Cliente;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PagoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FaltaController;
-use App\Http\Controllers\PagosController;
 use App\Http\Controllers\NominaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\FacturaController;
@@ -40,6 +40,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/clientes', function () {
 })->name('dashboard');
 
 //Route::resource('clientes', ClienteController::class);
+//Route::resource('pagos', PagoController::class);
 Route::match(['get', 'post'], '/clientes', [ClienteController::class, 'index'])->name('clientes.index');
 
 Route::get('/clientes/create', [ClienteController::class, 'create'])->name('clientes.create');
@@ -128,4 +129,6 @@ Route::get('/empleados/{empleado}/vacaciones/create', [VacacionController::class
 Route::post('/empleados/{empleado}/vacaciones', [VacacionController::class, 'store'])->name('vacaciones.store');
 Route::get('/empleados/{empleado}/vacaciones/{vacacion}', [VacacionController::class, 'show'])->name('vacaciones.show');
 
-
+Route::get('/clientes/{cliente}/pagos',[PagoController::class,'index'])->name('pagos.index');
+Route::post('/clientes/{cliente}/pagos',[PagoController::class,'store'])->name('pagos.store');
+Route::post('/clientes/{cliente}/pagos/{pago}',[PagoController::class,'destroy'])->name('pagos.destroy');

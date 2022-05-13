@@ -128,10 +128,7 @@ Route::get('/empleados/{empleado}/vacaciones', [VacacionController::class, 'inde
 Route::get('/empleados/{empleado}/vacaciones/create', [VacacionController::class, 'create'])->name('vacaciones.create');
 Route::post('/empleados/{empleado}/vacaciones', [VacacionController::class, 'store'])->name('vacaciones.store');
 Route::get('/empleados/{empleado}/vacaciones/{vacacion}', [VacacionController::class, 'show'])->name('vacaciones.show');
-<<<<<<< HEAD
-=======
 
 Route::get('/clientes/{cliente}/pagos',[PagoController::class,'index'])->name('pagos.index');
 Route::post('/clientes/{cliente}/pagos',[PagoController::class,'store'])->name('pagos.store');
 Route::post('/clientes/{cliente}/pagos/{pago}',[PagoController::class,'destroy'])->name('pagos.destroy');
->>>>>>> refs/remotes/origin/Final

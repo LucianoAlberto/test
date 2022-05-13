@@ -6,15 +6,15 @@
               <a class="text-red-500 uppercase underline" href="{{route('clientes.show', $cliente)}}"> {{$cliente->nombre}} {{$cliente->apellidos}}</a>
             </h2>
 
-            <div class="flex justify-end "> 
+            <div class="flex justify-end ">
                 <div class="block  mx-2">
                     <a href="{{ route('contratos.index', $cliente) }}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Contratos</a>
                 </div>
-    
+
                 <div class="block  mx-2">
                     <a href="{{ route('facturas.index',$cliente) }}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Facturas</a>
                 </div>
-    
+
                 <div class="block  mx-2">
                     <a href="{{route('proyectos.index',$cliente)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Proyectos</a>
                 </div>
@@ -32,7 +32,7 @@
                     @method('PUT')
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
-                            <div class="mb-4">                             
+                            <div class="mb-4">
                                 <div class="flex justify-between mb-8">
                                     <div class="w-2/5 mr-2">
                                         <label for="nombre" class="block font-medium text-sm text-gray-700">Nombre</label>
@@ -55,7 +55,7 @@
                                     <div class="w-1/5 ml-2">
                                         <label for="dni" class="block font-medium text-sm text-gray-700">DNI</label>
                                         <input type="text" name="dni" id="dni" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old('dni', $cliente->apellidos) }}" />
+                                            value="{{ old('dni', $cliente->dni) }}" />
                                         @error('dni')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror

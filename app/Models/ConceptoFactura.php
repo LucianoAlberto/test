@@ -19,4 +19,12 @@ class ConceptoFactura extends Model
     {
         return $this->belongsToMany(Factura::class);
     }
+
+    /**
+     * Obtiene los contratos asociados a este concepto.
+     */
+    public function contratos()
+    {
+        return $this->belongsToMany(Contrato::class);
+    }
 }

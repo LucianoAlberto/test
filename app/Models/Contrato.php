@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\ConceptoFactura;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Contrato extends Model
 {
@@ -42,5 +43,13 @@ class Contrato extends Model
     public function pagos()
     {
         return $this->hasMany(Pago::class);
+    }
+
+    /**
+     * Obtiene el concepto asociado a este contrato.
+     */
+    public function concepto()
+    {
+        return $this->belongsTo(ConceptoFactura::class);
     }
 }

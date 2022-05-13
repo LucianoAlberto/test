@@ -19,10 +19,11 @@ class ContratoController extends Controller
     public function index(Cliente $cliente)
     {
         $contratos = Contrato::where('cliente_id', $cliente->id)->paginate(10);
-        $conceptos=ConceptoFactura::all();
-      
+        //dd($contratos[0]->concepto());
         $rolConPoderes = self::ROLCONPODERES;
-        return view('contratos.index', compact('cliente', 'contratos', 'rolConPoderes','conceptos'));
+        $conceptos = ConceptoFactura::all();
+
+        return view('contratos.index', compact('cliente', 'contratos', 'rolConPoderes', 'conceptos'));
     }
 
     /**
@@ -32,7 +33,7 @@ class ContratoController extends Controller
      */
     public function create(Cliente $cliente)
     {
-        $conceptos=ConceptoFactura::all(['id','nombre']);
+        $conceptos = ConceptoFactura::all(['id','nombre']);
         return view('contratos.create',compact('cliente', 'conceptos'));
     }
 
@@ -58,7 +59,9 @@ class ContratoController extends Controller
             $contrato->presupuesto = Storage::disk('public')->putFile('contratos/presupuestos',$valido['presupuesto'], 'public');
         }
 
-        $contrato->concepto = $valido['concepto'];
+        $concepto = Concepto::where("nombre", $valido['concepto']);
+        $contrato->concepto = $concepto->id;
+
         $contrato->referencia = $valido['referencia'];
         $contrato->fecha_firma = $valido['fecha_firma'];
         $contrato->base_imponible = $valido['base_imponible'];

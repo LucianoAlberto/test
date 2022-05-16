@@ -89,7 +89,6 @@ class ConceptoFacturaController extends Controller
 
     public function eliminar(Request $request)
     {
-        //dd($request);
         ConceptoFactura::where('nombre', $request['eliminarConcepto'])->delete();
 
         return redirect()->back()->with('conceptoEliminado','si');

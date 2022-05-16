@@ -29,6 +29,7 @@
     <div>
         <div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8">
 
+
     {{--Formulario para un Nuevo concepto--}}
     <div class="w-1/2 max-w-xs  m-auto mt-5 mb-5 bg-gray-300 border-2" id='nuevoConcepto' hidden >
 
@@ -63,7 +64,6 @@
         </form>
 
         {{--Eliminar concepto--}}
-
         <form class="bg-gray-300  rounded  mb-4" action="{{ route('conceptos.eliminar') }}"
             method="POST" enctype="multipart/form-data">
             @csrf
@@ -91,7 +91,7 @@
             </div>
         </form><hr>
     </div>
-
+           {{--Formulario nuevo contrato--}}
             <div class="mt-5 md:mt-0 md:col-span-2">
                 <form method="post" action="{{ route('contratos.store', $cliente) }}" enctype="multipart/form-data">
                     @csrf
@@ -100,9 +100,9 @@
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div class="flex justify-between mb-4 items-end">
                                 <div class="w-2/5 mr-2">
-                                    <label for="concepto" class="flex font-medium text-sm text-gray-700">Concepto
+                                    <label for="concepto" class="flex font-medium text-sm text-gray-700">Concepto * 
 
-                                        <x-boton2 tipo="div" class="ml-1 bg-gray-400 hover:bg-gray-300 w-6 h-6 fill-none " onclick="nuevoConcepto()">
+                                        <x-boton2 tipo="div" class="ml-2 bg-gray-800 hover:bg-gray-700 w-6 h-6 fill-none " onclick="nuevoConcepto()">
                                             <x-slot name="boton">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-slash-minus" viewBox="0 0 16 16">
                                                     <path d="m1.854 14.854 13-13a.5.5 0 0 0-.708-.708l-13 13a.5.5 0 0 0 .708.708ZM4 1a.5.5 0 0 1 .5.5v2h2a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2h-2a.5.5 0 0 1 0-1h2v-2A.5.5 0 0 1 4 1Zm5 11a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5A.5.5 0 0 1 9 12Z"/>
@@ -126,7 +126,7 @@
 
 
                                 <div class="w-2/5 mx-2">
-                                    <label for="referencia" class="block font-medium text-sm text-gray-700">Referencia Contrato</label>
+                                    <label for="referencia" class="block font-medium text-sm text-gray-700">Referencia Contrato *</label>
                                     <input type="text" name="referencia" id="referencia" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('referencia', '') }}" >
 
@@ -136,7 +136,7 @@
                                 </div>
 
                                 <div class="w-1/5 ml-2">
-                                    <label for="fecha_firma" class="block font-medium text-sm text-gray-700">Fecha</label>
+                                    <label for="fecha_firma" class="block font-medium text-sm text-gray-700">Fecha *</label>
                                     <input type="date" name="fecha_firma" id="fecha_firma" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('fecha_firma', '') }}" >
 
@@ -150,7 +150,7 @@
 
                             <div class="flex justify-between mb-4  mt-4">
                                 <div class="w-1/5 ml-2">
-                                    <label for="base_imponible" class="block font-medium text-sm text-gray-700">Base Imponible</label>
+                                    <label for="base_imponible" class="block font-medium text-sm text-gray-700">Base Imponible *</label>
                                     <input type="text" name="base_imponible" id="base_imponible" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('base_imponible', '') }}" >
 
@@ -160,7 +160,7 @@
                                 </div>
 
                                 <div class="w-1/5 mx-2">
-                                    <label for="iva" class="block font-medium text-sm text-gray-700">IVA % </label>
+                                    <label for="iva" class="block font-medium text-sm text-gray-700">IVA % *</label>
                                     <input type="text" name="iva" id="iva" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('iva', '') }}" >
 
@@ -170,7 +170,7 @@
                                 </div>
 
                                 <div class="w-1/5 mx-2">
-                                    <label for="irpf" class="block font-medium text-sm text-gray-700">IRPF % </label>
+                                    <label for="irpf" class="block font-medium text-sm text-gray-700">IRPF % * </label>
                                     <input type="text" name="irpf" id="irpf" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('irpf', '') }}" >
 
@@ -180,7 +180,7 @@
                                 </div>
 
                                 <div class="w-2/5 ml-2">
-                                    <label for="total" class="block font-medium text-sm text-gray-700">TOTAL</label>
+                                    <label for="total" class="block font-medium text-sm text-gray-700">TOTAL *</label>
                                     <input type="text" name="total" id="total" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('total', '') }}" >
 
@@ -212,12 +212,13 @@
                                 </div>
                             </div>
                         </div>
-
+                  
                         <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
                             <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-500 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                                 Crear
                             </button>
                         </div>
+                        <small class="text-red-500 px-2 ">Los campos marcados con * son OBLIGATORIOS</small>
                     </div>
                 </form>
             </div>

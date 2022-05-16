@@ -45,28 +45,25 @@ class ContratoController extends Controller
      */
     public function store(ContratoRequest $request, Cliente $cliente)
     {
-        $valido = $request->validated();
-
-        //$cliente=Cliente::where('id',"=",$valido['cliente_id'])->get()->first();
-
+        $validated = $request->validated();
         $contrato = new Contrato;
 
         if($request->hasFile('archivo')){
-            $contrato->archivo = Storage::disk('public')->putFile('contratos/archivos',$valido['archivo'], 'public');
+            $contrato->archivo = Storage::disk('public')->putFile('contratos/archivos',$validated['archivo'], 'public');
         }
 
         if($request->hasFile('presupuesto')){
-            $contrato->presupuesto = Storage::disk('public')->putFile('contratos/presupuestos',$valido['presupuesto'], 'public');
+            $contrato->presupuesto = Storage::disk('public')->putFile('contratos/presupuestos',$validated['presupuesto'], 'public');
         }
 
-        $contrato->concepto_facturas_id = $valido['concepto'];
+        $contrato->concepto_facturas_id = $validated['concepto'];
 
-        $contrato->referencia = $valido['referencia'];
-        $contrato->fecha_firma = $valido['fecha_firma'];
-        $contrato->base_imponible = $valido['base_imponible'];
-        $contrato->iva = $valido['iva'];
-        $contrato->irpf = $valido['irpf'];
-        $contrato->total = $valido['total'];
+        $contrato->referencia = $validated['referencia'];
+        $contrato->fecha_firma = $validated['fecha_firma'];
+        $contrato->base_imponible = $validated['base_imponible'];
+        $contrato->iva = $validated['iva'];
+        $contrato->irpf = $validated['irpf'];
+        $contrato->total = $validated['total'];
         $contrato->cliente_id = $cliente->id;
 
         $contrato->save();
@@ -110,14 +107,14 @@ class ContratoController extends Controller
      */
     public function update(ContratoRequest $request, Cliente $cliente, Contrato $contrato)
     {
-        $valido = $request->validated();
+        $validated = $request->validated();
 
         if($request->hasFile('archivo')){
             //Si tiene un archivo lo elimina y guarda el nuevo
             if($contrato->archivo != null){
                 Storage::disk('public')->delete($contrato->archivo);
             }
-            $contrato->archivo = Storage::disk('public')->putFile('contratos/archivos',$valido['archivo'], 'public');
+            $contrato->archivo = Storage::disk('public')->putFile('contratos/archivos',$validated['archivo'], 'public');
         }
 
         if($request->hasFile('presupuesto')){
@@ -125,17 +122,17 @@ class ContratoController extends Controller
             if($contrato->presupuesto != null){
                 Storage::disk('public')->delete($contrato->presupuesto);
             }
-            $contrato->presupuesto = Storage::disk('public')->putFile('contratos/presupuestos',$valido['presupuesto'], 'public');
+            $contrato->presupuesto = Storage::disk('public')->putFile('contratos/presupuestos',$validated['presupuesto'], 'public');
         }
 
-        $contrato->concepto_facturas_id = $valido['concepto'];
+        $contrato->concepto_facturas_id = $validated['concepto'];
 
-        $contrato->referencia = $valido['referencia'];
-        $contrato->fecha_firma = $valido['fecha_firma'];
-        $contrato->base_imponible = $valido['base_imponible'];
-        $contrato->iva = $valido['iva'];
-        $contrato->irpf = $valido['irpf'];
-        $contrato->total = $valido['total'];
+        $contrato->referencia = $validated['referencia'];
+        $contrato->fecha_firma = $validated['fecha_firma'];
+        $contrato->base_imponible = $validated['base_imponible'];
+        $contrato->iva = $validated['iva'];
+        $contrato->irpf = $validated['irpf'];
+        $contrato->total = $validated['total'];
         $contrato->cliente_id = $cliente->id;
 
         $contrato->save();

@@ -85,10 +85,11 @@ class AmbitoController extends Controller
      * @param  \App\Models\Ambito  $ambito
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ambito $ambito)
+    public function destroy(Ambito $ambito, Request $request)
     {
-        $ambito->delete();
+      
+      Ambito::where('id',$request['eliminarAmbito'])->delete();
 
-        return redirect()->back()->with('ambitoEliminado','si');
+     return redirect()->back()->with('ambito_eliminado','si');
     }
 }

@@ -44,7 +44,6 @@ class ClienteController extends Controller
                 $clientes = Cliente::conAmbito($request->ambito);
             }
         }
-      //  dd($request->busqueda);
         if(!is_null($request->busqueda) && !is_null($request->criterio)){
             $clientes = Cliente::where($request->criterio, 'LIKE','%'.$request->busqueda.'%')->paginate(10);
         }
@@ -54,8 +53,6 @@ class ClienteController extends Controller
 
        $criterios = Schema::getColumnListing('clientes');
        return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes', 'criterios'));
-
-        //dd($clientes);
 
     }
 
@@ -80,8 +77,6 @@ class ClienteController extends Controller
     public function store(ClienteRequest $request)
     {
         $validated = $request->validated();
-
-        //dd($validated);
         $cliente = new Cliente;
         $cliente->nombre = $validated["nombre"];
         $cliente->apellidos = $validated["apellidos"];
@@ -146,6 +141,9 @@ class ClienteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(ClienteRequest $request, Cliente $cliente){
+        $validated=$request->validated();
+        $cliente->nombre=$validated['nombre'];
+        $cliente->apellidos=$validated['apellidos'];
         $cliente->anho_contable = $validated["anho_contable"];
         $cliente->direccion_fiscal = $validated["direccion_fiscal"];
         $cliente->domicilio = $validated["domicilio"];
@@ -161,11 +159,9 @@ class ClienteController extends Controller
         $cliente->save();
 
         $cliente->ambitos()->detach();
-        //dd($validated['ambito']);
+   
         if(isset($validated['ambito'])){
             foreach($validated['ambito'] as $clave => $ambito){
-                //dd($clave);
-                //$ambito = Ambito::where('id', $clave)->select('id')->first();
                 $cliente->ambitos()->attach($clave);
             }
         }
@@ -197,7 +193,7 @@ class ClienteController extends Controller
             if($factura->factura != null){
                 Storage::disk('public')->delete($factura->factura);
             }
-                //dd($factura_destruida->contratos);
+        
             $factura->contratos()->detach();
             $factura->delete();
         }

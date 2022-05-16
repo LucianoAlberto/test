@@ -72,10 +72,10 @@ class ClienteRequest extends FormRequest
             'nombreComercial.string' => 'El :attribute es una cadena de caracteres.',
             'nombreSociedad.string' => 'El :attribute es una cadena de caracteres.',
             'cif.string' => 'El :attribute es una cadena de caracteres.',
-            'cuenta_bancaria.regex' => 'El :attribute no tiene el formato correcto.',
-            'n_tarjeta.regex' => 'El :attribute no tiene el formato correcto.',
+            'cuenta_bancaria.regex' => 'El :attribute no tiene el formato correcto (XX-XX-XXXX-XXXX-XX-XXXXXXXXXX).',
+            'n_tarjeta.regex' => 'El :attribute no tiene el formato correcto (XXXX-XXXX-XXXX-XXXX).',
             'email.email' => 'El :attribute es un correo electrónico.',
-            'telefono.regex' => 'El :attribute no tiene el formato correcto.',
+            'telefono.regex' => 'El :attribute no tiene el formato correcto (9 dígitos o + prefijo y 9 dígitos).',
         ];
     }
 

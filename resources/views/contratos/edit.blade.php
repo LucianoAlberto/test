@@ -127,7 +127,7 @@
                         </h3>
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div class="flex justify-between mb-4">
-                                <div class="w-1/3">
+                                <div class="w-2/5 mr-2">
                                     <label for="concepto" class="flex font-medium text-sm text-gray-700">Concepto
                                         <x-boton2 tipo="div"
                                             class="ml-1 bg-gray-400 hover:bg-gray-300 w-6 h-6 fill-none "
@@ -160,7 +160,7 @@
                                 </div>
 
 
-                                <div class="w-1/20 mr-5">
+                                <div class="w-2/5 mx-2">
                                     <label for="referencia"
                                         class="block font-medium text-sm text-gray-700 mt-1">Referencia Contrato</label>
                                     <input type="text" name="referencia" id="referencia"
@@ -172,7 +172,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="w-1/4 mr-5">
+                                <div class="w-1/5 ml-2">
                                     <label for="fecha_firma"
                                         class="block font-medium text-sm text-gray-700">Fecha</label>
                                     <input type="date" name="fecha_firma" id="fecha_firma"
@@ -185,11 +185,11 @@
                                 </div>
 
                             </div>
+
                             <hr>
 
-                            {{-- Formmulario para crear nuevo contrato --}}
                             <div class="flex justify-between mb-4  mt-4">
-                                <div class="w-1/1 mr-5">
+                                <div class="w-1/5 mr-2">
                                     <label for="base_imponible" class="block font-medium text-sm text-gray-700">Base
                                         Imponible</label>
                                     <input type="text" name="base_imponible" id="base_imponible"
@@ -201,7 +201,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="w-1/20 mr-5">
+                                <div class="w-1/5 mx-2">
                                     <label for="iva" class="block font-medium text-sm text-gray-700">IVA % </label>
                                     <input type="text" name="iva" id="iva"
                                         class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -212,7 +212,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="w-1/10 mr-5">
+                                <div class="w-1/5 mx-2">
                                     <label for="irpf" class="block font-medium text-sm text-gray-700">IRPF % </label>
                                     <input type="text" name="irpf" id="irpf"
                                         class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -223,7 +223,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="w-1/2 mr-5">
+                                <div class="w-2/5 ml-2">
                                     <label for="total" class="block font-medium text-sm text-gray-700">TOTAL</label>
                                     <input type="text" name="total" id="total"
                                         class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -234,12 +234,14 @@
                                     @enderror
                                 </div>
                             </div>
+
+                            <hr>
+
                             <div class="flex mt-4">
-                                <div>
-                                    <label for="archivo" class="block font-medium text-sm text-gray-700 py-1">Adjuntar
-                                        contrato</label>
+                                <div class="w-1/2 mr-2">
+                                    <label for="archivo" class="block font-medium text-sm text-gray-700 mb-2">Adjuntar contrato</label>
                                     @if ($contrato->archivo != null)
-                                        <div class="flex">
+                                        <div class="flex mb-2">
                                             <x-boton2 tipo="linkConAsset"
                                                 class="bg-blue-500 hover:bg-blue-700 mr-4 w-16"
                                                 direccion="{{ $contrato->archivo }}">
@@ -270,7 +272,7 @@
                                             </x-boton2>
                                         </div>
                                     @else
-                                        <div class="flex">
+                                        <div class="flex mb-2">
                                             <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
                                                 <x-slot name="boton">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -305,11 +307,10 @@
                                     @enderror
                                 </div>
 
-                                <div>
-                                    <label for="presupuesto" class="block font-medium text-sm text-gray-700 py-1">Adjuntar
-                                        presupuesto</label>
+                                <div class="w-1/2 ml-2">
+                                    <label for="presupuesto" class="block font-medium text-sm text-gray-700 mb-2">Adjuntar presupuesto</label>
                                     @if ($contrato->archivo != null)
-                                        <div class="flex">
+                                        <div class="flex mb-2">
                                             <x-boton2 tipo="linkConAsset"
                                                 class="bg-blue-500 hover:bg-blue-700 mr-4 w-16"
                                                 direccion="{{ $contrato->presupuesto }}">
@@ -340,7 +341,7 @@
                                             </x-boton2>
                                         </div>
                                     @else
-                                        <div class="flex">
+                                        <div class="flex mb-2">
                                             <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
                                                 <x-slot name="boton">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"

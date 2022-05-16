@@ -139,9 +139,8 @@
                                             class="block font-medium text-sm text-gray-700 mt-1">Referencia</label>
 
                                         <select name="referencia" id="referencia"
-                                            class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            >
-
+                                            class="form-input rounded-md shadow-sm mt-1 block w-full">
+                                            <option value="0">Sin Contrato</option>
                                             {{-- recuperamos todos los conceptos de la BD para poder selecionar alguno --}}
                                             @foreach ($contratos as $contrato)
                                                 <option value="{{ $contrato->referencia}}"
@@ -205,7 +204,7 @@
                                           Subir SEPA
                                         </label>
                                         @if ($proyecto->sepa != null)
-                                        <div class="flex">
+                                        <div class="flex mb-2">
                                             <x-boton2 tipo="linkConAsset"
                                                 class="bg-blue-500 hover:bg-blue-700 mr-4 w-16"
                                                 direccion="{{ $proyecto->sepa }}">
@@ -236,7 +235,7 @@
                                             </x-boton2>
                                         </div>
                                     @else
-                                        <div class="flex">
+                                        <div class="flex mb-2">
                                             <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
                                                 <x-slot name="boton">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -274,7 +273,7 @@
                                           Subir Hoja Preferencia
                                         </label>
                                         @if ($proyecto->preferencias != null)
-                                        <div class="flex">
+                                        <div class="flex mb-2">
                                             <x-boton2 tipo="linkConAsset"
                                                 class="bg-blue-500 hover:bg-blue-700 mr-4 w-16"
                                                 direccion="{{ $proyecto->preferencias }}">
@@ -305,7 +304,7 @@
                                             </x-boton2>
                                         </div>
                                     @else
-                                        <div class="flex">
+                                        <div class="flex mb-2">
                                             <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
                                                 <x-slot name="boton">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"

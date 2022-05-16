@@ -6,15 +6,15 @@
               <a class="text-red-500 uppercase underline" href="{{route('clientes.show', $cliente)}}"> {{$cliente->nombre}} {{$cliente->apellidos}}</a>
             </h2>
 
-            <div class="flex justify-end "> 
+            <div class="flex justify-end ">
                 <div class="block  mx-2">
                     <a href="{{ route('contratos.index', $cliente) }}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Contratos</a>
                 </div>
-    
+
                 <div class="block  mx-2">
                     <a href="{{ route('facturas.index',$cliente) }}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Facturas</a>
                 </div>
-    
+
                 <div class="block  mx-2">
                     <a href="{{route('proyectos.index',$cliente)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Proyectos</a>
                 </div>
@@ -41,7 +41,7 @@
         </div>
 
         <form class="bg-gray-300  rounded mb-4" action="{{ route('conceptos.store') }}"
-            method="POST" enctype="multipart/form-data">            
+            method="POST" enctype="multipart/form-data">
             @csrf
             <div class="flex justify-between mx-5 place-content-center py-2">
                 <input
@@ -59,7 +59,7 @@
                 @error('nuevoConcepto')
                     <p class="text-sm text-red-600">{{ $message }}</p>
                 @enderror
-            </div>           
+            </div>
         </form>
 
         {{--Eliminar concepto--}}
@@ -68,7 +68,7 @@
             method="POST" enctype="multipart/form-data">
             @csrf
             <div class=" flex justify-between mx-5 place-content-center py-2">
-            
+
                 <select name="eliminarConcepto" id="eliminarConcepto"  class="form-input rounded-md shadow-sm mt-1 block w-3/4 mx-auto">
                     <option value="">Seleciona concepto</option>
                     @foreach ($conceptos as $concepto)
@@ -84,7 +84,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
                     </x-slot>
                 </x-boton2>
-                
+
                 @error('eliminaConcepto')
                     <p class="text-sm text-red-600">{{ $message }}</p>
                 @enderror
@@ -98,8 +98,8 @@
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <h3 class="text-center font-bold uppercase w-full py-5 bg-gray-300">Nuevo Contrato</h3>
                         <div class="px-4 py-5 bg-white sm:p-6">
-                            <div class="flex justify-between mb-4">
-                                <div class="w-1/3">
+                            <div class="flex justify-between mb-4 items-end">
+                                <div class="w-2/5 mr-2">
                                     <label for="concepto" class="flex font-medium text-sm text-gray-700">Concepto
 
                                         <x-boton2 tipo="div" class="ml-1 bg-gray-400 hover:bg-gray-300 w-6 h-6 fill-none " onclick="nuevoConcepto()">
@@ -125,7 +125,7 @@
                                 </div>
 
 
-                                <div class="w-1/20 mr-5 mt-1">
+                                <div class="w-2/5 mx-2">
                                     <label for="referencia" class="block font-medium text-sm text-gray-700">Referencia Contrato</label>
                                     <input type="text" name="referencia" id="referencia" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('referencia', '') }}" >
@@ -135,7 +135,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="w-1/4 mr-5 mt-1">
+                                <div class="w-1/5 ml-2">
                                     <label for="fecha_firma" class="block font-medium text-sm text-gray-700">Fecha</label>
                                     <input type="date" name="fecha_firma" id="fecha_firma" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('fecha_firma', '') }}" >
@@ -144,12 +144,12 @@
                                         <p class="text-sm text-red-600">{{ $message }}</p>
                                     @enderror
                                 </div>
+                            </div>
 
-                            </div><hr>
+                            <hr>
 
-                            {{--Formmulario para crear nuevo contrato--}}
                             <div class="flex justify-between mb-4  mt-4">
-                                <div class="w-1/1 mr-5">
+                                <div class="w-1/5 ml-2">
                                     <label for="base_imponible" class="block font-medium text-sm text-gray-700">Base Imponible</label>
                                     <input type="text" name="base_imponible" id="base_imponible" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('base_imponible', '') }}" >
@@ -159,7 +159,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="w-1/20 mr-5">
+                                <div class="w-1/5 mx-2">
                                     <label for="iva" class="block font-medium text-sm text-gray-700">IVA % </label>
                                     <input type="text" name="iva" id="iva" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('iva', '') }}" >
@@ -169,7 +169,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="w-1/10 mr-5">
+                                <div class="w-1/5 mx-2">
                                     <label for="irpf" class="block font-medium text-sm text-gray-700">IRPF % </label>
                                     <input type="text" name="irpf" id="irpf" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('irpf', '') }}" >
@@ -179,7 +179,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="w-1/2 mr-5">
+                                <div class="w-2/5 ml-2">
                                     <label for="total" class="block font-medium text-sm text-gray-700">TOTAL</label>
                                     <input type="text" name="total" id="total" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('total', '') }}" >
@@ -188,10 +188,12 @@
                                         <p class="text-sm text-red-600">{{ $message }}</p>
                                     @enderror
                                 </div>
-
                             </div>
-                            <div class="flex">
-                                <div>
+
+                            <hr>
+
+                            <div class="flex mt-4">
+                                <div class="w-1/2 mr-2">
                                     <label for="archivo" class="block font-medium text-sm text-gray-700">Adjuntar contrato</label>
                                     <input type="file" name="archivo" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old("archivo", '') }}" />
@@ -200,7 +202,7 @@
                                     @enderror
                                 </div>
 
-                                <div>
+                                <div class="w-1/2 ml-2">
                                     <label for="presupuesto" class="block font-medium text-sm text-gray-700">Adjuntar presupuesto</label>
                                     <input type="file" name="presupuesto" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old("presupuesto", '') }}" />
@@ -233,7 +235,7 @@
                 timer: 1500
             })
         </script>
-        
+
     @elseif (session('eliminado') == 'si')
         <script>
             Swal.fire({
@@ -244,7 +246,7 @@
                 timer: 1500
             })
         </script>
-    
+
     @elseif (session('editado') == 'si')
         <script>
             Swal.fire({
@@ -279,6 +281,6 @@
 </script>
     @endif
     {{--fin avisos sessiones--}}
-    
+
     </div>
 </x-app-layout>

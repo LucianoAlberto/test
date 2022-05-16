@@ -7,7 +7,7 @@
                     <div class="shadow overflow-hidden sm:rounded-md ">
                         <h3 class="text-center font-bold uppercase w-full py-5 bg-gray-300">Nuevo Cliente</h3>
                         <div class="px-4 py-5 bg-white sm:p-6 divide-y-4">
-                            <div class="divDatosPersonales mb-4">                              
+                            <div class="divDatosPersonales mb-4">
                                 <div class="flex justify-between mb-8">
                                     <div class="w-2/5 mr-2">
                                         <label for="nombre" class="block font-medium text-sm text-gray-700">Nombre</label>
@@ -120,7 +120,7 @@
                                     <div class="w-2/6 ml-2 mr-2">
                                         <label for="telefono" class="block font-medium text-sm text-gray-700">Teléfono</label>
                                         <input type="text" name="telefono" id="telefono" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old('telefono', '') }}" placeholder="(+34|0034) xxxxxxxxx" />
+                                            value="{{ old('telefono', '') }}" placeholder="(+34/0034) XXXXXXXXX" />
                                         @error('telefono')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror

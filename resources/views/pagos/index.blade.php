@@ -7,15 +7,15 @@
               <a class="text-red-500 uppercase underline" href="{{route('clientes.show', $cliente)}}"> {{$cliente->nombre}} {{$cliente->apellidos}}</a>
             </h2>
 
-            <div class="flex justify-end "> 
+            <div class="flex justify-end ">
                 <div class="block  mx-2">
                     <a href="{{ route('contratos.index', $cliente) }}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Contratos</a>
                 </div>
-    
+
                 <div class="block  mx-2">
                     <a href="{{ route('facturas.index',$cliente) }}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Facturas</a>
                 </div>
-    
+
                 <div class="block  mx-2">
                     <a href="{{route('proyectos.index',$cliente)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Proyectos</a>
                 </div>
@@ -142,18 +142,18 @@
                                                     class="px-6 py-3 font-bold  bg-gray-300  text-center text-xs font-medium text-black uppercase tracking-wider">
                                                     REFERENCIA CONTRATO
                                                 </th>
-
+                                                @role($rolConPoderes)
                                                 <th scope="col" width="200"
                                                     class=" w-1/4 py-3 font-bold  bg-gray-300  text-xs font-medium text-black uppercase tracking-wider ">
                                                     Opciones
                                                 </th>
-
+                                                @endrole
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             @foreach ($cliente->pagos as $pago)
                                                 <tr class="hover:bg-green-300">
-                                                    
+
                                                     <td
                                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
                                                         {{ $pago->fecha }}
@@ -175,64 +175,52 @@
                                                         @else
                                                         <a
                                                         href="{{ route('contratos.show',['cliente' => $cliente, 'contrato' => $pago->contrato]) }}">{{ $pago->contrato->referencia }}</a>
-                                                           
+
                                                         @endif
                                                     </td>
                                                     @role($rolConPoderes)
-                                                    <td
-                                                        class="px-6 py-6 whitespace-nowrap text-sm font-medium flex justify-center">
+                                                    <td class="px-6 py-6 whitespace-nowrap text-sm font-medium flex justify-center items-center">
                                                         <x-boton2 tipo="link"
-                                                                class="bg-yellow-400 hover:bg-yellow-600 mr-4 w-16"
-                                                                direccion="">
-                                                                <x-slot name="boton">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32"
-                                                                        height="32" viewBox="0 0 24 24" fill="none"
-                                                                        stroke="currentColor" stroke-width="2"
-                                                                        stroke-linecap="round" stroke-linejoin="round"
-                                                                        class="feather feather-edit">
-                                                                        <path
-                                                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7">
-                                                                        </path>
-                                                                        <path
-                                                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z">
-                                                                        </path>
-                                                                    </svg>
-                                                                </x-slot>
-                                                            </x-boton2>
-
-                                                            <form id="{{ $cliente->id }}" class="pago inline-block"
-                                                                action=""
+                                                            class="bg-yellow-400 hover:bg-yellow-600 mr-4 w-14 h-14 flex items-center"
+                                                            direccion="{{ route('pagos.edit', ['pago' => $pago, 'cliente' => $cliente]) }}">
+                                                            <x-slot name="boton" class="w-full">
+                                                                <svg class="p-2.5"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-edit">
+                                                                    <path
+                                                                        d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7">
+                                                                    </path>
+                                                                    <path
+                                                                        d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z">
+                                                                    </path>
+                                                                </svg>
+                                                            </x-slot>
+                                                        </x-boton2>
+                                                            <form id="{{ $pago->id }}" class="pago inline-block"
+                                                                action="{{ route('pagos.destroy', ['cliente' => $cliente, 'pago' => $pago]) }}"
                                                                 method="POST"
                                                                 onclick="deleteConfirm('{{ $pago->id }}', event)">
                                                                 <input type="hidden" name="_method" value="DELETE">
                                                                 <input type="hidden" name="_token"
                                                                     value="{{ csrf_token() }}">
 
-                                                                <x-boton2 tipo="input" nombre="Borrar"
-                                                                    class="bg-red-600 hover:bg-red-700 w-16">
-                                                                    <x-slot name="boton">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="32"
-                                                                            height="32" viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round" stroke-linejoin="round"
-                                                                            class="feather feather-trash-2">
-                                                                            <polyline points="3 6 5 6 21 6"></polyline>
-                                                                            <path
-                                                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                                            </path>
+                                                                <x-boton2 tipo="input" nombre="Borrar" class="bg-red-600 hover:bg-red-700 w-14">
+                                                                    <x-slot name="boton" class="w-full">
+                                                                        <svg class="p-2.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                                                             <line x1="10" y1="11" x2="10" y2="17"></line>
                                                                             <line x1="14" y1="11" x2="14" y2="17"></line>
                                                                         </svg>
                                                                     </x-slot>
                                                                 </x-boton2>
-                                                            </form>                                                  
+                                                            </form>
                                                     </td>
                                                     @endrole
 
                                                 </tr>
                                             @endforeach
                                         </tbody>
-                                    </table>                         
+                                    </table>
                                 </div>
                             </div>
 
@@ -257,7 +245,7 @@
                 timer: 1500
             })
         </script>
-        
+
     @elseif (session('eliminado') == 'si')
         <script>
             Swal.fire({

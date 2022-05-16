@@ -89,6 +89,10 @@ Route::group(['middleware' => ['role:superusuario']], function () {
     Route::get('/empleados/{empleado}/vacaciones/{vacacion}/edit', [VacacionController::class, 'edit'])->name('vacaciones.edit');
     Route::put('/empleados/{empleado}/vacaciones/{vacacion}', [VacacionController::class, 'update'])->name('vacaciones.update');
     Route::delete('/empleados/{empleado}/vacaciones/{vacacion}', [VacacionController::class, 'destroy'])->name('vacaciones.destroy');
+
+    Route::get('/clientes/{cliente}/pagos/{pago}/edit', [PagoController::class, 'edit'])->name('pagos.edit');
+    Route::put('/clientes/{cliente}/pagos/{pago}', [PagoController::class, 'update'])->name('pagos.update');
+    Route::delete('/clientes/{cliente}/pagos/{pago}', [PagoController::class, 'destroy'])->name('pagos.destroy');
 });
 
 Route::get('/contratos/{cliente}', [ContratoController::class, 'index'])->name('contratos.index');

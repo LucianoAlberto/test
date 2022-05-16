@@ -188,18 +188,47 @@ class ClienteController extends Controller
      */
     public function destroy(Cliente $cliente)
     {
-        Contrato::where('cliente_id', $cliente->id)->delete();
-        Factura::where('cliente_id', $cliente->id)->delete();
-        Proyecto::where('cliente_id', $cliente->id)->delete();
+        foreach($cliente->contratos as $contrato){
+            if($contrato->archivo != null){
+                Storage::disk('public')->delete($contrato->archivo);
+            }
+            if($contrato->presupuesto != null){
+                Storage::disk('public')->delete($contrato->presupuesto);
+            }
+            $contrato->facturas()->detach();
+            $contrato->delete();
+        }
+
+        foreach($cliente->facturas as $factura){
+            if($factura->factura != null){
+                Storage::disk('public')->delete($factura->factura);
+            }
+                //dd($factura_destruida->contratos);
+            $factura->contratos()->detach();
+            $factura->delete();
+        }
+
+        foreach($cliente->proyectos as $proyecto){
+            if($proyecto->sepa != null){
+                Storage::disk('public')->delete($proyecto->sepa);
+            }
+
+            if($proyecto->preferencias != null){
+                Storage::disk('public')->delete($proyecto->preferencias);
+            }
+            $proyecto->basedatoss()->delete();
+            $proyecto->dominios()->delete();
+            $proyecto->emailcorporativos()->delete();
+            $proyecto->accesos()->delete();
+
+            $proyecto->delete();
+        }
 
         $cliente->ambitos()->detach();
         $cliente->delete();
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('clientes.index')->with('eliminado','si');
+        return redirect()->route('clientes.index', compact('rolConPoderes'))->with('eliminado','si');
     }
-
-
-
 }
 

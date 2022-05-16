@@ -170,7 +170,7 @@ class ProyectoController extends Controller
     {
         //obtenemos todos los conceptos de la BD
         $conceptos = ConceptoFactura::all(['id','nombre']);
-    
+
         //recuperamos los contratos de este cliente
         $contratos = $proyecto->cliente->contratos;
 
@@ -266,6 +266,18 @@ class ProyectoController extends Controller
      */
     public function destroy(Cliente $cliente, Proyecto $proyecto)
     {
+        if($proyecto->sepa != null){
+            Storage::disk('public')->delete($proyecto->sepa);
+        }
+
+        if($proyecto->preferencias != null){
+            Storage::disk('public')->delete($proyecto->preferencias);
+        }
+        $proyecto->basedatoss()->delete();
+        $proyecto->dominios()->delete();
+        $proyecto->emailcorporativos()->delete();
+        $proyecto->accesos()->delete();
+
         $proyecto->delete();
 
         $rolConPoderes = self::ROLCONPODERES;

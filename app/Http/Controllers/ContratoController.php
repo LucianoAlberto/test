@@ -152,16 +152,14 @@ class ContratoController extends Controller
      */
     public function destroy(Cliente $cliente, Contrato $contrato)
     {
-        $contrato_destruido = Contrato::find($contrato->id);
-
-        if($contrato_destruido->archivo != null){
-            Storage::delete($contrato_destruido->archivo);
+        if($contrato->archivo != null){
+            Storage::disk('public')->delete($contrato->archivo);
         }
-        if($contrato_destruido->presupuesto != null){
-            Storage::delete($contrato_destruido->presupuesto);
+        if($contrato->presupuesto != null){
+            Storage::disk('public')->delete($contrato->presupuesto);
         }
 
-        $contrato_destruido->delete();
+        $contrato->delete();
         $rolConPoderes = self::ROLCONPODERES;
 
         return redirect()->route('contratos.index', compact('rolConPoderes','cliente'))->with('eliminado','si');

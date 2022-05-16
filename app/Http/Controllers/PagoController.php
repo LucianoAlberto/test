@@ -28,7 +28,7 @@ class PagoController extends Controller
      */
     public function create()
     {
-       
+
     }
 
     /**
@@ -39,20 +39,19 @@ class PagoController extends Controller
      */
     public function store(Request $request, Cliente $cliente)
     {
- 
        $pago= new Pago;
-       $pago->cliente_id=$cliente->id;
-       $pago->abonado=$request['abonado'];
-       $pago->pendiente=$request['pendiente'];
-       $pago->fecha=$request['fecha'];
-       
-       if($request['referencia']==0){
+       $pago->cliente_id = $cliente->id;
+       $pago->abonado = $request['abonado'];
+       $pago->pendiente = $request['pendiente'];
+       $pago->fecha = $request['fecha'];
+
+       if($request['referencia'] == 0){
            $pago->contrato_id=null;
        }else{
            //recuperamos el id del contrato
            $contrato=Contrato::where('referencia',$request['referencia'])->select('id')->get();
            $pago->contrato_id=$contrato[0]['id'];
-       } 
+       }
         $pago->save();
         return redirect()->back()->with('creado','si');
     }
@@ -73,9 +72,9 @@ class PagoController extends Controller
      * @param  \App\Models\Pago  $pago
      * @return \Illuminate\Http\Response
      */
-    public function edit (Pago $pago)
+    public function edit (Cliente $cliente, Pago $pago)
     {
-        return view('pagos.edit',compact('pago'));
+        return view('pagos.edit',compact('pago', 'cliente'));
     }
 
     /**
@@ -85,23 +84,18 @@ class PagoController extends Controller
      * @param  \App\Models\Pago  $pago
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pago $pago)
+    public function update(Request $request, Cliente $cliente, Pago $pago)
     {
-        if($request['abonado']!=null && $request['pendiente']!=null && $request['fecha']!=null){    
-            
-        $pago->delete();
-        $pago_modificado=new Pago;
-        $pago_modificado->cliente_id=$request['cliente_id'];
-        $pago_modificado->abonado=$request['abonado'];
-        $pago_modificado->pendiente=$request['pendiente'];
-        $pago_modificado->fecha=$request['fecha'];
-        $pago_modificado->contrato_id=$request['referencia'];
-        $pago_modificado->save();
-        }
+        $pago_modificado=  new Pago;
+        $pago->cliente_id = $cliente->id;
+        $pago->abonado = $request['abonado'];
+        $pago->pendiente = $request['pendiente'];
+        $pago->fecha = $request['fecha'];
+
+        $pago->contrato_id = Contrato::where('referencia',$request['referencia'])->first()->id;
+        $pago->save();
 
         return redirect()->route('pagos.index',$pago->cliente);
-
-       
     }
 
     /**
@@ -110,7 +104,7 @@ class PagoController extends Controller
      * @param  \App\Models\Pago  $pago
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pago $pago)
+    public function destroy(Cliente $cliente, Pago $pago)
     {
         $pago->delete();
 

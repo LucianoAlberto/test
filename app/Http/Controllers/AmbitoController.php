@@ -89,11 +89,6 @@ class AmbitoController extends Controller
     {
         $ambito->delete();
 
-<<<<<<< HEAD
         return redirect()->back()->with('ambitoEliminado','si');
-=======
-        return redirect()->back()->with('ambito_creado','si');
-
->>>>>>> refs/remotes/origin/Final
     }
 }

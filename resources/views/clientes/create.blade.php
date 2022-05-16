@@ -40,12 +40,13 @@
     <form class="bg-gray-300  rounded  mb-4" action="{{ route('ambitos.destroy') }}"
         method="POST" enctype="multipart/form-data">
         @csrf
+        @method('DELETE')
         <div class=" flex justify-between mx-5 place-content-center py-2">
 
             <select name="eliminarAmbito" id="eliminarAmbito"  class="form-input rounded-md shadow-sm mt-1 block w-3/4 mx-auto">
                 <option value="">Seleciona concepto</option>
                 @foreach ($ambitos as $ambito)
-                    <option value="{{ $ambito->nombre }}"
+                    <option value="{{ $ambito->id }}"
                         {{ old('ambito') == $ambito->id ? 'selected' : '' }}>
                             {{$ambito->nombre}}
                     </option>

@@ -39,7 +39,7 @@ class PagoController extends Controller
      */
     public function store(Request $request, Cliente $cliente)
     {
-       $pago= new Pago;
+       $pago = new Pago;
        $pago->cliente_id = $cliente->id;
        $pago->abonado = $request['abonado'];
        $pago->pendiente = $request['pendiente'];
@@ -106,6 +106,7 @@ class PagoController extends Controller
      */
     public function destroy(Cliente $cliente, Pago $pago)
     {
+        dd($pago);
         $pago->delete();
 
         return redirect()->back()->with('eliminado','si');

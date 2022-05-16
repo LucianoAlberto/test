@@ -25,7 +25,7 @@ class ClienteRequest extends FormRequest
     public function rules()
     {
         return [
-            'ambito' => 'nullable',
+            'ambito' => 'required',
             'nombre' => 'required|string',
             'apellidos' => 'required|string',
 
@@ -33,28 +33,19 @@ class ClienteRequest extends FormRequest
                 'regex:/^([0-9]{8}[A-Z])|[XYZ][0-9]{7}[A-Z]$/',
             ),
             'anho_contable' => array(
-                'nullable',
+                'required',
                 'numeric',
                 'regex:/^\d{4}$/',
             ),
             'direccion_fiscal' => 'nullable|string',
             'domicilio' => 'nullable|string',
-            'nombre_comercial' => 'nullable|string',
-            'nombre_sociedad' => 'nullable|string',
-            'cif' => 'nullable|string',
-            'cuenta_bancaria' => array(
-                'nullable',
-                'regex:/^([A-Z]{2})([-]{1})(\d{2})([-]{1})(\d{4})([-]{1})(\d{4})([-]{1})(\d{2})([-]{1})(\d{10})$/',
-            ),
-            'n_tarjeta' => array(
-                'nullable',
-                'regex:/^\d{4}[-]\d{4}[-]\d{4}[-]\d{4}$/',
-            ),
-            'email' => 'nullable|email',
-            'telefono' => array(
-                'nullable',
-                'regex:/^(([\+]\d{2}|\d{4})[ |\-|\/])?\d{9}$/',
-            ),
+            'nombre_comercial' => 'required|string',
+            'nombre_sociedad' => 'required|string',
+            'cif' => 'required|string',
+            'cuenta_bancaria' =>'regex:/^([A-Z]{2})([-]{1})(\d{2})([-]{1})(\d{4})([-]{1})(\d{4})([-]{1})(\d{2})([-]{1})(\d{10})$/',
+            'n_tarjeta' =>'regex:/^\d{4}[-]\d{4}[-]\d{4}[-]\d{4}$/',
+            'email' => '|required|email',
+            'telefono' =>'regex:/^(([\+]\d{2}|\d{4})[ |\-|\/])?\d{9}$/',
         ];
     }
 

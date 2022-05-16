@@ -5108,13 +5108,6 @@ window.deleteConfirm = function (formId, event) {
     }
   });
 };
-/*abrir ventana modal
-window.ventana=function(e){
-   console.log(document.getElementById('bbb').getAttribute('direccion'));
- window.open(document.getElementById('bbb').getAttribute('direccion'), "_blank", "scrollbars=yes,top=500,left=500,width=900,height=800"); 
-}
-*/
-
 
 window.detalles = function (vista, event) {
   //console.log(event.target.tagName);
@@ -5424,39 +5417,62 @@ window.nuevoAccesso = function () {
   document.querySelector('.div_accesso').append(div);
 };
 
-window.masPago = function (event) {
-  var numeroPago = event.target.closest(".divPagos").querySelectorAll(".contenedorNominas").length;
-  var divContenedorPagos = event.target.closest(".divPagos").querySelector(".contenedorNominas").cloneNode(true); //modifico el for del label y el name e id del input
-
-  divContenedorPagos.querySelector(".divFechaInicioNomina").querySelector("label").htmlFor = "nominas[" + numeroPago + "][fecha_inicio]";
-  divContenedorPagos.querySelector(".divFechaInicioNomina").querySelector("input").name = "nominas[" + numeroPago + "][fecha_inicio]";
-  divContenedorPagos.querySelector(".divFechaInicioNomina").querySelector("input").value = null;
-  divContenedorPagos.querySelector(".divFechaFinNomina").querySelector("label").htmlFor = "nominas[" + numeroPago + "][fecha_fin]";
-  divContenedorPagos.querySelector(".divFechaFinNomina").querySelector("input").name = "nominas[" + numeroPago + "][fecha_fin]";
-  divContenedorPagos.querySelector(".divFechaFinNomina").querySelector("input").value = null;
-  divContenedorPagos.querySelector(".divFechaPagoNomina").querySelector("label").htmlFor = "nominas[" + numeroPago + "][fecha_pago]";
-  divContenedorPagos.querySelector(".divFechaPagoNomina").querySelector("input").name = "nominas[" + numeroPago + "][fecha_pago]";
-  divContenedorPagos.querySelector(".divFechaPagoNomina").querySelector("input").value = null;
-  divContenedorPagos.querySelector(".divHorasNomina").querySelector("label").htmlFor = "nominas[" + numeroPago + "][horas_alta_ss]";
-  divContenedorPagos.querySelector(".divHorasNomina").querySelector("input").name = "nominas[" + numeroPago + "][horas_alta_ss]";
-  divContenedorPagos.querySelector(".divHorasNomina").querySelector("input").value = null;
-  divContenedorPagos.querySelector(".divImporteTotalNomina").querySelector("label").htmlFor = "nominas[" + numeroPago + "][importe_total]";
-  divContenedorPagos.querySelector(".divImporteTotalNomina").querySelector("input").name = "nominas[" + numeroPago + "][importe_total]";
-  divContenedorPagos.querySelector(".divImporteTotalNomina").querySelector("input").value = null;
-  divContenedorPagos.querySelector(".divImportePagadoNomina").querySelector("label").htmlFor = "nominas[" + numeroPago + "][importe_pagado]";
-  divContenedorPagos.querySelector(".divImportePagadoNomina").querySelector("input").name = "nominas[" + numeroPago + "][importe_pagado]";
-  divContenedorPagos.querySelector(".divImportePagadoNomina").querySelector("input").value = null;
-  event.target.closest(".divPagos").appendChild(divContenedorPagos);
+window.crearNomina = function () {
+  var div = document.getElementById('nueva_nomina');
+  div.style.display = 'block';
 };
 
-window.menosPago = function (event) {
-  var ultimoHijoContenedorPagos = event.target.closest(".divPagos").lastElementChild;
-  var listaContenedoresPagos = event.target.closest(".divPagos").querySelectorAll(".contenedorNominas");
-
-  if (ultimoHijoContenedorPagos.classList.contains("contenedorNominas") && listaContenedoresPagos.length > 1) {
-    ultimoHijoContenedorPagos.remove();
-  }
+window.cerrarNomina = function () {
+  var div = document.getElementById('nueva_nomina');
+  div.style.display = 'none';
 };
+/*
+window.masPago = function(event)
+{
+    let numeroPago = event.target.closest(".divPagos").querySelectorAll(".contenedorNominas").length;
+
+    let divContenedorPagos = event.target.closest(".divPagos").querySelector(".contenedorNominas").cloneNode(true);
+
+    //modifico el for del label y el name e id del input
+    divContenedorPagos.querySelector(".divFechaInicioNomina").querySelector("label").htmlFor = "nominas["+numeroPago+"][fecha_inicio]";
+    divContenedorPagos.querySelector(".divFechaInicioNomina").querySelector("input").name = "nominas["+numeroPago+"][fecha_inicio]";
+    divContenedorPagos.querySelector(".divFechaInicioNomina").querySelector("input").value = null;
+
+    divContenedorPagos.querySelector(".divFechaFinNomina").querySelector("label").htmlFor = "nominas["+numeroPago+"][fecha_fin]";
+    divContenedorPagos.querySelector(".divFechaFinNomina").querySelector("input").name = "nominas["+numeroPago+"][fecha_fin]";
+    divContenedorPagos.querySelector(".divFechaFinNomina").querySelector("input").value = null;
+
+    divContenedorPagos.querySelector(".divFechaPagoNomina").querySelector("label").htmlFor = "nominas["+numeroPago+"][fecha_pago]";
+    divContenedorPagos.querySelector(".divFechaPagoNomina").querySelector("input").name = "nominas["+numeroPago+"][fecha_pago]";
+    divContenedorPagos.querySelector(".divFechaPagoNomina").querySelector("input").value = null;
+
+    divContenedorPagos.querySelector(".divHorasNomina").querySelector("label").htmlFor = "nominas["+numeroPago+"][horas_alta_ss]";
+    divContenedorPagos.querySelector(".divHorasNomina").querySelector("input").name = "nominas["+numeroPago+"][horas_alta_ss]";
+    divContenedorPagos.querySelector(".divHorasNomina").querySelector("input").value = null;
+
+    divContenedorPagos.querySelector(".divImporteTotalNomina").querySelector("label").htmlFor = "nominas["+numeroPago+"][importe_total]";
+    divContenedorPagos.querySelector(".divImporteTotalNomina").querySelector("input").name = "nominas["+numeroPago+"][importe_total]";
+    divContenedorPagos.querySelector(".divImporteTotalNomina").querySelector("input").value = null;
+
+    divContenedorPagos.querySelector(".divImportePagadoNomina").querySelector("label").htmlFor = "nominas["+numeroPago+"][importe_pagado]";
+    divContenedorPagos.querySelector(".divImportePagadoNomina").querySelector("input").name = "nominas["+numeroPago+"][importe_pagado]";
+    divContenedorPagos.querySelector(".divImportePagadoNomina").querySelector("input").value = null;
+
+    event.target.closest(".divPagos").appendChild(divContenedorPagos);
+}
+
+window.menosPago = function(event)
+{
+    let ultimoHijoContenedorPagos = event.target.closest(".divPagos").lastElementChild;
+
+    let listaContenedoresPagos = event.target.closest(".divPagos").querySelectorAll(".contenedorNominas");
+
+    if(ultimoHijoContenedorPagos.classList.contains("contenedorNominas") && listaContenedoresPagos.length > 1){
+        ultimoHijoContenedorPagos.remove();
+    }
+}
+*/
+
 
 window.masFalta = function (event) {
   var numeroFalta = event.target.closest(".divFaltas").querySelectorAll(".contenedorFaltas").length;

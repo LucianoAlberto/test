@@ -27,7 +27,8 @@ class EmpleadoRequest extends FormRequest
             'ambito.*'=>'nullable',
             'nombre'=>'required|string',
             'apellidos'=>'required|string',
-            'dni'=>'required|numeric',
+            'dni' => array(
+                'regex:/^([0-9]{8}[A-Z])|[XYZ][0-9]{7}[A-Z]$/'),
             'numero_ss'=>'required|numeric',
             'fecha_comienzo'=>'required|date',
             'fecha_fin'=>'nullable|date',

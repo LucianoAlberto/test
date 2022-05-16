@@ -123,28 +123,28 @@
 
                                             <tr>
                                                 <th scope="col" width="50"
-                                                    class="px-6 py-3  text-center text-xs font-medium text-black-uppercase font-bold  bg-gray-300 tracking-wider">
+                                                    class="px-6 py-3  text-center text-xs font-medium text-black-uppercase font-bold  tracking-wider">
                                                     FECHA
                                                 </th>
 
                                                 <th scope="col"
-                                                    class="px-6 py-3 font-bold  bg-gray-300  text-center text-xs font-medium text-black uppercase tracking-wider">
+                                                    class="px-6 py-3 font-bold  text-center text-xs font-medium text-black uppercase tracking-wider">
                                                     IMPORTE ABONADO
                                                 </th>
 
 
                                                 <th scope="col"
-                                                    class="px-6 py-3 font-bold  bg-gray-300  text-center text-xs font-medium text-black uppercase tracking-wider ">
+                                                    class="px-6 py-3 font-bold   text-center text-xs font-medium text-black uppercase tracking-wider ">
                                                     IMPORTE PENDIENTE
                                                 </th>
 
                                                 <th scope="col"
-                                                    class="px-6 py-3 font-bold  bg-gray-300  text-center text-xs font-medium text-black uppercase tracking-wider">
+                                                    class="px-6 py-3 font-bold  text-center text-xs font-medium text-black uppercase tracking-wider">
                                                     REFERENCIA CONTRATO
                                                 </th>
 
                                                 <th scope="col" width="200"
-                                                    class=" w-1/4 py-3 font-bold  bg-gray-300  text-xs font-medium text-black uppercase tracking-wider ">
+                                                    class=" w-1/4 py-3 font-bold  text-xs font-medium text-black uppercase tracking-wider ">
                                                     Opciones
                                                 </th>
 
@@ -169,7 +169,7 @@
                                                         {{ $pago->pendiente }}
                                                     </td>
                                                     <td
-                                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center underline decoration-1">
+                                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center underline decoration-1 text-blue-800 hover:text-red-800 hover:text-2xl">
                                                         @if ($pago->contrato_id == 0)
                                                             ---
                                                         @else

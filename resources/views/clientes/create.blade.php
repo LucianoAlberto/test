@@ -138,7 +138,8 @@
 
                                 <div class="font-medium text-sm text-gray-700">
                                     <fieldset>
-                                        <legend class="mb-4">Ámbitos de trabajo:</legend>
+                                        <legend class="mb-4">Ámbitos de trabajo: </legend>
+
                                         @foreach ($ambitos as $ambito )
                                             <label for='ambito[{{$ambito->id}}]'>{{ $ambito->nombre }}</label>
                                             <input type="checkbox" name='ambito[{{$ambito->id}}]' class="ml-2 mr-4">

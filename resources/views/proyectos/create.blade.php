@@ -6,15 +6,15 @@
               <a class="text-red-500 uppercase underline" href="{{route('clientes.show', $cliente)}}"> {{$cliente->nombre}} {{$cliente->apellidos}}</a>
             </h2>
 
-            <div class="flex justify-end "> 
+            <div class="flex justify-end ">
                 <div class="block  mx-2">
                     <a href="{{ route('contratos.index', $cliente) }}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Contratos</a>
                 </div>
-    
+
                 <div class="block  mx-2">
                     <a href="{{ route('facturas.index',$cliente) }}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Facturas</a>
                 </div>
-    
+
                 <div class="block  mx-2">
                     <a href="{{route('proyectos.index',$cliente)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Proyectos</a>
                 </div>
@@ -39,16 +39,16 @@
                         </x-slot>
                     </x-boton2>
                 </div>
-        
+
                 <form class="bg-gray-300  rounded mb-4" action="{{ route('conceptos.store') }}"
-                    method="POST" enctype="multipart/form-data">            
+                    method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="flex justify-between mx-5 place-content-center py-2">
                         <input
                             class="shadow appearance-none border border-black rounded py-2 mx-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-3/4"
                             type="text" name="nuevoConcepto" placeholder="Crear nuevo concepto" required>
-        
-                            <x-boton2 tipo="input" nombre="Borrar" class="bg-green-600 hover:bg-green-700 w-12">
+
+                            <x-boton2 tipo="input" nombre="Borrar" class="bg-green-600 hover:bg-green-700 w-12 items-center">
                                 <x-slot name="boton">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
                                         <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
@@ -59,17 +59,17 @@
                         @error('nuevoConcepto')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
-                    </div>           
+                    </div>
                 </form>
-        
-                {{--Eliminar concepto--}}       
+
+                {{--Eliminar concepto--}}
                 <form class="bg-gray-300  rounded  mb-4" action="{{ route('conceptos.eliminar') }}"
                     method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class=" flex justify-between mx-5 place-content-center py-2">
-                    
+
                         <select name="eliminarConcepto" id="eliminarConcepto"  class="form-input rounded-md shadow-sm mt-1 block w-3/4 mx-auto">
-                            <option value="">Seleciona concepto</option>
+                            <option value="">Selecciona concepto</option>
                             @foreach ($conceptos as $concepto)
                                 <option value="{{ $concepto->nombre }}"
                                     {{ old('concepto') == $concepto->id ? 'selected' : '' }}>
@@ -77,13 +77,13 @@
                                 </option>
                             @endforeach
                         </select>
-        
-                        <x-boton2 tipo="input" nombre="Borrar" class="bg-red-600 hover:bg-red-700 w-12 ">
+
+                        <x-boton2 tipo="input" nombre="Borrar" class="bg-red-600 hover:bg-red-700 w-12 items-center">
                             <x-slot name="boton">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
                             </x-slot>
                         </x-boton2>
-                        
+
                         @error('eliminaConcepto')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror

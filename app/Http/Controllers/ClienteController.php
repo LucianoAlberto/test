@@ -52,8 +52,7 @@ class ClienteController extends Controller
 
         $ambitos = Ambito::all();
         $rolConPoderes = self::ROLCONPODERES;
-        $cliente = Cliente::first();
-        $criterios = Schema::getColumnListing($cliente->getTable());
+        $criterios = Schema::getColumnListing('clientes');
 
         //dd($clientes);
        return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes', 'criterios'));

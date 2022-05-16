@@ -25,18 +25,11 @@ class ClienteRequest extends FormRequest
     public function rules()
     {
         return [
-            'ambito' => 'required',
+            'ambito' => 'nullable',
             'nombre' => 'required|string',
             'apellidos' => 'required|string',
-
-            'dni' => array(
-                'regex:/^([0-9]{8}[A-Z])|[XYZ][0-9]{7}[A-Z]$/',
-            ),
-            'anho_contable' => array(
-                'required',
-                'numeric',
-                'regex:/^\d{4}$/',
-            ),
+            'dni' => 'regex:/^([0-9]{8}[A-Z])|[XYZ][0-9]{7}[A-Z]$/',
+            'anho_contable' => 'regex:/^\d{4}$/',
             'direccion_fiscal' => 'nullable|string',
             'domicilio' => 'nullable|string',
             'nombre_comercial' => 'required|string',
@@ -44,7 +37,7 @@ class ClienteRequest extends FormRequest
             'cif' => 'required|string',
             'cuenta_bancaria' =>'regex:/^([A-Z]{2})([-]{1})(\d{2})([-]{1})(\d{4})([-]{1})(\d{4})([-]{1})(\d{2})([-]{1})(\d{10})$/',
             'n_tarjeta' =>'regex:/^\d{4}[-]\d{4}[-]\d{4}[-]\d{4}$/',
-            'email' => '|required|email',
+            'email' => 'required|email',
             'telefono' =>'regex:/^(([\+]\d{2}|\d{4})[ |\-|\/])?\d{9}$/',
         ];
     }

@@ -44,7 +44,7 @@ class FacturaController extends Controller
     public function store(FacturaRequest $request, Cliente $cliente)
     {
         $validated = $request->validated();
-    
+
         $factura = new Factura;
         $factura->cliente_id = $cliente->id;
         $factura->fecha_cargo = $validated['fecha_cargo'];
@@ -57,8 +57,9 @@ class FacturaController extends Controller
         $factura->save();
 
         if($validated['referencia_contrato'] != 0){
-            $contrato = Contrato::where('referencia', $validated['referencia_contrato'])->select('id')->get();
-            $factura->contratos()->attach($contrato[0]);
+            $contrato = Contrato::where('referencia', $validated['referencia_contrato'])->select('id')->first();
+
+            $factura->contratos()->attach($contrato->id);
         }
 
         $rolConPoderes = self::ROLCONPODERES;
@@ -96,8 +97,8 @@ class FacturaController extends Controller
      */
     public function update(FacturaRequest $request, Cliente $cliente, Factura $factura)
     {
-  
-        $facutra_antigua=$factura; 
+
+        $facutra_antigua=$factura;
         $validated = $request->validated();
 
         $factura->cliente_id = $cliente->id;

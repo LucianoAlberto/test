@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FaltaController;
+use App\Http\Controllers\AmbitoController;
 use App\Http\Controllers\NominaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\FacturaController;
@@ -113,6 +114,10 @@ Route::get('/proyectos/{cliente}/{proyecto}', [ProyectoController::class, 'show'
 Route::post('conceptos',[ConceptoFacturaController::class,'store'])->name('conceptos.store');
 Route::post('conceptos/eliminar',[ConceptoFacturaController::class,'eliminar'])->name('conceptos.eliminar');
 
+
+Route::post('ambitos',[AmbitoController::class,'store'])->name('ambitos.store');
+Route::delete('ambitos',[AmbitoController::class,'destroy'])->name('ambitos.destroy');
+
 Route::match(['get', 'post'], '/empleados', [EmpleadoController::class, 'index'])->name('empleados.index');
 Route::get('/empleados/create', [EmpleadoController::class, 'create'])->name('empleados.create');
 Route::post('/empleados/store', [EmpleadoController::class, 'store'])->name('empleados.store');
@@ -135,4 +140,4 @@ Route::get('/empleados/{empleado}/vacaciones/{vacacion}', [VacacionController::c
 
 Route::get('/clientes/{cliente}/pagos',[PagoController::class,'index'])->name('pagos.index');
 Route::post('/clientes/{cliente}/pagos',[PagoController::class,'store'])->name('pagos.store');
-Route::post('/clientes/{cliente}/pagos/{pago}',[PagoController::class,'destroy'])->name('pagos.destroy');
+Route::post('/pagos/{pago}',[PagoController::class,'destroy'])->name('pagos.destroy');

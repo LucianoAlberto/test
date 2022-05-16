@@ -40,7 +40,7 @@
                                 <div class="flex justify-between mb-4">
                                     <div class="w-1/2 mr-2">
                                         <label for="dni" class="block font-medium text-sm text-gray-700">DNI</label>
-                                        <input type="text" name="dni" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                        <input type="text" name="dni" class="form-input rounded-md shadow-sm mt-1 block w-full" maxlength="9"
                                             value="{{ old('dni', '') }}" />
                                         @error('dni')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
@@ -276,88 +276,7 @@
                                     @enderror
                                 </div>
                                 <hr>
-                                    <div class="divPagos mt-8 mb-8">
-                                        <div class="flex justify-center items-center relative contenedorTituloBotones mb-8">
-                                            <h3 class="font-semibold text-xl text-gray-800 leading-tight m2-6 mb-2">
-                                                Pagos
-                                            </h3>
-
-                                            <div class="flex justify-between absolute right-0">
-                                                <x-boton2 tipo="div" nombre="mas" class="bg-green-600 hover:bg-green-700 w-12 h-12 mr-6" onclick="masPago(event)">
-                                                    <x-slot name="boton">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                                    </x-slot>
-                                                </x-boton2>
-
-                                                <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-12 h-12" onclick="menosPago(event)">
-                                                    <x-slot name="boton">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                                    </x-slot>
-                                                </x-boton2>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="contenedorNominas justify-between mb-4">
-                                            <div class="flex mb-4">
-                                                <div class="w-1/3 divFechaInicioNomina mr-2">
-                                                    <label for="nominas[0][fecha_inicio]" class="block font-medium text-sm text-gray-700">Fecha inicio</label>
-                                                    <input type="date" name="nominas[0][fecha_inicio]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                        value="{{ old("nominas[0][fecha_inicio]", '') }}" />
-                                                    @error("nominas[0][fecha_inicio]")
-                                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
-
-                                                <div class="w-1/3 divFechaFinNomina mx-2">
-                                                    <label for="nominas[0][fecha_fin]" class="block font-medium text-sm text-gray-700">Fecha fin</label>
-                                                    <input type="date" name="nominas[0][fecha_fin]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                        value="{{ old("nominas[0][fecha_fin]", '') }}" />
-                                                    @error("nominas[0][fecha_fin]")
-                                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
-
-                                                <div class="w-1/3 divFechaPagoNomina ml-2">
-                                                    <label for="nominas[0][fecha_pago]" class="block font-medium text-sm text-gray-700">Fecha de pago</label>
-                                                    <input type="date" name="nominas[0][fecha_pago]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                        value="{{ old("nominas[0][fecha_pago]", '') }}" />
-                                                    @error('nominas[0][fecha_pago]')
-                                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="flex">
-                                                <div class="w-1/3 divHorasNomina mr-2">
-                                                    <label for="nominas[0][horas_alta_ss]" class="block font-medium text-sm text-gray-700">Horas de alta en la SS</label>
-                                                    <input type="text" name="nominas[0][horas_alta_ss]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                        value="{{ old("nominas[0][horas_alta_ss]", '') }}" />
-                                                    @error('nominas[0][horas_alta_ss]')
-                                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
-
-                                                <div class="w-1/3 divImporteTotalNomina mx-2">
-                                                    <label for="nominas[0][importe_total]" class="block font-medium text-sm text-gray-700">Importe nómina</label>
-                                                    <input type="text" name="nominas[0][importe_total]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                        value="{{ old("nominas[0][importe_total]", '') }}" />
-                                                    @error('nominas[0][importe_total]')
-                                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
-
-                                                <div class="w-1/3 divImportePagadoNomina ml-2">
-                                                    <label for="nominas[0][importe_pagado]" class="block font-medium text-sm text-gray-700">Importe pagado</label>
-                                                    <input type="text" name="nominas[0][importe_pagado]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                        value="{{ old("nominas[0][importe_pagado]", '') }}" />
-                                                    @error('nominas[0][importe_pagado]')
-                                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
+                                   
                                     <div class="divFaltas mt-8 mb-8">
                                         <div class="flex justify-center contenedorTituloBotones relative">
                                             <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-2 mb-2">

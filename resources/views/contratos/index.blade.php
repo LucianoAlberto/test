@@ -3,7 +3,7 @@
     <x-slot name="header">
         <div class="flex justify-between ">
             <h2 class="text-xl text-gray-800 leading-tight uppercase font-bold">
-              CONTRATOS <a class="text-red-500 uppercase underline" href="{{route('clientes.show', $cliente)}}"> {{$cliente->nombre}} {{$cliente->apellidos}}</a>
+        <a class="text-red-500 uppercase underline" href="{{route('clientes.show', $cliente)}}"> {{$cliente->nombre}} {{$cliente->apellidos}}</a>
             </h2>
 
             <div class="flex justify-end ">
@@ -37,6 +37,7 @@
         <div class="mx-auto sm:px-6 lg:px-8">
             <div>
                 <div class="mx-auto pb-10 sm:px-6 lg:px-8">
+                    <h3 class="text-center font-bold uppercase w-full py-5 bg-gray-300">Contratos</h3>
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -77,7 +78,10 @@
                                                 </td>
 
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                                                
                                                     {{ $conceptos->find($contrato->concepto_facturas_id)->nombre }}
+
+                                                  
                                                 </td>
 
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
@@ -99,7 +103,7 @@
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                                                             </x-slot>
                                                         </x-boton2>
-                                                        {{-- <button onclick="ventana();"> Ver</button>--}}
+                                                       
 
                                                     @else
                                                         <x-boton2 tipo="div" class="bg-slate-300 w-16 cursor-not-allowed w-14 h-14 m-auto">

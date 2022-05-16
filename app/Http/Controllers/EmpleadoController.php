@@ -71,9 +71,6 @@ class EmpleadoController extends Controller
     public function store(EmpleadoRequest $request)
     {
         $validated = $request->validated();
-
-        //dd($validated);
-
         $empleado = new Empleado;
         $empleado->nombre = $validated["nombre"];
         $empleado->apellidos = $validated["apellidos"];
@@ -107,26 +104,9 @@ class EmpleadoController extends Controller
 
         if(isset($validated['ambito'])){
             foreach($validated['ambito'] as $clave => $ambito){
-                //dd($ambito);
                 $ambito = Ambito::where('id', $clave)->select('id')->first();
 
                 $empleado->ambitos()->attach($ambito);
-            }
-        }
-
-        if($validated["nominas"][0]["fecha_inicio"] != null){
-            foreach($validated["nominas"] as $nomina){
-                $nueva_nomina = new Nomina;
-
-                $nueva_nomina->empleado_id = $empleado->id;
-                $nueva_nomina->fecha_inicio = $nomina["fecha_inicio"];
-                $nueva_nomina->fecha_fin = $nomina["fecha_fin"];
-                $nueva_nomina->importe_total = $nomina["importe_total"];
-                $nueva_nomina->importe_pagado = $nomina["importe_pagado"];
-                $nueva_nomina->fecha_pago = $nomina["fecha_pago"];
-                $nueva_nomina->horas_alta_ss = $nomina["horas_alta_ss"];
-
-                $nueva_nomina->save();
             }
         }
 

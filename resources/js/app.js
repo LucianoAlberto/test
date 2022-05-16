@@ -46,13 +46,6 @@ window.deleteConfirm = function(formId, event)
    });
 }
 
-/*abrir ventana modal
-window.ventana=function(e){
-   console.log(document.getElementById('bbb').getAttribute('direccion'));
- window.open(document.getElementById('bbb').getAttribute('direccion'), "_blank", "scrollbars=yes,top=500,left=500,width=900,height=800"); 
-}
-*/
-
 window.detalles = function(vista, event)
 {
     //console.log(event.target.tagName);
@@ -443,6 +436,18 @@ window.nuevoAccesso=function(){
    document.querySelector('.div_accesso').append(div);
 }
 
+window.crearNomina=function(){
+
+    let div = document.getElementById('nueva_nomina');
+    div.style.display = 'block';
+}
+
+window.cerrarNomina=function(){
+    let div = document.getElementById('nueva_nomina');
+    div.style.display = 'none';
+}
+
+/*
 window.masPago = function(event)
 {
     let numeroPago = event.target.closest(".divPagos").querySelectorAll(".contenedorNominas").length;
@@ -487,7 +492,7 @@ window.menosPago = function(event)
         ultimoHijoContenedorPagos.remove();
     }
 }
-
+*/
 window.masFalta = function(event)
 {
     let numeroFalta = event.target.closest(".divFaltas").querySelectorAll(".contenedorFaltas").length;

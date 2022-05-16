@@ -167,8 +167,15 @@
                                                     </td>
 
                                                     <td
-                                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                                                        {{ $factura->referencia_contrato }}
+                                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center underline decoration-1 text-blue-800 hover:text-red-800 hover:text-2xl">
+                                                        @if ($factura->referencia_contrato ==0)
+                                                            ---
+                                                            @else
+                                                        
+                                                            <a 
+                                                        href="{{ route('contratos.show',['cliente' => $cliente, 'contrato' =>$factura]) }}">{{ $factura->referencia_contrato  }}</a>
+                                                        @endif
+                                                        
                                                     </td>
 
                                                     <td

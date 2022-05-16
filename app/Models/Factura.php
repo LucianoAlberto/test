@@ -25,9 +25,9 @@ class Factura extends Model
     /**
      * Obtiene los contratos asociados a esta factura.
      */
-    public function contratos()
+    public function contrato()
     {
-        return $this->belongsToMany(Contrato::class);
+        return $this->belongsTo(Contrato::class);
     }
 
     /**

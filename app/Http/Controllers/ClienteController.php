@@ -49,14 +49,17 @@ class ClienteController extends Controller
             $clientes = Cliente::where($request->criterio, 'LIKE','%'.$request->busqueda.'%')->paginate(10);
         }
 
-
         $ambitos = Ambito::all();
         $rolConPoderes = self::ROLCONPODERES;
+        
+       if(Cliente::first()){
         $cliente = Cliente::first();
-        $criterios = Schema::getColumnListing($cliente->getTable());
+       }
+       $criterios = Schema::getColumnListing('clientes');
+       return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes', 'criterios'));
 
         //dd($clientes);
-       return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes', 'criterios'));
+      
     }
 
     /**
@@ -145,13 +148,7 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ClienteRequest $request, Cliente $cliente)
-    {
-        $validated = $request->validated();
-
-        $cliente->nombre = $validated["nombre"];
-        $cliente->apellidos = $validated["apellidos"];
-        $cliente->dni = $validated['dni'];
+    public function update(ClienteRequest $request, Cliente $cliente){
         $cliente->anho_contable = $validated["anho_contable"];
         $cliente->direccion_fiscal = $validated["direccion_fiscal"];
         $cliente->domicilio = $validated["domicilio"];

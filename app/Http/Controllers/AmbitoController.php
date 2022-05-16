@@ -35,7 +35,14 @@ class AmbitoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ambito=new Ambito;
+        $ambito->nombre=$request['nuevoAmbito'];
+        $ambito->created_at=now('Europe/Madrid');
+        $ambito->updated_at=now('Europe/Madrid');
+        $ambito->save();
+
+        return redirect()->back()->with('ambito_creado','si');
+        
     }
 
     /**
@@ -80,6 +87,9 @@ class AmbitoController extends Controller
      */
     public function destroy(Ambito $ambito)
     {
-        //
+        $ambito->delete();
+
+        return redirect()->back()->with('ambito_creado','si');
+
     }
 }

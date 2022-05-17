@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('email_corporativos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('proyecto_id')->constrained();
-            $table->string('email');
-            $table->string('contrasenha');
-            $table->string('ruta_acceso');
+            $table->string('email')->nullable();
+            $table->string('contrasenha')->nullable();
+            $table->string('ruta_acceso')->nullable();
             $table->timestamps();
         });
     }

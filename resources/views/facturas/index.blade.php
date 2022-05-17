@@ -168,20 +168,17 @@
                                                         {{ $factura->fecha_cargo }}
                                                     </td>
 
-                                                    <td
-                                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center underline decoration-1 text-blue-800 hover:text-red-800 hover:text-2xl">
-                                                        @if ($factura->referencia_contrato ==0)
-                                                            ---
-                                                            @else
-                                                        
-                                                            <a 
-                                                        href="{{ route('contratos.show',['cliente' => $cliente, 'contrato' =>$factura]) }}">{{ $factura->referencia_contrato  }}</a>
-                                                        @endif
-                                                        
+                                                    @if ($factura->referencia_contrato ==0)
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center decoration-1 text-blue-800 hover:text-red-800 hover:text-2xl">
+                                                        ---
                                                     </td>
+                                                    @else
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center underline decoration-1 text-blue-800 hover:text-red-800 hover:text-2xl">
+                                                            <a href="{{ route('contratos.show',['cliente' => $cliente, 'contrato' => $factura->contratos()->where('referencia', $factura->referencia_contrato)->first()]) }}">{{ $factura->referencia_contrato  }}</a>
+                                                        </td>
+                                                    @endif
 
-                                                    <td
-                                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
                                                         <x-boton2 tipo="linkConAsset"
                                                             class="bg-blue-500 hover:bg-blue-700 w-14 h-14"
                                                             direccion="{{ $factura->factura }}">

@@ -63,7 +63,7 @@
 
                                 @case('nombre_sociedad')
                                 <option value="{{ $criterio }}" name='criterio[{{ $criterio }}]'>
-                                    Nombre comercial
+                                    Nombre sociedad
                                 @break
 
                                 @case('cif')
@@ -317,8 +317,8 @@
                 showConfirmButton: false,
                 timer: 1500
             })
-        </script>  
-         
+        </script>
+
     @elseif (session('ambito_creado') == 'si')
         <script>
             Swal.fire({
@@ -327,7 +327,7 @@
                 title: 'Nuevo ambito creado',
                 showConfirmButton: false,
                 timer: 1500
-            })        
+            })
         </script>
     @endif
 

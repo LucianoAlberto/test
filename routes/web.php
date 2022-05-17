@@ -40,8 +40,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/clientes', function () {
     return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes'));
 })->name('dashboard');
 
-//Route::resource('clientes', ClienteController::class);
-//Route::resource('pagos', PagoController::class);
 Route::match(['get', 'post'], '/clientes', [ClienteController::class, 'index'])->name('clientes.index');
 
 Route::get('/clientes/create', [ClienteController::class, 'create'])->name('clientes.create');
@@ -111,10 +109,11 @@ Route::get('/proyectos/{cliente}/create', [ProyectoController::class, 'create'])
 Route::post('/proyectos/{cliente}', [ProyectoController::class, 'store'])->name('proyectos.store');
 Route::get('/proyectos/{cliente}/{proyecto}', [ProyectoController::class, 'show'])->name('proyectos.show');
 
+//conceptos
 Route::post('conceptos',[ConceptoFacturaController::class,'store'])->name('conceptos.store');
 Route::post('conceptos/eliminar',[ConceptoFacturaController::class,'eliminar'])->name('conceptos.eliminar');
 
-
+//ambitos
 Route::post('ambitos',[AmbitoController::class,'store'])->name('ambitos.store');
 Route::delete('ambitos',[AmbitoController::class,'destroy'])->name('ambitos.destroy');
 

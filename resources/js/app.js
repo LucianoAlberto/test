@@ -395,6 +395,7 @@ window.cerrarNuevaFactura=function(){
 
 }
 
+// nuevo concepto 
 window.nuevoConcepto=function(){
     let div = document.getElementById('nuevoConcepto');
     div.style.display = 'block';
@@ -402,6 +403,19 @@ window.nuevoConcepto=function(){
 
 window.closeNuevoConcepto=function(){
     let div = document.getElementById('nuevoConcepto');
+    div.style.display = 'none';
+}
+
+
+// nuevo ambito
+window.nuevoAmbito=function(){
+    let div = document.getElementById('nuevoAmbito');
+    div.style.display = 'block';
+}
+
+// nuevo ambito
+window.closenuevoAmbito=function(){
+    let div = document.getElementById('nuevoAmbito');
     div.style.display = 'none';
 }
 

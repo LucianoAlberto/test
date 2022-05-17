@@ -5381,7 +5381,8 @@ window.anadirFactura = function () {
 window.cerrarNuevaFactura = function () {
   var div = document.getElementById('nueva_factura');
   div.style.display = 'none';
-};
+}; // nuevo concepto 
+
 
 window.nuevoConcepto = function () {
   var div = document.getElementById('nuevoConcepto');
@@ -5390,6 +5391,18 @@ window.nuevoConcepto = function () {
 
 window.closeNuevoConcepto = function () {
   var div = document.getElementById('nuevoConcepto');
+  div.style.display = 'none';
+}; // nuevo ambito
+
+
+window.nuevoAmbito = function () {
+  var div = document.getElementById('nuevoAmbito');
+  div.style.display = 'block';
+}; // nuevo ambito
+
+
+window.closenuevoAmbito = function () {
+  var div = document.getElementById('nuevoAmbito');
   div.style.display = 'none';
 };
 

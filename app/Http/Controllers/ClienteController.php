@@ -146,6 +146,11 @@ class ClienteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(ClienteRequest $request, Cliente $cliente){
+        $validated = $request->validated();
+
+        $cliente->nombre = $validated["nombre"];
+        $cliente->apellidos = $validated["apellidos"];
+        $cliente->dni = $validated["dni"];
         $cliente->anho_contable = $validated["anho_contable"];
         $cliente->direccion_fiscal = $validated["direccion_fiscal"];
         $cliente->domicilio = $validated["domicilio"];

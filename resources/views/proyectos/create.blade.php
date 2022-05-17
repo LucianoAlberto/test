@@ -239,27 +239,36 @@
                                         <label for="dominio[0][nombre]"
                                             class="block font-medium text-sm text-gray-700">Nombre Dominio</label>
                                         <input type="text" name="dominio[0][nombre]" class="w-full">
-                                        @error('dominio[0][nombre]')
+                                        @if($errors->has('dominio.*.nombre'))
+                                            <p class="text-sm text-red-600">{{ $errors->first('dominio.*.nombre') }}</p>
+                                        @endif
+                                        {{-- @error('dominio[][nombre]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
 
                                     <div class="divUsuarioDominio w-1/3 mx-4">
                                         <label for="dominio[0][usuario]"
                                             class="block font-medium text-sm text-gray-700">Dominio Usuario</label>
                                         <input type="text" name="dominio[0][usuario]" class="w-full">
-                                        @error('dominio[0][usuario]')
+                                        @if($errors->has('dominio.*.usuario'))
+                                            <p class="text-sm text-red-600">{{ $errors->first('dominio.*.usuario') }}</p>
+                                        @endif
+                                        {{-- @error('dominio[][usuario]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
 
                                     <div class="divContrasenhaDominio w-1/3 ml-4">
                                         <label for="dominio[0][contrasenha]"
                                             class="block font-medium text-sm text-gray-700">Dominio Contraseña</label>
                                         <input type="text" name="dominio[0][contrasenha]" class="w-full">
-                                        @error('dominio[0][contrasenha]')
+                                        @if($errors->has('dominio.*.contrasenha'))
+                                            <p class="text-sm text-red-600">{{ $errors->first('dominio.*.contrasenha') }}</p>
+                                        @endif
+                                        {{-- @error('dominio[][contrasenha]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
                                 </div>
                             </div>
@@ -289,26 +298,35 @@
                                         <label for="bd[0][nombre]" class="block font-medium text-sm text-gray-700">Nombre
                                             BBDD</label>
                                         <input type="text" name="bd[0][nombre]" class="w-full">
-                                        @error('bd[0][nombre]')
+                                        @if($errors->has('bd.*.nombre'))
+                                            <p class="text-sm text-red-600">{{ $errors->first('bd.*.nombre') }}</p>
+                                        @endif
+                                        {{-- @error('bd[][nombre]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
 
                                     <div class="divHostBD w-1/3 mx-4">
                                         <label for="bd[0][host]" class="block font-medium text-sm text-gray-700">Host</label>
                                         <input type="text" name="bd[0][host]" class="w-full">
-                                        @error('bd[0][host]')
+                                        @if($errors->has('bd.*.host'))
+                                            <p class="text-sm text-red-600">{{ $errors->first('bd.*.host') }}</p>
+                                        @endif
+                                        {{-- @error('bd[][host]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
 
                                     <div class="divContrasenhaBD w-1/3 ml-4">
                                         <label for="bd[0][contrasenha]"
                                             class="block font-medium text-sm text-gray-700">Contraseña</label>
                                         <input type="text" name="bd[0][contrasenha]" class="w-full">
-                                        @error('bd[0][contrasenha]')
+                                        @if($errors->has('bd.*.contrasenha'))
+                                            <p class="text-sm text-red-600">{{ $errors->first('bd.*.contrasenha') }}</p>
+                                        @endif
+                                        {{-- @error('bd[][contrasenha]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
                                 </div>
                             </div>
@@ -339,27 +357,36 @@
                                         <label for="email[0][email]"
                                             class="block font-medium text-sm text-gray-700">Email</label>
                                         <input type="text" name="email[0][email]" class="w-full">
-                                        @error('email[0][email]')
+                                        @if($errors->has('email.*.email'))
+                                            <p class="text-sm text-red-600">{{ $errors->first('email.*.email') }}</p>
+                                        @endif
+                                        {{-- @error('email[][email]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
 
                                     <div class="divEmailContrasenha w-1/3 mx-4">
                                         <label for="email[0][contrasenha]"
                                             class="block font-medium text-sm text-gray-700">Password</label>
                                         <input type="text" name="email[0][contrasenha]" class="w-full">
-                                        @error('email[0][contrasenha]')
+                                        @if($errors->has('email.*.contrasenha'))
+                                            <p class="text-sm text-red-600">{{ $errors->first('email.*.contrasenha') }}</p>
+                                        @endif
+                                        {{-- @error('email[][contrasenha]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
 
                                     <div class="divEmailRuta w-1/3 ml-4">
                                         <label for="email[0][ruta_acceso]" class="block font-medium text-sm text-gray-700">Ruta
                                             Accesso</label>
                                         <input type="text" name="email[0][ruta_acceso]" class="w-full">
-                                        @error('email[0][ruta_acceso]')
+                                        @if($errors->has('email.*.ruta_acceso'))
+                                            <p class="text-sm text-red-600">{{ $errors->first('email.*.ruta_acceso') }}</p>
+                                        @endif
+                                        {{-- @error('email[][ruta_acceso]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
                                 </div>
                             </div>
@@ -389,27 +416,36 @@
                                         <label for="acceso[0][dominio]"
                                             class="block font-medium text-sm text-gray-700">Dominio</label>
                                         <input type="text" name="acceso[0][dominio]" class="w-full">
-                                        @error('acceso[0][dominio]')
+                                        @if($errors->has('acceso.*.dominio'))
+                                            <p class="text-sm text-red-600">{{ $errors->first('acceso.*.dominio') }}</p>
+                                        @endif
+                                        {{-- @error('acceso[][dominio]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
 
                                     <div class="divUsuarioAcceso w-1/3 mx-4">
                                         <label for="acceso[0][usuario]"
                                             class="block font-medium text-sm text-gray-700">Usuario</label>
                                         <input type="text" name="acceso[0][usuario]" class="w-full">
-                                        @error('acceso[0][usuario]')
+                                        @if($errors->has('acceso.*.usuario'))
+                                            <p class="text-sm text-red-600">{{ $errors->first('acceso.*.usuario') }}</p>
+                                        @endif
+                                        {{-- @error('acceso[][usuario]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
 
                                     <div class="divContrasenhaAcceso w-1/3 ml-4">
                                         <label for="acceso[0][contrasenha]"
                                             class="block font-medium text-sm text-gray-700">Contraseña</label>
                                         <input type="text" name="acceso[0][contrasenha]" class="w-full">
-                                        @error('acceso[0][contrasenha]')
+                                        @if($errors->has('acceso.*.contrasenha'))
+                                            <p class="text-sm text-red-600">{{ $errors->first('acceso.*.contrasenha') }}</p>
+                                        @endif
+                                        {{-- @error('acceso[][contrasenha]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
                                 </div>
                             </div>

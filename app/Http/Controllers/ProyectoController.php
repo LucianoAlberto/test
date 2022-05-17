@@ -84,9 +84,16 @@ class ProyectoController extends Controller
         foreach($valido['dominio'] as $dominio){
             if(in_array( !null, $dominio)){
                 $nuevo_dominio = new Dominio;
-                $nuevo_dominio->nombre = $dominio['nombre'];
-                $nuevo_dominio->usuario = $dominio['usuario'];
-                $nuevo_dominio->contrasenha = $dominio['contrasenha'];
+                if(isset($dominio['nombre'])){
+                    $nuevo_dominio->nombre = $dominio['nombre'];
+                }
+                if(isset($dominio['usuario'])){
+                    $nuevo_dominio->usuario = $dominio['usuario'];
+                }
+                if(isset($dominio['contrasenha'])){
+                    $nuevo_dominio->contrasenha = $dominio['contrasenha'];
+                }
+
                 $nuevo_dominio->proyecto_id = $proyecto->id;
                 $nuevo_dominio->save();
             }
@@ -95,9 +102,16 @@ class ProyectoController extends Controller
         foreach($valido['bd'] as $bd){
             if(in_array( !null, $bd)){
                 $nueva_bd = new BaseDatos;
-                $nueva_bd->nombre = $bd['nombre'];
-                $nueva_bd->host = $bd['host'];
-                $nueva_bd->contrasenha = $bd['contrasenha'];
+                if(isset($bd['nombre'])){
+                    $nueva_bd->nombre = $bd['nombre'];
+                }
+                if(isset($bd['host'])){
+                    $nueva_bd->host = $bd['host'];
+                }
+                if(isset($bd['contrasenha'])){
+                    $nueva_bd->contrasenha = $bd['contrasenha'];
+                }
+
                 $nueva_bd->proyecto_id = $proyecto->id;
                 $nueva_bd->save();
             }
@@ -106,9 +120,16 @@ class ProyectoController extends Controller
         foreach($valido['email'] as $email){
             if(in_array( !null, $email)){
                 $nuevo_email = new EmailCorporativo;
-                $nuevo_email->email = $email['email'];
-                $nuevo_email->contrasenha = $email['contrasenha'];
-                $nuevo_email->ruta_acceso = $email['ruta_acceso'];
+                if(isset($email['email'])){
+                    $nuevo_email->email = $email['email'];
+                }
+                if(isset($email['contrasenha'])){
+                    $nuevo_email->contrasenha = $email['contrasenha'];
+                }
+                if(isset($email['ruta_acceso'])){
+                    $nuevo_email->ruta_acceso = $email['ruta_acceso'];
+                }
+
                 $nuevo_email->proyecto_id = $proyecto->id;
                 $nuevo_email->save();
             }
@@ -117,9 +138,16 @@ class ProyectoController extends Controller
         foreach($valido['acceso'] as $acceso){
             if(in_array( !null, $acceso)){
                 $nuevo_acceso = new Acceso;
-                $nuevo_acceso->dominio = $acceso['dominio'];
-                $nuevo_acceso->usuario = $acceso['usuario'];
-                $nuevo_acceso->contrasenha = $acceso['contrasenha'];
+                if(isset($acceso['dominio'])){
+                    $nuevo_acceso->dominio = $acceso['dominio'];
+                }
+                if(isset($acceso['usuario'])){
+                    $nuevo_acceso->usuario = $acceso['usuario'];
+                }
+                if(isset($acceso['contrasenha'])){
+                    $nuevo_acceso->contrasenha = $acceso['contrasenha'];
+                }
+
                 $nuevo_acceso->proyecto_id = $proyecto->id;
                 $nuevo_acceso->save();
             }

@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\File;
 use App\Http\Requests\ClienteRequest;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\DB;https://www.google.com/search?channel=fs&client=ubuntu&q=dev
+use Illuminate\Support\Facades\DB;
 
 
 class ClienteController extends Controller
@@ -117,7 +117,9 @@ class ClienteController extends Controller
          //recuperamos los ambitos existentes
          $ambitos=Ambito::all();
 
-        return view('clientes.show', compact('cliente','ambitos'));
+         $rolConPoderes = self::ROLCONPODERES;
+
+        return view('clientes.show', compact('cliente','ambitos','rolConPoderes'));
     }
 
     /**

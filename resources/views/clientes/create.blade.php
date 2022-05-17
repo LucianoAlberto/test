@@ -250,7 +250,6 @@
                                 <div class="font-medium text-sm text-gray-700">
                                     <fieldset>
                                         <legend class="mb-4 flex">Ámbitos de trabajo
-                                            
                                             <x-boton2 tipo="div" class="ml-1 bg-gray-800 hover:bg-gray-700 w-6 h-6 fill-none " onclick="nuevoAmbito()">
                                                 <x-slot name="boton">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-slash-minus" viewBox="0 0 16 16">

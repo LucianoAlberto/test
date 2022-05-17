@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('cliente_id')->constrained();
             $table->foreignId('concepto_facturas_id')->constrained()->nullable();
-            $table->string('referencia');
+            $table->string('referencia')->unique();
             $table->decimal('base_imponible', 8, 2)->nullable();
             $table->decimal('iva', 5, 2)->nullable();
             $table->decimal('irpf', 5, 2)->nullable();

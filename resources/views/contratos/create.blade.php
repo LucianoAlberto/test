@@ -98,9 +98,9 @@
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <h3 class="text-center font-bold uppercase w-full py-5 bg-gray-300">Nuevo Contrato</h3>
                         <div class="px-4 py-5 bg-white sm:p-6">
-                            <div class="flex justify-between mb-4 items-end">
+                            <div class="flex justify-between mb-4">
                                 <div class="w-2/5 mr-2">
-                                    <label for="concepto" class="flex font-medium text-sm text-gray-700">Concepto * 
+                                    <label for="concepto" class="flex font-medium text-sm text-gray-700">Concepto *
 
                                         <x-boton2 tipo="div" class="ml-2 bg-gray-800 hover:bg-gray-700 w-6 h-6 fill-none " onclick="nuevoConcepto()">
                                             <x-slot name="boton">
@@ -113,7 +113,7 @@
 
                                     <select type="text" name="concepto" id="concepto" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('concepto', '') }}" >
-                                        <option value="">---  Selecionar Concepto  ---</option>
+                                        <option value="">---  Seleccionar Concepto  ---</option>
                                        {{--recuperamos todos los conceptos de la BD para poder selecionar alguno--}}
                                         @foreach ($conceptos as $concepto)
                                        <option value="{{$concepto->id}}" {{old('concepto')==$concepto->id ? 'selected':''}}>{{$concepto->nombre}}</option>
@@ -125,7 +125,7 @@
                                 </div>
 
 
-                                <div class="w-2/5 mx-2">
+                                <div class="w-2/5 mx-2 mt-0.75">
                                     <label for="referencia" class="block font-medium text-sm text-gray-700">Referencia Contrato *</label>
                                     <input type="text" name="referencia" id="referencia" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('referencia', '') }}" >
@@ -135,7 +135,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="w-1/5 ml-2">
+                                <div class="w-1/5 ml-2 mt-0.75">
                                     <label for="fecha_firma" class="block font-medium text-sm text-gray-700">Fecha *</label>
                                     <input type="date" name="fecha_firma" id="fecha_firma" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('fecha_firma', '') }}" >
@@ -212,7 +212,7 @@
                                 </div>
                             </div>
                         </div>
-                  
+
                         <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
                             <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-500 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                                 Crear

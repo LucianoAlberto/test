@@ -163,6 +163,7 @@
                                     <div class="flex mb-8">
                                         <div class="w-3/6 mr-2">
                                             <div class="flex">
+                                                @if(isset($empleado->practica->convenio))
                                                 <x-boton2 tipo="linkConAsset" class="bg-blue-500 hover:bg-blue-700 mr-4 w-16" direccion="{{$empleado->practica->convenio}}">
                                                     <x-slot name="boton">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
@@ -174,6 +175,34 @@
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                                                     </x-slot>
                                                 </x-boton2>
+                                                @else
+                                                    <div class="flex mb-2">
+                                                        <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                            <x-slot name="boton">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-eye">
+                                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                                    <circle cx="12" cy="12" r="3"></circle>
+                                                                </svg>
+                                                            </x-slot>
+                                                        </x-boton2>
+
+                                                        <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                            <x-slot name="boton">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-download">
+                                                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                                                </svg>
+                                                            </x-slot>
+                                                        </x-boton2>
+                                                    </div>
+                                                @endif
                                             </div>
                                             <label for="convenio_practicas" class="block font-medium text-sm text-gray-700">Adjuntar convenio</label>
                                             <input type="file" name="convenio_practicas" id="convenio_practicas" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -185,6 +214,7 @@
 
                                         <div class="w-3/6 mr-2">
                                             <div class="flex">
+                                                @if(isset($empleado->practica->doc_confidencialidad))
                                                 <x-boton2 tipo="linkConAsset" class="bg-blue-500 hover:bg-blue-700 mr-4 w-16" direccion="{{$empleado->practica->doc_confidencialidad}}">
                                                     <x-slot name="boton">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
@@ -196,6 +226,34 @@
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                                                     </x-slot>
                                                 </x-boton2>
+                                                @else
+                                                    <div class="flex mb-2">
+                                                        <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                            <x-slot name="boton">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-eye">
+                                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                                    <circle cx="12" cy="12" r="3"></circle>
+                                                                </svg>
+                                                            </x-slot>
+                                                        </x-boton2>
+
+                                                        <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                            <x-slot name="boton">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-download">
+                                                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                                                </svg>
+                                                            </x-slot>
+                                                        </x-boton2>
+                                                    </div>
+                                                @endif
                                             </div>
                                             <label for="doc_confidencialidad_practicas" class="block font-medium text-sm text-gray-700">Adjuntar documento de confidencialidad</label>
                                             <input type="file" name="doc_confidencialidad_practicas" id="doc_confidencialidad_practicas" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -260,20 +318,66 @@
                                 <hr>
                                     <div class="flex mt-8 mb-4">
                                         <div class="w-1/2 mr-2">
-                                            <div class="flex">
-                                                <x-boton2 tipo="linkConAsset" class="bg-blue-500 hover:bg-blue-700 mr-4 w-16" direccion="{{$empleado->contrato}}">
-                                                    <x-slot name="boton">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                                                    </x-slot>
-                                                </x-boton2>
-
-                                                <x-boton2 tipo="descargaConAsset" class="bg-green-500 hover:bg-green-700 mr-4 w-16" direccion="{{$empleado->contrato}}">
-                                                    <x-slot name="boton">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                                                    </x-slot>
-                                                </x-boton2>
-                                            </div>
                                             <label for="contrato" class="block font-medium text-sm text-gray-700">Adjuntar contrato</label>
+                                            @if ($empleado->contrato != null)
+                                                <div class="flex mb-2">
+                                                    <x-boton2 tipo="linkConAsset"
+                                                        class="bg-blue-500 hover:bg-blue-700 mr-4 w-16"
+                                                        direccion="{{ $empleado->contrato }}">
+                                                        <x-slot name="boton">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                                class="feather feather-eye">
+                                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                                <circle cx="12" cy="12" r="3"></circle>
+                                                            </svg>
+                                                        </x-slot>
+                                                    </x-boton2>
+
+                                                    <x-boton2 tipo="descargaConAsset"
+                                                        class="bg-green-500 hover:bg-green-700 mr-4 w-16"
+                                                        direccion="{{ $empleado->contrato }}">
+                                                        <x-slot name="boton">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                                class="feather feather-download">
+                                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                                                <polyline points="7 10 12 15 17 10"></polyline>
+                                                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                                                            </svg>
+                                                        </x-slot>
+                                                    </x-boton2>
+                                                </div>
+                                            @else
+                                                <div class="flex mb-2">
+                                                    <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                        <x-slot name="boton">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                                class="feather feather-eye">
+                                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                                <circle cx="12" cy="12" r="3"></circle>
+                                                            </svg>
+                                                        </x-slot>
+                                                    </x-boton2>
+
+                                                    <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                        <x-slot name="boton">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                                class="feather feather-download">
+                                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                                                <polyline points="7 10 12 15 17 10"></polyline>
+                                                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                                                            </svg>
+                                                        </x-slot>
+                                                    </x-boton2>
+                                                </div>
+                                            @endif
                                             <input type="file" name="contrato" id="contrato" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                                 value="{{ old('contrato', $empleado->contrato) }}" />
                                             @error('contrato')
@@ -296,6 +400,65 @@
                                                 </x-boton2>
                                             </div>
                                             <label for="doc_confidencialidad" class="block font-medium text-sm text-gray-700">Adjuntar documento de confidencialidad</label>
+                                                @if ($empleado->doc_confidencialidad != null)
+                                                    <div class="flex mb-2">
+                                                        <x-boton2 tipo="linkConAsset"
+                                                            class="bg-blue-500 hover:bg-blue-700 mr-4 w-16"
+                                                            direccion="{{ $empleado->doc_confidencialidad }}">
+                                                            <x-slot name="boton">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-eye">
+                                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                                    <circle cx="12" cy="12" r="3"></circle>
+                                                                </svg>
+                                                            </x-slot>
+                                                        </x-boton2>
+
+                                                        <x-boton2 tipo="descargaConAsset"
+                                                            class="bg-green-500 hover:bg-green-700 mr-4 w-16"
+                                                            direccion="{{ $empleado->doc_confidencialidad }}">
+                                                            <x-slot name="boton">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-download">
+                                                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                                                </svg>
+                                                            </x-slot>
+                                                        </x-boton2>
+                                                    </div>
+                                                @else
+                                                    <div class="flex mb-2">
+                                                        <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                            <x-slot name="boton">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-eye">
+                                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                                    <circle cx="12" cy="12" r="3"></circle>
+                                                                </svg>
+                                                            </x-slot>
+                                                        </x-boton2>
+
+                                                        <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                            <x-slot name="boton">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-download">
+                                                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                                                </svg>
+                                                            </x-slot>
+                                                        </x-boton2>
+                                                    </div>
+                                                @endif
                                             <input type="file" name="doc_confidencialidad" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                                 value="{{ old('doc_confidencialidad', $empleado->doc_confidencialidad) }}" />
                                             @error('doc_confidencialidad')
@@ -371,138 +534,7 @@
                                         @enderror
                                     </div>
                                     <hr>
-                                        <div class="divPagos mt-8 mb-8">
-                                            <div class="flex justify-center items-center relative contenedorTituloBotones mb-8">
-                                                <h3 class="font-semibold text-xl text-gray-800 leading-tight m2-6 mb-2">
-                                                    Pagos
-                                                </h3>
 
-                                                <div class="flex justify-between absolute right-0">
-                                                    <x-boton2 tipo="div" nombre="mas" class="bg-green-600 hover:bg-green-700 w-12 h-12 mr-6" onclick="masPago(event)">
-                                                        <x-slot name="boton">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                                        </x-slot>
-                                                    </x-boton2>
-
-                                                    <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-12 h-12" onclick="menosPago(event)">
-                                                        <x-slot name="boton">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                                        </x-slot>
-                                                    </x-boton2>
-                                                </div>
-                                            </div>
-
-                                            @foreach ($empleado->nominas as $key => $nomina)
-                                            <div class="contenedorNominas justify-between mb-4">
-                                                <div class="flex mb-4">
-                                                    <div class="w-1/3 divFechaInicioNomina mr-2">
-                                                        <label for="nominas[{{$key}}][fecha_inicio]" class="block font-medium text-sm text-gray-700">Fecha inicio</label>
-                                                        <input type="date" name="nominas[{{$key}}][fecha_inicio]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                            value="{{ old("nominas[$key][fecha_inicio]", $nomina->fecha_inicio) }}" />
-                                                        @error("nominas[{{$key}}][fecha_inicio]")
-                                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-
-                                                    <div class="w-1/3 divFechaFinNomina mx-2">
-                                                        <label for="nominas[{{$key}}][fecha_fin]" class="block font-medium text-sm text-gray-700">Fecha fin</label>
-                                                        <input type="date" name="nominas[{{$key}}][fecha_fin]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                            value="{{ old("nominas[$key][fecha_inicio]", $nomina->fecha_inicio) }}" />
-                                                        @error("nominas[{{$key}}][fecha_fin]")
-                                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                    <div class="w-1/3 divFechaPagoNomina ml-2">
-                                                        <label for="nominas[{{$key}}][fecha_pago]" class="block font-medium text-sm text-gray-700">Fecha de pago</label>
-                                                        <input type="date" name="nominas[{{$key}}][fecha_pago]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                            value="{{ old("nominas[$key][fecha_pago]", $nomina->fecha_pago) }}" />
-                                                        @error('nominas[{{$key}}][fecha_pago]')
-                                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="flex">
-                                                    <div class="w-1/3 divHorasNomina mr-2">
-                                                        <label for="nominas[{{$key}}][horas_alta_ss]" class="block font-medium text-sm text-gray-700">Horas de alta en la SS</label>
-                                                        <input type="text" name="nominas[{{$key}}][horas_alta_ss]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                            value="{{ old("nominas[$key][horas_alta_ss]", $nomina->horas_alta_ss) }}" />
-                                                        @error('nominas[{{$key}}][horas_alta_ss]')
-                                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-
-                                                    <div class="w-1/3 divImporteTotalNomina mx-2">
-                                                        <label for="nominas[{{$key}}][importe_total]" class="block font-medium text-sm text-gray-700">Importe nómina</label>
-                                                        <input type="text" name="nominas[{{$key}}][importe_total]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                            value="{{ old("nominas[$key][importe_total]", $nomina->importe_total) }}" />
-                                                        @error('nominas[{{$key}}][importe_total]')
-                                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-
-                                                    <div class="w-1/3 divImportePagadoNomina ml-2">
-                                                        <label for="nominas[{{$key}}][importe_pagado]" class="block font-medium text-sm text-gray-700">Importe pagado</label>
-                                                        <input type="text" name="nominas[{{$key}}][importe_pagado]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                            value="{{ old("nominas[$key][importe_pagado]", $nomina->importe_pagado) }}" />
-                                                        @error('nominas[{{$key}}][importe_pagado]')
-                                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            @endforeach
-
-                                        </div>
-                                        <hr>
-                                        <div class="divFaltas mt-8 mb-8">
-                                            <div class="flex justify-center contenedorTituloBotones relative">
-                                                <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-2 mb-2">
-                                                    Faltas de asistencia
-                                                </h3>
-                                                <div class="flex justify-between absolute right-0">
-                                                    <x-boton2 tipo="div" nombre="mas" class="bg-green-600 hover:bg-green-700 w-12 h-12 mr-6" onclick="masFalta(event)">
-                                                        <x-slot name="boton">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                                        </x-slot>
-                                                    </x-boton2>
-
-                                                    <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-12 h-12" onclick="menosFalta(event)">
-                                                        <x-slot name="boton">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                                        </x-slot>
-                                                    </x-boton2>
-                                                </div>
-                                            </div>
-
-                                            @foreach ($empleado->faltas as $key => $falta)
-                                            <div class="contenedorFaltas">
-                                                <div class="divFechaFalta w-1/3 mb-4">
-                                                    <label for="faltas[{{$key}}][fecha_falta]" class="block font-medium text-sm text-gray-700">Fecha</label>
-                                                    <input type="date" name="faltas[{{$key}}][fecha_falta]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                        value="{{ old("faltas[$key][fecha_falta]", $falta->fecha_falta) }}" />
-                                                    @error('faltas[{{$key}}][fecha_falta]')
-                                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
-                                                <div class="divJustificacionFalta mb-4">
-                                                    <label for="faltas[{{$key}}][justificacion]" class="block font-medium text-sm text-gray-700">Justificacion</label>
-                                                    <textarea type="text" name="faltas[{{$key}}][justificacion]" class="form-input rounded-md shadow-sm mt-1 block w-full">{{$falta->justificacion}}</textarea>
-                                                    @error('faltas[{{$key}}][justificacion]')
-                                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
-                                                <div class="divNotaFalta mb-4">
-                                                    <label for="faltas[{{$key}}][notas]" class="block font-medium text-sm text-gray-700">Notas</label>
-                                                    <textarea type="text" name="faltas[{{$key}}][notas]" class="form-input rounded-md shadow-sm mt-1 block w-full">{{$falta->notas}}</textarea>
-                                                    @error('faltas[{{$key}}][notas]')
-                                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            @endforeach
-
-                                        </div>
-                                        <hr>
                                         <div class="divVacaciones">
                                             <div class="flex justify-center">
                                                 <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-6 mb-4">
@@ -517,47 +549,6 @@
                                                     <p class="text-sm text-red-600">{{ $message }}</p>
                                                 @enderror
                                             </div>
-
-                                            <div class="flex relative justify-center items-center">
-                                                <h3 class="font-semibold text-xl text-gray-800 leading-tight mt-2 mb-8">
-                                                    Vacaciones disfrutadas
-                                                </h3>
-                                                <div class="flex justify-between absolute right-0">
-                                                    <x-boton2 tipo="div" nombre="mas" class="bg-green-600 hover:bg-green-700 w-12 h-12 mr-6" onclick="masVacacion(event)">
-                                                        <x-slot name="boton">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                                        </x-slot>
-                                                    </x-boton2>
-
-                                                    <x-boton2 tipo="div" nombre="menos" class="bg-red-600 hover:bg-red-700 w-12 h-12" onclick="menosVacacion(event)">
-                                                        <x-slot name="boton">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                                        </x-slot>
-                                                    </x-boton2>
-                                                </div>
-                                            </div>
-
-                                            @foreach ($empleado->vacaciones as $key => $vacacion)
-                                                <div class="contenedorVacaciones flex mb-4">
-                                                    <div class="divInicioVacaciones w-1/3">
-                                                        <label for="vacaciones_disfrutadas[{{ $key }}][fecha_inicio]" class="block font-medium text-sm text-gray-700">Fecha inicio vacaciones</label>
-                                                        <input type="date" name="vacaciones_disfrutadas[{{ $key }}][fecha_inicio]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                            value="{{ old("vacaciones_disfrutadas[$key][fecha_inicio]", $vacacion->fecha_inicio) }}" />
-                                                        @error('vacaciones_disfrutadas[{{ $key }}][fecha_inicio]')
-                                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-
-                                                    <div class="divFinVacaciones w-1/3 ml-4">
-                                                        <label for="vacaciones_disfrutadas[{{ $key }}][fecha_fin]" class="block font-medium text-sm text-gray-700">Fecha fin vacaciones</label>
-                                                        <input type="date" name="vacaciones_disfrutadas[{{ $key }}][fecha_fin]" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                                            value="{{ old("vacaciones_disfrutadas[$key][fecha_fin]", $vacacion->fecha_inicio) }}" />
-                                                        @error('vacaciones_disfrutadas[{{ $key }}][fecha_fin]')
-                                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                            @endforeach
                                         </div>
                                     </div>
                                 </div>

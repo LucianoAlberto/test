@@ -95,9 +95,12 @@ class NominaController extends Controller
         $nomina->empleado_id = $empleado->id;
         $nomina->fecha_inicio = $validated["fecha_inicio"];
         $nomina->fecha_fin = $validated["fecha_fin"];
+        $nomina->horas_alta_ss=$validated['horas_alta_ss'];
         $nomina->importe_total = $validated["importe_total"];
+        $nomina->pago_extra=$validated['pago_extra'];
         $nomina->importe_pagado = $validated["importe_pagado"];
         $nomina->fecha_pago = $validated["fecha_pago"];
+        $nomina->updated_at=now('Europe/Madrid');
 
         $nomina->save();
 
@@ -111,8 +114,11 @@ class NominaController extends Controller
      * @param  \App\Models\Nomina  $nomina
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Nomina $nomina)
+    public function destroy(Empleado $empleado, Nomina $nomina)
     {
-        //
+        $nomina->delete();
+
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('nominas.index', compact('empleado', 'rolConPoderes'))->with('eliminado','si');
     }
 }

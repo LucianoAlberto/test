@@ -5093,6 +5093,12 @@ window.deleteConfirm = function (formId, event) {
     texto = '¿Desea borrar este proyecto?';
   } else if (event.target.closest("form").classList.contains("pago")) {
     texto = '¿Desea borrar este pago?';
+  } else if (event.target.closest("form").classList.contains("vacacion")) {
+    texto = '¿Desea borrar estas vacaciones?';
+  } else if (event.target.closest("form").classList.contains("falta")) {
+    texto = '¿Desea borrar esta falta?';
+  } else if (event.target.closest("form").classList.contains("nomina")) {
+    texto = '¿Desea borrar esta nómina?';
   }
 
   sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
@@ -5381,7 +5387,7 @@ window.anadirFactura = function () {
 window.cerrarNuevaFactura = function () {
   var div = document.getElementById('nueva_factura');
   div.style.display = 'none';
-}; // nuevo concepto 
+}; // nuevo concepto
 
 
 window.nuevoConcepto = function () {

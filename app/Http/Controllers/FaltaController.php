@@ -104,8 +104,11 @@ class FaltaController extends Controller
      * @param  \App\Models\Falta  $falta
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Falta $falta)
+    public function destroy(Empleado $empleado, Falta $falta)
     {
-        //
+        $falta->delete();
+
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('faltas.index', compact('empleado', 'rolConPoderes'))->with('eliminado','si');
     }
 }

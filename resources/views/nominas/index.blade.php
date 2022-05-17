@@ -44,7 +44,7 @@
         @csrf
         <input type="hidden" name="empleado_id" value="">
         <div class="divPagos mt-8 mb-8">
-           
+
             <div class="contenedorNominas justify-between mb-4">
                 <div class="flex mb-4">
                     <div class="w-1/3 divFechaInicioNomina mr-2">
@@ -74,7 +74,7 @@
                         @enderror
                     </div>
                     <div class="w-1/2 divHorasNomina mr-2" >
-                        <label for="horas_alta_ss]" class="block font-medium text-sm text-gray-700">Horas SS *</label>
+                        <label for="horas_alta_ss" class="block font-medium text-sm text-gray-700">Horas SS *</label>
                         <input type="text" name="horas_alta_ss" class="form-input rounded-md shadow-sm mt-1 block w-full"
                             value="{{ old("horas_alta_ss", '') }}"  required/>
                         @error('horas_alta_ss')
@@ -83,7 +83,7 @@
                     </div>
                 </div>
                 <div class="flex">
-                 
+
                     <div class="w-1/3 divImporteTotalNomina mx-2">
                         <label for="importe_total" class="block font-medium text-sm text-gray-700">Importe nómina *</label>
                         <input type="text" name="importe_total" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -113,11 +113,11 @@
                     </div>
 
                 </div>
-                
+
             </div>
         </div>
         <div class="flex items-center justify-end ">
-            <button 
+            <button
                 class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-5">
                 Crear
             </button>
@@ -152,7 +152,7 @@
                                                     </x-boton2>
                                                 </label>
                                             </div><hr><hr>
-                                            <thead>                                          
+                                            <thead>
                                             <tr >
                                                 <th scope="col" width="50" class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     ID
@@ -186,7 +186,7 @@
 
                                             <tbody class="bg-white divide-y divide-gray-200">
                                             @foreach ($empleado->nominas as $nomina)
-                                                <tr class="hover:bg-green-200 cursor-pointer" onclick="detalles('{{ route('nominas.show', ['empleado' => $empleado->id, 'nomina' => $nomina->id]) }}', event)">                                              
+                                                <tr class="hover:bg-green-200 cursor-pointer" onclick="detalles('{{ route('nominas.show', ['empleado' => $empleado->id, 'nomina' => $nomina->id]) }}', event)">
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
                                                         {{ $nomina->id }}
                                                     </td>

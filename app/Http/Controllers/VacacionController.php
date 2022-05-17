@@ -102,8 +102,11 @@ class VacacionController extends Controller
      * @param  \App\Models\Vacacion  $vacacion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vacacion $vacacion)
+    public function destroy(Empleado $empleado, Vacacion $vacacion)
     {
-        //
+        $vacacion->delete();
+
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('vacaciones.index', compact('empleado', 'rolConPoderes'))->with('eliminado','si');
     }
 }

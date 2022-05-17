@@ -41,6 +41,15 @@
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>
+
+                                    <div class="w-1/2 divHorasNomina mr-2" >
+                                        <label for="horas_alta_ss" class="block font-medium text-sm text-gray-700">Horas SS *</label>
+                                        <input type="text" name="horas_alta_ss" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old("horas_alta_ss", $nomina->horas_alta_ss) }}"  required/>
+                                        @error('horas_alta_ss')
+                                            <p class="text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
                                 </div>
                                 <div class="flex">
 
@@ -58,6 +67,15 @@
                                         <input type="text" name="importe_pagado" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old("importe_pagado", $nomina->importe_pagado) }}" />
                                         @error('importe_pagado')
+                                            <p class="text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                    <div class="w-1/3 divImportePagadoNomina ml-2">
+                                        <label for="pago_extra" class="block font-medium text-sm text-gray-700">Pago Extra</label>
+                                        <input type="text" name="pago_extra" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                            value="{{ old("pago_extra", $nomina->pago_extra) }}" />
+                                        @error('pago_extra')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                     </div>

@@ -31,6 +31,15 @@ window.deleteConfirm = function(formId, event)
     else if(event.target.closest("form").classList.contains("pago")){
         texto = '¿Desea borrar este pago?';
     }
+    else if(event.target.closest("form").classList.contains("vacacion")){
+        texto = '¿Desea borrar estas vacaciones?';
+    }
+    else if(event.target.closest("form").classList.contains("falta")){
+        texto = '¿Desea borrar esta falta?';
+    }
+    else if(event.target.closest("form").classList.contains("nomina")){
+        texto = '¿Desea borrar esta nómina?';
+    }
 
     Swal.fire({
        icon: 'question',
@@ -56,7 +65,7 @@ window.detalles = function(vista, event)
 }
 
 window.anadirPago=function(){
-    
+
     let div = document.getElementById('nuevo_pago');
     div.style.display = 'block';
 }
@@ -395,7 +404,7 @@ window.cerrarNuevaFactura=function(){
 
 }
 
-// nuevo concepto 
+// nuevo concepto
 window.nuevoConcepto=function(){
     let div = document.getElementById('nuevoConcepto');
     div.style.display = 'block';

@@ -37,9 +37,11 @@
                                                 <th scope="col" class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Fecha de finalización
                                                 </th>
+                                                @role($rolConPoderes)
                                                 <th scope="col" width="200" class="px-6 py-3 bg-gray-50">
                                                     Opciones
                                                 </th>
+                                                @endrole
                                             </tr>
                                             </thead>
 
@@ -57,7 +59,7 @@
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
                                                         {{ $vacacion->fecha_fin }}
                                                     </td>
-
+                                                    @role($rolConPoderes)
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex items-start">
                                                         <x-boton2 tipo="link" class="bg-yellow-400 hover:bg-yellow-600 mr-4 w-16" direccion="{{ route('vacaciones.edit', ['empleado' => $empleado, 'vacacion' => $vacacion]) }}">
                                                             <x-slot name="boton">
@@ -65,7 +67,7 @@
                                                             </x-slot>
                                                         </x-boton2>
 
-                                                        <form id="{{ $vacacion->id }}" class="vacacion inline-block" action="{{ route('vacaciones.destroy', ['empleado' => $empleado, 'vacacion' => $vacacion]) }}" method="POST" onclick="deleteConfirm('{{ $vacacion->id }}', event)">
+                                                        <form id="{{ $vacacion->id }}" class="vacacion inline-block" action="{{ route('vacaciones.destroy', ['empleado' => $empleado, 'vacacion' => $vacacion]) }}" method="POST" onclick=" deleteConfirm('{{ $vacacion->id }}', event)">
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -76,6 +78,7 @@
                                                             </x-boton2>
                                                         </form>
                                                     </td>
+                                                    @endrole($rolConPoderes)
                                                 </tr>
                                             @endforeach
                                             </tbody>

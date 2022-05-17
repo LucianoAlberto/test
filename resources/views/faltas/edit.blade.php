@@ -14,7 +14,7 @@
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div class="contenedorNominas justify-between mb-4">
-                                <div class="flex">
+                                <div class="">
                                     <div class="w-4/12 divFechaInicioNomina">
                                         <label for="fecha_falta" class="block font-medium text-sm text-gray-700">Fecha de la falta</label>
                                         <input type="date" name="fecha_falta" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -26,8 +26,9 @@
 
                                     <div class="w-4/12 divFechaFinNomina">
                                         <label for="justificacion" class="block font-medium text-sm text-gray-700">Justificación</label>
-                                        <input type="text" name="justificacion" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("justificacion", $falta->justificacion) }}" />
+                                        <textarea type="text" name="justificacion" class="form-input rounded-md shadow-sm mt-1 block w-full">
+                                            {{ old("justificacion", $falta->justificacion) }}
+                                        </textarea>
                                         @error("justificacion")
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
@@ -35,8 +36,9 @@
 
                                     <div class="w-4/12 divFechaPagoNomina">
                                         <label for="notas" class="block font-medium text-sm text-gray-700">Notas</label>
-                                        <input type="text" name="notas" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("notas", $falta->notas) }}" />
+                                        <textarea type="text" name="notas" class="form-input rounded-md shadow-sm mt-1 block w-full">
+                                            {{ old("notas", $falta->notas) }}
+                                        </textarea>
                                         @error('notas')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror

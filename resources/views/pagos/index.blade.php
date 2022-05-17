@@ -170,7 +170,7 @@
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center underline decoration-1 text-blue-800 hover:text-red-800 hover:text-2xl">
-                                                        @if ($pago->contrato_id == 0)
+                                                        @if ($pago->contrato_id == NULL)
                                                             ---
                                                         @else
                                                         <a

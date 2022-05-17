@@ -98,13 +98,11 @@
                     @csrf
                     <input type="number" name="cliente_id" id="cliente_id" value="{{ $cliente->id }}" hidden>
                     <div class="shadow overflow-hidden sm:rounded-md">
-
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div >
                                 <div class="flex justify-between mb-4">
                                     <div class="w-1/2 mr-4">
                                         <label for="concepto" class="flex font-medium text-sm text-gray-700">Concepto
-
                                             <x-boton2 tipo="div" class="ml-1 bg-gray-800 hover:bg-gray-700 w-6 h-6 fill-none " onclick="nuevoConcepto()">
                                                 <x-slot name="boton">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-slash-minus" viewBox="0 0 16 16">
@@ -155,7 +153,8 @@
                                     <div class="w-1/8">
                                         <label for="proveedor_dominio_usuario"
                                             class="block font-medium text-sm text-gray-700">Provedor Dominio Usuario</label>
-                                        <input type="text" name="proveedor_dominio_usuario" id="proveedor_dominio_usuario">
+                                        <input type="text" name="proveedor_dominio_usuario" id="proveedor_dominio_usuario"
+                                            value="{{ old('proveedor_dominio_usuario', '') }}">
                                         @error('proveedor_dominio_usuario')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
@@ -164,7 +163,8 @@
                                     <div class="w-1/8">
                                         <label for="proveedor_dominio_contrasenha"
                                             class="block font-medium text-sm text-gray-700">Provedor Dominio Contraseña</label>
-                                        <input type="text" name="proveedor_dominio_contrasenha" id="proveedor_dominio_contrasenha">
+                                        <input type="text" name="proveedor_dominio_contrasenha" id="proveedor_dominio_contrasenha"
+                                            value="{{ old('proveedor_dominio_contrasenha', '') }}">
                                         @error('proveedor_dominio_contrasenha')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
@@ -173,7 +173,8 @@
                                     <div class="w-1/8">
                                         <label for="proveedor_hosting_usuario"
                                             class="block font-medium text-sm text-gray-700">Provedor Hosting Usuario</label>
-                                        <input type="text" name="proveedor_hosting_usuario" id="proveedor_hosting_usuario">
+                                        <input type="text" name="proveedor_hosting_usuario" id="proveedor_hosting_usuario"
+                                            value="{{ old('proveedor_hosting_usuario', '') }}">
                                         @error('proveedor_hosting_usuario')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
@@ -182,7 +183,8 @@
                                     <div class="w-1/8">
                                         <label for="proveedor_hosting_contrasenha"
                                             class="block font-medium text-sm text-gray-700">Provedor Hosting Contraseña</label>
-                                        <input type="text" name="proveedor_hosting_contrasenha" id="proveedor_hosting_contrasenha">
+                                        <input type="text" name="proveedor_hosting_contrasenha" id="proveedor_hosting_contrasenha"
+                                            value="{{ old('proveedor_hosting_contrasenha', '') }}">
                                         @error('proveedor_hosting_contrasenha')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
@@ -196,7 +198,8 @@
                                         <label class="block text-gray-700 text-sm font-bold mb-2" for="sepa">
                                           Subir SEPA
                                         </label>
-                                        <input class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="sepa" type="file" name="sepa"  >
+                                        <input class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="sepa" type="file" name="sepa"
+                                        value="{{ old('sepa', '') }}">
                                         @error('sepa')
                                         <p class="text-sm text-red-600">{{ $message }}</p>
                                      @enderror
@@ -206,7 +209,8 @@
                                         <label class="block text-gray-700 text-sm font-bold mb-2" for="hoja_preferencia">
                                           Subir Hoja Preferencia
                                         </label>
-                                        <input class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="hoja_preferencia" type="file" name="hoja_preferencia"  >
+                                        <input class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="hoja_preferencia" type="file" name="hoja_preferencia"
+                                            value="{{ old('hoja_preferencia', '') }}">
                                         @error('hoja_preferencia')
                                         <p class="text-sm text-red-600">{{ $message }}</p>
                                      @enderror
@@ -234,14 +238,12 @@
                                     </div>
                                 </div>
 
-                                <div class="contenedorDominios flex">
+                                <div class="contenedorDominios flex mb-4">
                                     <div class="divNombreDominio w-1/3 mr-4">
                                         <label for="dominio[0][nombre]"
                                             class="block font-medium text-sm text-gray-700">Nombre Dominio</label>
-                                        <input type="text" name="dominio[0][nombre]" class="w-full">
-                                        @if($errors->has('dominio.*.nombre'))
-                                            <p class="text-sm text-red-600">{{ $errors->first('dominio.*.nombre') }}</p>
-                                        @endif
+                                        <input type="text" name="dominio[0][nombre]" class="w-full"
+                                        value="{{ old('dominio[0][nombre]', '') }}">
                                         {{-- @error('dominio[][nombre]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror --}}
@@ -250,10 +252,9 @@
                                     <div class="divUsuarioDominio w-1/3 mx-4">
                                         <label for="dominio[0][usuario]"
                                             class="block font-medium text-sm text-gray-700">Dominio Usuario</label>
-                                        <input type="text" name="dominio[0][usuario]" class="w-full">
-                                        @if($errors->has('dominio.*.usuario'))
-                                            <p class="text-sm text-red-600">{{ $errors->first('dominio.*.usuario') }}</p>
-                                        @endif
+                                        <input type="text" name="dominio[0][usuario]" class="w-full"
+                                        value="{{ old('dominio[0][usuario]', '') }}">
+
                                         {{-- @error('dominio[][usuario]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror --}}
@@ -262,15 +263,25 @@
                                     <div class="divContrasenhaDominio w-1/3 ml-4">
                                         <label for="dominio[0][contrasenha]"
                                             class="block font-medium text-sm text-gray-700">Dominio Contraseña</label>
-                                        <input type="text" name="dominio[0][contrasenha]" class="w-full">
-                                        @if($errors->has('dominio.*.contrasenha'))
-                                            <p class="text-sm text-red-600">{{ $errors->first('dominio.*.contrasenha') }}</p>
-                                        @endif
+                                        <input type="text" name="dominio[0][contrasenha]" class="w-full"
+                                        value="{{ old('dominio[0][contrasenha]', '') }}">
+
                                         {{-- @error('dominio[][contrasenha]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror --}}
                                     </div>
                                 </div>
+                                @if($errors->has('dominio.*.nombre'))
+                                    <p class="text-sm text-red-600">{{ $errors->first('dominio.*.nombre') }}</p>
+                                @endif
+
+                                @if($errors->has('dominio.*.usuario'))
+                                    <p class="text-sm text-red-600">{{ $errors->first('dominio.*.usuario') }}</p>
+                                @endif
+
+                                @if($errors->has('dominio.*.contrasenha'))
+                                    <p class="text-sm text-red-600">{{ $errors->first('dominio.*.contrasenha') }}</p>
+                                @endif
                             </div>
                             <hr>
 
@@ -293,11 +304,12 @@
                                     </div>
                                 </div>
 
-                                <div class="flex justify-between contenedorBasesDatos">
+                                <div class="flex justify-between contenedorBasesDatos mb-4">
                                     <div class="divNombreBD w-1/3 mr-4">
                                         <label for="bd[0][nombre]" class="block font-medium text-sm text-gray-700">Nombre
                                             BBDD</label>
-                                        <input type="text" name="bd[0][nombre]" class="w-full">
+                                        <input type="text" name="bd[0][nombre]" class="w-full"
+                                        value="{{ old('bd[0][nombre]', '') }}">
                                         @if($errors->has('bd.*.nombre'))
                                             <p class="text-sm text-red-600">{{ $errors->first('bd.*.nombre') }}</p>
                                         @endif
@@ -308,7 +320,8 @@
 
                                     <div class="divHostBD w-1/3 mx-4">
                                         <label for="bd[0][host]" class="block font-medium text-sm text-gray-700">Host</label>
-                                        <input type="text" name="bd[0][host]" class="w-full">
+                                        <input type="text" name="bd[0][host]" class="w-full"
+                                            value="{{ old('bd[0][host]', '') }}">
                                         @if($errors->has('bd.*.host'))
                                             <p class="text-sm text-red-600">{{ $errors->first('bd.*.host') }}</p>
                                         @endif
@@ -320,7 +333,8 @@
                                     <div class="divContrasenhaBD w-1/3 ml-4">
                                         <label for="bd[0][contrasenha]"
                                             class="block font-medium text-sm text-gray-700">Contraseña</label>
-                                        <input type="text" name="bd[0][contrasenha]" class="w-full">
+                                        <input type="text" name="bd[0][contrasenha]" class="w-full"
+                                            value="{{ old('bd[0][contrasenha]', '') }}">
                                         @if($errors->has('bd.*.contrasenha'))
                                             <p class="text-sm text-red-600">{{ $errors->first('bd.*.contrasenha') }}</p>
                                         @endif
@@ -352,11 +366,12 @@
                                     </div>
                                 </div>
 
-                                <div class="contenedorEmails flex justify-between">
+                                <div class="contenedorEmails flex justify-between mb-4">
                                     <div class="divEmailEmail w-1/3 mr-4">
                                         <label for="email[0][email]"
                                             class="block font-medium text-sm text-gray-700">Email</label>
-                                        <input type="text" name="email[0][email]" class="w-full">
+                                        <input type="text" name="email[0][email]" class="w-full"
+                                            value="{{ old('email[0][email]', '') }}">
                                         @if($errors->has('email.*.email'))
                                             <p class="text-sm text-red-600">{{ $errors->first('email.*.email') }}</p>
                                         @endif
@@ -368,7 +383,8 @@
                                     <div class="divEmailContrasenha w-1/3 mx-4">
                                         <label for="email[0][contrasenha]"
                                             class="block font-medium text-sm text-gray-700">Password</label>
-                                        <input type="text" name="email[0][contrasenha]" class="w-full">
+                                        <input type="text" name="email[0][contrasenha]" class="w-full"
+                                            value="{{ old('email[0][contrasenha]', '') }}">
                                         @if($errors->has('email.*.contrasenha'))
                                             <p class="text-sm text-red-600">{{ $errors->first('email.*.contrasenha') }}</p>
                                         @endif
@@ -380,7 +396,8 @@
                                     <div class="divEmailRuta w-1/3 ml-4">
                                         <label for="email[0][ruta_acceso]" class="block font-medium text-sm text-gray-700">Ruta
                                             Accesso</label>
-                                        <input type="text" name="email[0][ruta_acceso]" class="w-full">
+                                        <input type="text" name="email[0][ruta_acceso]" class="w-full"
+                                            value="{{ old('email[0][ruta_acceso]', '') }}">
                                         @if($errors->has('email.*.ruta_acceso'))
                                             <p class="text-sm text-red-600">{{ $errors->first('email.*.ruta_acceso') }}</p>
                                         @endif
@@ -411,11 +428,12 @@
                                     </div>
                                 </div>
 
-                                <div class="contenedorAccesos flex justify-between">
+                                <div class="contenedorAccesos flex justify-between mb-4">
                                     <div class="divDominioAcceso w-1/3 mr-4">
                                         <label for="acceso[0][dominio]"
                                             class="block font-medium text-sm text-gray-700">Dominio</label>
-                                        <input type="text" name="acceso[0][dominio]" class="w-full">
+                                        <input type="text" name="acceso[0][dominio]" class="w-full"
+                                            value="{{ old('acceso[0][dominio]', '') }}">
                                         @if($errors->has('acceso.*.dominio'))
                                             <p class="text-sm text-red-600">{{ $errors->first('acceso.*.dominio') }}</p>
                                         @endif
@@ -427,7 +445,8 @@
                                     <div class="divUsuarioAcceso w-1/3 mx-4">
                                         <label for="acceso[0][usuario]"
                                             class="block font-medium text-sm text-gray-700">Usuario</label>
-                                        <input type="text" name="acceso[0][usuario]" class="w-full">
+                                        <input type="text" name="acceso[0][usuario]" class="w-full"
+                                            value="{{ old('acceso[0][usuario]', '') }}">
                                         @if($errors->has('acceso.*.usuario'))
                                             <p class="text-sm text-red-600">{{ $errors->first('acceso.*.usuario') }}</p>
                                         @endif
@@ -439,7 +458,8 @@
                                     <div class="divContrasenhaAcceso w-1/3 ml-4">
                                         <label for="acceso[0][contrasenha]"
                                             class="block font-medium text-sm text-gray-700">Contraseña</label>
-                                        <input type="text" name="acceso[0][contrasenha]" class="w-full">
+                                        <input type="text" name="acceso[0][contrasenha]" class="w-full"
+                                            value="{{ old('acceso[0][contrasenha]', '') }}">
                                         @if($errors->has('acceso.*.contrasenha'))
                                             <p class="text-sm text-red-600">{{ $errors->first('acceso.*.contrasenha') }}</p>
                                         @endif
@@ -456,6 +476,7 @@
                                     Otros Datos
                                  </label>
                                  <textarea name="otros_datos" id="otros_datos" cols="102" rows="10" scroll>
+                                    {{ old('otros_datos', '') }}
                                  </textarea>
                             </div>
 

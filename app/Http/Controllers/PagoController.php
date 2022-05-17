@@ -45,13 +45,16 @@ class PagoController extends Controller
        $pago->pendiente = $request['pendiente'];
        $pago->fecha = $request['fecha'];
 
-       if($request['referencia'] == 0){
-           $pago->contrato_id=null;
-       }else{
-           //recuperamos el id del contrato
-           $contrato=Contrato::where('referencia',$request['referencia'])->select('id')->get();
-           $pago->contrato_id=$contrato[0]['id'];
-       }
+        if($request['referencia'] == 0){
+            $pago->contrato_id = null;
+        }else{
+            //recuperamos el id del contrato
+            $contrato = Contrato::where('referencia',$request['referencia'])->first();
+            //dd($contrato->referencia);
+            $pago->contrato_id = $contrato->id;
+            $pago->referencia = $contrato->referencia;
+        }
+
         $pago->save();
         return redirect()->back()->with('creado','si');
     }

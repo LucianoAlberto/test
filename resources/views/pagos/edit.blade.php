@@ -80,8 +80,7 @@
                 <select
                     class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                     id="referencia" name="referencia" required>
-                    <option value="">Seleciona una referencia</option>
-                    <option value="0">Sin Contrato</option>
+                    <option value="0" {{ $pago->referencia == NULL ? 'selected' :'' }}>Sin Contrato</option>
                     @foreach ($cliente->contratos as $contrato)
                         <option value={{ $contrato->referencia }} {{ $contrato->referencia == $pago->referencia ? 'selected' :'' }}>{{ $contrato->referencia }}</option>
                     @endforeach

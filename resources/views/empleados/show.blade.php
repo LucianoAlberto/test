@@ -20,7 +20,6 @@
             </div>
 
         </div>
-    </div>
     </x-slot>
     <!---Fin menu superior-->
     <div>
@@ -31,217 +30,372 @@
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                             <table class="min-w-full divide-y divide-gray-200 w-full">
-                                <h3 class="text-center font-bold uppercase w-full py-5 bg-gray-300">Datos personales</h3>
+                                <h3 class="text-center font-bold uppercase w-full py-5 bg-gray-300">Datos personales
+                                </h3>
                                 <tr class="border-b">
-                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th scope="col"
+                                        class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         ID
                                     </th>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                    <td
+                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
                                         {{ $empleado->id }}
                                     </td>
                                 </tr>
                                 <tr class="border-b">
-                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th scope="col"
+                                        class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Nombre
                                     </th>
 
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                    <td
+                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
                                         {{ $empleado->nombre }} {{ $empleado->apellidos }}
                                     </td>
 
                                 </tr>
 
                                 <tr class="border-b">
-                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th scope="col"
+                                        class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         DNI
                                     </th>
 
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                    <td
+                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
                                         {{ $empleado->dni }}
                                     </td>
 
                                 </tr>
 
                                 <tr class="border-b">
-                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th scope="col"
+                                        class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Número de la Seguridad Social
                                     </th>
 
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                    <td
+                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
                                         {{ $empleado->numero_ss }}
                                     </td>
 
                                 <tr class="border-b">
-                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th scope="col"
+                                        class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Fecha comienzo
                                     </th>
 
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                    <td
+                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
                                         {{ $empleado->fecha_comienzo }}
                                     </td>
 
                                 </tr>
 
                                 <tr class="border-b">
-                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th scope="col"
+                                        class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Fecha fin
                                     </th>
 
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                    <td
+                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
                                         {{ $empleado->fecha_fin }}
                                     </td>
                                 </tr>
 
-                                @if($empleado->practica)
+                                @if ($empleado->practica)
                                     <tr class="border-b">
-                                        <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th scope="col"
+                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Instituto
                                         </th>
 
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
                                             {{ $empleado->practica->instituto }}
                                         </td>
                                     </tr>
 
                                     <tr class="border-b">
-                                        <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th scope="col"
+                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Localidad
                                         </th>
 
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
                                             {{ $empleado->practica->localidad }}
                                         </td>
                                     </tr>
 
                                     <tr class="border-b">
-                                        <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th scope="col"
+                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Provincia
                                         </th>
 
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
                                             {{ $empleado->practica->provincia }}
                                         </td>
                                     </tr>
 
                                     <tr class="border-b">
-                                        <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th scope="col"
+                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Tutor de prácticas
                                         </th>
 
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
                                             {{ $empleado->practica->tutor_practicas }}
                                         </td>
                                     </tr>
 
                                     <tr class="border-b">
-                                        <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th scope="col"
+                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Fecha de inicio de las prácticas
                                         </th>
 
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
                                             {{ $empleado->practica->fecha_inicio }}
                                         </td>
                                     </tr>
 
                                     <tr class="border-b">
-                                        <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th scope="col"
+                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Fecha de finalización de las prácticas
                                         </th>
 
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
                                             {{ $empleado->practica->fecha_fin }}
                                         </td>
                                     </tr>
 
                                     <tr class="border-b">
-                                        <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th scope="col"
+                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Convenio
                                         </th>
 
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
                                             <div>
-                                                <a href="{{ asset("/storage/{$empleado->practica->convenio}") }}" target="_blank" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-10 border border-green-700 rounded ">Ver</a>
+                                                <a href="{{ asset("/storage/{$empleado->practica->convenio}") }}"
+                                                    target="_blank"
+                                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-10 border border-green-700 rounded ">Ver</a>
 
-                                                <a href="{{ asset("/storage/{$empleado->practica->convenio}") }}" download class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded px-5"> Descargar</a>
-                                          </div>
+                                                <a href="{{ asset("/storage/{$empleado->practica->convenio}") }}"
+                                                    download
+                                                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded px-5">
+                                                    Descargar</a>
+                                            </div>
                                         </td>
                                     </tr>
 
                                 @endif
 
                                 <tr class="border-b">
-                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th scope="col"
+                                        class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Contrato
                                     </th>
 
-                                    <td
-                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
-                                        <div>
-                                            <a href="{{ asset("/storage/{$empleado->contrato}") }}" target="_blank" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-10 border border-green-700 rounded ">Ver</a>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                        @if($empleado->contrato != null)
+                                        <div class="flex">
+                                            <x-boton2 tipo="linkConAsset" class="bg-blue-500 hover:bg-blue-700 mr-4 w-16" direccion="{{$empleado->contrato}}">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                                </x-slot>
+                                            </x-boton2>
 
-                                            <a href="{{ asset("/storage/{$empleado->contrato}") }}" download class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded px-5"> Descargar</a>
-                                      </div>
+                                            <x-boton2 tipo="descargaConAsset" class="bg-green-400 hover:bg-green-700 mr-4 w-16 h-12" direccion="{{$empleado->contrato}}">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                                </x-slot>
+                                            </x-boton2>
+                                        </div>
+                                    @else
+                                        <div class="flex">
+                                            <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                                </x-slot>
+                                            </x-boton2>
+
+                                            <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                                </x-slot>
+                                            </x-boton2>
+                                        </div>
+                                    @endif
                                     </td>
                                 </tr>
 
                                 <tr class="border-b">
-                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th scope="col"
+                                        class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Documento de confidencialidad
                                     </th>
 
                                     <td
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
-                                        <div>
-                                            <a href="{{ asset("/storage/{$empleado->doc_confidencialidad}") }}" target="_blank" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-10 border border-green-700 rounded ">Ver</a>
+                                        @if($empleado->doc_confidencialidad != null)
+                                        <div class="flex">
+                                            <x-boton2 tipo="linkConAsset" class="bg-blue-500 hover:bg-blue-700 mr-4 w-16" direccion="{{$empleado->doc_confidencialidad}}">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                                </x-slot>
+                                            </x-boton2>
 
-                                            <a href="{{ asset("/storage/{$empleado->doc_confidencialidad}") }}" download class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded px-5"> Descargar</a>
-                                      </div>
+                                            <x-boton2 tipo="descargaConAsset" class="bg-green-400 hover:bg-green-700 mr-4 w-16 h-12" direccion="{{$empleado->doc_confidencialidad}}">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                                </x-slot>
+                                            </x-boton2>
+                                        </div>
+                                    @else
+                                        <div class="flex">
+                                            <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                                </x-slot>
+                                            </x-boton2>
+
+                                            <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                                </x-slot>
+                                            </x-boton2>
+                                        </div>
+                                    @endif
                                     </td>
                                 </tr>
 
                                 <tr class="border-b">
-                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th scope="col"
+                                        class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Documento de normas
                                     </th>
 
                                     <td
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
-                                        <div>
-                                            <a href="{{ asset("/storage/{$empleado->doc_normas}") }}" target="_blank" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-10 border border-green-700 rounded ">Ver</a>
+                                        @if($empleado->doc_normas != null)
+                                        <div class="flex">
+                                            <x-boton2 tipo="linkConAsset" class="bg-blue-500 hover:bg-blue-700 mr-4 w-16" direccion="{{$empleado->doc_normas}}">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                                </x-slot>
+                                            </x-boton2>
 
-                                            <a href="{{ asset("/storage/{$empleado->doc_normas}") }}" download class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded px-5"> Descargar</a>
-                                      </div>
+                                            <x-boton2 tipo="descargaConAsset" class="bg-green-400 hover:bg-green-700 mr-4 w-16 h-12" direccion="{{$empleado->doc_normas}}">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                                </x-slot>
+                                            </x-boton2>
+                                        </div>
+                                    @else
+                                        <div class="flex">
+                                            <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                                </x-slot>
+                                            </x-boton2>
+
+                                            <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                                </x-slot>
+                                            </x-boton2>
+                                        </div>
+                                    @endif
                                     </td>
                                 </tr>
 
                                 <tr class="border-b">
-                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th scope="col"
+                                        class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Documento de prevención de riesgos
                                     </th>
 
                                     <td
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
-                                        <div>
-                                            <a href="{{ asset("/storage/{$empleado->doc_prevencion_riesgos}") }}" target="_blank" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-10 border border-green-700 rounded ">Ver</a>
+                                        @if($empleado->doc_prevencion_riesgos != null)
+                                        <div class="flex">
+                                            <x-boton2 tipo="linkConAsset" class="bg-blue-500 hover:bg-blue-700 mr-4 w-16" direccion="{{$empleado->doc_prevencion_riesgos}}">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                                </x-slot>
+                                            </x-boton2>
 
-                                            <a href="{{ asset("/storage/{$empleado->doc_prevencion_riesgos}") }}" download class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded px-5"> Descargar</a>
-                                      </div>
+                                            <x-boton2 tipo="descargaConAsset" class="bg-green-400 hover:bg-green-700 mr-4 w-16 h-12" direccion="{{$empleado->doc_prevencion_riesgos}}">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                                </x-slot>
+                                            </x-boton2>
+                                        </div>
+                                    @else
+                                        <div class="flex">
+                                            <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                                </x-slot>
+                                            </x-boton2>
+
+                                            <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                                </x-slot>
+                                            </x-boton2>
+                                        </div>
+                                    @endif
                                     </td>
                                 </tr>
 
                                 <tr class="border-b">
-                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th scope="col"
+                                        class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Documento de reglamento interno
                                     </th>
 
                                     <td
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
-                                        <div>
-                                            <a href="{{ asset("/storage/{$empleado->doc_reglamento_interno}") }}" target="_blank" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-10 border border-green-700 rounded ">Ver</a>
+                                        @if($empleado->doc_reglamento_interno != null)
+                                        <div class="flex">
+                                            <x-boton2 tipo="linkConAsset" class="bg-blue-500 hover:bg-blue-700 mr-4 w-16" direccion="{{$empleado->doc_reglamento_interno}}">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                                </x-slot>
+                                            </x-boton2>
 
-                                            <a href="{{ asset("/storage/{$empleado->doc_reglamento_interno}") }}" download class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded px-5"> Descargar</a>
-                                      </div>
+                                            <x-boton2 tipo="descargaConAsset" class="bg-green-400 hover:bg-green-700 mr-4 w-16 h-12" direccion="{{$empleado->doc_reglamento_interno}}">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                                </x-slot>
+                                            </x-boton2>
+                                        </div>
+                                    @else
+                                        <div class="flex">
+                                            <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                                </x-slot>
+                                            </x-boton2>
+
+                                            <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                                </x-slot>
+                                            </x-boton2>
+                                        </div>
+                                    @endif
                                     </td>
                                 </tr>
                             </table>

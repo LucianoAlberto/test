@@ -27,7 +27,7 @@
 
 @if ($tipo == "input")
     <div {{ $attributes->merge(['class' => 'space-x-2 flex justify-center text-white rounded-md text-1xl font-medium transition duration-300'])}}>
-        <button class="flex">
+        <button class="flex items-center justify-center">
             {{ $boton }}
         </button>
     </div>

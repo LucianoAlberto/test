@@ -26,8 +26,8 @@
     <div>
         <div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8">
 
-              {{-- Formulario para un Nuevo ambito --}}
-              <div class="w-1/2 max-w-xs  m-auto mt-5 mb-5 bg-gray-300 border-2" id='nuevoAmbito' hidden>
+            {{-- Formulario para un Nuevo ambito --}}
+            <div class="w-1/2 max-w-xs  m-auto mt-5 mb-5 bg-gray-300 border-2" id='nuevoAmbito' hidden>
 
                 <div class="flex justify-end mb-5">
                     <x-boton2 tipo="div" class="bg-red-600 hover:bg-red-700 w-6 h-6 " onclick="closenuevoAmbito()">
@@ -84,7 +84,6 @@
                                 </option>
                             @endforeach
                         </select>
-             
                         <x-boton2 tipo="input" nombre="Borrar" class="bg-red-600 hover:bg-red-700 w-12 ">
                             <x-slot name="boton">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"
@@ -98,7 +97,7 @@
                                     <line x1="14" y1="11" x2="14" y2="17"></line>
                                 </svg>
                             </x-slot>
-                        </x-boton2>                   
+                        </x-boton2>
 
                         @error('eliminarAmbito')
                             <p class="text-sm text-red-600">{{ $message }}</p>
@@ -107,7 +106,6 @@
                 </form>
                 <hr>
             </div>
-
 
             <div class="mt-5 md:mt-0 md:col-span-2">
                 <h3 class="text-center font-bold uppercase w-full py-5 bg-gray-300">Editando cliente . . . </h3>
@@ -256,7 +254,6 @@
                                                   </svg>
                                             </x-slot>
                                         </x-boton2>
-
                                     </legend>
                                     @foreach ($ambitos as $ambito )
                                         <label for='ambito[{{$ambito->id}}]'>{{ $ambito->nombre }}</label>

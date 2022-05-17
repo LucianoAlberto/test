@@ -86,13 +86,18 @@ class PagoController extends Controller
      */
     public function update(Request $request, Cliente $cliente, Pago $pago)
     {
-        $pago_modificado=  new Pago;
         $pago->cliente_id = $cliente->id;
         $pago->abonado = $request['abonado'];
         $pago->pendiente = $request['pendiente'];
         $pago->fecha = $request['fecha'];
+        //dd($request['referencia']);
+        if($request['referencia'] == 0){
+            $pago->contrato_id = null;
+        }
+        else{
+            $pago->contrato_id = Contrato::where('referencia',$request['referencia'])->first()->id;
+        }
 
-        $pago->contrato_id = Contrato::where('referencia',$request['referencia'])->first()->id;
         $pago->save();
 
         return redirect()->route('pagos.index',$pago->cliente);
@@ -106,7 +111,7 @@ class PagoController extends Controller
      */
     public function destroy(Cliente $cliente, Pago $pago)
     {
-        dd($pago);
+        //dd($pago);
         $pago->delete();
 
         return redirect()->back()->with('eliminado','si');

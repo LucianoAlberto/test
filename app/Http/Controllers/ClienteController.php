@@ -143,9 +143,11 @@ class ClienteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(ClienteRequest $request, Cliente $cliente){
-        $validated=$request->validated();
-        $cliente->nombre=$validated['nombre'];
-        $cliente->apellidos=$validated['apellidos'];
+        $validated = $request->validated();
+
+        $cliente->nombre = $validated["nombre"];
+        $cliente->apellidos = $validated["apellidos"];
+        $cliente->dni = $validated["dni"];
         $cliente->anho_contable = $validated["anho_contable"];
         $cliente->direccion_fiscal = $validated["direccion_fiscal"];
         $cliente->domicilio = $validated["domicilio"];
@@ -161,7 +163,7 @@ class ClienteController extends Controller
         $cliente->save();
 
         $cliente->ambitos()->detach();
-   
+
         if(isset($validated['ambito'])){
             foreach($validated['ambito'] as $clave => $ambito){
                 $cliente->ambitos()->attach($clave);
@@ -195,7 +197,7 @@ class ClienteController extends Controller
             if($factura->factura != null){
                 Storage::disk('public')->delete($factura->factura);
             }
-        
+
             $factura->contratos()->detach();
             $factura->delete();
         }

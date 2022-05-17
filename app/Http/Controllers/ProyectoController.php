@@ -139,7 +139,8 @@ class ProyectoController extends Controller
      */
     public function show(Cliente $cliente, Proyecto $proyecto)
     {
-        return view('proyectos.show', compact('cliente', 'proyecto'));
+        $rolConPoderes = self::ROLCONPODERES;
+        return view('proyectos.show', compact('cliente', 'proyecto','rolConPoderes'));
     }
 
     /**

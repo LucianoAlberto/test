@@ -34,7 +34,7 @@
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="fecha">
-                    Fecha Pago
+                    Fecha Pago *
                 </label>
                 <input
                     class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -58,7 +58,7 @@
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="pendiente">
-                    Importe Pendiente
+                    Importe Pendiente *
                 </label>
                 <input
                     class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
@@ -70,7 +70,7 @@
 
             <div class="mb-3">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="referencia">
-                    Referencia Contrato
+                    Referencia Contrato *
                 </label>
                 <select
                     class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
@@ -90,7 +90,7 @@
 
             <div class="flex items-center justify-center">
                 <button
-                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    class="bg-gray-800 hover:bg-gray-700 hover:scale-125 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                     Guardar
                 </button>
             </div>
@@ -179,7 +179,7 @@
                                                         @endif
                                                     </td>
                                                     @role($rolConPoderes)
-                                                    <td class="px-6 py-6 whitespace-nowrap text-sm font-medium flex justify-center items-center">
+                                                    <td class="px-6 py-6 whitespace-nowrap text-sm font-medium flex justify-center justify-center">
                                                         <x-boton2 tipo="link"
                                                             class="bg-yellow-400 hover:bg-yellow-600 mr-4 w-14 h-14 flex items-center"
                                                             direccion="{{ route('pagos.edit', ['pago' => $pago, 'cliente' => $cliente]) }}">
@@ -196,24 +196,7 @@
                                                                     </path>
                                                                 </svg>
                                                             </x-slot>
-                                                        </x-boton2>
-                                                            <form id="{{ $pago->id }}" class="pago inline-block"
-                                                                action="{{ route('pagos.destroy', ['cliente' => $cliente, 'pago' => $pago]) }}"
-                                                                method="POST"
-                                                                onclick="deleteConfirm('{{ $pago->id }}', event)">
-                                                                <input type="hidden" name="_method" value="DELETE">
-                                                                <input type="hidden" name="_token"
-                                                                    value="{{ csrf_token() }}">
-
-                                                                <x-boton2 tipo="input" nombre="Borrar" class="bg-red-600 hover:bg-red-700 w-14">
-                                                                    <x-slot name="boton" class="w-full">
-                                                                        <svg class="p-2.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                                                            <line x1="10" y1="11" x2="10" y2="17"></line>
-                                                                            <line x1="14" y1="11" x2="14" y2="17"></line>
-                                                                        </svg>
-                                                                    </x-slot>
-                                                                </x-boton2>
-                                                            </form>
+                                                        </x-boton2>                                            
                                                     </td>
                                                     @endrole
 

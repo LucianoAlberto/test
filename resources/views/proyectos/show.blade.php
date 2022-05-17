@@ -29,7 +29,29 @@
 
     <div>
         <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8">
-            <h3 class="text-center font-bold uppercase w-full py-5 bg-gray-300">Detalles Del  Proyecto</h3>
+            <div class="flex items-center relative">
+            <h3 class="text-center font-bold uppercase w-full py-4 bg-gray-300">Detalles Del  Proyecto</h3>
+            @role($rolConPoderes)
+            <x-boton2 tipo="link"
+            class="bg-yellow-400 hover:bg-yellow-600  w-14 h-14 flex items-center absolute top-0 right-0"
+            direccion="{{ route('proyectos.edit', ['cliente' => $cliente, 'proyecto' => $proyecto]) }}">
+            <x-slot name="boton" class="w-full">
+                <svg class="p-2.5"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-edit">
+                    <path
+                        d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7">
+                    </path>
+                    <path
+                        d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z">
+                    </path>
+                </svg>
+            </x-slot>
+        </x-boton2>
+        @endrole
+            </div>
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">

@@ -90,7 +90,6 @@ class PagoController extends Controller
         $pago->abonado = $request['abonado'];
         $pago->pendiente = $request['pendiente'];
         $pago->fecha = $request['fecha'];
-        //dd($request['referencia']);
         if($request['referencia'] == 0){
             $pago->contrato_id = null;
         }

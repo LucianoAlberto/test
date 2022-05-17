@@ -160,7 +160,7 @@
                                 </div>
 
                                 <div class="w-1/5 mx-2">
-                                    <label for="iva" class="block font-medium text-sm text-gray-700">IVA % *</label>
+                                    <label for="iva" class="block font-medium text-sm text-gray-700">IVA  *</label>
                                     <input type="text" name="iva" id="iva" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('iva', '') }}" >
 
@@ -170,7 +170,7 @@
                                 </div>
 
                                 <div class="w-1/5 mx-2">
-                                    <label for="irpf" class="block font-medium text-sm text-gray-700">IRPF % * </label>
+                                    <label for="irpf" class="block font-medium text-sm text-gray-700">IRPF  * </label>
                                     <input type="text" name="irpf" id="irpf" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                         value="{{ old('irpf', '') }}" >
 

@@ -28,7 +28,7 @@
     <!---Fin menu superior-->
 
     {{-- Formulario para un nueva factura --}}
-    <div class="w-full max-w-xs  m-auto" id='nueva_factura' hidden>
+    <div class="w-1/5 mt-5 m-auto" id='nueva_factura' hidden>
         <div class="flex justify-center relative ">
             <h3 class="text-center font-bold uppercase w-full py-5 bg-gray-300">Nueva Factura</h3>
             <x-boton2 tipo="div" class=" absolute right-0 bg-red-600 hover:bg-red-700 w-6 h-6 "
@@ -44,14 +44,14 @@
             </x-boton2>
         </div>
 
-        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        <form class="bg-white shadow-md rounded px-8 pt-6 pb-2 mb-4"
             action="{{ route('facturas.store', $cliente->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="id_cliente" value="{{ $cliente->id }}">
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="fecha_cargo">
-                    Fecha Cargo
+                    Fecha Cargo *
                 </label>
                 <input
                     class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -63,7 +63,7 @@
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="factura">
-                    Seleciona Fichero
+                    Seleciona Fichero *
                 </label>
                 <input
                     class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
@@ -75,7 +75,7 @@
 
             <div class="mb-3">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="referencia_contrato">
-                    Referencia Contrato
+                    Referencia Contrato *
                 </label>
                 <select
                     class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
@@ -95,11 +95,13 @@
 
             <div class="flex items-center justify-center">
                 <button
-                    class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    class="bg-gray-800 hover:bg-gray-700  hover:scale-125 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                     Crear
                 </button>
             </div>
+            <small class="text-red-500 mt-2 ">Los campos marcados con * son OBLIGATORIOS</small>
         </form>
+        
 
     </div>
     {{-- Mostramos las facturas existentes --}}
@@ -145,7 +147,7 @@
                                                     Archivo
                                                 </th>
                                                 @role($rolConPoderes)
-                                                    <th scope="col" width="200" class="px-6 py-3 bg-gray-50">
+                                                    <th scope="col" width="200" class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                         Opciones
                                                     </th>
                                                 @endrole
@@ -199,9 +201,9 @@
                                                     </td>
                                                     @role($rolConPoderes)
                                                         <td
-                                                            class="px-6 py-4 whitespace-nowrap text-sm font-medium flex items-start">
+                                                            class="px-6 py-4 whitespace-nowrap text-sm font-medium flex justify-center">
 
-                                                                <x-boton2 tipo="link"
+                                                            <x-boton2 tipo="link"
                                                                 class="bg-yellow-400 hover:bg-yellow-600 mr-4 w-14 h-14 flex items-center"
                                                                 direccion="{{ route('facturas.edit', ['cliente' => $cliente->id, 'factura' => $factura->id]) }}">
                                                                 <x-slot name="boton" class="w-full">
@@ -217,25 +219,7 @@
                                                                         </path>
                                                                     </svg>
                                                                 </x-slot>
-                                                            </x-boton2>
-
-                                                            <form id="{{ $cliente->id }}" class="factura inline-block"
-                                                                action="{{ route('facturas.destroy', ['cliente' => $cliente->id, 'factura' => $factura->id]) }}"
-                                                                method="POST"
-                                                                onclick="deleteConfirm('{{ $cliente->id }}', event)">
-                                                                <input type="hidden" name="_method" value="DELETE">
-                                                                <input type="hidden" name="_token"
-                                                                    value="{{ csrf_token() }}">
-
-                                                                    <x-boton2 tipo="input" nombre="Borrar" class="bg-red-600 hover:bg-red-700 w-14">
-                                                                        <x-slot name="boton" class="w-full">
-                                                                            <svg class="p-2.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                                                                <line x1="10" y1="11" x2="10" y2="17"></line>
-                                                                                <line x1="14" y1="11" x2="14" y2="17"></line>
-                                                                            </svg>
-                                                                        </x-slot>
-                                                                    </x-boton2>
-                                                            </form>
+                                                            </x-boton2>                                                       
                                                         </td>
                                                     @endrole
                                                 </tr>

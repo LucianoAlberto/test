@@ -103,9 +103,9 @@
                             <div >
                                 <div class="flex justify-between mb-4">
                                     <div class="w-1/2 mr-4">
-                                        <label for="concepto" class="flex font-medium text-sm text-gray-700">Concepto
+                                        <label for="concepto" class="flex font-medium text-sm text-gray-700">Concepto *
 
-                                            <x-boton2 tipo="div" class="ml-1 bg-gray-800 hover:bg-gray-700 w-6 h-6 fill-none " onclick="nuevoConcepto()">
+                                            <x-boton2 tipo="div" class="ml-1 bg-gray-800 hover:bg-gray-700  hover:scale-125 w-6 h-6 fill-none " onclick="nuevoConcepto()">
                                                 <x-slot name="boton">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-slash-minus" viewBox="0 0 16 16">
                                                         <path d="m1.854 14.854 13-13a.5.5 0 0 0-.708-.708l-13 13a.5.5 0 0 0 .708.708ZM4 1a.5.5 0 0 1 .5.5v2h2a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2h-2a.5.5 0 0 1 0-1h2v-2A.5.5 0 0 1 4 1Zm5 11a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5A.5.5 0 0 1 9 12Z"/>
@@ -131,7 +131,7 @@
 
                                     <div class="w-1/2 ml-4">
                                         <label for="referencia"
-                                            class="block font-medium text-sm text-gray-700 mt-1">Referencia</label>
+                                            class="block font-medium text-sm text-gray-700 mt-1">Referencia *</label>
 
                                         <select name="referencia" id="referencia"
                                             class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -425,13 +425,14 @@
 
                             <div class="flex items-center justify-end px-4 py-3 text-right sm:px-6">
                                 <button
-                                    class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-500 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
+                                    class="inline-flex items-center px-4 py-2 bg-gray-800 hover:scale-125 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-500 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                                     Crear
                                 </button>
                             </div>
                         </div>
                 </form>
             </div>
+            <small class="text-red-500 px-2 ">Los campos marcados con * son OBLIGATORIOS</small>
         </div>
         {{--Aviso sessiones--}}
         @if(session('conceptoCreado') == 'si')

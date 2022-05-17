@@ -74,7 +74,9 @@ class FacturaController extends Controller
      */
     public function show(Cliente $cliente, Factura $factura)
     {
-        return view('facturas.show', compact('cliente', 'factura'));
+
+        $rolConPoderes = self::ROLCONPODERES;
+        return view('facturas.show', compact('cliente', 'factura','rolConPoderes'));
     }
 
     /**
@@ -103,7 +105,6 @@ class FacturaController extends Controller
 
         $factura->cliente_id = $cliente->id;
         $factura->fecha_cargo = $validated['fecha_cargo'];
-      //  if($validated['referencia_contrato']==)
         $factura->referencia_contrato = $validated['referencia_contrato'];
 
         if($request->hasFile('factura')){
@@ -131,7 +132,6 @@ class FacturaController extends Controller
         if($factura->factura != null){
             Storage::disk('public')->delete($factura->factura);
         }
-            //dd($factura_destruida->contratos);
         $factura->contratos()->detach();
         $factura->delete();
 

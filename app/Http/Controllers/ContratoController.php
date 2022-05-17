@@ -19,7 +19,6 @@ class ContratoController extends Controller
     public function index(Cliente $cliente)
     {
         $contratos = Contrato::where('cliente_id', $cliente->id)->paginate(10);
-        //dd($contratos[0]->concepto());
         $rolConPoderes = self::ROLCONPODERES;
         $conceptos = ConceptoFactura::all();
 
@@ -81,8 +80,8 @@ class ContratoController extends Controller
     public function show(Cliente $cliente, Contrato $contrato)
     {
         $conceptos = ConceptoFactura::all();
-
-        return view('contratos.show', compact('cliente', 'contrato', 'conceptos'));
+        $rolConPoderes = self::ROLCONPODERES;
+        return view('contratos.show', compact('cliente', 'contrato', 'conceptos','rolConPoderes'));
     }
 
     /**

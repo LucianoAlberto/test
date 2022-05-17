@@ -36,7 +36,7 @@
             @method('PUT')
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="fecha">
-                    Fecha Pago
+                    Fecha Pago *
                 </label>
                 <input
                     class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -49,7 +49,7 @@
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="abonado">
-                    Importe Abonado
+                    Importe Abonado *
                 </label>
                 <input
                     class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
@@ -62,7 +62,7 @@
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="pendiente">
-                    Importe Pendiente
+                    Importe Pendiente *
                 </label>
                 <input
                     class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
@@ -75,7 +75,7 @@
 
             <div class="mb-3">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="referencia">
-                    Referencia Contrato
+                    Referencia Contrato *
                 </label>
                 <select
                     class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
@@ -95,7 +95,7 @@
 
             <div class="flex items-center justify-center">
                 <button
-                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    class="bg-gray-800  hover:scale-125 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                     Guardar
                 </button>
             </div>

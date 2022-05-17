@@ -130,7 +130,7 @@
                                 <div class="w-2/5 mr-2">
                                     <label for="concepto" class="flex font-medium text-sm text-gray-700">Concepto
                                         <x-boton2 tipo="div"
-                                            class="ml-1 bg-gray-400 hover:bg-gray-300 w-6 h-6 fill-none "
+                                            class="ml-1 bg-gray-800 hover:scale-125 hover:bg-gray-700 w-6 h-6 fill-none "
                                             onclick="nuevoConcepto()">
                                             <x-slot name="boton">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -378,13 +378,14 @@
                             </div>
                         </div>
 
-                        <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
+                        <div class="flex items-center justify-end px-4 py-3  text-right sm:px-6">
                             <button
-                                class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
+                                class="inline-flex items-center px-4 py-2 bg-gray-800 hover:scale-125 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                                 Editar
                             </button>
                         </div>
                     </div>
+                    <small class="text-red-500 px-2 ">Los campos marcados con * son OBLIGATORIOS</small>
                 </form>
             </div>
         </div>

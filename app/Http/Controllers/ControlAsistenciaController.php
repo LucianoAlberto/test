@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ambito;
+use App\Models\ControlAsistencia;
 use Illuminate\Http\Request;
-use App\Http\Requests\AmbitoRequest;
 
-class AmbitoController extends Controller
+class ControlAsistenciaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,27 +33,18 @@ class AmbitoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AmbitoRequest $request)
+    public function store(Request $request)
     {
-        $validated = $request->validated();
-
-        $ambito = new Ambito;
-        $ambito->nombre = $request['nuevoAmbito'];
-        $ambito->created_at = now('Europe/Madrid');
-        $ambito->updated_at = now('Europe/Madrid');
-        $ambito->save();
-
-        return redirect()->back()->with('ambito_creado','si');
-
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Ambito  $ambito
+     * @param  \App\Models\ControlAsistencia  $controlAsistencia
      * @return \Illuminate\Http\Response
      */
-    public function show(Ambito $ambito)
+    public function show(ControlAsistencia $controlAsistencia)
     {
         //
     }
@@ -62,10 +52,10 @@ class AmbitoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Ambito  $ambito
+     * @param  \App\Models\ControlAsistencia  $controlAsistencia
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ambito $ambito)
+    public function edit(ControlAsistencia $controlAsistencia)
     {
         //
     }
@@ -74,10 +64,10 @@ class AmbitoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Ambito  $ambito
+     * @param  \App\Models\ControlAsistencia  $controlAsistencia
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ambito $ambito)
+    public function update(Request $request, ControlAsistencia $controlAsistencia)
     {
         //
     }
@@ -85,21 +75,11 @@ class AmbitoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\AmbitoRequest  $ambito
+     * @param  \App\Models\ControlAsistencia  $controlAsistencia
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AmbitoRequest $request)
+    public function destroy(ControlAsistencia $controlAsistencia)
     {
-        $validated = $request->validated();
-
-        $ambito = Ambito::find($validated['eliminarAmbito']);
-
-        //dd($ambito);
-        $ambito->clientes()->detach();
-        $ambito->empleados()->detach();
-
-        $ambito->delete();
-
-        return redirect()->back()->with('ambito_eliminado','si');
+        //
     }
 }

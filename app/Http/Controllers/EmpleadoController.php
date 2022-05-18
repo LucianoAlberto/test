@@ -222,20 +222,20 @@ class EmpleadoController extends Controller
         $empleado->ambitos()->detach();
 
         if(isset($validated['ambito'])){
-            foreach($validated['ambito'] as $clave => $ambito){        
+            foreach($validated['ambito'] as $clave => $ambito){
                 $empleado->ambitos()->attach($clave);
 
             }
         }
 
         if($request->has('practicas')){
-         
+
             if( $empleado->practica == null){
                 $practicas = new Practica;
-                
+
             }
             else $practicas = $empleado->practica;
-            
+
             $practicas->empleado_id = $empleado->id;
             $practicas->instituto = $validated["instituto"];
             $practicas->localidad = $validated["localidad"];
@@ -247,18 +247,18 @@ class EmpleadoController extends Controller
 
             if($request->has('convenio_practicas')){
                 if($practicas->convenio_practicas!=null){
-                Storage::disk('public')->delete($practicas->convenio);  //eliminamos le antiguo 
+                Storage::disk('public')->delete($practicas->convenio);  //eliminamos le antiguo
                 }
                 $practicas->convenio = Storage::disk('public')->putFile('practicas/convenios', $validated["convenio_practicas"], 'public'); //escribimos el nuevo
             }
 
             if($request->has('doc_confidencialidad_practicas')){
                 if($practicas->doc_confidencialidad!=null){
-                Storage::disk('public')->delete($practicas->doc_confidencialidad); 
+                Storage::disk('public')->delete($practicas->doc_confidencialidad);
                 }
                 $practicas->doc_confidencialidad=Storage::disk('public')->putFile('practicas/doc_confidencialidad', $validated["doc_confidencialidad_practicas"], 'public');
             }
-            
+
             $practicas->save();
         }
 
@@ -272,16 +272,18 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Empleado $empleado)
+    public function destroy(Empleado $empleado){
+        if(isset($empleado->practica)) $empleado->practica->delete();
 
-    {
-        
-        if(isset($empleado->practica)) $empleado->practica->delete(); 
-         $empleado->ambitos()->detach();
-         $empleado->delete();
+        $empleado->ambitos()->detach();
+        $empleado->faltas()->delete();
+        $empleado->nominas()->delete();
+        $empleado->asistencias()->delete();
+        $empleado->vacaciones()->delete();
+        $empleado->delete();
 
-         $rolConPoderes = self::ROLCONPODERES;
-         return redirect()->route('empleados.index')->with('eliminado','si');
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('empleados.index')->with('eliminado','si');
 
     }
 

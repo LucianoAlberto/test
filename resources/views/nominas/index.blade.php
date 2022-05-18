@@ -1,7 +1,6 @@
 <x-app-layout>
     <!--Menu superior-->
     <x-slot name="header">
-<<<<<<< HEAD
         <h2 class="text-xl text-gray-800 leading-tight font-bold">
             <a class="text-red-500 uppercase underline" href="{{ route('empleados.show', $empleado) }}">
                 {{ $empleado->nombre }} {{ $empleado->apellidos }}</a>
@@ -18,22 +17,6 @@
 
             <div class="block  mx-2">
                 <a href="{{route('asistencias.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Asistencias</a>
-=======
-        <div class="flex justify-between ">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-              <a class="text-red-500 uppercase underline" href="{{route('empleados.show', $empleado)}}"> {{$empleado->nombre}} {{$empleado->apellidos}}</a>
-            </h2>
-    
-            <div class="flex justify-end ">
-                <div class="block  mx-2">
-                    <a href="{{route('vacaciones.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Vacaciones</a>
-                </div>
-    
-                <div class="block  mx-2">
-                    <a href="{{route('faltas.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Faltas</a>
-                </div>
-    
->>>>>>> refs/remotes/origin/Final
             </div>
         </x-slot>
     <!---Fin menu superior-->
@@ -234,7 +217,7 @@
                                                             <x-slot name="boton">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
                                                             </x-slot>
-                                                        </x-boton2>                                                     
+                                                        </x-boton2>
                                                     </td>
                                                     @endrole
                                                 </tr>

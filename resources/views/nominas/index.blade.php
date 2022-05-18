@@ -266,22 +266,22 @@
          timer: 1500
      })
  </script>
-@elseif (session('conceptoCreado') == 'si')
+@elseif (session('ambitoCreado') == 'si')
  <script>
      Swal.fire({
          position: 'center',
          icon: 'success',
-         title: 'Nuevo concepto creado',
+         title: 'Nuevo ambito creado',
          showConfirmButton: false,
          timer: 1500
      })
  </script>
-@elseif (session('conceptoEliminado') == 'si')
+@elseif (session('ambitoEliminado') == 'si')
  <script>
      Swal.fire({
          position: 'center',
          icon: 'success',
-         title: 'Concepto eliminado',
+         title: 'Ambito eliminado',
          showConfirmButton: false,
          timer: 1500
      })

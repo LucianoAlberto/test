@@ -189,18 +189,77 @@
                                             Convenio
                                         </th>
 
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
-                                            <div>
-                                                <a href="{{ asset("/storage/{$empleado->practica->convenio}") }}"
-                                                    target="_blank"
-                                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-10 border border-green-700 rounded ">Ver</a>
-
-                                                <a href="{{ asset("/storage/{$empleado->practica->convenio}") }}"
-                                                    download
-                                                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded px-5">
-                                                    Descargar</a>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                            @if($empleado->practica->convenio != null)
+                                            <div class="flex">
+                                                <x-boton2 tipo="linkConAsset" class="bg-blue-500 hover:bg-blue-700 mr-4 w-16" direccion="{{$empleado->practica->convenio}}">
+                                                    <x-slot name="boton">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                                    </x-slot>
+                                                </x-boton2>
+    
+                                                <x-boton2 tipo="descargaConAsset" class="bg-green-400 hover:bg-green-700 mr-4 w-16 h-12" direccion="{{$empleado->practica->convenio}}">
+                                                    <x-slot name="boton">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                                    </x-slot>
+                                                </x-boton2>
                                             </div>
+                                        @else
+                                            <div class="flex">
+                                                <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                    <x-slot name="boton">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                                    </x-slot>
+                                                </x-boton2>
+    
+                                                <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                    <x-slot name="boton">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                                    </x-slot>
+                                                </x-boton2>
+                                            </div>
+                                        @endif
+                                        </td>
+                                        
+                                    </tr>
+
+                                    <tr class="border-b">
+                                        <th scope="col"
+                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Documento de confidencialidad
+                                        </th>
+
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                         
+                                            @if($empleado->practica->doc_confidencialidad != null)
+                                            <div class="flex">
+                                                <x-boton2 tipo="linkConAsset" class="bg-blue-500 hover:bg-blue-700 mr-4 w-16" direccion="{{$empleado->practica->doc_confidencialidad}}">
+                                                    <x-slot name="boton">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                                    </x-slot>
+                                                </x-boton2>
+    
+                                                <x-boton2 tipo="descargaConAsset" class="bg-green-400 hover:bg-green-700 mr-4 w-16 h-12" direccion="{{$empleado->practica->doc_confidencialidad}}">
+                                                    <x-slot name="boton">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                                    </x-slot>
+                                                </x-boton2>
+                                            </div>
+                                        @else
+                                            <div class="flex">
+                                                <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                    <x-slot name="boton">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                                    </x-slot>
+                                                </x-boton2>
+    
+                                                <x-boton2 tipo="div" class="bg-slate-300 mr-4 w-16 cursor-not-allowed">
+                                                    <x-slot name="boton">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                                    </x-slot>
+                                                </x-boton2>
+                                            </div>
+                                        @endif
                                         </td>
                                     </tr>
 

@@ -40,6 +40,9 @@ window.deleteConfirm = function(formId, event)
     else if(event.target.closest("form").classList.contains("nomina")){
         texto = '¿Desea borrar esta nómina?';
     }
+    else if(event.target.closest("form").classList.contains("empleado")){
+        texto = '¿Desea borrar este empleado? AVISO !!!  se eliminaran todos los datos asociados a este EMPLEADO';
+    }
 
     Swal.fire({
        icon: 'question',
@@ -662,9 +665,11 @@ window.mandarFormAmbito = function() {
 window.mostrarPracticas = function(event) {
     if(event.target.checked){
         document.getElementById("divPracticas").style.display = "block";
+        document.getElementById("divEmpleado").style.display = "none";
     }
     else{
         document.getElementById("divPracticas").style.display = "none";
+        document.getElementById("divEmpleado").style.display = "block";
     }
 
 }

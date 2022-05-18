@@ -1097,6 +1097,9 @@ select {
 .-mt-px {
   margin-top: -1px;
 }
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
 .block {
   display: block;
 }
@@ -1234,9 +1237,6 @@ select {
 }
 .w-4\/12 {
   width: 33.333333%;
-}
-.w-57 {
-  width: 228px;
 }
 .min-w-0 {
   min-width: 0px;

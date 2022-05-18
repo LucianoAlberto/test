@@ -52,7 +52,7 @@
                                                 Ámbitos
                                             </th>
                                             @role($rolConPoderes)
-                                            <th scope="col" width="200" class="px-6 py-3 bg-gray-50">
+                                            <th scope="col" width="200" class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Opciones
                                             </th>
                                             @endrole
@@ -133,5 +133,52 @@
                 </div>
             </div>
         </div>
+        {{--avisos mensages --}}
+    @if (session('creado') == 'si')
+    <script>
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Empleado creado con exito',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    </script>
+
+@elseif (session('eliminado') == 'si')
+    <script>
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Empleado Eliminado',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    </script>
+
+@elseif (session('editado') == 'si')
+    <script>
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Datos guardados',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    </script>
+
+@elseif (session('ambito_creado') == 'si')
+    <script>
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Nuevo ambito creado',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    </script>
+@endif
+
+{{--fin avisos--}}
     </div>
 </x-app-layout>

@@ -7,6 +7,7 @@ use App\Models\Ambito;
 use App\Models\Nomina;
 use App\Models\Practica;
 use App\Models\Vacacion;
+use App\Models\Asistencia;
 use App\Models\RolTrabajo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -56,6 +57,14 @@ class Empleado extends Model
     public function ambitos()
     {
         return $this->belongsToMany(Ambito::class);
+    }
+
+    /**
+     * Obtiene los ámbitos asociados a este empleado.
+     */
+    public function asistencias()
+    {
+        return $this->hasMany(Asistencia::class);
     }
 
     public function scopeSinAmbito($query)

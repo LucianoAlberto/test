@@ -257,46 +257,46 @@ class EmpleadoController extends Controller
         }
         //dd($empleado->id);
         //dd($empleado->ambitos()->get());
-        if($validated["nominas"][0]["fecha_inicio"] != null){
-            foreach($validated["nominas"] as $nomina){
-                $nueva_nomina = new Nomina;
+        // if($validated["nominas"][0]["fecha_inicio"] != null){
+        //     foreach($validated["nominas"] as $nomina){
+        //         $nueva_nomina = new Nomina;
 
-                $nueva_nomina->empleado_id = $empleado->id;
-                $nueva_nomina->fecha_inicio = $nomina["fecha_inicio"];
-                $nueva_nomina->fecha_fin = $nomina["fecha_fin"];
-                $nueva_nomina->importe_total = $nomina["importe_total"];
-                $nueva_nomina->importe_pagado = $nomina["importe_pagado"];
-                $nueva_nomina->fecha_pago = $nomina["fecha_pago"];
-                $nueva_nomina->horas_alta_ss = $nomina["horas_alta_ss"];
+        //         $nueva_nomina->empleado_id = $empleado->id;
+        //         $nueva_nomina->fecha_inicio = $nomina["fecha_inicio"];
+        //         $nueva_nomina->fecha_fin = $nomina["fecha_fin"];
+        //         $nueva_nomina->importe_total = $nomina["importe_total"];
+        //         $nueva_nomina->importe_pagado = $nomina["importe_pagado"];
+        //         $nueva_nomina->fecha_pago = $nomina["fecha_pago"];
+        //         $nueva_nomina->horas_alta_ss = $nomina["horas_alta_ss"];
 
-                $nueva_nomina->save();
-            }
-        }
+        //         $nueva_nomina->save();
+        //     }
+        // }
 
-        if($validated["faltas"][0]["fecha_falta"] != null){
-            foreach($validated["faltas"] as $falta){
-                $nueva_falta = new Falta;
+        // if($validated["faltas"][0]["fecha_falta"] != null){
+        //     foreach($validated["faltas"] as $falta){
+        //         $nueva_falta = new Falta;
 
-                $nueva_falta->empleado_id = $empleado->id;
-                $nueva_falta->fecha_falta = $falta["fecha_falta"];
-                $nueva_falta->justificacion = $falta["justificacion"];
-                $nueva_falta->notas = $falta["notas"];
+        //         $nueva_falta->empleado_id = $empleado->id;
+        //         $nueva_falta->fecha_falta = $falta["fecha_falta"];
+        //         $nueva_falta->justificacion = $falta["justificacion"];
+        //         $nueva_falta->notas = $falta["notas"];
 
-                $nueva_falta->save();
-            }
-        }
+        //         $nueva_falta->save();
+        //     }
+        // }
 
-        if($validated["vacaciones_disfrutadas"][0]["fecha_inicio"] != null){
-            foreach($validated["vacaciones_disfrutadas"] as $vacaciones){
-                $nuevas_vacaciones = new Vacacion;
+        // if($validated["vacaciones_disfrutadas"][0]["fecha_inicio"] != null){
+        //     foreach($validated["vacaciones_disfrutadas"] as $vacaciones){
+        //         $nuevas_vacaciones = new Vacacion;
 
-                $nuevas_vacaciones->empleado_id = $empleado->id;
-                $nuevas_vacaciones->fecha_inicio = $vacaciones["fecha_inicio"];
-                $nuevas_vacaciones->fecha_fin = $vacaciones["fecha_fin"];
+        //         $nuevas_vacaciones->empleado_id = $empleado->id;
+        //         $nuevas_vacaciones->fecha_inicio = $vacaciones["fecha_inicio"];
+        //         $nuevas_vacaciones->fecha_fin = $vacaciones["fecha_fin"];
 
-                $nuevas_vacaciones->save();
-            }
-        }
+        //         $nuevas_vacaciones->save();
+        //     }
+        // }
 
         if($request->has('practicas')){
             $practicas = new Practica;

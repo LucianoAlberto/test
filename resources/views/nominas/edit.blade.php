@@ -14,8 +14,8 @@
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div class="contenedorNominas justify-between mb-4">
-                                <div class="flex">
-                                    <div class="w-4/12 divFechaInicioNomina">
+                                <div class="flex mb-8">
+                                    <div class="w-1/4 divFechaInicioNomina mr-2">
                                         <label for="fecha_inicio" class="block font-medium text-sm text-gray-700">Fecha inicio</label>
                                         <input type="date" name="fecha_inicio" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old("fecha_inicio", $nomina->fecha_inicio) }}" />
@@ -24,7 +24,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="w-4/12 divFechaFinNomina">
+                                    <div class="w-1/4 divFechaFinNomina mx-2">
                                         <label for="fecha_fin" class="block font-medium text-sm text-gray-700">Fecha fin</label>
                                         <input type="date" name="fecha_fin" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old("fecha_fin", $nomina->fecha_fin) }}" />
@@ -33,7 +33,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="w-4/12 divFechaPagoNomina">
+                                    <div class="w-1/4 divFechaPagoNomina mx-2">
                                         <label for="fecha_pago" class="block font-medium text-sm text-gray-700">Fecha de pago</label>
                                         <input type="date" name="fecha_pago" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old("fecha_pago", $nomina->fecha_pago) }}" />
@@ -42,7 +42,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="w-1/2 divHorasNomina mr-2" >
+                                    <div class="w-1/4 divHorasNomina ml-2">
                                         <label for="horas_alta_ss" class="block font-medium text-sm text-gray-700">Horas SS *</label>
                                         <input type="text" name="horas_alta_ss" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old("horas_alta_ss", $nomina->horas_alta_ss) }}"  required/>
@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="flex">
 
-                                    <div class="w-4/12 divImporteTotalNomina">
+                                    <div class="w-1/3 divImporteTotalNomina mr-2">
                                         <label for="importe_total" class="block font-medium text-sm text-gray-700">Importe nómina</label>
                                         <input type="text" name="importe_total" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old("importe_total", $nomina->importe_total) }}" />
@@ -62,7 +62,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="w-4/12 divImportePagadoNomina">
+                                    <div class="w-1/3 divImportePagadoNomina mx-2">
                                         <label for="importe_pagado" class="block font-medium text-sm text-gray-700">Importe pagado</label>
                                         <input type="text" name="importe_pagado" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old("importe_pagado", $nomina->importe_pagado) }}" />

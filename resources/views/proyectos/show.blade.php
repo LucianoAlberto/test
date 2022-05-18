@@ -1,12 +1,11 @@
 <x-app-layout>
 <!--Menu superior-->
-<x-slot name="header">
-    <div class="flex justify-between ">
+    <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
           <a class="text-red-500 uppercase underline" href="{{route('clientes.show', $cliente)}}"> {{$cliente->nombre}} {{$cliente->apellidos}}</a>
         </h2>
 
-        <div class="flex justify-end "> 
+        <div class="flex justify-end ">
             <div class="block  mx-2">
                 <a href="{{ route('contratos.index', $cliente) }}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Contratos</a>
             </div>
@@ -23,7 +22,6 @@
                 <a href="{{route('pagos.index',$cliente)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Pagos</a>
             </div>
         </div>
-    </div>
     </x-slot>
     <!---Fin menu superior-->
 
@@ -55,7 +53,7 @@
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">                        
+                        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                             <table class="min-w-full divide-y divide-gray-200 w-full">
                                 <tr class="border-b">
                                     <th scope="col"

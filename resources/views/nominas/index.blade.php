@@ -1,22 +1,22 @@
 <x-app-layout>
     <!--Menu superior-->
     <x-slot name="header">
-        <div class="flex justify-between ">
-            <h2 class="text-xl text-gray-800 leading-tight font-bold">
-                <a class="text-red-500 uppercase underline" href="{{ route('empleados.show', $empleado) }}">
-                    {{ $empleado->nombre }} {{ $empleado->apellidos }}</a>
-            </h2>
+        <h2 class="text-xl text-gray-800 leading-tight font-bold">
+            <a class="text-red-500 uppercase underline" href="{{ route('empleados.show', $empleado) }}">
+                {{ $empleado->nombre }} {{ $empleado->apellidos }}</a>
+        </h2>
 
-            <div class="flex justify-end ">
-                <div class="block  mx-2">
-                    <a href=""
-                        class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Contratos</a>
-                </div>
+        <div class="flex justify-end ">
+            <div class="block  mx-2">
+                <a href="{{route('vacaciones.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Vacaciones</a>
+            </div>
 
-                <div class="block  mx-2">
-                    <a href=""
-                        class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Proyectos</a>
-                </div>
+            <div class="block  mx-2">
+                <a href="{{route('faltas.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Faltas</a>
+            </div>
+
+            <div class="block  mx-2">
+                <a href="{{route('asistencias.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Asistencias</a>
             </div>
         </div>
     </x-slot>
@@ -47,7 +47,7 @@
 
             <div class="contenedorNominas justify-between mb-4">
                 <div class="flex mb-4">
-                    <div class="w-1/3 divFechaInicioNomina mr-2">
+                    <div class="w-1/4 divFechaInicioNomina mr-2">
                         <label for="fecha_inicio" class="block font-medium text-sm text-gray-700">Fecha inicio *</label>
                         <input type="date" name="fecha_inicio" class="form-input rounded-md shadow-sm mt-1 block w-full"
                             value="{{ old("fecha_inicio", '') }}" required/>
@@ -56,7 +56,7 @@
                         @enderror
                     </div>
 
-                    <div class="w-1/3 divFechaFinNomina mx-2 ">
+                    <div class="w-1/4 divFechaFinNomina mx-2 ">
                         <label for="fecha_fin" class="block font-medium text-sm text-gray-700">Fecha fin *</label>
                         <input type="date" name="fecha_fin" class="form-input rounded-md shadow-sm mt-1 block w-full"
                             value="{{ old("fecha_fin", '') }}" required/>
@@ -65,7 +65,7 @@
                         @enderror
                     </div>
 
-                    <div class="w-1/3 divFechaPagoNomina mx-2">
+                    <div class="w-1/4 divFechaPagoNomina mx-2">
                         <label for="fecha_pago" class="block font-medium text-sm text-gray-700">Fecha de pago *</label>
                         <input type="date" name="fecha_pago" class="form-input rounded-md shadow-sm mt-1 block w-full"
                             value="{{ old("fecha_pago", '') }}" required />
@@ -73,7 +73,7 @@
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
-                    <div class="w-1/2 divHorasNomina mr-2" >
+                    <div class="w-1/4 divHorasNomina ml-2" >
                         <label for="horas_alta_ss" class="block font-medium text-sm text-gray-700">Horas SS *</label>
                         <input type="text" name="horas_alta_ss" class="form-input rounded-md shadow-sm mt-1 block w-full"
                             value="{{ old("horas_alta_ss", '') }}"  required/>
@@ -84,7 +84,7 @@
                 </div>
                 <div class="flex">
 
-                    <div class="w-1/3 divImporteTotalNomina mx-2">
+                    <div class="w-1/3 divImporteTotalNomina mr-2">
                         <label for="importe_total" class="block font-medium text-sm text-gray-700">Importe nómina *</label>
                         <input type="text" name="importe_total" class="form-input rounded-md shadow-sm mt-1 block w-full"
                             value="{{ old("importe_total", '') }}"  required/>
@@ -93,7 +93,7 @@
                         @enderror
                     </div>
 
-                    <div class="w-1/3 divImportePagadoNomina ml-2">
+                    <div class="w-1/3 divImportePagadoNomina mx-2">
                         <label for="importe_pagado" class="block font-medium text-sm text-gray-700">Importe pagado *</label>
                         <input type="text" name="importe_pagado" class="form-input rounded-md shadow-sm mt-1 block w-full"
                             value="{{ old("importe_pagado", '') }}" required />

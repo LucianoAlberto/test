@@ -15,6 +15,12 @@ module.exports = {
             },
             margin: {
                 '0.75': '3px',
+            },
+            padding: {
+                '88': '22rem',
+            },
+            width: {
+                '57': '228px',
             }
         },
     },

@@ -14,6 +14,7 @@ use App\Http\Controllers\ContratoController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\ProyectoController;
 use App\Http\Controllers\VacacionController;
+use App\Http\Controllers\AsistenciaController;
 use App\Http\Controllers\ConceptoFacturaController;
 
 /*
@@ -92,6 +93,10 @@ Route::group(['middleware' => ['role:superusuario']], function () {
     Route::get('/clientes/{cliente}/pagos/{pago}/edit', [PagoController::class, 'edit'])->name('pagos.edit');
     Route::put('/clientes/{cliente}/pagos/{pago}', [PagoController::class, 'update'])->name('pagos.update');
     Route::delete('/pagos/{pago}',[PagoController::class,'destroy'])->name('pagos.destroy');
+
+    Route::get('/empleados/{empleado}/asistencias/{asistencia}/edit', [AsistenciaController::class, 'edit'])->name('asistencias.edit');
+    Route::put('/empleados/{empleado}/asistencias/{asistencia}', [AsistenciaController::class, 'update'])->name('asistencias.update');
+    Route::delete('empleados/{empleado}/asistencias/{asistencia}',[AsistenciaController::class,'destroy'])->name('asistencias.destroy');
 });
 
 Route::get('/contratos/{cliente}', [ContratoController::class, 'index'])->name('contratos.index');
@@ -140,3 +145,7 @@ Route::get('/empleados/{empleado}/vacaciones/{vacacion}', [VacacionController::c
 Route::get('/clientes/{cliente}/pagos',[PagoController::class,'index'])->name('pagos.index');
 Route::post('/clientes/{cliente}/pagos',[PagoController::class,'store'])->name('pagos.store');
 
+Route::get('/empleados/{empleado}/asistencias', [AsistenciaController::class, 'index'])->name('asistencias.index');
+Route::get('/empleados/{empleado}/asistencias/create', [AsistenciaController::class, 'create'])->name('asistencias.create');
+Route::post('/empleados/{empleado}/asistencias', [AsistenciaController::class, 'store'])->name('asistencias.store');
+Route::get('/empleados/{empleado}/asistencias/{asistencia}', [AsistenciaController::class, 'show'])->name('asistencias.show');

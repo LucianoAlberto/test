@@ -40,6 +40,9 @@ window.deleteConfirm = function(formId, event)
     else if(event.target.closest("form").classList.contains("nomina")){
         texto = '¿Desea borrar esta nómina?';
     }
+    else if(event.target.closest("form").classList.contains("asistencia")){
+        texto = '¿Desea borrar esta asistencia?';
+    }
 
     Swal.fire({
        icon: 'question',

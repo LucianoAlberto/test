@@ -45,6 +45,16 @@ class ClienteController extends Controller
             }
         }
         if(!is_null($request->busqueda) && !is_null($request->criterio)){
+            //dd($request->busqueda);
+            if($request->criterio == "referencia_contrato"){
+                $contrato = Contrato::where('referencia', $request->busqueda)->first();
+                //dd($contrato->cliente->id);
+                $cliente = Cliente::find($contrato->cliente->id);
+                $conceptos = ConceptoFactura::all();
+                $rolConPoderes = self::ROLCONPODERES;
+
+                return view('contratos.show', compact('cliente', 'contrato', 'conceptos','rolConPoderes'));
+            }
             $clientes = Cliente::where($request->criterio, 'LIKE','%'.$request->busqueda.'%')->paginate(10);
         }
 

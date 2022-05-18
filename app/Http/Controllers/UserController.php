@@ -10,6 +10,7 @@ use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Actions\Fortify\PasswordValidationRules;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -57,8 +58,9 @@ class UserController extends Controller
         $usuario = new User;
         $usuario->name = $validated["name"];
         $usuario->email = $validated["email"];
-        $usuario->password =bcrypt($validated["password"]);
-        $usuario->rol=$validated['rol'];
+        $usuario->password = bcrypt($validated["password"]);
+        $usuario->rol = $validated['rol'];
+        $usuario->assignRole(Role::find($validated['rol']));
         $usuario->save();
 
         return redirect()->route('users.index');

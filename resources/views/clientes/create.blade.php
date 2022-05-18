@@ -22,8 +22,7 @@
                     enctype="multipart/form-data">
                     @csrf
                     <div class="flex justify-between mx-5 place-content-center py-2">
-                        <input
-                            class="shadow appearance-none border border-black rounded py-2 mx-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-3/4"
+                        <input class="shadow appearance-none border border-black rounded py-2 mx-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-3/4"
                             type="text" name="nuevoAmbito" placeholder="Crear nuevo ambito" required>
 
                         <x-boton2 tipo="input" nombre="Borrar" class="bg-green-600 hover:bg-green-700 w-12">
@@ -250,7 +249,7 @@
                                 <div class="font-medium text-sm text-gray-700">
                                     <fieldset>
                                         <legend class="mb-4 flex">Ámbitos de trabajo
-                                            
+
                                             <x-boton2 tipo="div" class="ml-1 bg-gray-800 hover:bg-gray-700 hover:scale-125 w-6 h-6 fill-none " onclick="nuevoAmbito()">
                                                 <x-slot name="boton">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-slash-minus" viewBox="0 0 16 16">

@@ -1,27 +1,25 @@
 <x-app-layout>
     <!--Menu superior-->
     <x-slot name="header">
-        <div class="flex justify-between ">
-            <h2 class="text-xl text-gray-800 leading-tight font-bold">
-                <a class="text-red-500 uppercase underline" href="{{ route('clientes.show', $cliente) }}">
-                    {{ $cliente->nombre }} {{ $cliente->apellidos }}</a>
-            </h2>
+        <h2 class="text-xl text-gray-800 leading-tight font-bold">
+            <a class="text-red-500 uppercase underline" href="{{ route('clientes.show', $cliente) }}">
+                {{ $cliente->nombre }} {{ $cliente->apellidos }}</a>
+        </h2>
 
-            <div class="flex justify-end ">
-                <div class="block  mx-2">
-                    <a href="{{ route('contratos.index', $cliente) }}"
-                        class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Contratos</a>
-                </div>
+        <div class="flex justify-end ">
+            <div class="block  mx-2">
+                <a href="{{ route('contratos.index', $cliente) }}"
+                    class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Contratos</a>
+            </div>
 
-                <div class="block  mx-2">
-                    <a href="{{ route('proyectos.index', $cliente) }}"
-                        class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Proyectos</a>
-                </div>
+            <div class="block  mx-2">
+                <a href="{{ route('proyectos.index', $cliente) }}"
+                    class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Proyectos</a>
+            </div>
 
-                <div class="block  mx-2">
-                    <a href="{{ route('pagos.index', $cliente) }}"
-                        class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Pagos</a>
-                </div>
+            <div class="block  mx-2">
+                <a href="{{ route('pagos.index', $cliente) }}"
+                    class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Pagos</a>
             </div>
         </div>
     </x-slot>
@@ -101,7 +99,7 @@
             </div>
             <small class="text-red-500 mt-2 ">Los campos marcados con * son OBLIGATORIOS</small>
         </form>
-        
+
 
     </div>
     {{-- Mostramos las facturas existentes --}}
@@ -216,7 +214,7 @@
                                                                         </path>
                                                                     </svg>
                                                                 </x-slot>
-                                                            </x-boton2>                                                       
+                                                            </x-boton2>
                                                         </td>
                                                     @endrole
                                                 </tr>

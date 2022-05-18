@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FaltaRequest extends FormRequest
+class AsistenciaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,9 @@ class FaltaRequest extends FormRequest
     public function rules()
     {
         return [
-            'fecha_falta'=>'required|date',
-            'justificacion'=>'nullable|string',
-            'notas'=>'nullable|string',
+            'archivo' => 'nullable|mimes:png,jpg,pdf,docx,txt,xsl,xsls',
+            'fecha_inicio'=>'nullable|date',
+            'fecha_fin'=>'nullable|date',
         ];
     }
 }

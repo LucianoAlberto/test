@@ -1,20 +1,19 @@
 <x-app-layout>
     <!--Menu superior-->
         <x-slot name="header">
-        <div class="flex justify-between ">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
               <a class="text-red-500 uppercase underline" href="{{route('clientes.show', $cliente)}}"> {{$cliente->nombre}} {{$cliente->apellidos}}</a>
             </h2>
 
-            <div class="flex justify-end "> 
+            <div class="flex justify-end ">
                 <div class="block  mx-2">
                     <a href="{{ route('contratos.index', $cliente) }}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Contratos</a>
                 </div>
-    
+
                 <div class="block  mx-2">
                     <a href="{{ route('facturas.index',$cliente) }}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Facturas</a>
                 </div>
-    
+
                 <div class="block  mx-2">
                     <a href="{{route('proyectos.index',$cliente)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Proyectos</a>
                 </div>
@@ -23,11 +22,9 @@
                     <a href="{{route('pagos.index',$cliente)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Pagos</a>
                 </div>
             </div>
-        </div>
-
         </x-slot>
         <!---Fin menu superior-->
-    
+
     <div>
         <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8">
             <div class="flex flex-col">
@@ -57,7 +54,7 @@
                                     </x-boton2>
                                     @endrole
                                 </div>
-                                
+
                                 <tr class="border-b">
                                     <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         ID
@@ -69,19 +66,19 @@
 
                                 <tr class="border-b ">
                                     <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Areas 
+                                        Areas
                                     </th>
-                                   
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200 flex">                                                                         
-                                        <div >     
+
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200 flex">
+                                        <div >
                                             @foreach ($ambitos as $ambito )
-                                            
+
                                               <label for="$ambito->id[{{$ambito->id}}]">{{$ambito->nombre}}</label>
-                                              <input  class="mr-5" type="checkbox" name="ambito[{{$ambito->id}}]"  {{in_array($ambito->id, $cliente->ambitos->pluck('id')->toArray()) ? 'checked' : ''}} disabled>                          
-                                                                          
+                                              <input  class="mr-5" type="checkbox" name="ambito[{{$ambito->id}}]"  {{in_array($ambito->id, $cliente->ambitos->pluck('id')->toArray()) ? 'checked' : ''}} disabled>
+
                                               @endforeach
-                                           
-                                       </div>                                                                                     
+
+                                       </div>
                                     </td>
 
                                 </tr>

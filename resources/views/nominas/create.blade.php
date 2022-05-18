@@ -16,7 +16,7 @@
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div class="contenedorNominas justify-between mb-4">
                                 <div class="flex">
-                                    <div class="w-4/12 divFechaInicioNomina">
+                                    <div class="w-1/4 divFechaInicioNomina">
                                         <label for="fecha_inicio" class="block font-medium text-sm text-gray-700">Fecha inicio</label>
                                         <input type="date" name="fecha_inicio" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old("fecha_inicio", '') }}" />
@@ -25,7 +25,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="w-4/12 divFechaFinNomina">
+                                    <div class="w-1/4 divFechaFinNomina">
                                         <label for="fecha_fin" class="block font-medium text-sm text-gray-700">Fecha fin</label>
                                         <input type="date" name="fecha_fin" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old("fecha_fin", '') }}" />
@@ -34,7 +34,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="w-4/12 divFechaPagoNomina">
+                                    <div class="w-1/4 divFechaPagoNomina">
                                         <label for="fecha_pago" class="block font-medium text-sm text-gray-700">Fecha de pago</label>
                                         <input type="date" name="fecha_pago" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old("fecha_pago", '') }}" />

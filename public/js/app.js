@@ -5099,6 +5099,8 @@ window.deleteConfirm = function (formId, event) {
     texto = '¿Desea borrar esta falta?';
   } else if (event.target.closest("form").classList.contains("nomina")) {
     texto = '¿Desea borrar esta nómina?';
+  } else if (event.target.closest("form").classList.contains("asistencia")) {
+    texto = '¿Desea borrar esta asistencia?';
   }
 
   sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({

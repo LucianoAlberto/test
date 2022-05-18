@@ -97,6 +97,7 @@
                                 @break
                             @endswitch
                     @endforeach
+                    <option value="referencia_contrato">Referencia contrato</option>
                 </select>
             </div>
 

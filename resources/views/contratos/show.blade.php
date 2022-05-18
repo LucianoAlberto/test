@@ -1,7 +1,6 @@
 <x-app-layout>
   <!--Menu superior-->
-  <x-slot name="header">
-    <div class="flex justify-between ">
+    <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
           <a class="text-red-500 uppercase underline" href="{{route('clientes.show', $cliente)}}"> {{$cliente->nombre}} {{$cliente->apellidos}}</a>
         </h2>
@@ -23,7 +22,6 @@
                 <a href="{{route('pagos.index',$cliente)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Pagos</a>
             </div>
         </div>
-    </div>
     </x-slot>
     <!---Fin menu superior-->
 
@@ -56,7 +54,7 @@
                                 </x-boton2>
                                 @endrole
                                 </div>
-                                
+
                                 <tr class="border-b">
                                     <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         ID

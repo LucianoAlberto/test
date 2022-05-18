@@ -16,7 +16,7 @@
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div class="contenedorNominas justify-between mb-4">
                                 <div class="">
-                                    <div class="w-4/12 divFechaInicioNomina">
+                                    <div class="w-1/4 divFechaInicioNomina mb-4">
                                         <label for="fecha_falta" class="block font-medium text-sm text-gray-700">Fecha de la falta</label>
                                         <input type="date" name="fecha_falta" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old("fecha_falta", '') }}" />
@@ -25,7 +25,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="w-4/12 divFechaFinNomina">
+                                    <div class="w-full divFechaFinNomina mb-4">
                                         <label for="justificacion" class="block font-medium text-sm text-gray-700">Justificación</label>
                                         <textarea type="text" name="justificacion" class="form-input rounded-md shadow-sm mt-1 block w-full">
                                             {{ old("justificacion", '') }}
@@ -35,7 +35,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="w-4/12 divFechaPagoNomina">
+                                    <div class="w-full divFechaPagoNomina mb-4">
                                         <label for="notas" class="block font-medium text-sm text-gray-700">Notas</label>
                                         <textarea type="text" name="notas" class="form-input rounded-md shadow-sm mt-1 block w-full">
                                             {{ old("notas", '') }}

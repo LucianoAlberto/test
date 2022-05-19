@@ -129,13 +129,7 @@
         })
     </script>
 
-@elseif (session('eliminado') == 'si')
-    <script>
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Falta Eliminada',
-            showConfirmButton: false,
+@elseif (session('eliminado') == 'si')store
             timer: 1500
         })
     </script>

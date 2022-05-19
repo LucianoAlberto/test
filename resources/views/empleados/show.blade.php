@@ -32,9 +32,9 @@
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                             <table class="min-w-full divide-y divide-gray-200 w-full">
-                                <div class="flex items-center relative">
+                                <div class="flex items-center relative">    
                                 <h3 class="text-center font-bold uppercase w-full py-4 bg-gray-300">Datos personales</h3>
-                                @role('$rolConPoderes')
+                                @role($rolConPoderes)
                                 <x-boton2 tipo="link" class="bg-yellow-400 hover:bg-yellow-600  w-14 h-14 absolute right-0 top-0" direccion="{{ route('empleados.edit',$empleado) }}">
                                     <x-slot name="boton">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
@@ -112,88 +112,88 @@
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
                                         {{ $empleado->fecha_fin }}
                                     </td>
-                                </tr>
+                                </tr>                          
 
                                 @if ($empleado->practica)
-                                    <tr class="border-b">
-                                        <th scope="col"
-                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <tr class="border-b ">
+                                        <th scope="col "
+                                            class="px-6 py-3  text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-orange-100">
                                             Instituto
                                         </th>
 
                                         <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200 bg-orange-100">
                                             {{ $empleado->practica->instituto }}
                                         </td>
                                     </tr>
 
                                     <tr class="border-b">
                                         <th scope="col"
-                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-orange-100">
                                             Localidad
                                         </th>
 
                                         <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200 bg-orange-100">
                                             {{ $empleado->practica->localidad }}
                                         </td>
                                     </tr>
 
                                     <tr class="border-b">
                                         <th scope="col"
-                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-orange-100">
                                             Provincia
                                         </th>
 
                                         <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200 bg-orange-100">
                                             {{ $empleado->practica->provincia }}
                                         </td>
                                     </tr>
 
                                     <tr class="border-b">
                                         <th scope="col"
-                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-orange-100">
                                             Tutor de prácticas
                                         </th>
 
                                         <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200 bg-orange-100">
                                             {{ $empleado->practica->tutor_practicas }}
                                         </td>
                                     </tr>
 
                                     <tr class="border-b">
                                         <th scope="col"
-                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-orange-100">
                                             Fecha de inicio de las prácticas
                                         </th>
 
                                         <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200 bg-orange-100">
                                             {{ $empleado->practica->fecha_inicio }}
                                         </td>
                                     </tr>
 
                                     <tr class="border-b">
                                         <th scope="col"
-                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-orange-100">
                                             Fecha de finalización de las prácticas
                                         </th>
 
                                         <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200 bg-orange-100">
                                             {{ $empleado->practica->fecha_fin }}
                                         </td>
                                     </tr>
 
                                     <tr class="border-b">
                                         <th scope="col"
-                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-orange-100">
                                             Convenio
                                         </th>
 
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200 bg-orange-100">
                                             @if($empleado->practica->convenio != null)
                                             <div class="flex">
                                                 <x-boton2 tipo="linkConAsset" class="bg-blue-500 hover:bg-blue-700 mr-4 w-16" direccion="{{$empleado->practica->convenio}}">
@@ -229,11 +229,11 @@
 
                                     <tr class="border-b">
                                         <th scope="col"
-                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-orange-100">
                                             Documento de confidencialidad
                                         </th>
 
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200 bg-orange-100">
 
                                             @if($empleado->practica->doc_confidencialidad != null)
                                             <div class="flex">

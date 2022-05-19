@@ -36,7 +36,7 @@
                        <div class="shadow overflow-hidden sm:rounded-md">
                            <h3 class="text-center font-bold uppercase w-full py-4 bg-gray-300">Editando falta {!!      $falta->id !!} </h3>
                            <div class="px-4 py-5 bg-white sm:p-6">
-                               <div class=" justify-between mb-4">
+                               <div class=" justify-between mb-1">
                                    <div class="">
    
                                        <div class="flex ">
@@ -67,14 +67,14 @@
                                            @error('notas')
                                                <p class="text-sm text-red-600">{{ $message }}</p>
                                            @enderror
-                                       </div>                                 
-                                   </div>
-                                   <div class="flex  justify-end py-3  sm:px-6">
-                                       <button class="inline-flex items-center px-4 py-2 bg-gray-800 hover:scale-125 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
-                                           Guardar Cambios
-                                       </button>
-                                   </div>
-                                 
+                                       </div>  
+                                       
+                                       <div class="flex  justify-end  sm:px-6">
+                                        <button class="inline-flex items-center px-4 py-2 bg-gray-800 hover:scale-125 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
+                                            Guardar Cambios
+                                        </button>
+                                    </div>
+                                   </div>                               
                                </div>
                            </div>
                        </div>

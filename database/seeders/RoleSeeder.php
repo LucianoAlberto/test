@@ -2,12 +2,13 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\PermissionRegistrar;
 use App\Models\User;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\PermissionRegistrar;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class RoleSeeder extends Seeder
 {
@@ -44,11 +45,12 @@ class RoleSeeder extends Seeder
         $usuarioAdmin->assignRole($admin);
 
         $usuarioUser = User::factory()->create([
-            'name' => 'Lupe',
+           'name' => 'Lupe',
            'email' => 'lupe@user.com',
            'password' => bcrypt('12345678'),
            'rol'=>'2',
         ]);
         $usuarioUser->assignRole($user);
+
     }
 }

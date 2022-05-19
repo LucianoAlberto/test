@@ -17,26 +17,12 @@ class AmbitoSeeder extends Seeder
     {
         Ambito::insert([
             [
-                'nombre' => 'Pagina-Web',
+                'nombre' => 'Practicas',
                 "created_at" => now('Europe/Madrid'),
                 "updated_at" => now('Europe/Madrid'),
             ],       
         ]);
 
-        Ambito::insert([
-            [
-                'nombre' => 'Publicidad',
-                "created_at" => now('Europe/Madrid'),
-                "updated_at" => now('Europe/Madrid'),
-            ],       
-        ]);
-
-        Ambito::insert([
-            [
-                'nombre' => 'Servicios',
-                "created_at" => now('Europe/Madrid'),
-                "updated_at" => now('Europe/Madrid'),
-            ],       
-        ]);
+       
     }
 }

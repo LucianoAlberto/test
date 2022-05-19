@@ -17,10 +17,12 @@ class AsistenciaController extends Controller
      */
     public function index(Empleado $empleado)
     {
-        $vacaciones = $empleado->vacaciones();
+        $vacaciones = $empleado->vacaciones();     
+        $asistencias=Asistencia::where('empleado_id',$empleado->id)->paginate(10);
+
 
         $rolConPoderes = self::ROLCONPODERES;
-        return view('asistencias.index', compact('empleado', 'vacaciones', 'rolConPoderes'));
+        return view('asistencias.index', compact('empleado', 'asistencias', 'rolConPoderes'));
     }
 
     /**
@@ -56,7 +58,7 @@ class AsistenciaController extends Controller
         $asistencia->save();
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('asistencias.index', compact('empleado', 'rolConPoderes'));
+        return redirect()->route('asistencias.index', compact('empleado', 'rolConPoderes'))->with('creado','si');
     }
 
     /**
@@ -93,6 +95,7 @@ class AsistenciaController extends Controller
         $validated = $request->validated();
 
         $asistencia->empleado_id = $empleado->id;
+
         if($request->hasFile('archivo')){
             //Si tiene un archivo lo elimina y guarda el nuevo
             if($asistencia->archivo != null){
@@ -106,7 +109,7 @@ class AsistenciaController extends Controller
         $asistencia->save();
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('asistencias.index', compact('empleado', 'rolConPoderes'));
+        return redirect()->route('asistencias.index', compact('empleado', 'rolConPoderes'))->with('editado','si');
     }
 
     /**
@@ -117,10 +120,10 @@ class AsistenciaController extends Controller
      */
     public function destroy(Empleado $empleado, Asistencia $asistencia)
     {
-        //dd($empleado);
+        dd($empleado);
         $asistencia->delete();
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('asistencias.index', compact('empleado', 'rolConPoderes'))->with('eliminado','si');
+       // return redirect()->route('asistencias.index', compact('empleado', 'rolConPoderes'))->with('eliminado','si');
     }
 }

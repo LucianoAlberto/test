@@ -67,7 +67,8 @@ class NominaController extends Controller
      */
     public function show(Empleado $empleado, Nomina $nomina)
     {
-        return view('nominas.show', compact('empleado', 'nomina'));
+        $rolConPoderes = self::ROLCONPODERES;
+        return view('nominas.show', compact('empleado', 'nomina','rolConPoderes'));
     }
 
     /**

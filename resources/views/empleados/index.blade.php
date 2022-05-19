@@ -164,12 +164,7 @@
             title: 'Datos guardados',
             showConfirmButton: false,
             timer: 1500
-        })
-    </script>
-
-@elseif (session('ambito_creado') == 'si')
-    <script>
-        Swal.fire({
+        })bg-orange-100
             position: 'center',
             icon: 'success',
             title: 'Nuevo ambito creado',

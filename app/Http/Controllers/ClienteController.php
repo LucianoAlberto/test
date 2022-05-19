@@ -49,7 +49,6 @@ class ClienteController extends Controller
             }
         }
         if(!is_null($request->busqueda) && !is_null($request->criterio)){
-            //dd($request->busqueda);
             if($request->criterio == "referencia_contrato"){
                 $contrato = Contrato::where('referencia', $request->busqueda)->first();
                 //dd($contrato->cliente->id);

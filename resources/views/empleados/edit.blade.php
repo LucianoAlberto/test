@@ -1,9 +1,30 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Editar empleado
-        </h2>
-    </x-slot>
+  <!--Menu superior-->
+  <x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      <a class="text-red-500 uppercase underline" href="{{route('empleados.show', $empleado)}}"> {{$empleado->nombre}} {{$empleado->apellidos}}</a>
+    </h2>
+
+    <div class="flex justify-end ">
+
+        <div class="block  mx-2">
+            <a href="{{route('nominas.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Nóminas</a>
+        </div>
+
+        <div class="block  mx-2">
+            <a href="{{route('asistencias.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Asistencias</a>
+        </div>
+
+        <div class="block  mx-2">
+            <a href="{{route('faltas.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Faltas</a>
+        </div>
+        
+        <div class="block  mx-2">
+            <a href="{{route('vacaciones.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Vacaciones</a>
+        </div>
+    </div>
+</x-slot>
+<!---Fin menu superior-->
 
     <div>
         <div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8" focus>
@@ -93,11 +114,9 @@
                     @csrf
                     @method('PUT')
                     <div class="shadow overflow-hidden sm:rounded-md ">
+                        <h3 class="text-center font-bold uppercase w-full py-4 bg-gray-300">Editando Empleado . . . </h3>
                         <div class="px-4 py-5 bg-white sm:p-6 divide-y-4">
-                            <div class="divDatosPersonales mb-8">
-                                <h3 class="flex justify-center font-semibold text-xl text-gray-800 leading-tight mb-2">
-                                    Datos personales
-                                </h3>
+                            <div class="divDatosPersonales mb-8">                               
                                 <div class="flex justify-between mb-4">
                                     <div class="w-1/2 mr-2">
                                         <label for="nombre"

@@ -5,20 +5,22 @@
             Nóminas del empleado: <a class="text-red-500 uppercase underline" href="{{ route('empleados.show', $empleado) }}">{{ $empleado->nombre }} {{ $empleado->apellidos }}</a>
         </h2>
 
-        <div class="flex justify-end ">
-            <div class="block  mx-2">
-                <a href="{{route('vacaciones.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Vacaciones</a>
-            </div>
+    <div class="flex justify-end ">
 
-            <div class="block  mx-2">
-                <a href="{{route('faltas.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Faltas</a>
-            </div>
+        <div class="block  mx-2">
+            <a href="{{route('asistencias.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Asistencias</a>
+        </div>
 
-            <div class="block  mx-2">
-                <a href="{{route('asistencias.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Asistencias</a>
-            </div>
-        </x-slot>
-    <!---Fin menu superior-->
+        <div class="block  mx-2">
+            <a href="{{route('faltas.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Faltas</a>
+        </div>
+
+        <div class="block  mx-2">
+            <a href="{{route('vacaciones.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Vacaciones</a>
+        </div>
+    </div>
+</x-slot>
+<!---Fin menu superior-->
 
 {{-- Formulario para un nueva nomina --}}
 <div class="w-1/3 mt-5 m-auto" id='nueva_nomina'  hidden>
@@ -83,7 +85,7 @@
                 <div class="flex">
 
                     <div class="w-1/3 divImporteTotalNomina mr-2">
-                        <label for="importe_total" class="block font-medium text-sm text-gray-700">Importe nómina *</label>
+                        <label for="importe_total" class="block font-medium text-sm text-gray-700">Importe nómina € *</label>
                         <input type="text" name="importe_total" class="form-input rounded-md shadow-sm mt-1 block w-full"
                             value="{{ old("importe_total", '') }}"  required/>
                         @error('importe_total')
@@ -91,21 +93,20 @@
                         @enderror
                     </div>
 
-                    <div class="w-1/3 divImportePagadoNomina mx-2">
-                        <label for="importe_pagado" class="block font-medium text-sm text-gray-700">Importe pagado *</label>
-                        <input type="text" name="importe_pagado" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                            value="{{ old("importe_pagado", '') }}" required />
-                        @error('importe_pagado')
+                    <div class="w-1/3 divImportePagadoNomina ml-2">
+                        <label for="pago_extra" class="block font-medium text-sm text-gray-700">Pago Extra €</label>
+                        <input type="text" name="pago_extra" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                            value="{{ old("pago_extra", '') }}" />
+                        @error('pago_extra')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
 
-
-                    <div class="w-1/3 divImportePagadoNomina ml-2">
-                        <label for="pago_extra" class="block font-medium text-sm text-gray-700">Pago Extra</label>
-                        <input type="text" name="pago_extra" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                            value="{{ old("pago_extra", '') }}" />
-                        @error('pago_extra')
+                    <div class="w-1/3 divImportePagadoNomina mx-2">
+                        <label for="importe_pagado" class="block font-medium text-sm text-gray-700">Importe pagado € *</label>
+                        <input type="text" name="importe_pagado" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                            value="{{ old("importe_pagado", '') }}" required />
+                        @error('importe_pagado')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
@@ -116,7 +117,7 @@
         </div>
         <div class="flex items-center justify-end ">
             <button
-                class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-5">
+                class="bg-gray-800  hover:scale-125 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-5">
                 Crear
             </button>
         </div>
@@ -166,13 +167,15 @@
                                                 </th>
 
                                                 <th scope="col" class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Importe total
+                                                    Importe total €
                                                 </th>
+
                                                 <th scope="col" class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Importe pagado
+                                                    Pago Extra €
                                                 </th>
+
                                                 <th scope="col" class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Pago Extra
+                                                    Importe pagado €
                                                 </th>
                                                 @role($rolConPoderes)
                                                 <th scope="col" width="200" class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -204,12 +207,14 @@
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
                                                         {{ $nomina->importe_total }}
                                                     </td>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                                                        {{ $nomina->importe_pagado }}
-                                                    </td>
+
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
                                                         {{ $nomina->pago_extra }}
                                                     </td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                                                        {{ $nomina->importe_pagado }}
+                                                    </td>
+
                                                     @role($rolConPoderes)
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex justify-center">
                                                         <x-boton2 tipo="link" class="bg-yellow-400 hover:bg-yellow-600 mr-4 w-14 h-14" direccion="{{ route('nominas.edit', ['empleado' => $empleado->id, 'nomina' => $nomina->id]) }}">

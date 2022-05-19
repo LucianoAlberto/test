@@ -1,26 +1,29 @@
 <x-app-layout>
  <!--Menu superior-->
  <x-slot name="header">
-    <div class="flex justify-between ">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-          <a class="text-red-500 uppercase underline" href="{{route('empleados.show', $empleado)}}"> {{$empleado->nombre}} {{$empleado->apellidos}}</a>
-        </h2>
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      <a class="text-red-500 uppercase underline" href="{{route('empleados.show', $empleado)}}"> {{$empleado->nombre}} {{$empleado->apellidos}}</a>
+    </h2>
 
-        <div class="flex justify-end ">
-            <div class="block  mx-2">
-                <a href="{{route('vacaciones.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Vacaciones</a>
-            </div>
+    <div class="flex justify-end ">
 
-            <div class="block  mx-2">
-                <a href="{{route('faltas.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Faltas</a>
-            </div>
-
-            <div class="block  mx-2">
-                <a href="{{route('nominas.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Nóminas</a>
-            </div>
-
+        <div class="block  mx-2">
+            <a href="{{route('nominas.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Nóminas</a>
         </div>
-    </x-slot>
+
+        <div class="block  mx-2">
+            <a href="{{route('asistencias.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Asistencias</a>
+        </div>
+
+        <div class="block  mx-2">
+            <a href="{{route('faltas.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Faltas</a>
+        </div>
+
+        <div class="block  mx-2">
+            <a href="{{route('vacaciones.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Vacaciones</a>
+        </div>
+    </div>
+</x-slot>
 <!---Fin menu superior-->
 
 <div class="w-1/3 mt-5 m-auto" id='nueva_nomina'>
@@ -85,20 +88,19 @@
                     </div>
 
                     <div class="w-1/3 divImportePagadoNomina ml-2">
-                        <label for="importe_pagado" class="block font-medium text-sm text-gray-700">Importe pagado *</label>
-                        <input type="text" name="importe_pagado" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("importe_pagado", $nomina->importe_pagado) }}" />
-                                        @error('importe_pagado')
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
-                    </div>
-
-
-                    <div class="w-1/3 divImportePagadoNomina ml-2">
                         <label for="pago_extra" class="block font-medium text-sm text-gray-700">Pago Extra</label>
                         <input type="text" name="pago_extra" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old("pago_extra", $nomina->pago_extra) }}" />
                                         @error('pago_extra')
+                                            <p class="text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                    </div>
+
+                    <div class="w-1/3 divImportePagadoNomina ml-2">
+                        <label for="importe_pagado" class="block font-medium text-sm text-gray-700 font-bold">Importe pagado *</label>
+                        <input type="text" name="importe_pagado" class="form-input rounded-md shadow-sm mt-1 block w-full font-bold"
+                                            value="{{ old("importe_pagado", $nomina->importe_pagado) }}" />
+                                        @error('importe_pagado')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                     </div>

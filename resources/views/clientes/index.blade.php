@@ -109,11 +109,11 @@
                 @enderror
             </div>
 
-            <x-boton2 tipo="input" class="flex items-center justify-center bg-red-600 hover:bg-red-700 w-11 h-11">
+            <x-boton2 tipo="input" class="flex items-center justify-center bg-red-600 hover:bg-red-700">
                 <x-slot name="boton">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-search">
+                        class="feather feather-search  w-11 h-11 p-2">
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>

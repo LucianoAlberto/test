@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Laravel\Jetstream\Jetstream;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Actions\Fortify\PasswordValidationRules;
@@ -28,11 +29,12 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
+        //dd($this->user()->id);
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => $this->passwordRules(),
-            'rol'=>'required',
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,id,' . $this->user()->id],
+            'password' => ['required', 'string', 'size:8', 'confirmed'],
+            'rol' =>'required',
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ];
     }
@@ -44,8 +46,9 @@ class UserRequest extends FormRequest
             'email.required' => 'El :attribute es obligatorio.',
             'email.email' => 'El :attribute es un e-mail.',
             'email.unique' => 'El :attribute introducido ya está en uso.',
-            'contrasenha.required' => 'La :attribute es obligatoria.',
-            'contrasenha.string' => 'La :attribute es una cadena de caracteres.',
+            'password.required' => 'La :attribute es obligatoria.',
+            'password.string' => 'La :attribute es una cadena de caracteres.',
+            'password.size' => 'La :attribute debe tener al menos 8 caracteres.',
         ];
     }
 
@@ -53,7 +56,7 @@ class UserRequest extends FormRequest
         return [
             'nombre' => 'nombre de usuario',
             'email' => 'e-mail del usuario',
-            'contrasenha' => 'contraseña del usuario',
+            'password' => 'contraseña del usuario',
         ];
     }
 }

@@ -23,52 +23,10 @@
     </x-slot>
 <!---Fin menu superior-->
 
-<<<<<<< HEAD
-    <div>
-        <div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8">
-            <div class="mt-5 md:mt-0 md:col-span-2">
-                <form method="post" action="{{ route('nominas.update', ['empleado' => $empleado, 'nomina' => $nomina]) }}" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
-                    <div class="shadow overflow-hidden sm:rounded-md">
-                        <div class="px-4 py-5 bg-white sm:p-6">
-                            <div class="contenedorNominas justify-between mb-4">
-                                <div class="flex mb-8">
-                                    <div class="w-1/4 divFechaInicioNomina mr-2">
-                                        <label for="fecha_inicio" class="block font-medium text-sm text-gray-700">Fecha inicio</label>
-                                        <input type="date" name="fecha_inicio" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("fecha_inicio", $nomina->fecha_inicio) }}" />
-                                        @error("fecha_inicio")
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-
-                                    <div class="w-1/4 divFechaFinNomina mx-2">
-                                        <label for="fecha_fin" class="block font-medium text-sm text-gray-700">Fecha fin</label>
-                                        <input type="date" name="fecha_fin" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("fecha_fin", $nomina->fecha_fin) }}" />
-                                        @error("fecha_fin")
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-
-                                    <div class="w-1/4 divFechaPagoNomina mx-2">
-                                        <label for="fecha_pago" class="block font-medium text-sm text-gray-700">Fecha de pago</label>
-                                        <input type="date" name="fecha_pago" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                            value="{{ old("fecha_pago", $nomina->fecha_pago) }}" />
-                                        @error('fecha_pago')
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-
-                                    <div class="w-1/4 divHorasNomina ml-2">
-                                        <label for="horas_alta_ss" class="block font-medium text-sm text-gray-700">Horas SS *</label>
-                                        <input type="text" name="horas_alta_ss" class="form-input rounded-md shadow-sm mt-1 block w-full"
-=======
 <div class="w-1/3 mt-5 m-auto" id='nueva_nomina'>
     <div class="flex justify-center relative ">
         <h3 class="text-center font-bold uppercase w-full py-5 bg-gray-300">Editando Nomina . . . </h3>
-        
+
     </div>
 
     <form class="bg-white shadow-md rounded px-8 pt-2 pb-2 mb-2"
@@ -109,7 +67,6 @@
                     <div class="w-1/2 divHorasNomina mr-2" >
                         <label for="horas_alta_ss" class="block font-medium text-sm text-gray-700">Horas SS *</label>
                         <input type="text" name="horas_alta_ss" class="form-input rounded-md shadow-sm mt-1 block w-full"
->>>>>>> refs/remotes/origin/Final
                                             value="{{ old("horas_alta_ss", $nomina->horas_alta_ss) }}"  required/>
                                         @error('horas_alta_ss')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
@@ -118,30 +75,18 @@
                 </div>
                 <div class="flex">
 
-<<<<<<< HEAD
-                                    <div class="w-1/3 divImporteTotalNomina mr-2">
-                                        <label for="importe_total" class="block font-medium text-sm text-gray-700">Importe nómina</label>
-                                        <input type="text" name="importe_total" class="form-input rounded-md shadow-sm mt-1 block w-full"
-=======
                     <div class="w-1/3 divImporteTotalNomina mx-2">
                         <label for="importe_total" class="block font-medium text-sm text-gray-700">Importe nómina *</label>
                         <input type="text" name="importe_total" class="form-input rounded-md shadow-sm mt-1 block w-full"
->>>>>>> refs/remotes/origin/Final
                                             value="{{ old("importe_total", $nomina->importe_total) }}" />
                                         @error('importe_total')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                     </div>
 
-<<<<<<< HEAD
-                                    <div class="w-1/3 divImportePagadoNomina mx-2">
-                                        <label for="importe_pagado" class="block font-medium text-sm text-gray-700">Importe pagado</label>
-                                        <input type="text" name="importe_pagado" class="form-input rounded-md shadow-sm mt-1 block w-full"
-=======
                     <div class="w-1/3 divImportePagadoNomina ml-2">
                         <label for="importe_pagado" class="block font-medium text-sm text-gray-700">Importe pagado *</label>
                         <input type="text" name="importe_pagado" class="form-input rounded-md shadow-sm mt-1 block w-full"
->>>>>>> refs/remotes/origin/Final
                                             value="{{ old("importe_pagado", $nomina->importe_pagado) }}" />
                                         @error('importe_pagado')
                                             <p class="text-sm text-red-600">{{ $message }}</p>

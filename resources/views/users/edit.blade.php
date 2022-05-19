@@ -8,8 +8,8 @@
         </x-slot>
 
         {{--<x-jet-validation-errors class="mb-4" />--}}
-
-        <form method="POST" action="{{ route('users.update',$user) }}">
+        {{-- {{dd($user)}} --}}
+        <form method="POST" action="{{ route('users.update', compact('user')) }}">
             @csrf
             @method('PUT')
 
@@ -42,7 +42,7 @@
                 <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" value="{{$user->password}}"/>
                 @error('password_confirmation')
                     <p class="text-sm text-red-600">{{ $message }}</p>
-               @enderror      
+               @enderror
                 </div>
 
 
@@ -56,10 +56,10 @@
                         {{ $rol->name }}</option>
                     @endforeach
 
-                </select>   
+                </select>
             </div>
 
-            
+
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">
@@ -79,7 +79,7 @@
             @endif
 
             <div class="flex items-center justify-end mt-4">
-               
+
 
                 <x-jet-button class="ml-4">
                     {{ __('Guardar cambios') }}

@@ -6,7 +6,7 @@
     </x-slot>
 
     <div>
-        <div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8" focus>
             {{-- Formulario para un Nuevo ambito --}}
             <div class="w-1/2 max-w-xs  m-auto mt-5 mb-5 bg-gray-300 border-2" id='nuevoAmbito' hidden>
 
@@ -171,7 +171,7 @@
 
                                 <div class="font-medium text-sm text-gray-700 mb-8">
                                     <fieldset>
-                                        <legend class="mb-4 flex">Ámbitos de trabajo 
+                                        <legend class="mb-4 flex">Ámbitos de trabajo
                                             <x-boton2 tipo="div"
                                             class="ml-1 bg-gray-800 hover:bg-gray-700 hover:scale-125  w-6 h-6 fill-none "
                                             onclick="nuevoAmbito()">
@@ -186,7 +186,7 @@
                                         </x-boton2>
 
                                         </legend>
-                                       
+
                                         @foreach ($ambitos as $ambito)
                                             <label for='ambito[{{ $ambito->id }}]'>{{ $ambito->nombre }}</label>
                                             <input type="checkbox" name='ambito[{{ $ambito->id }}]'
@@ -449,7 +449,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 {{--empleaodo--}}
                                 <div id="divEmpleado" {{ $empleado->practica ? 'hidden': ''}}>
                                 <div class="flex mt-8 mb-4">
@@ -813,7 +813,7 @@
                                     @enderror
                                 </div>
 
-                                </div> 
+                                </div>
 
                             </div>
                         </div>
@@ -825,7 +825,7 @@
                         </div>
                     </div>
 
-                  
+
             </div>
             <small class="text-red-500 px-2">Los campos marcados con * son OBLIGATORIOS</small>
 

@@ -414,6 +414,7 @@ window.cerrarNuevaFactura=function(){
 window.nuevoConcepto=function(){
     let div = document.getElementById('nuevoConcepto');
     div.style.display = 'block';
+    div.scrollIntoView();
 }
 
 window.closeNuevoConcepto=function(){
@@ -426,6 +427,7 @@ window.closeNuevoConcepto=function(){
 window.nuevoAmbito=function(){
     let div = document.getElementById('nuevoAmbito');
     div.style.display = 'block';
+    div.scrollIntoView();
 }
 
 // nuevo ambito

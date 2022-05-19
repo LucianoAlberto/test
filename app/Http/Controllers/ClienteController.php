@@ -32,6 +32,10 @@ class ClienteController extends Controller
      */
     public function index(Request $request)
     {
+        $conceptos = ConceptoFactura::all();
+        $ambitos = Ambito::all();
+        $rolConPoderes = self::ROLCONPODERES;
+        $criterios = Schema::getColumnListing('clientes');
 
         if(is_null($request->ambito)){
             $clientes = Cliente::paginate(10);
@@ -49,19 +53,21 @@ class ClienteController extends Controller
             if($request->criterio == "referencia_contrato"){
                 $contrato = Contrato::where('referencia', $request->busqueda)->first();
                 //dd($contrato->cliente->id);
-                $cliente = Cliente::find($contrato->cliente->id);
-                $conceptos = ConceptoFactura::all();
-                $rolConPoderes = self::ROLCONPODERES;
+                if(isset($contrato->cliente)){
+                    $cliente = Cliente::find($contrato->cliente->id);
 
-                return view('contratos.show', compact('cliente', 'contrato', 'conceptos','rolConPoderes'));
+
+                    return view('contratos.show', compact('cliente', 'contrato', 'conceptos','rolConPoderes'));
+                }
+                else{
+                    $clientes = Cliente::paginate(10);
+
+                    return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes', 'criterios'));
+                }
             }
             $clientes = Cliente::where($request->criterio, 'LIKE','%'.$request->busqueda.'%')->paginate(10);
         }
 
-        $ambitos = Ambito::all();
-        $rolConPoderes = self::ROLCONPODERES;
-
-       $criterios = Schema::getColumnListing('clientes');
        return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes', 'criterios'));
 
     }

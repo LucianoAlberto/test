@@ -85,7 +85,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $roles=DB::table('roles')->get();
+        $roles = DB::table('roles')->get();
 
         return view('users.edit', compact('user','roles'));
     }
@@ -97,18 +97,20 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, $id)
+    public function update(UserRequest $request, User $user)
     {
-        $validated = $request->validated();
 
-        $user = User::find($id);
+        $validated = $request->validated();
+        //dd($validated['rol']);
+        //$user = User::find($id);
 
         $user->name = $validated["name"];
         $user->email = $validated["email"];
         if($validated["password"] != $user->password){
             $user->password = bcrypt($validated["password"]);
         }
-        $user->rol=$validated['rol'];
+        $user->rol = $validated['rol'];
+        $user->assignRole(Role::find($validated['rol']));
 
         $user->save();
 

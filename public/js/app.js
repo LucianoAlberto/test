@@ -5397,6 +5397,7 @@ window.cerrarNuevaFactura = function () {
 window.nuevoConcepto = function () {
   var div = document.getElementById('nuevoConcepto');
   div.style.display = 'block';
+  div.scrollIntoView();
 };
 
 window.closeNuevoConcepto = function () {
@@ -5408,6 +5409,7 @@ window.closeNuevoConcepto = function () {
 window.nuevoAmbito = function () {
   var div = document.getElementById('nuevoAmbito');
   div.style.display = 'block';
+  div.scrollIntoView();
 }; // nuevo ambito
 
 

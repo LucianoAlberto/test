@@ -2,8 +2,7 @@
     <!--Menu superior-->
     <x-slot name="header">
         <h2 class="text-xl text-gray-800 leading-tight font-bold">
-            <a class="text-red-500 uppercase underline" href="{{ route('empleados.show', $empleado) }}">
-                {{ $empleado->nombre }} {{ $empleado->apellidos }}</a>
+            Nóminas del empleado: <a class="text-red-500 uppercase underline" href="{{ route('empleados.show', $empleado) }}">{{ $empleado->nombre }} {{ $empleado->apellidos }}</a>
         </h2>
 
         <div class="flex justify-end ">

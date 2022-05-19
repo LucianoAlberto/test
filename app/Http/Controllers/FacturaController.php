@@ -7,6 +7,7 @@ use App\Models\Factura;
 use App\Models\Contrato;
 use Illuminate\Http\Request;
 use App\Http\Requests\FacturaRequest;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 
 class FacturaController extends Controller
@@ -16,13 +17,26 @@ class FacturaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Cliente $cliente)
+    public function index(Cliente $cliente, Request $request)
     {
-        $proyectos = $cliente->proyectos();
-        $facturas = $cliente->facturas();
-
         $rolConPoderes = self::ROLCONPODERES;
-        return view('facturas.index', compact('cliente', 'proyectos', 'facturas', 'rolConPoderes'));
+        $criterios = Schema::getColumnListing('facturas');
+
+        if(isset($cliente->id)){
+            $proyectos = $cliente->proyectos();
+            $facturas = $cliente->facturas();
+
+            return view('facturas.index', compact('cliente', 'proyectos', 'facturas', 'rolConPoderes'));
+        }
+
+        if(!is_null($request->busqueda) && !is_null($request->criterio)){
+            $facturas = Factura::where($request->criterio, 'LIKE', '%'.$request->busqueda.'%')->paginate(10);
+        }
+        else{
+            $facturas = Factura::paginate(10);
+        }
+
+        return view('facturas.indexTotal', compact('facturas', 'rolConPoderes', 'criterios'));
     }
 
     /**

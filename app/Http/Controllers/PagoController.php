@@ -7,6 +7,7 @@ use App\Models\Cliente;
 use App\Models\Contrato;
 use Illuminate\Http\Request;
 use App\Http\Requests\PagoRequest;
+use Illuminate\Support\Facades\Schema;
 
 class PagoController extends Controller
 {
@@ -15,10 +16,24 @@ class PagoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Cliente $cliente)
+    public function index(Cliente $cliente, Request $request)
     {
         $rolConPoderes=self::ROLCONPODERES;
-        return view ('pagos.index',compact('cliente','rolConPoderes'));
+
+        if(isset($cliente->id)){
+            return view ('pagos.index',compact('cliente','rolConPoderes'));
+        }
+
+        $criterios = Schema::getColumnListing('pagos');
+
+        if(!is_null($request->busqueda) && !is_null($request->criterio)){
+            $pagos = Pago::where($request->criterio, 'LIKE', '%'.$request->busqueda.'%')->paginate(10);
+        }
+        else{
+            $pagos = Pago::paginate(10);
+        }
+
+        return view ('pagos.indexTotal',compact('pagos','rolConPoderes', 'criterios'));
     }
 
     /**

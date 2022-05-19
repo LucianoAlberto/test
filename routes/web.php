@@ -99,17 +99,17 @@ Route::group(['middleware' => ['role:superusuario']], function () {
     Route::delete('empleados/{empleado}/asistencias/{asistencia}',[AsistenciaController::class,'destroy'])->name('asistencias.destroy');
 });
 
-Route::get('/contratos/{cliente}', [ContratoController::class, 'index'])->name('contratos.index');
+Route::get('/contratos/{cliente}', [ContratoController::class, 'index'])->name('contratosCliente.index');
 Route::get('/contratos/{cliente}/create', [ContratoController::class, 'create'])->name('contratos.create');
 Route::post('/contratos/{cliente}', [ContratoController::class, 'store'])->name('contratos.store');
 Route::get('/contratos/{cliente}/{contrato}', [ContratoController::class, 'show'])->name('contratos.show');
 
-Route::get('/facturas/{cliente}', [FacturaController::class, 'index'])->name('facturas.index');
+Route::get('/facturas/{cliente}', [FacturaController::class, 'index'])->name('facturasCliente.index');
 Route::get('/facturas/{cliente}/create', [FacturaController::class, 'create'])->name('facturas.create');
 Route::post('/facturas/{cliente}', [FacturaController::class, 'store'])->name('facturas.store');
 Route::get('/facturas/{cliente}/{factura}', [FacturaController::class, 'show'])->name('facturas.show');
 
-Route::get('/proyectos/{cliente}', [ProyectoController::class, 'index'])->name('proyectos.index');
+Route::get('/proyectos/{cliente}', [ProyectoController::class, 'index'])->name('proyectosCliente.index');
 Route::get('/proyectos/{cliente}/create', [ProyectoController::class, 'create'])->name('proyectos.create');
 Route::post('/proyectos/{cliente}', [ProyectoController::class, 'store'])->name('proyectos.store');
 Route::get('/proyectos/{cliente}/{proyecto}', [ProyectoController::class, 'show'])->name('proyectos.show');
@@ -142,10 +142,15 @@ Route::get('/empleados/{empleado}/vacaciones/create', [VacacionController::class
 Route::post('/empleados/{empleado}/vacaciones', [VacacionController::class, 'store'])->name('vacaciones.store');
 Route::get('/empleados/{empleado}/vacaciones/{vacacion}', [VacacionController::class, 'show'])->name('vacaciones.show');
 
-Route::get('/clientes/{cliente}/pagos',[PagoController::class,'index'])->name('pagos.index');
+Route::get('/clientes/{cliente}/pagos',[PagoController::class,'index'])->name('pagosCliente.index');
 Route::post('/clientes/{cliente}/pagos',[PagoController::class,'store'])->name('pagos.store');
 
 Route::get('/empleados/{empleado}/asistencias', [AsistenciaController::class, 'index'])->name('asistencias.index');
 Route::get('/empleados/{empleado}/asistencias/create', [AsistenciaController::class, 'create'])->name('asistencias.create');
 Route::post('/empleados/{empleado}/asistencias', [AsistenciaController::class, 'store'])->name('asistencias.store');
 Route::get('/empleados/{empleado}/asistencias/{asistencia}', [AsistenciaController::class, 'show'])->name('asistencias.show');
+
+Route::match(['get', 'post'], '/contratos', [ContratoController::class, 'index'])->name('contratos.index');
+Route::match(['get', 'post'], '/facturas', [FacturaController::class, 'index'])->name('facturas.index');
+Route::match(['get', 'post'], '/pagos', [PagoController::class, 'index'])->name('pagos.index');
+Route::match(['get', 'post'], '/proyectos', [ProyectoController::class, 'index'])->name('proyectos.index');

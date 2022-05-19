@@ -34,66 +34,79 @@
                             @case('apellidos')
                                 <option value="{{ $criterio }}" name='criterio[{{ $criterio }}]'>
                                     Apellidos
+                                </option>
                                 @break
 
                                 @case('dni')
                                 <option value="{{ $criterio }}" name='criterio[{{ $criterio }}]'>
                                     DNI
+                                </option>
                                 @break
 
                                 @case('anho_contable')
                                 <option value="{{ $criterio }}" name='criterio[{{ $criterio }}]'>
                                     Año contable
+                                </option>
                                 @break
 
                                 @case('direccion_fiscal')
                                 <option value="{{ $criterio }}" name='criterio[{{ $criterio }}]'>
                                     Dirección fiscal
+                                </option>
                                 @break
 
                                 @case('domicilio')
                                 <option value="{{ $criterio }}" name='criterio[{{ $criterio }}]'>
                                     Domicilio
+                                </option>
                                 @break
 
                                 @case('nombre_comercial')
                                 <option value="{{ $criterio }}" name='criterio[{{ $criterio }}]'>
                                     Nombre comercial
+                                </option>
                                 @break
 
                                 @case('nombre_sociedad')
                                 <option value="{{ $criterio }}" name='criterio[{{ $criterio }}]'>
                                     Nombre sociedad
+                                </option>
                                 @break
 
                                 @case('cif')
                                 <option value="{{ $criterio }}" name='criterio[{{ $criterio }}]'>
                                     CIF
+                                </option>
                                 @break
 
                                 @case('cuenta_bancaria')
                                 <option value="{{ $criterio }}" name='criterio[{{ $criterio }}]'>
                                     Cuenta bancaria
+                                </option>
                                 @break
 
                                 @case('n_tarjeta')
                                 <option value="{{ $criterio }}" name='criterio[{{ $criterio }}]'>
                                     Número de tarjeta
+                                </option>
                                 @break
 
                                 @case('email')
                                 <option value="{{ $criterio }}" name='criterio[{{ $criterio }}]'>
                                     E-mail
+                                </option>
                                 @break
 
                                 @case('telefono')
                                 <option value="{{ $criterio }}" name='criterio[{{ $criterio }}]'>
                                     Teléfono
+                                </option>
                                 @break
 
                                 @case('created_at')
                                 <option value="{{ $criterio }}" name='criterio[{{ $criterio }}]'>
                                     Fecha de creación
+                                </option>
                                 @break
                             @endswitch
                     @endforeach

@@ -5,17 +5,27 @@
             <div class="flex">
             <!-- Logo -->
                 <div class="shrink-0 flex items-center ">
-                    <a href="{{ route('clientes.index') }}">     
+                    <a href="{{ route('clientes.index') }}">
                         <img class="w-10" src="{{ url('logo.png') }}" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex uppercase ">
-                    <x-jet-nav-link href="{{ route('clientes.index') }}" :active="request()->routeIs(['clientes.index','clientes.show','clientes.create','clientes.edit','contratos.index','contratos.show','contratos.edit','contratos.create','facturas.index','facturas.create','facturas.show','facturas.edit','proyectos.index','proyectos.create','proyectos.edit','proyectos.show'])">
+                <div class="clientesMenu relative inline-block" >
+                    <x-jet-nav-link href="{{ route('clientes.index') }}" class="hover:bg-sky-700 clienteHover" onmouseover="mostrarMenuCliente()" onmouseleave="ocultarMenuCliente()" :active="request()->routeIs(['clientes.index','clientes.show','clientes.create','clientes.edit','contratos.index','contratos.show','contratos.edit','contratos.create','facturas.index','facturas.create','facturas.show','facturas.edit','proyectos.index','proyectos.create','proyectos.edit','proyectos.show'])">
                         {{ __('Clientes') }}
                     </x-jet-nav-link>
+
+                    <div class="hidden absolute w-full overflow-auto menuCliente clientesMenu-hover:block" id="desplegableCliente">
+
+                            <a href="#" class="block p-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Link 1</a>
+                            <a href="#" class="block p-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Link 2</a>
+                            <a href="#" class="block p-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Link 3</a>
+
+                    </div>
                 </div>
+
+
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex uppercase">
                     <x-jet-nav-link href="{{ route('empleados.index') }}" :active="request()->routeIs(['empleados.index','empleados.show','empleados.create','empleados.edit'])">

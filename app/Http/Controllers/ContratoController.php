@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ambito;
 use App\Models\Cliente;
 use App\Models\Contrato;
 use Illuminate\Http\Request;
 use App\Models\ConceptoFactura;
 use App\Http\Requests\ContratoRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Schema;
 
 class ContratoController extends Controller
 {
@@ -16,13 +18,27 @@ class ContratoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Cliente $cliente)
+    public function index(Cliente $cliente, Request $request)
     {
-        $contratos = Contrato::where('cliente_id', $cliente->id)->paginate(10);
         $rolConPoderes = self::ROLCONPODERES;
         $conceptos = ConceptoFactura::all();
+        $criterios = Schema::getColumnListing('contratos');
 
-        return view('contratos.index', compact('cliente', 'contratos', 'rolConPoderes', 'conceptos'));
+        if(isset($cliente->id)){
+
+            $contratos = Contrato::where('cliente_id', $cliente->id)->paginate(10);
+
+            return view('contratos.index', compact('cliente', 'contratos', 'rolConPoderes', 'conceptos'));
+        }
+
+        if(!is_null($request->busqueda) && !is_null($request->criterio)){
+            $contratos = Contrato::where($request->criterio, 'LIKE', '%'.$request->busqueda.'%')->paginate(10);
+        }
+        else{
+            $contratos = Contrato::paginate(10);
+        }
+
+        return view('contratos.indexTotal', compact('criterios', 'contratos', 'rolConPoderes', 'conceptos'));
     }
 
     /**

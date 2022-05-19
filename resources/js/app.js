@@ -678,3 +678,4 @@ window.mostrarPracticas = function(event) {
     }
 
 }
+

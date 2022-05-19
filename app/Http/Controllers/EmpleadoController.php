@@ -148,7 +148,8 @@ class EmpleadoController extends Controller
      */
     public function show(Empleado $empleado)
     {
-        return view('empleados.show', compact('empleado'));
+        $rolConPoderes = self::ROLCONPODERES;
+        return view('empleados.show', compact('empleado','rolConPoderes'));
     }
 
     /**

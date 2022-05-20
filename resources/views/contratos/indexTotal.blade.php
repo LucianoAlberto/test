@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <form method="POST" action="{{ route('contratos.index') }}" class="flex pr-16 mt-4 items-center">
+    <form method="POST" action="{{ route('contratosTotal.index') }}" class="flex pr-16 mt-4 items-center pl-3.25">
         @csrf
         <div class="ml-3">
             <select name="criterio" class="form-input rounded-md shadow-sm mt-1 block">
@@ -71,7 +71,7 @@
             </select>
         </div>
 
-        <div class="w-2/5 ml-2 mr-2">
+        <div class="w-1/6 ml-2 mr-2">
             <input placeholder="Búsqueda" type="text" name="busqueda"
                 class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('busqueda', '') }}" />
             @error('busqueda')

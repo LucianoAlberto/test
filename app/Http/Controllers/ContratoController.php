@@ -13,23 +13,31 @@ use Illuminate\Support\Facades\Schema;
 
 class ContratoController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Cliente $cliente, Request $request)
+    public function index(Cliente $cliente)
+    {
+        $rolConPoderes = self::ROLCONPODERES;
+        $conceptos = ConceptoFactura::all();
+        $contratos = Contrato::where('cliente_id', $cliente->id)->paginate(10);
+
+        return view('contratos.index', compact('cliente', 'contratos', 'rolConPoderes', 'conceptos'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexTotal(Request $request)
     {
         $rolConPoderes = self::ROLCONPODERES;
         $conceptos = ConceptoFactura::all();
         $criterios = Schema::getColumnListing('contratos');
-
-        if(isset($cliente->id)){
-
-            $contratos = Contrato::where('cliente_id', $cliente->id)->paginate(10);
-
-            return view('contratos.index', compact('cliente', 'contratos', 'rolConPoderes', 'conceptos'));
-        }
 
         if(!is_null($request->busqueda) && !is_null($request->criterio)){
             $contratos = Contrato::where($request->criterio, 'LIKE', '%'.$request->busqueda.'%')->paginate(10);
@@ -38,7 +46,7 @@ class ContratoController extends Controller
             $contratos = Contrato::paginate(10);
         }
 
-        return view('contratos.indexTotal', compact('criterios', 'contratos', 'rolConPoderes', 'conceptos'));
+        return view ('contratos.indexTotal',compact('contratos','rolConPoderes', 'criterios', 'conceptos'));
     }
 
     /**

@@ -1065,12 +1065,15 @@ select {
 .mb-4 {
   margin-bottom: 1rem;
 }
+<<<<<<< HEAD
 .mb-2 {
   margin-bottom: 0.5rem;
 }
 .mb-8 {
   margin-bottom: 2rem;
 }
+=======
+>>>>>>> refs/remotes/origin/Final
 .mb-5 {
   margin-bottom: 1.25rem;
 }
@@ -1080,23 +1083,23 @@ select {
 .mt-0 {
   margin-top: 0px;
 }
+<<<<<<< HEAD
+=======
+.mb-8 {
+  margin-bottom: 2rem;
+}
+>>>>>>> refs/remotes/origin/Final
 .mr-4 {
   margin-right: 1rem;
-}
-.mr-6 {
-  margin-right: 1.5rem;
-}
-.mb-10 {
-  margin-bottom: 2.5rem;
 }
 .ml-8 {
   margin-left: 2rem;
 }
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
 .mb-3 {
   margin-bottom: 0.75rem;
-}
-.-mt-10 {
-  margin-top: -2.5rem;
 }
 .mr-5 {
   margin-right: 1.25rem;
@@ -1104,11 +1107,20 @@ select {
 .-mt-px {
   margin-top: -1px;
 }
+.mr-6 {
+  margin-right: 1.5rem;
+}
 .ml-5 {
   margin-left: 1.25rem;
 }
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
 .mb-1 {
   margin-bottom: 0.25rem;
+}
+.-mt-10 {
+  margin-top: -2.5rem;
 }
 .block {
   display: block;
@@ -1209,9 +1221,12 @@ select {
 .w-20 {
   width: 5rem;
 }
+<<<<<<< HEAD
 .w-1\/3 {
   width: 33.333333%;
 }
+=======
+>>>>>>> refs/remotes/origin/Final
 .w-1\/2 {
   width: 50%;
 }
@@ -1224,21 +1239,33 @@ select {
 .w-3\/6 {
   width: 50%;
 }
-.w-44 {
-  width: 11rem;
-}
-.w-14 {
-  width: 3.5rem;
-}
 .w-2\/6 {
   width: 33.333333%;
 }
 .w-1\/6 {
   width: 16.666667%;
 }
+.w-44 {
+  width: 11rem;
+}
+.w-14 {
+  width: 3.5rem;
+}
 .w-11 {
   width: 2.75rem;
 }
+.w-1\/3 {
+  width: 33.333333%;
+}
+.w-1\/4 {
+  width: 25%;
+}
+.w-fit {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+<<<<<<< HEAD
 .w-4\/12 {
   width: 33.333333%;
 }
@@ -1247,6 +1274,13 @@ select {
 }
 .w-1 {
   width: 0.25rem;
+=======
+.w-1 {
+  width: 0.25rem;
+}
+.w-4\/6 {
+  width: 66.666667%;
+>>>>>>> refs/remotes/origin/Final
 }
 .min-w-0 {
   min-width: 0px;
@@ -1575,37 +1609,48 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(22 163 74 / var(--tw-bg-opacity));
 }
-.bg-blue-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
-}
-.bg-green-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(34 197 94 / var(--tw-bg-opacity));
-}
-.bg-slate-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(203 213 225 / var(--tw-bg-opacity));
-}
 .bg-yellow-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(250 204 21 / var(--tw-bg-opacity));
 }
 .bg-orange-100 {
+<<<<<<< HEAD
+=======
   --tw-bg-opacity: 1;
   background-color: rgb(255 237 213 / var(--tw-bg-opacity));
 }
 .bg-green-800 {
+>>>>>>> refs/remotes/origin/Final
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 237 213 / var(--tw-bg-opacity));
+}
+<<<<<<< HEAD
+.bg-green-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(22 101 52 / var(--tw-bg-opacity));
+=======
+.bg-blue-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+>>>>>>> refs/remotes/origin/Final
 }
+.bg-slate-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(203 213 225 / var(--tw-bg-opacity));
+}
+<<<<<<< HEAD
+.bg-green-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(21 128 61 / var(--tw-bg-opacity));
+=======
 .bg-green-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(74 222 128 / var(--tw-bg-opacity));
 }
-.bg-green-700 {
+.bg-green-500 {
   --tw-bg-opacity: 1;
-  background-color: rgb(21 128 61 / var(--tw-bg-opacity));
+  background-color: rgb(34 197 94 / var(--tw-bg-opacity));
+>>>>>>> refs/remotes/origin/Final
 }
 .bg-opacity-25 {
   --tw-bg-opacity: 0.25;
@@ -1729,30 +1774,59 @@ select {
 .pb-1 {
   padding-bottom: 0.25rem;
 }
+<<<<<<< HEAD
 .pb-2 {
   padding-bottom: 0.5rem;
 }
 .pb-10 {
   padding-bottom: 2.5rem;
 }
+=======
+>>>>>>> refs/remotes/origin/Final
 .pl-8 {
   padding-left: 2rem;
 }
 .pb-12 {
   padding-bottom: 3rem;
 }
+.pb-10 {
+  padding-bottom: 2.5rem;
+}
 .pr-16 {
   padding-right: 4rem;
 }
+<<<<<<< HEAD
 .pb-8 {
   padding-bottom: 2rem;
+=======
+.pl-3\.25 {
+  padding-left: 3.25rem;
+}
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+.pl-37\.33 {
+  padding-left: 37.33rem;
+>>>>>>> refs/remotes/origin/Final
 }
 .pt-8 {
   padding-top: 2rem;
 }
+<<<<<<< HEAD
 .pl-88 {
   padding-left: 22rem;
 }
+=======
+.pb-8 {
+  padding-bottom: 2rem;
+}
+.pl-88 {
+  padding-left: 22rem;
+}
+.pl-34\.25 {
+  padding-left: 34.25rem;
+}
+>>>>>>> refs/remotes/origin/Final
 .text-left {
   text-align: left;
 }
@@ -2049,10 +2123,6 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(21 128 61 / var(--tw-bg-opacity));
 }
-.hover\:bg-blue-700:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(29 78 216 / var(--tw-bg-opacity));
-}
 .hover\:bg-green-200:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(187 247 208 / var(--tw-bg-opacity));
@@ -2061,13 +2131,17 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(202 138 4 / var(--tw-bg-opacity));
 }
+.hover\:bg-blue-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(29 78 216 / var(--tw-bg-opacity));
+}
 .hover\:bg-green-300:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(134 239 172 / var(--tw-bg-opacity));
 }
-.hover\:bg-sky-700:hover {
+.hover\:bg-sky-100:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(3 105 161 / var(--tw-bg-opacity));
+  background-color: rgb(224 242 254 / var(--tw-bg-opacity));
 }
 .hover\:bg-green-600:hover {
   --tw-bg-opacity: 1;
@@ -2226,6 +2300,9 @@ select {
 }
 .disabled\:opacity-25:disabled {
   opacity: 0.25;
+}
+.group:hover .group-hover\:block {
+  display: block;
 }
 @media (prefers-color-scheme: dark) {
 

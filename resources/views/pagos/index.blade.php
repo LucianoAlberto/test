@@ -148,7 +148,7 @@
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white divide-y divide-gray-200">
-                                            @foreach ($cliente->pagos as $pago)
+                                            @foreach ($pagos as $pago)
                                                 <tr class="hover:bg-green-300">
 
                                                     <td
@@ -203,7 +203,7 @@
                                     </table>
                                 </div>
                             </div>
-
+                            {{ $pagos->links()}}
                         </div>
                     </div>
                 </div>

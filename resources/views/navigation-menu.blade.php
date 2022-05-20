@@ -11,21 +11,18 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="clientesMenu relative inline-block" >
-                    <x-jet-nav-link href="{{ route('clientes.index') }}" class="hover:bg-sky-700 clienteHover" onmouseover="mostrarMenuCliente()" onmouseleave="ocultarMenuCliente()" :active="request()->routeIs(['clientes.index','clientes.show','clientes.create','clientes.edit','contratos.index','contratos.show','contratos.edit','contratos.create','facturas.index','facturas.create','facturas.show','facturas.edit','proyectos.index','proyectos.create','proyectos.edit','proyectos.show'])">
+                <div class="group relative inline-block sm:ml-10 uppercase mt-5">
+                    <x-jet-nav-link href="{{ route('clientes.index') }}" class="hover:bg-sky-100 clienteHover" onmouseover="mostrarMenuCliente()" onmouseleave="ocultarMenuCliente()" :active="request()->routeIs(['clientes.index','clientes.show','clientes.create','clientes.edit','contratos.index','contratos.show','contratos.edit','contratos.create','facturas.index','facturas.create','facturas.show','facturas.edit','proyectos.index','proyectos.create','proyectos.edit','proyectos.show'])">
                         {{ __('Clientes') }}
                     </x-jet-nav-link>
 
-                    <div class="hidden absolute w-full overflow-auto menuCliente clientesMenu-hover:block" id="desplegableCliente">
-
-                            <a href="#" class="block p-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Link 1</a>
-                            <a href="#" class="block p-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Link 2</a>
-                            <a href="#" class="block p-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Link 3</a>
-
+                    <div class="hidden absolute w-full overflow-auto menuCliente group-hover:block w-fit bg-white" id="desplegableCliente">
+                        <a href="{{ route('contratosTotal.index') }}" class="block p-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Contratos</a>
+                        <a href="{{ route('facturasTotal.index') }}" class="block p-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Facturas</a>
+                        <a href="{{ route('pagosTotal.index') }}" class="block p-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Pagos</a>
+                        <a href="{{ route('proyectosTotal.index') }}" class="block p-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Proyectos</a>
                     </div>
                 </div>
-
-
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex uppercase">
                     <x-jet-nav-link href="{{ route('empleados.index') }}" :active="request()->routeIs(['empleados.index','empleados.show','empleados.create','empleados.edit'])">

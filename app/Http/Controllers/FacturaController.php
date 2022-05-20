@@ -17,17 +17,23 @@ class FacturaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Cliente $cliente, Request $request)
+    public function index(Cliente $cliente)
+    {
+        $rolConPoderes = self::ROLCONPODERES;
+        $facturas = $cliente->facturas()->paginate(10);
+
+        return view('facturas.index', compact('cliente', 'facturas', 'rolConPoderes'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexTotal(Request $request)
     {
         $rolConPoderes = self::ROLCONPODERES;
         $criterios = Schema::getColumnListing('facturas');
-
-        if(isset($cliente->id)){
-            $proyectos = $cliente->proyectos();
-            $facturas = $cliente->facturas();
-
-            return view('facturas.index', compact('cliente', 'proyectos', 'facturas', 'rolConPoderes'));
-        }
 
         if(!is_null($request->busqueda) && !is_null($request->criterio)){
             $facturas = Factura::where($request->criterio, 'LIKE', '%'.$request->busqueda.'%')->paginate(10);
@@ -36,7 +42,7 @@ class FacturaController extends Controller
             $facturas = Factura::paginate(10);
         }
 
-        return view('facturas.indexTotal', compact('facturas', 'rolConPoderes', 'criterios'));
+        return view ('facturas.indexTotal', compact('facturas', 'rolConPoderes', 'criterios'));
     }
 
     /**

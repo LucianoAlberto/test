@@ -1,7 +1,6 @@
 <x-app-layout>
-    <form method="POST" action="{{ route('pagos.index') }}" class="flex pr-16 mt-4 items-center">
+    <form method="POST" action="{{ route('pagosTotal.index') }}" class="flex pr-16 mt-4 items-center pl-34.25">
         @csrf
-        <div class="ml-3">
             <select name="criterio" class="form-input rounded-md shadow-sm mt-1 block">
                 <option value="">-- Selecciona criterio --</option>
                 @foreach ($criterios as $criterio)
@@ -56,9 +55,8 @@
                         @endswitch
                 @endforeach
             </select>
-        </div>
 
-        <div class="w-2/5 ml-2 mr-2">
+        <div class="w-1/6 ml-2 mr-2">
             <input placeholder="Búsqueda" type="text" name="busqueda"
                 class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('busqueda', '') }}" />
             @error('busqueda')
@@ -77,6 +75,7 @@
             </x-slot>
         </x-boton2>
     </form>
+
     {{-- Mostramos los pagos existentes --}}
     <div class="pt-4 pb-4 flex mx-auto ">
         <div class="mx-auto sm:px-6 lg:px-8">
@@ -173,7 +172,7 @@
                                     </table>
                                 </div>
                             </div>
-
+                            {{ $pagos->links()}}
                         </div>
                     </div>
                 </div>

@@ -1,28 +1,96 @@
 <x-app-layout>
-    <!--Menu superior-->
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <a class="text-red-500 uppercase underline" href="{{ route('clientes.show', $cliente) }}">
-                {{ $cliente->nombre }} {{ $cliente->apellidos }}</a>
-        </h2>
+    <div class="flex justify-center">
+    <form method="POST" action="{{ route('proyectosTotal.index') }}" class="flex pr-16 mt-4 items-center pl-3.25">
+        @csrf
+        <div class="ml-3">
+            <select name="criterio" class="form-input rounded-md shadow-sm mt-1 block">
+                <option value="">-- Selecciona criterio --</option>
+                @foreach ($criterios as $criterio)
+                    @switch($criterio)
+                        @case('cliente_id')
+                            <option value="{{ $criterio }}" name='criterio[{{ $criterio }}]'>
+                                ID del cliente
+                            </option>
+                        @break
 
-        <div class="flex justify-end ">
-            <div class="block  mx-2">
-                <a href="{{ route('contratos.index', $cliente) }}"
-                    class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Contratos</a>
-            </div>
+                        @case('concepto_facturas_id')
+                            <option value="{{ $criterio }}" name='criterio[{{ $criterio }}]'>
+                                Concepto
+                            </option>
+                            @break
 
-            <div class="block  mx-2">
-                <a href="{{ route('facturas.index', $cliente) }}"
-                    class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Facturas</a>
-            </div>
+                            @case('referencia')
+                            <option value="{{ $criterio }}" name='criterio[{{ $criterio }}]'>
+                                Referencia
+                            </option>
+                            @break
 
-            <div class="block  mx-2">
-                <a href="{{ route('pagos.index', $cliente) }}"
-                    class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Pagos</a>
-            </div>
+                            @case('proveedor_dominio_usuario')
+                            <option value="{{ $criterio }}" name='criterio[{{ $criterio }}]'>
+                                Usuario del proveedor de dominio
+                            </option>
+                            @break
+
+                            @case('proveedor_dominio_contrasenha')
+                            <option value="{{ $criterio }}" name='criterio[{{ $criterio }}]'>
+                                Contraseña del proveedor de dominio
+                            </option>
+                            @break
+
+                            @case('proveedor_hosting_usuario')
+                            <option value="{{ $criterio }}" name='criterio[{{ $criterio }}]'>
+                                Usuario del proveedor de hosting
+                            </option>
+                            @break
+
+                            @case('proveedor_hosting_contrasenha')
+                            <option value="{{ $criterio }}" name='criterio[{{ $criterio }}]'>
+                                Contraseña del proveedor de hosting
+                            </option>
+                            @break
+
+                            @case('otros_datos')
+                            <option value="{{ $criterio }}" name='criterio[{{ $criterio }}]'>
+                                Otros datos
+                            </option>
+                            @break
+
+                            @case('created_at')
+                            <option value="{{ $criterio }}" name='criterio[{{ $criterio }}]'>
+                                Fecha de creación
+                            </option>
+                            @break
+
+                            @case('updated_at')
+                            <option value="{{ $criterio }}" name='criterio[{{ $criterio }}]'>
+                                Fecha de actualización
+                            </option>
+                            @break
+                        @endswitch
+                @endforeach
+            </select>
         </div>
-    </x-slot>
+
+        <div class="w-4/6 ml-2 mr-2">
+            <input placeholder="Búsqueda" type="text" name="busqueda"
+                class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('busqueda', '') }}" />
+            @error('busqueda')
+                <p class="text-sm text-red-600">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <x-boton2 tipo="input" class="flex items-center justify-center bg-red-600 hover:bg-red-700">
+            <x-slot name="boton">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-search  w-11 h-11 p-2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </x-slot>
+        </x-boton2>
+    </form>
+</div>
     <!---Fin menu superior-->
     <div class="pt-4 pb-12 ">
         <div class="mx-auto sm:px-6 lg:px-8">
@@ -32,30 +100,6 @@
                         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                                 <table class="min-w-full divide-y divide-gray-200 w-full">
-
-                                    <div>
-                                        <label
-                                            class=" justify-center font-bold uppercase w-full py-5 bg-gray-300 flex items-center ">
-                                            Proyectos
-                                            <x-boton2 tipo="link"
-                                                class=" ml-2 bg-green-800 hover:bg-green-700  py-2 px-2 w-10 "
-                                                direccion="{{ route('proyectos.create', $cliente) }}">
-                                                <x-slot name="boton">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-file-plus">
-                                                        <path
-                                                            d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z">
-                                                        </path>
-                                                        <polyline points="14 2 14 8 20 8"></polyline>
-                                                        <line x1="12" y1="18" x2="12" y2="12"></line>
-                                                        <line x1="9" y1="15" x2="15" y2="15"></line>
-                                                    </svg>
-                                                </x-slot>
-                                            </x-boton2>
-                                        </label>
-                                    </div>
                                     <thead>
                                         <tr>
                                             <th scope="col" width="50"
@@ -81,7 +125,7 @@
                                     <tbody class="bg-white divide-y divide-gray-200">
                                         @foreach ($proyectos as $proyecto)
                                             <tr class="hover:bg-green-200 cursor-pointer"
-                                                onclick="detalles('{{ route('proyectos.show', ['cliente' => $cliente->id, 'proyecto' => $proyecto->id]) }}', event)">
+                                                onclick="detalles('{{ route('proyectos.show', ['cliente' => $proyecto->cliente->id, 'proyecto' => $proyecto->id]) }}', event)">
                                                 <td
                                                     class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
                                                     {{ $proyecto->id }}
@@ -105,7 +149,7 @@
                                                         class="px-6 py-4 whitespace-nowrap text-sm font-medium flex justify-center">
                                                         <x-boton2 tipo="link"
                                                             class="bg-yellow-400 hover:bg-yellow-600 mr-4 w-14 h-14 flex items-center"
-                                                            direccion="{{ route('proyectos.edit', ['cliente' => $cliente, 'proyecto' => $proyecto]) }}">
+                                                            direccion="{{ route('proyectos.edit', ['cliente' => $proyecto->cliente, 'proyecto' => $proyecto]) }}">
                                                             <x-slot name="boton" class="w-full">
                                                                 <svg class="p-2.5"
                                                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"

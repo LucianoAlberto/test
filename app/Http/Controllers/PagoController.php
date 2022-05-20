@@ -16,14 +16,22 @@ class PagoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Cliente $cliente, Request $request)
+    public function index(Cliente $cliente)
     {
-        $rolConPoderes=self::ROLCONPODERES;
+        $rolConPoderes = self::ROLCONPODERES;
+        $pagos = $cliente->pagos()->paginate(10);
 
-        if(isset($cliente->id)){
-            return view ('pagos.index',compact('cliente','rolConPoderes'));
-        }
+        return view('pagos.index', compact('cliente', 'pagos', 'rolConPoderes'));
+    }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexTotal(Request $request)
+    {
+        $rolConPoderes = self::ROLCONPODERES;
         $criterios = Schema::getColumnListing('pagos');
 
         if(!is_null($request->busqueda) && !is_null($request->criterio)){
@@ -33,7 +41,7 @@ class PagoController extends Controller
             $pagos = Pago::paginate(10);
         }
 
-        return view ('pagos.indexTotal',compact('pagos','rolConPoderes', 'criterios'));
+        return view ('pagos.indexTotal', compact('pagos', 'rolConPoderes', 'criterios'));
     }
 
     /**

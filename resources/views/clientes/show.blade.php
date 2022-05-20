@@ -7,18 +7,18 @@
         </h2>
 
         <div class="flex justify-end ">
-            <div class="block  mx-2">
-                <a href="{{ route('contratos.index', $cliente) }}"
+            <div class="block mx-2">
+                <a href="{{ route('contratos.index', ['cliente' => $cliente]) }}"
                     class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Contratos</a>
             </div>
 
             <div class="block  mx-2">
-                <a href="{{ route('facturas.index', $cliente) }}"
+                <a href="{{ route('facturas.index', ['cliente' => $cliente]) }}"
                     class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Facturas</a>
             </div>
 
             <div class="block  mx-2">
-                <a href="{{ route('proyectos.index', $cliente) }}"
+                <a href="{{ route('proyectos.index', ['cliente' => $cliente]) }}"
                     class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Proyectos</a>
             </div>
 

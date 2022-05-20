@@ -153,7 +153,7 @@
                                         </thead>
 
                                         <tbody class="bg-white divide-y divide-gray-200">
-                                            @foreach ($cliente->facturas as $factura)
+                                            @foreach ($facturas as $factura)
                                                 <tr class="hover:bg-green-200 cursor-pointer"
                                                     onclick="detalles('{{ route('facturas.show', ['cliente' => $cliente->id, 'factura' => $factura->id]) }}', event)">
                                                     <td
@@ -223,7 +223,7 @@
                                     </table>
 
                                 </div>
-                                {{-- {{ $clientes->links()}} --}}
+                                {{ $facturas->links()}}
                             </div>
 
                         </div>

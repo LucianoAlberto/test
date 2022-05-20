@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Empleado;
 use App\Models\Vacacion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\VacacionRequest;
 
 class VacacionController extends Controller
@@ -16,8 +17,18 @@ class VacacionController extends Controller
      */
     public function index(Empleado $empleado)
     {
-        $vacaciones = $empleado->vacaciones();
+        $vacaciones = $empleado->vacaciones;
+        $total = 0;
+        //dd($vacaciones);
+        // foreach($vacaciones as $vacacion){
+        //     dd(date_diff(date_create_from_format('d/m/Y:H:i:s', $vacacion->fecha_inicio), strtotime($vacacion->fecha_fin)));
 
+        // }
+
+        $users = DB::table('vacacions')
+             ->select(DB::raw('DATEDIFF(fecha_fin, fecha_inicio) as dias'))
+             ->get('dias');
+            dd($users);
         $rolConPoderes = self::ROLCONPODERES;
         return view('vacaciones.index', compact('empleado', 'vacaciones', 'rolConPoderes'));
     }

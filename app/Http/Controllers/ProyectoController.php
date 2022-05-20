@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\ConceptoFactura;
 use App\Models\EmailCorporativo;
 use App\Http\Requests\ProyectoRequest;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 
 class ProyectoController extends Controller
@@ -22,10 +23,31 @@ class ProyectoController extends Controller
      */
     public function index(Cliente $cliente)
     {
-        $proyectos = $cliente->proyectos;
 
         $rolConPoderes = self::ROLCONPODERES;
-        return view('proyectos.index', compact('cliente','proyectos', 'rolConPoderes'));
+        $proyectos = $cliente->proyectos()->paginate(10);
+
+        return view('proyectos.index', compact('cliente', 'proyectos', 'rolConPoderes'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexTotal(Request $request)
+    {
+        $rolConPoderes = self::ROLCONPODERES;
+        $criterios = Schema::getColumnListing('proyectos');
+
+        if(!is_null($request->busqueda) && !is_null($request->criterio)){
+            $proyectos = Proyecto::where($request->criterio, 'LIKE', '%'.$request->busqueda.'%')->paginate(10);
+        }
+        else{
+            $proyectos = Proyecto::paginate(10);
+        }
+
+        return view ('proyectos.indexTotal',compact('proyectos','rolConPoderes', 'criterios'));
     }
 
     /**

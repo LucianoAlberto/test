@@ -120,10 +120,9 @@ class AsistenciaController extends Controller
      */
     public function destroy(Empleado $empleado, Asistencia $asistencia)
     {
-        dd($empleado);
         $asistencia->delete();
 
         $rolConPoderes = self::ROLCONPODERES;
-       // return redirect()->route('asistencias.index', compact('empleado', 'rolConPoderes'))->with('eliminado','si');
+       return redirect()->route('asistencias.index', compact('empleado', 'rolConPoderes'))->with('eliminado','si');
     }
 }

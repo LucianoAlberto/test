@@ -88,7 +88,7 @@
                                                             </x-slot>
                                                         </x-boton2>
 
-                                                        <form id="{{ $falta->id }}" class="falta inline-block" action="{{ route('faltas.destroy', ['empleado' => $empleado, 'falta' => $falta]) }}" method="POST" onclick="deleteConfirm('{{ $falta->id }}', event)">
+                                                        <form id="{{ $falta->id }}" class=" falta inline-block" action="{{ route('faltas.destroy', ['empleado' => $empleado, 'falta' => $falta]) }}" method="POST" onclick="deleteConfirm('{{ $falta->id }}', event)">
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 

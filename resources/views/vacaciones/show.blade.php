@@ -1,9 +1,30 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Vacación
-        </h2>
-    </x-slot>
+    <!--Menu superior-->
+  <x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      <a class="text-red-500 uppercase underline" href="{{route('empleados.show', $empleado)}}"> {{$empleado->nombre}} {{$empleado->apellidos}}</a>
+    </h2>
+
+    <div class="flex justify-end ">
+
+        <div class="block  mx-2">
+            <a href="{{route('nominas.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Nóminas</a>
+        </div>
+
+        <div class="block  mx-2">
+            <a href="{{route('asistencias.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Asistencias</a>
+        </div>
+
+        <div class="block  mx-2">
+            <a href="{{route('faltas.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Faltas</a>
+        </div>
+        
+        <div class="block  mx-2">
+            <a href="{{route('vacaciones.index', $empleado)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Vacaciones</a>
+        </div>
+    </div>
+</x-slot>
+<!---Fin menu superior-->
 
     <div>
         <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8">

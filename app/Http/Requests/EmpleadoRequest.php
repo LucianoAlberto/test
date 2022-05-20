@@ -45,6 +45,7 @@ class EmpleadoRequest extends FormRequest
             'fecha_fin_practicas'=>'nullable|date',
             'convenio_practicas'=>'nullable|mimes:png,jpg,pdf,docx,txt',
             'doc_confidencialidad_practicas'=>'nullable|mimes:png,jpg,pdf,docx,txt',
+            'dias_vacaciones'=>'nullable|numeric',
          
         ];
     }

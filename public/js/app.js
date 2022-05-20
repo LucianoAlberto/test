@@ -5099,7 +5099,7 @@ window.deleteConfirm = function (formId, event) {
     texto = '¿Desea borrar esta falta?';
   } else if (event.target.closest("form").classList.contains("nomina")) {
     texto = '¿Desea borrar esta nómina?';
-  } else if (event.target.closest("form").classList.contains("asistencia")) {
+  } else if (event.target.closest("form").classList.contains("asistencias")) {
     texto = '¿Desea borrar esta asistencia?';
   } else if (event.target.closest("form").classList.contains("empleado")) {
     texto = '¿Desea borrar este empleado? AVISO !!!  se eliminaran todos los datos asociados a este EMPLEADO';

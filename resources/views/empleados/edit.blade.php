@@ -835,7 +835,22 @@
                                 </div>
 
                             </div>
+
+                            <div class="flex justify-between mb-4">
+                                <div class="w-1/2 mr-2 flex items-center mt-3">
+                                    <label for="dias_vacaciones"
+                                        class="block font-medium text-sm text-gray-700 mr-3 ">Dias de vacaciones acumulados </label>
+                                    <input type="text" name="dias_vacaciones" id="nombre"
+                                        class="form-input rounded-md  mt-1 block w-12"
+                                        value="{{ old('dias_vacaciones', $empleado->vacaciones_total) }}" />
+                                    @error('dias_vacaciones')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
+
+                        
                         <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
                             <button
                                 class="inline-flex items-center px-4 py-2 hover:scale-125  bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">

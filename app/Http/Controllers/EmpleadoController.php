@@ -182,6 +182,7 @@ class EmpleadoController extends Controller
         $empleado->numero_ss = $validated["numero_ss"];
         $empleado->fecha_comienzo = $validated["fecha_comienzo"];
         $empleado->fecha_fin = $validated["fecha_fin"];
+        $empleado->vacaciones_total=$validated['dias_vacaciones'];
 
         if(isset($validated["contrato"])){
             if($empleado->contrato != null){
@@ -266,6 +267,7 @@ class EmpleadoController extends Controller
         $rolConPoderes = self::ROLCONPODERES;
         return redirect()->route('empleados.index')->with('editado','si');
     }
+
 
     /**
      * Remove the specified resource from storage.

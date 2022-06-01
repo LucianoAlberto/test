@@ -37,6 +37,12 @@
                         </x-jet-nav-link>
                     </div>
                 @endrole
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex uppercase">
+                    <x-jet-nav-link href="{{ route('eventos.index') }}" :active="request()->routeIs('eventos.index')">
+                        {{ __('Agenda') }}
+                    </x-jet-nav-link>
+                </div>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">

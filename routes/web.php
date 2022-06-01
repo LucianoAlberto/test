@@ -158,3 +158,6 @@ Route::match(['get', 'post'], '/proyectos', [ProyectoController::class, 'indexTo
 Route::match(['get', 'post'], '/contratos', [ContratoController::class, 'indexTotal'])->name('contratosTotal.index');
 Route::match(['get', 'post'], '/facturas', [FacturaController::class, 'indexTotal'])->name('facturasTotal.index');
 Route::match(['get', 'post'], '/pagos', [PagoController::class, 'indexTotal'])->name('pagosTotal.index');
+
+Route::match(['get', 'post'],'full-calender', [FullCalenderController::class, 'index'])->name('full-calender.index');
+Route::match(['get', 'post'], 'full-calender/action', [FullCalenderController::class, 'action']);

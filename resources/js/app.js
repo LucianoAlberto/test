@@ -411,6 +411,13 @@ window.cerrarNuevaFactura=function(){
 
 }
 
+window.cerrarNuevoPago=function(){
+
+    let div = document.getElementById('nuevo_pago');
+    div.style.display = 'none';
+
+}
+
 // nuevo concepto
 window.nuevoConcepto=function(){
     let div = document.getElementById('nuevoConcepto');

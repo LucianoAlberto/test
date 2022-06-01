@@ -25,7 +25,7 @@ class ProyectoController extends Controller
     {
 
         $rolConPoderes = self::ROLCONPODERES;
-        $proyectos = $cliente->proyectos()->get();
+        $proyectos = $cliente->proyectos()->paginate(10);
 
         return view('proyectos.index', compact('cliente', 'proyectos', 'rolConPoderes'));
     }

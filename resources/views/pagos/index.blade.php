@@ -23,7 +23,18 @@
         <!---Fin menu superior-->
 
     {{-- Formulario para crear un nuevo pago --}}
-    <div class="w-full max-w-xs  m-auto mt-5" id='nuevo_pago' hidden>
+    <div class="w-full max-w-xs  m-auto mt-5 relative" id='nuevo_pago' hidden>
+        <x-boton2 tipo="div" class=" absolute right-0 bg-red-600 hover:bg-red-700 w-6 h-6 "
+                onclick="cerrarNuevoPago()">
+                <x-slot name="boton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-x">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </x-slot>
+            </x-boton2>
         <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="{{ route('pagos.store', $cliente->id) }}"
             method="POST" enctype="multipart/form-data">
             @csrf

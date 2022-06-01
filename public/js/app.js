@@ -5391,6 +5391,11 @@ window.anadirFactura = function () {
 window.cerrarNuevaFactura = function () {
   var div = document.getElementById('nueva_factura');
   div.style.display = 'none';
+};
+
+window.cerrarNuevoPago = function () {
+  var div = document.getElementById('nuevo_pago');
+  div.style.display = 'none';
 }; // nuevo concepto
 
 

@@ -31,6 +31,10 @@ module.exports = {
                 '3.25':'3.25rem',
                 '37.33': '37.33rem',
                 '34.25': '34.25rem',
+            },
+
+            backgroundImage:{
+                'fondo':"url(/fondo.jpg)"
             }
 
         },

@@ -199,7 +199,7 @@
             slotLabelInterval: "00:15",
             events: function(start, end, timezone, callback) {
                 $.ajax({
-                    url: '/full-calender',
+                    url: '/eventos',
                     dataType: 'json',
                     success: function(data) {
                         var events = [];
@@ -252,7 +252,7 @@
                         var nombre = $('#nombreCitaCrear').val();
                         var descripcion = $('#descripcionCitaCrear').val();
                         $.ajax({
-                            url:"/full-calender/action",
+                            url:"/eventos/action",
                             type:"POST",
                             data:{
                                 nombre: nombre,
@@ -323,7 +323,7 @@
                 var title = event.title;
                 var id = event.id;
                 $.ajax({
-                    url:"/full-calender/action",
+                    url:"/eventos/action",
                     type:"POST",
                     data:{
                         nombre: title,
@@ -366,7 +366,7 @@
                     var descripcion = $('#descripcionCitaEditar').val();
                     var id = event.id;
                     $.ajax({
-                        url:"/full-calender/action",
+                        url:"/eventos/action",
                         type:"POST",
                         data:{
                             nombre: nombre,

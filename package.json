@@ -23,6 +23,7 @@
         "webpack": "^5.72.0"
     },
     "dependencies": {
+        "fullcalendar": "^3.10.3",
         "sweetalert2": "^11.4.7"
     }
 }

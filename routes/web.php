@@ -15,6 +15,7 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\ProyectoController;
 use App\Http\Controllers\VacacionController;
 use App\Http\Controllers\AsistenciaController;
+use App\Http\Controllers\FullCalenderController;
 use App\Http\Controllers\ConceptoFacturaController;
 
 /*
@@ -159,5 +160,5 @@ Route::match(['get', 'post'], '/contratos', [ContratoController::class, 'indexTo
 Route::match(['get', 'post'], '/facturas', [FacturaController::class, 'indexTotal'])->name('facturasTotal.index');
 Route::match(['get', 'post'], '/pagos', [PagoController::class, 'indexTotal'])->name('pagosTotal.index');
 
-Route::match(['get', 'post'],'full-calender', [FullCalenderController::class, 'index'])->name('full-calender.index');
-Route::match(['get', 'post'], 'full-calender/action', [FullCalenderController::class, 'action']);
+Route::match(['get', 'post'],'eventos', [FullCalenderController::class, 'index'])->name('eventos.index');
+Route::match(['get', 'post'], 'eventos/action', [FullCalenderController::class, 'action']);

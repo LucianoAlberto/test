@@ -50,7 +50,6 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        //dd($request);
 
         $validated = $request->validated();
         $datos = $request->except('_token');
@@ -58,7 +57,7 @@ class UserController extends Controller
         $usuario = new User;
         $usuario->name = $validated["name"];
         $usuario->email = $validated["email"];
-        $usuario->password = bcrypt($validated["password"]);
+        $usuario->password = bcrypt($request["password"]);
         $usuario->rol = $validated['rol'];
         $usuario->assignRole(Role::find($validated['rol']));
         $usuario->save();
@@ -101,18 +100,17 @@ class UserController extends Controller
     {
 
         $validated = $request->validated();
-        //dd($validated['rol']);
-        //$user = User::find($id);
-
         $user->name = $validated["name"];
         $user->email = $validated["email"];
-        if($validated["password"] != $user->password){
-            $user->password = bcrypt($validated["password"]);
+ 
+        if($request["password"] != $user->password){
+            $user->password = bcrypt($request["password"]);
         }
+
         $user->rol = $validated['rol'];
         $user->assignRole(Role::find($validated['rol']));
 
-        $user->save();
+        $user->update();
 
         return redirect()->route('users.index');
 

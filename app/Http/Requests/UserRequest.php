@@ -33,7 +33,6 @@ class UserRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,id,' . $this->user()->id],
-            'password' => ['required', 'string', 'size:8', 'confirmed'],
             'rol' =>'required',
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ];

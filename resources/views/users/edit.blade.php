@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <a href="">
+            <a href="{{route('users.index')}}">
                 {{--<x-jet-application-mark class="block h-9 w-auto" />--}}
                 <img class="w-20" src="{{ url('logo.png') }}" />
              </a>
@@ -28,7 +28,7 @@
                      <p class="text-sm text-red-600">{{ $message }}</p>
                 @enderror
             </div>
-
+ 
             <div class="mt-4">
                 <x-jet-label for="password" value="{{ __('Password') }}" />
                 <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required  value="{{old('password',$user->password)}}" />
@@ -44,7 +44,7 @@
                     <p class="text-sm text-red-600">{{ $message }}</p>
                @enderror
                 </div>
-
+ 
 
             <div class="mt-4">
                 <x-jet-label for="rol" value="{{ __('Asignar Rol') }}" />

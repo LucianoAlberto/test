@@ -177,13 +177,9 @@
                                                     @endif
 
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-<<<<<<< HEAD
-                                                        <x-boton2 tipo="linkConAsset" class="bg-blue-500 hover:bg-blue-700 w-16 h-12 m-auto" direccion="{{$contrato->archivo}}">
-=======
                                                         <x-boton2 tipo="linkConAsset"
                                                             class="bg-blue-500 hover:bg-blue-700 w-14 h-14"
                                                             direccion="{{ $factura->factura }}">
->>>>>>> 2fbd333f73ecb1d39c98f3f0e441e7f90ac03e04
                                                             <x-slot name="boton">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="32"
                                                                     height="32" viewBox="0 0 24 24" fill="none"

@@ -32,21 +32,6 @@ class ClienteController extends Controller
      */
     public function index(Request $request)
     {
-<<<<<<< HEAD
-        //$clientes = Cliente::sinAmbitos();
-        //dd($request->get('ambito'));
-        if($request->get('ambito')){
-            if($request->get('ambito') == "sin"){
-                $clientes = Cliente::sinAmbitos();
-            }
-            else{
-                $clientes = Cliente::conAmbitos($request->get('ambito'));
-            }
-        }
-        $clientes=Cliente::paginate(10);
-        $ambitos = Ambito::all();
-        $rolConPoderes = self::ROLCONPODERES;
-=======
         $conceptos = ConceptoFactura::all();
         $ambitos = Ambito::all();
         $rolConPoderes = self::ROLCONPODERES;
@@ -81,7 +66,6 @@ class ClienteController extends Controller
             }
             $clientes = Cliente::where($request->criterio, 'LIKE','%'.$request->busqueda.'%')->paginate(10);
         }
->>>>>>> 2fbd333f73ecb1d39c98f3f0e441e7f90ac03e04
 
        return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes', 'criterios'));
 
@@ -229,10 +213,6 @@ class ClienteController extends Controller
                 Storage::disk('public')->delete($factura->factura);
             }
 
-<<<<<<< HEAD
-        $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('clientes.index', compact('rolConPoderes'));
-=======
             $factura->contratos()->detach();
             $factura->delete();
         }
@@ -253,12 +233,15 @@ class ClienteController extends Controller
             $proyecto->delete();
         }
 
+        foreach($cliente->pagos as $pago){
+            $pago->delete();
+        }
+
         $cliente->ambitos()->detach();
         $cliente->delete();
 
         $rolConPoderes = self::ROLCONPODERES;
         return redirect()->route('clientes.index', compact('rolConPoderes'))->with('eliminado','si');
->>>>>>> 2fbd333f73ecb1d39c98f3f0e441e7f90ac03e04
     }
 }
 

@@ -197,6 +197,12 @@ class ClienteController extends Controller
      */
     public function destroy(Cliente $cliente)
     {
+
+        foreach($cliente->pagos as $pago){
+            $pago->delete();
+        }
+
+
         foreach($cliente->contratos as $contrato){
             if($contrato->archivo != null){
                 Storage::disk('public')->delete($contrato->archivo);
@@ -216,6 +222,7 @@ class ClienteController extends Controller
             $factura->contratos()->detach();
             $factura->delete();
         }
+
 
         foreach($cliente->proyectos as $proyecto){
             if($proyecto->sepa != null){

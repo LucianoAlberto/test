@@ -5082,7 +5082,7 @@ window.deleteConfirm = function (formId, event) {
   var texto = "";
 
   if (event.target.closest("form").classList.contains("cliente")) {
-    texto = '¿Desea borrar este cliente? AVISO !!!  se eliminaran todos los contratos, facturas, proyectos asociados a este cliente';
+    texto = '¿Desea borrar este cliente? AVISO !!!  se eliminaran todos los contratos, facturas,pagos, proyectos, asociados a este cliente';
   } else if (event.target.closest("form").classList.contains("user")) {
     texto = '¿Desea borrar este usuario?';
   } else if (event.target.closest("form").classList.contains("factura")) {

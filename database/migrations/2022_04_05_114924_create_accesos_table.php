@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('accesos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('proyecto_id')->constrained();
-            $table->string('dominio');
-            $table->string('usuario');
-            $table->string('contrasenha');
+            $table->string('dominio')->nullable();
+            $table->string('usuario')->nullable();
+            $table->string('contrasenha')->nullable();
             $table->timestamps();
         });
     }

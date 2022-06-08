@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Cliente;
 use App\Models\Factura;
 use App\Models\Contrato;
+use App\Models\ConceptoFactura;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\AmbitoSeeder;
@@ -19,15 +20,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-      
-        Cliente::factory(15)->create();
-        Contrato::factory(15)->create();
 
         $this->call([
             RoleSeeder::class,
             AmbitoSeeder::class,
-            AmbitoClienteSeeder::class,
         ]);
-      
+
     }
 }

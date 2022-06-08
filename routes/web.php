@@ -3,9 +3,10 @@
 use App\Models\Ambito;
 use App\Models\Cliente;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PagoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FaltaController;
-use App\Http\Controllers\PagosController;
+use App\Http\Controllers\AmbitoController;
 use App\Http\Controllers\NominaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\FacturaController;
@@ -13,6 +14,8 @@ use App\Http\Controllers\ContratoController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\ProyectoController;
 use App\Http\Controllers\VacacionController;
+use App\Http\Controllers\AsistenciaController;
+use App\Http\Controllers\FullCalenderController;
 use App\Http\Controllers\ConceptoFacturaController;
 
 /*
@@ -39,18 +42,15 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/clientes', function () {
     return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes'));
 })->name('dashboard');
 
-//Route::resource('clientes', ClienteController::class);
 Route::match(['get', 'post'], '/clientes', [ClienteController::class, 'index'])->name('clientes.index');
 
 Route::get('/clientes/create', [ClienteController::class, 'create'])->name('clientes.create');
 Route::get('/clientes/register', [ClienteController::class, 'register'])->name('clientes.register');
-Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store');
+Route::post('/clientes/store', [ClienteController::class, 'store'])->name('clientes.store');
 Route::get('/clientes/{cliente}', [ClienteController::class, 'show'])->name('clientes.show');
-Route::get('/clientes/{cliente}/edit', [ClienteController::class, 'edit'])->name('clientes.edit');
-Route::put('/clientes/{cliente}', [ClienteController::class, 'update'])->name('clientes.update');
-Route::delete('/clientes/{cliente}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
 
 Route::group(['middleware' => ['role:superusuario']], function () {
+
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
     Route::get('/users/register', [UserController::class, 'register'])->name('users.register');
@@ -59,6 +59,10 @@ Route::group(['middleware' => ['role:superusuario']], function () {
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
+    Route::get('/clientes/{cliente}/edit', [ClienteController::class, 'edit'])->name('clientes.edit');
+    Route::put('/clientes/{cliente}', [ClienteController::class, 'update'])->name('clientes.update');
+    Route::delete('/clientes/{cliente}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
 
     Route::get('/contratos/{cliente}/{contrato}/edit', [ContratoController::class, 'edit'])->name('contratos.edit');
     Route::put('/contratos/{cliente}/{contrato}', [ContratoController::class, 'update'])->name('contratos.update');
@@ -87,6 +91,14 @@ Route::group(['middleware' => ['role:superusuario']], function () {
     Route::get('/empleados/{empleado}/vacaciones/{vacacion}/edit', [VacacionController::class, 'edit'])->name('vacaciones.edit');
     Route::put('/empleados/{empleado}/vacaciones/{vacacion}', [VacacionController::class, 'update'])->name('vacaciones.update');
     Route::delete('/empleados/{empleado}/vacaciones/{vacacion}', [VacacionController::class, 'destroy'])->name('vacaciones.destroy');
+
+    Route::get('/clientes/{cliente}/pagos/{pago}/edit', [PagoController::class, 'edit'])->name('pagos.edit');
+    Route::put('/clientes/{cliente}/pagos/{pago}', [PagoController::class, 'update'])->name('pagos.update');
+    Route::delete('/pagos/{pago}',[PagoController::class,'destroy'])->name('pagos.destroy');
+
+    Route::get('/empleados/{empleado}/asistencias/{asistencia}/edit', [AsistenciaController::class, 'edit'])->name('asistencias.edit');
+    Route::put('/empleados/{empleado}/asistencias/{asistencia}', [AsistenciaController::class, 'update'])->name('asistencias.update');
+    Route::delete('empleados/{empleado}/asistencias/{asistencia}',[AsistenciaController::class,'destroy'])->name('asistencias.destroy');
 });
 
 Route::get('/contratos/{cliente}', [ContratoController::class, 'index'])->name('contratos.index');
@@ -104,12 +116,17 @@ Route::get('/proyectos/{cliente}/create', [ProyectoController::class, 'create'])
 Route::post('/proyectos/{cliente}', [ProyectoController::class, 'store'])->name('proyectos.store');
 Route::get('/proyectos/{cliente}/{proyecto}', [ProyectoController::class, 'show'])->name('proyectos.show');
 
+//conceptos
 Route::post('conceptos',[ConceptoFacturaController::class,'store'])->name('conceptos.store');
 Route::post('conceptos/eliminar',[ConceptoFacturaController::class,'eliminar'])->name('conceptos.eliminar');
 
-Route::get('/empleados', [EmpleadoController::class, 'index'])->name('empleados.index');
+//ambitos
+Route::post('ambitos',[AmbitoController::class,'store'])->name('ambitos.store');
+Route::delete('ambitos',[AmbitoController::class,'destroy'])->name('ambitos.destroy');
+
+Route::match(['get', 'post'], '/empleados', [EmpleadoController::class, 'index'])->name('empleados.index');
 Route::get('/empleados/create', [EmpleadoController::class, 'create'])->name('empleados.create');
-Route::post('/empleados', [EmpleadoController::class, 'store'])->name('empleados.store');
+Route::post('/empleados/store', [EmpleadoController::class, 'store'])->name('empleados.store');
 Route::get('/empleados/{empleado}', [EmpleadoController::class, 'show'])->name('empleados.show');
 
 Route::get('/empleados/{empleado}/nominas', [NominaController::class, 'index'])->name('nominas.index');
@@ -127,4 +144,21 @@ Route::get('/empleados/{empleado}/vacaciones/create', [VacacionController::class
 Route::post('/empleados/{empleado}/vacaciones', [VacacionController::class, 'store'])->name('vacaciones.store');
 Route::get('/empleados/{empleado}/vacaciones/{vacacion}', [VacacionController::class, 'show'])->name('vacaciones.show');
 
+Route::get('/clientes/{cliente}/pagos',[PagoController::class,'index'])->name('pagos.index');
+Route::post('/clientes/{cliente}/pagos',[PagoController::class,'store'])->name('pagos.store');
 
+Route::get('/empleados/{empleado}/asistencias', [AsistenciaController::class, 'index'])->name('asistencias.index');
+Route::get('/empleados/{empleado}/asistencias/create', [AsistenciaController::class, 'create'])->name('asistencias.create');
+Route::post('/empleados/{empleado}/asistencias', [AsistenciaController::class, 'store'])->name('asistencias.store');
+Route::get('/empleados/{empleado}/asistencias/{asistencia}', [AsistenciaController::class, 'show'])->name('asistencias.show');
+
+//Route::match(['get', 'post'], '/contratos', [ContratoController::class, 'index'])->name('contratos.index');
+//Route::match(['get', 'post'], '/facturas', [FacturaController::class, 'index'])->name('facturas.index');
+//Route::match(['get', 'post'], '/pagos', [PagoController::class, 'index'])->name('pagos.index');
+Route::match(['get', 'post'], '/proyectos', [ProyectoController::class, 'indexTotal'])->name('proyectosTotal.index');
+Route::match(['get', 'post'], '/contratos', [ContratoController::class, 'indexTotal'])->name('contratosTotal.index');
+Route::match(['get', 'post'], '/facturas', [FacturaController::class, 'indexTotal'])->name('facturasTotal.index');
+Route::match(['get', 'post'], '/pagos', [PagoController::class, 'indexTotal'])->name('pagosTotal.index');
+
+Route::match(['get', 'post'],'eventos', [FullCalenderController::class, 'index'])->name('eventos.index');
+Route::match(['get', 'post'], 'eventos/action', [FullCalenderController::class, 'action']);

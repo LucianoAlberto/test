@@ -14,7 +14,7 @@ window.deleteConfirm = function(formId, event)
     event.preventDefault();
     let texto ="";
     if(event.target.closest("form").classList.contains("cliente")){
-        texto = '¿Desea borrar este cliente?';
+        texto = '¿Desea borrar este cliente? AVISO !!!  se eliminaran todos los contratos, facturas, proyectos asociados a este cliente';
     }
     else if(event.target.closest("form").classList.contains("user")){
         texto = '¿Desea borrar este usuario?';
@@ -28,9 +28,28 @@ window.deleteConfirm = function(formId, event)
     else if(event.target.closest("form").classList.contains("proyecto")){
         texto = '¿Desea borrar este proyecto?';
     }
-    console.log(texto)
+    else if(event.target.closest("form").classList.contains("pago")){
+        texto = '¿Desea borrar este pago?';
+    }
+    else if(event.target.closest("form").classList.contains("vacacion")){
+        texto = '¿Desea borrar estas vacaciones?';
+    }
+    else if(event.target.closest("form").classList.contains("falta")){
+        texto = '¿Desea borrar esta falta?';
+    }
+    else if(event.target.closest("form").classList.contains("nomina")){
+        texto = '¿Desea borrar esta nómina?';
+    }
+    else if(event.target.closest("form").classList.contains("asistencias")){
+        texto = '¿Desea borrar esta asistencia?';
+    }
+    else if(event.target.closest("form").classList.contains("empleado")){
+        texto = '¿Desea borrar este empleado? AVISO !!!  se eliminaran todos los datos asociados a este EMPLEADO';
+    }
+
+
     Swal.fire({
-       icon: 'warning',
+       icon: 'question',
         text: texto,
         showCancelButton: true,
        confirmButtonText: 'Borrar',
@@ -50,6 +69,12 @@ window.detalles = function(vista, event)
         window.location.href = vista;
     }
 
+}
+
+window.anadirPago=function(){
+
+    let div = document.getElementById('nuevo_pago');
+    div.style.display = 'block';
 }
 
 window.masFactura = function(event)
@@ -185,6 +210,7 @@ window.masBasesDatos = function(event)
 
     let divContenedorBasesDatos = event.target.closest(".divBasesDatos").querySelector(".contenedorBasesDatos").cloneNode(true);
 
+    console.log(divContenedorBasesDatos);
     //modifico el for del label y el name e id del input
     divContenedorBasesDatos.querySelector(".divNombreBD").querySelector("label").htmlFor = "bd["+numeroBasesDatos+"][nombre]";
     divContenedorBasesDatos.querySelector(".divNombreBD").querySelector("input").name = "bd["+numeroBasesDatos+"][nombre]";
@@ -224,9 +250,9 @@ window.masEmail = function(event)
     divContenedorEmails.querySelector(".divEmailEmail").querySelector("input").name = "email["+numeroEmail+"][email]";
     divContenedorEmails.querySelector(".divEmailEmail").querySelector("input").value = null;
 
-    divContenedorEmails.querySelector(".divEmailcontrasenha").querySelector("label").htmlFor = "email["+numeroEmail+"][contrasenha]";
-    divContenedorEmails.querySelector(".divEmailcontrasenha").querySelector("input").name = "email["+numeroEmail+"][contrasenha]";
-    divContenedorEmails.querySelector(".divEmailcontrasenha").querySelector("input").value = null;
+    divContenedorEmails.querySelector(".divEmailContrasenha").querySelector("label").htmlFor = "email["+numeroEmail+"][contrasenha]";
+    divContenedorEmails.querySelector(".divEmailContrasenha").querySelector("input").name = "email["+numeroEmail+"][contrasenha]";
+    divContenedorEmails.querySelector(".divEmailContrasenha").querySelector("input").value = null;
 
     divContenedorEmails.querySelector(".divEmailRuta").querySelector("label").htmlFor = "email["+numeroEmail+"][ruta_acceso]";
     divContenedorEmails.querySelector(".divEmailRuta").querySelector("input").name = "email["+numeroEmail+"][ruta_acceso]";
@@ -378,13 +404,43 @@ window.anadirFactura=function(){
 
 }
 
+window.cerrarNuevaFactura=function(){
+
+    let div = document.getElementById('nueva_factura');
+    div.style.display = 'none';
+
+}
+
+window.cerrarNuevoPago=function(){
+
+    let div = document.getElementById('nuevo_pago');
+    div.style.display = 'none';
+
+}
+
+// nuevo concepto
 window.nuevoConcepto=function(){
     let div = document.getElementById('nuevoConcepto');
     div.style.display = 'block';
+    div.scrollIntoView();
 }
 
 window.closeNuevoConcepto=function(){
     let div = document.getElementById('nuevoConcepto');
+    div.style.display = 'none';
+}
+
+
+// nuevo ambito
+window.nuevoAmbito=function(){
+    let div = document.getElementById('nuevoAmbito');
+    div.style.display = 'block';
+    div.scrollIntoView();
+}
+
+// nuevo ambito
+window.closenuevoAmbito=function(){
+    let div = document.getElementById('nuevoAmbito');
     div.style.display = 'none';
 }
 
@@ -419,6 +475,18 @@ window.nuevoAccesso=function(){
    document.querySelector('.div_accesso').append(div);
 }
 
+window.crearNomina=function(){
+
+    let div = document.getElementById('nueva_nomina');
+    div.style.display = 'block';
+}
+
+window.cerrarNomina=function(){
+    let div = document.getElementById('nueva_nomina');
+    div.style.display = 'none';
+}
+
+/*
 window.masPago = function(event)
 {
     let numeroPago = event.target.closest(".divPagos").querySelectorAll(".contenedorNominas").length;
@@ -463,7 +531,7 @@ window.menosPago = function(event)
         ultimoHijoContenedorPagos.remove();
     }
 }
-
+*/
 window.masFalta = function(event)
 {
     let numeroFalta = event.target.closest(".divFaltas").querySelectorAll(".contenedorFaltas").length;
@@ -476,12 +544,12 @@ window.masFalta = function(event)
     divContenedorFaltas.querySelector(".divFechaFalta").querySelector("input").value = null;
 
     divContenedorFaltas.querySelector(".divJustificacionFalta").querySelector("label").htmlFor = "faltas["+numeroFalta+"][justificacion]";
-    divContenedorFaltas.querySelector(".divJustificacionFalta").querySelector("input").name = "faltas["+numeroFalta+"][justificacion]";
-    divContenedorFaltas.querySelector(".divJustificacionFalta").querySelector("input").value = null;
+    divContenedorFaltas.querySelector(".divJustificacionFalta").querySelector("textarea").name = "faltas["+numeroFalta+"][justificacion]";
+    divContenedorFaltas.querySelector(".divJustificacionFalta").querySelector("textarea").value = null;
 
     divContenedorFaltas.querySelector(".divNotaFalta").querySelector("label").htmlFor = "faltas["+numeroFalta+"][notas]";
-    divContenedorFaltas.querySelector(".divNotaFalta").querySelector("input").name = "faltas["+numeroFalta+"][notas]";
-    divContenedorFaltas.querySelector(".divNotaFalta").querySelector("input").value = null;
+    divContenedorFaltas.querySelector(".divNotaFalta").querySelector("textarea").name = "faltas["+numeroFalta+"][notas]";
+    divContenedorFaltas.querySelector(".divNotaFalta").querySelector("textarea").value = null;
 
     event.target.closest(".divFaltas").appendChild(divContenedorFaltas);
 }
@@ -491,6 +559,39 @@ window.menosFalta = function(event)
     let ultimoHijoContenedorFaltas = event.target.closest(".divFaltas").lastElementChild;
 
     let listaContenedoresFaltas = event.target.closest(".divFaltas").querySelectorAll(".contenedorFaltas");
+
+    if(ultimoHijoContenedorFaltas.classList.contains("contenedorFaltas") && listaContenedoresFaltas.length > 1){
+        ultimoHijoContenedorFaltas.remove();
+    }
+}
+
+window.masFaltasPracticas = function(event)
+{
+    let numeroFalta = event.target.closest(".divFaltasPracticas").querySelectorAll(".contenedorFaltas").length;
+
+    let divContenedorFaltas = event.target.closest(".divFaltasPracticas").querySelector(".contenedorFaltas").cloneNode(true);
+
+    //modifico el for del label y el name e id del input
+    divContenedorFaltas.querySelector(".divFechaFaltaPracticas").querySelector("label").htmlFor = "faltas["+numeroFalta+"][fecha_falta]";
+    divContenedorFaltas.querySelector(".divFechaFaltaPracticas").querySelector("input").name = "faltas["+numeroFalta+"][fecha_falta]";
+    divContenedorFaltas.querySelector(".divFechaFaltaPracticas").querySelector("input").value = null;
+
+    divContenedorFaltas.querySelector(".divJustificacionFaltaPracticas").querySelector("label").htmlFor = "faltas["+numeroFalta+"][justificacion]";
+    divContenedorFaltas.querySelector(".divJustificacionFaltaPracticas").querySelector("textarea").name = "faltas["+numeroFalta+"][justificacion]";
+    divContenedorFaltas.querySelector(".divJustificacionFaltaPracticas").querySelector("textarea").value = null;
+
+    divContenedorFaltas.querySelector(".divNotaFaltaPracticas").querySelector("label").htmlFor = "faltas["+numeroFalta+"][notas]";
+    divContenedorFaltas.querySelector(".divNotaFaltaPracticas").querySelector("textarea").name = "faltas["+numeroFalta+"][notas]";
+    divContenedorFaltas.querySelector(".divNotaFaltaPracticas").querySelector("textarea").value = null;
+
+    event.target.closest(".divFaltasPracticas").appendChild(divContenedorFaltas);
+}
+
+window.menosFaltasPracticas = function(event)
+{
+    let ultimoHijoContenedorFaltas = event.target.closest(".divFaltasPracticas").lastElementChild;
+
+    let listaContenedoresFaltas = event.target.closest(".divFaltasPracticas").querySelectorAll(".contenedorFaltas");
 
     if(ultimoHijoContenedorFaltas.classList.contains("contenedorFaltas") && listaContenedoresFaltas.length > 1){
         ultimoHijoContenedorFaltas.remove();
@@ -554,7 +655,7 @@ window.mascaraIban=function() {
 /**Comprueba si la tarjeta bancaria introducida tiene el formato correcto
  * Además introduce un guión de forma automática según el número de caracteres introducidos
 */
-window.numero_tarjeta=function() {
+window.numero_tarjeta = function() {
     let entradaIban=document.getElementById('n_tarjeta');
     if(entradaIban.value.length==4){
         entradaIban.value=entradaIban.value+"-";
@@ -569,3 +670,20 @@ window.numero_tarjeta=function() {
         entradaIban.value=entradaIban.value;
     }
 }
+
+window.mandarFormAmbito = function() {
+    document.getElementById('filtroForm').submit();
+}
+
+window.mostrarPracticas = function(event) {
+    if(event.target.checked){
+        document.getElementById("divPracticas").style.display = "block";
+        document.getElementById("divEmpleado").style.display = "none";
+    }
+    else{
+        document.getElementById("divPracticas").style.display = "none";
+        document.getElementById("divEmpleado").style.display = "block";
+    }
+
+}
+

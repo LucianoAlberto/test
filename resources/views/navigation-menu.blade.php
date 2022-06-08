@@ -1,42 +1,48 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-fondo border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
-                {{-- <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+            <!-- Logo -->
+                <div class="shrink-0 flex items-center ">
+                    <a href="{{ route('clientes.index') }}">
                         <img class="w-10" src="{{ url('logo.png') }}" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-jet-nav-link>
-                </div> --}}
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('clientes.index') }}" :active="request()->routeIs('clientes.index')">
+                <div class="group relative inline-block sm:ml-10 uppercase mt-5">
+                    <x-jet-nav-link href="{{ route('clientes.index') }}" class="hover:bg-sky-100 clienteHover" onmouseover="mostrarMenuCliente()" onmouseleave="ocultarMenuCliente()" :active="request()->routeIs(['clientes.index','clientes.show','clientes.create','clientes.edit','contratos.index','contratos.show','contratos.edit','contratos.create','facturas.index','facturas.create','facturas.show','facturas.edit','proyectos.index','proyectos.create','proyectos.edit','proyectos.show'])">
                         {{ __('Clientes') }}
                     </x-jet-nav-link>
+
+                    <div class="hidden absolute w-full overflow-auto menuCliente group-hover:block w-fit bg-white" id="desplegableCliente">
+                        <a href="{{ route('contratosTotal.index') }}" class="block p-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Contratos</a>
+                        <a href="{{ route('facturasTotal.index') }}" class="block p-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Facturas</a>
+                        <a href="{{ route('pagosTotal.index') }}" class="block p-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Pagos</a>
+                        <a href="{{ route('proyectosTotal.index') }}" class="block p-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Proyectos</a>
+                    </div>
                 </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('empleados.index') }}" :active="request()->routeIs('empleados.index')">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex uppercase">
+                    <x-jet-nav-link href="{{ route('empleados.index') }}" :active="request()->routeIs(['empleados.index','empleados.show','empleados.create','empleados.edit'])">
                         {{ __('Empleados') }}
                     </x-jet-nav-link>
                 </div>
 
                 @role ('superusuario')
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex uppercase">
                         <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
                             {{ __('Usuarios') }}
                         </x-jet-nav-link>
                     </div>
                 @endrole
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex uppercase">
+                    <x-jet-nav-link href="{{ route('eventos.index') }}" :active="request()->routeIs('eventos.index')">
+                        {{ __('Agenda') }}
+                    </x-jet-nav-link>
+                </div>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -100,7 +106,7 @@
                                 </button>
                             @else
                                 <span class="inline-flex rounded-md">
-                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition">
+                                    <button type="button" class="text-red-500 font-bold inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:scale-125 hover:text-red-700 focus:outline-none transition">
                                         {{ Auth::user()->name }}
 
                                         <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">

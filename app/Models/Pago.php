@@ -22,7 +22,7 @@ class Pago extends Model
     /**
      * Obtiene los contratos asociados a este pago.
      */
-    public function contratos()
+    public function contrato()
     {
         return $this->belongsTo(Contrato::class);
     }

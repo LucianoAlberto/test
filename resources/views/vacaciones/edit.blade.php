@@ -8,14 +8,14 @@
     <div>
         <div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8">
             <div class="mt-5 md:mt-0 md:col-span-2">
-                <form method="post" action="{{ route('vacaciones.update', ['empleado' => $empleado, 'vacacion' => $vacacion]) }}" enctype="multipart/form-data">
+                <form method="post" action="{{ route('vacaciones.update', ['empleado' => $empleado, 'vacacion' => $vacacion]) }}" enctype="multipart/form-data" class="flex justify-center">
                     @csrf
                     @method('PUT')
-                    <div class="shadow overflow-hidden sm:rounded-md">
-                        <div class="px-4 py-5 bg-white sm:p-6">
-                            <div class="justify-between mb-4">
-                                <div class="flex">
-                                    <div class="w-4/12 divFechaInicioNomina">
+                    <div class="shadow overflow-hidden sm:rounded-md w-auto">
+                        <div class="px-4 py-5 bg-white sm:p-6 w-auto">
+                            <div class="justify-between mb-4 w-auto">
+                                <div class="flex mb-4">
+                                    <div class="divFechaInicioNomina mr-2">
                                         <label for="fecha_inicio" class="block font-medium text-sm text-gray-700">Fecha inicio</label>
                                         <input type="date" name="fecha_inicio" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old("fecha_inicio", $vacacion->fecha_inicio) }}" />
@@ -24,7 +24,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="w-4/12">
+                                    <div class="ml-2">
                                         <label for="fecha_fin" class="block font-medium text-sm text-gray-700">Fecha fin</label>
                                         <input type="date" name="fecha_fin" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old("fecha_fin", $vacacion->fecha_fin) }}" />

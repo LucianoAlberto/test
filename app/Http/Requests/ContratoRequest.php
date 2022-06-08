@@ -27,12 +27,48 @@ class ContratoRequest extends FormRequest
             'concepto'=>'required',
             'referencia'=>'required|string',
             'base_imponible'=>'required|numeric',
-            'iva'=>'required|numeric',
-            'irpf'=>'required|numeric',
+            'iva'=>'required|numeric|between:0,99.99',
+            'irpf'=>'required|numeric|between:0,99.99',
             'total'=>'required|numeric',
             'fecha_firma'=>'required|date',
             'archivo'=>'nullable|mimes:png,jpg,pdf,docx,txt',
             'presupuesto'=>'nullable|mimes:png,jpg,pdf,docx,txt',
+        ];
+    }
+
+    public function messages(){
+        return [
+            'concepto.required' => 'El :attribute es obligatorio.',
+            'referencia.required' => 'La :attribute es obligatoria.',
+            'referencia.string' => 'La :attribute es una cadena de caracteres.',
+            'base_imponible.required' => 'La :attribute es obligatoria.',
+            'base_imponible.numeric' => 'La :attribute es un número.',
+            'iva.required' => 'El :attribute es obligatorio.',
+            'iva.numeric' => 'El :attribute es un número.',
+            'iva.between:0,99.99' => 'El :attribute debe estar entre 0 y 99.99.',
+            'irpf.required' => 'El :attribute es obligatorio.',
+            'irpf.numeric' => 'El :attribute es un número.',
+            'irpf.between:0,99.99' => 'El :attribute debe estar entre 0 y 99.99.',
+            'total.required' => 'La :attribute es obligatoria.',
+            'total.numeric' => 'La :attribute es un número.',
+            'fecha_firma.required' => 'La :attribute es obligatoria.',
+            'fecha_firma.date' => 'La :attribute es una fecha.',
+            'archivo.mimes:png,jpg,pdf,docx,txt' => 'El :attribute debe ser un archivo de tipo png, jpg, pdf, docx o txt.',
+            'presupuesto.mimes:png,jpg,pdf,docx,txt' => 'El :attribute debe ser un archivo de tipo png, jpg, pdf, docx o txt.',
+        ];
+    }
+
+    public function attributes(){
+        return [
+            'concepto' => 'concepto',
+            'referencia' => 'referencia',
+            'base_imponible' => 'base imponible',
+            'iva' => 'IVA',
+            'irpf' => 'IRPF',
+            'total' => 'cantidad total',
+            'fecha_firma' => 'fecha de la firma',
+            'archivo' => 'contrato',
+            'presupuesto' => 'presupuesto',
         ];
     }
 }

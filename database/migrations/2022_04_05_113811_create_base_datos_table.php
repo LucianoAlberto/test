@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('base_datos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('proyecto_id')->constrained();
-            $table->string('nombre');
-            $table->string('host');
-            $table->string('contrasenha');
+            $table->string('nombre')->nullable();
+            $table->string('host')->nullable();
+            $table->string('contrasenha')->nullable();
             $table->timestamps();
         });
     }

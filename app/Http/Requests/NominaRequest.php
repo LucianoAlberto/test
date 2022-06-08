@@ -26,8 +26,10 @@ class NominaRequest extends FormRequest
         return [
             'fecha_inicio'=>'required|date',
             'fecha_fin'=>'required|date',
+            'horas_alta_ss'=>'required|numeric',
             'importe_total'=>'required|numeric',
             'importe_pagado'=>'required|numeric',
+            'pago_extra'=>'nullable|numeric',
             'fecha_pago'=>'nullable|date',
         ];
     }

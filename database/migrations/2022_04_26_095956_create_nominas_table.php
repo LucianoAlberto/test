@@ -20,7 +20,9 @@ return new class extends Migration
             $table->date('fecha_fin');
             $table->smallInteger('importe_total');
             $table->smallInteger('importe_pagado');
+            $table->smallInteger('pago_extra')->nullable();
             $table->date('fecha_pago');
+            $table->smallInteger('horas_alta_ss');
             $table->timestamps();
         });
     }

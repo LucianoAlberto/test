@@ -24,11 +24,11 @@ class EmpleadoRequest extends FormRequest
     public function rules()
     {
         return [
-            'ambito'=>'nullable',
+            'ambito.*'=>'nullable',
             'nombre'=>'required|string',
             'apellidos'=>'required|string',
-            'dni'=>'required|numeric',
-            'numero_ss'=>'required|numeric',
+            'dni' =>'regex:/^([0-9]{8}[A-Z])|[XYZ][0-9]{7}[A-Z]$/',
+            'numero_ss'=>'regex:/^\d{12}$/',
             'fecha_comienzo'=>'required|date',
             'fecha_fin'=>'nullable|date',
             'contrato'=>'nullable|mimes:png,jpg,pdf,docx,txt',
@@ -36,19 +36,7 @@ class EmpleadoRequest extends FormRequest
             'doc_normas'=>'nullable|mimes:png,jpg,pdf,docx,txt',
             'doc_prevencion_riesgos'=>'nullable|mimes:png,jpg,pdf,docx,txt',
             'doc_reglamento_interno'=>'nullable|mimes:png,jpg,pdf,docx,txt',
-            'nominas.*.fecha_inicio'=>'nullable|date',
-            'nominas.*.fecha_fin'=>'nullable|date',
-            'nominas.*.horas_alta_ss'=>'nullable|numeric',
-            'nominas.*.importe_total'=>'nullable|numeric',
-            'nominas.*.importe_pagado'=>'nullable|numeric',
-            'nominas.*.fecha_pago'=>'nullable|date',
-            'faltas.*.fecha_falta'=>'nullable|date',
-            'faltas.*.justificacion'=>'nullable|string',
-            'faltas.*.notas'=>'nullable|string',
-            'vacaciones_total'=>'nullable|numeric',
-            'vacaciones_disfrutadas.*.fecha_inicio'=>'nullable|date',
-            'vacaciones_disfrutadas.*.fecha_fin'=>'nullable|date',
-            'practicas'=>'nullable|boolean',
+            'practicas'=>'nullable',
             'instituto'=>'nullable|string',
             'localidad'=>'nullable|string',
             'provincia'=>'nullable|string',
@@ -57,9 +45,8 @@ class EmpleadoRequest extends FormRequest
             'fecha_fin_practicas'=>'nullable|date',
             'convenio_practicas'=>'nullable|mimes:png,jpg,pdf,docx,txt',
             'doc_confidencialidad_practicas'=>'nullable|mimes:png,jpg,pdf,docx,txt',
-            'faltas_practicas.*.fecha_falta'=>'nullable|date',
-            'faltas_practicas.*.justificacion'=>'nullable|string',
-            'faltas_practicas.*.notas'=>'nullable|string',
+            'dias_vacaciones'=>'nullable|numeric',
+         
         ];
     }
 }

@@ -1,15 +1,15 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <a href="">
+            <a href="{{route('users.index')}}">
                 {{--<x-jet-application-mark class="block h-9 w-auto" />--}}
                 <img class="w-20" src="{{ url('logo.png') }}" />
              </a>
         </x-slot>
 
         {{--<x-jet-validation-errors class="mb-4" />--}}
-
-        <form method="POST" action="{{ route('users.update',$user) }}">
+        {{-- {{dd($user)}} --}}
+        <form method="POST" action="{{ route('users.update', compact('user')) }}">
             @csrf
             @method('PUT')
 
@@ -28,7 +28,7 @@
                      <p class="text-sm text-red-600">{{ $message }}</p>
                 @enderror
             </div>
-
+ 
             <div class="mt-4">
                 <x-jet-label for="password" value="{{ __('Password') }}" />
                 <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required  value="{{old('password',$user->password)}}" />
@@ -42,9 +42,9 @@
                 <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" value="{{$user->password}}"/>
                 @error('password_confirmation')
                     <p class="text-sm text-red-600">{{ $message }}</p>
-               @enderror      
+               @enderror
                 </div>
-
+ 
 
             <div class="mt-4">
                 <x-jet-label for="rol" value="{{ __('Asignar Rol') }}" />
@@ -56,10 +56,10 @@
                         {{ $rol->name }}</option>
                     @endforeach
 
-                </select>   
+                </select>
             </div>
 
-            
+
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">
@@ -79,7 +79,7 @@
             @endif
 
             <div class="flex items-center justify-end mt-4">
-               
+
 
                 <x-jet-button class="ml-4">
                     {{ __('Guardar cambios') }}

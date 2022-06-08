@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('empleado_id')->constrained();
             $table->date('fecha_falta');
-            $table->string('justificacion');
-            $table->string('notas');
+            $table->string('justificacion')->nullable();
+            $table->string('notas')->nullable();
             $table->timestamps();
         });
     }

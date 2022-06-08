@@ -6,8 +6,8 @@ use App\Models\Falta;
 use App\Models\Ambito;
 use App\Models\Nomina;
 use App\Models\Empleado;
-use App\Models\Practicas;
-use App\Models\Vacaciones;
+use App\Models\Practica;
+use App\Models\Vacacion;
 use Illuminate\Http\Request;
 use App\Http\Requests\FiltroRequest;
 use App\Http\Requests\EmpleadoRequest;
@@ -20,9 +20,31 @@ class EmpleadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $empleados = Empleado::paginate(10);
+        // $empleados = Empleado::paginate(10);
+        // $ambitos = Ambito::all();
+        // $rolConPoderes = self::ROLCONPODERES;
+
+        // return view('empleados.index', compact('empleados', 'ambitos', 'rolConPoderes'));
+        if(is_null($request->ambito)){
+            $empleados = Empleado::paginate(10);
+        }
+        else{
+            //dd($request->ambito);
+            //dd($request->ambito);
+            if($request->ambito == "sin"){
+                $empleados = Empleado::sinAmbito();
+            }
+            else{
+                //dd($request->ambito);
+                //dd($request->ambito);
+                $empleados = Empleado::conAmbito($request->ambito);
+            }
+        // return view('clientes.index', compact('clientes', 'ambitos', 'rolConPoderes'));
+          // dd($buscar);
+        }
+
         $ambitos = Ambito::all();
         $rolConPoderes = self::ROLCONPODERES;
 
@@ -49,9 +71,6 @@ class EmpleadoController extends Controller
     public function store(EmpleadoRequest $request)
     {
         $validated = $request->validated();
-
-        //dd($validated);
-
         $empleado = new Empleado;
         $empleado->nombre = $validated["nombre"];
         $empleado->apellidos = $validated["apellidos"];
@@ -59,6 +78,8 @@ class EmpleadoController extends Controller
         $empleado->numero_ss = $validated["numero_ss"];
         $empleado->fecha_comienzo = $validated["fecha_comienzo"];
         $empleado->fecha_fin = $validated["fecha_fin"];
+        $empleado->created_at=now('Europe/Madrid');
+        $empleado->updated_at=now('Europe/Madrid');
 
         if(isset($validated["contrato"])){
             $empleado->contrato = Storage::disk('public')->putFile('empleados/contratos', $validated["contrato"], 'public');
@@ -84,55 +105,15 @@ class EmpleadoController extends Controller
 
         if(isset($validated['ambito'])){
             foreach($validated['ambito'] as $clave => $ambito){
-                //dd($ambito);
                 $ambito = Ambito::where('id', $clave)->select('id')->first();
 
                 $empleado->ambitos()->attach($ambito);
             }
         }
 
-        if($validated["nominas"][0]["fecha_inicio"] != null){
-            foreach($validated["nominas"] as $nomina){
-                $nueva_nomina = new Nomina;
-
-                $nueva_nomina->empleado_id = $empleado->id;
-                $nueva_nomina->fecha_inicio = $nomina["fecha_inicio"];
-                $nueva_nomina->fecha_fin = $nomina["fecha_fin"];
-                $nueva_nomina->importe_total = $nomina["importe_total"];
-                $nueva_nomina->importe_pagado = $nomina["importe_pagado"];
-                $nueva_nomina->fecha_pago = $nomina["fecha_pago"];
-
-                $nueva_nomina->save();
-            }
-        }
-
-        if($validated["faltas"][0]["fecha_falta"] != null){
-            foreach($validated["faltas"] as $falta){
-                $nueva_falta = new Falta;
-
-                $nueva_falta->empleado_id = $empleado->id;
-                $nueva_falta->fecha_falta = $falta["fecha_falta"];
-                $nueva_falta->justificacion = $falta["justificacion"];
-                $nueva_falta->notas = $falta["notas"];
-
-                $nueva_falta->save();
-            }
-        }
-
-        if($validated["vacaciones_disfrutadas"][0]["fecha_inicio"] != null){
-            foreach($validated["vacaciones_disfrutadas"] as $vacaciones){
-                $nuevas_vacaciones = new Vacaciones;
-
-                $nuevas_vacaciones->empleado_id = $empleado->id;
-                $nuevas_vacaciones->fecha_inicio = $vacaciones["fecha_inicio"];
-                $nuevas_vacaciones->fecha_fin = $vacaciones["fecha_fin"];
-
-                $nuevas_vacaciones->save();
-            }
-        }
 
         if($request->has('practicas')){
-            $practicas = new Practicas;
+            $practicas = new Practica;
 
             $practicas->empleado_id = $empleado->id;
             $practicas->instituto = $validated["instituto"];
@@ -141,6 +122,8 @@ class EmpleadoController extends Controller
             $practicas->tutor_practicas = $validated["tutor_practicas"];
             $practicas->fecha_inicio = $validated["fecha_inicio_practicas"];
             $practicas->fecha_fin = $validated["fecha_fin_practicas"];
+            $practicas->created_at=now('Europe/Madrid');
+            $practicas->updated_at=now('Europe/Madrid');
 
             if(isset($validated["convenio_practicas"])){
                 $practicas->convenio = Storage::disk('public')->putFile('practicas/convenios', $validated["convenio_practicas"], 'public');
@@ -154,7 +137,7 @@ class EmpleadoController extends Controller
         }
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('empleados.index', compact('rolConPoderes'));
+        return redirect()->route('empleados.index', compact('rolConPoderes'))->with('creado','si');
     }
 
     /**
@@ -165,7 +148,8 @@ class EmpleadoController extends Controller
      */
     public function show(Empleado $empleado)
     {
-        return view('empleados.show', compact('empleado'));
+        $rolConPoderes = self::ROLCONPODERES;
+        return view('empleados.show', compact('empleado','rolConPoderes'));
     }
 
     /**
@@ -190,40 +174,100 @@ class EmpleadoController extends Controller
      */
     public function update(EmpleadoRequest $request, Empleado $empleado)
     {
-        $validated = $request->validated();
 
+        $validated = $request->validated();
         $empleado->nombre = $validated["nombre"];
         $empleado->apellidos = $validated["apellidos"];
         $empleado->dni = $validated["dni"];
         $empleado->numero_ss = $validated["numero_ss"];
         $empleado->fecha_comienzo = $validated["fecha_comienzo"];
         $empleado->fecha_fin = $validated["fecha_fin"];
+        $empleado->vacaciones_total=$validated['dias_vacaciones'];
 
         if(isset($validated["contrato"])){
+            if($empleado->contrato != null){
+                Storage::disk('public')->delete($empleado->contrato);
+            }
             $empleado->contrato = Storage::disk('public')->putFile('empleados/contratos', $validated["contrato"], 'public');
         }
 
         if(isset($validated["doc_confidencialidad"])){
+            if($empleado->doc_confidencialidad != null){
+                Storage::disk('public')->delete($empleado->doc_confidencialidad);
+            }
             $empleado->doc_confidencialidad = Storage::disk('public')->putFile('empleados/doc_confidencialidad', $validated["doc_confidencialidad"], 'public');
         }
 
         if(isset($validated["doc_normas"])){
+            if($empleado->doc_normas != null){
+                Storage::disk('public')->delete($empleado->doc_normas);
+            }
             $empleado->doc_normas = Storage::disk('public')->putFile('empleados/doc_normas', $validated["doc_normas"], 'public');
         }
 
         if(isset($validated["doc_prevencion_riesgos"])){
+            if($empleado->doc_prevencion_riesgos != null){
+                Storage::disk('public')->delete($empleado->doc_prevencion_riesgos);
+            }
             $empleado->doc_prevencion_riesgos = Storage::disk('public')->putFile('empleados/doc_prevencion_riesgos', $validated["doc_prevencion_riesgos"], 'public');
         }
 
         if(isset($validated["doc_reglamento_interno"])){
+            if($empleado->doc_reglamento_interno != null){
+                Storage::disk('public')->delete($empleado->doc_reglamento_interno);
+            }
             $empleado->doc_reglamento_interno = Storage::disk('public')->putFile('empleados/doc_reglamento_interno', $validated["doc_reglamento_interno"], 'public');
         }
 
         $empleado->save();
 
+        $empleado->ambitos()->detach();
+
+        if(isset($validated['ambito'])){
+            foreach($validated['ambito'] as $clave => $ambito){
+                $empleado->ambitos()->attach($clave);
+
+            }
+        }
+
+        if($request->has('practicas')){
+
+            if( $empleado->practica == null){
+                $practicas = new Practica;
+
+            }
+            else $practicas = $empleado->practica;
+
+            $practicas->empleado_id = $empleado->id;
+            $practicas->instituto = $validated["instituto"];
+            $practicas->localidad = $validated["localidad"];
+            $practicas->provincia = $validated["provincia"];
+            $practicas->tutor_practicas = $validated["tutor_practicas"];
+            $practicas->fecha_inicio = $validated["fecha_inicio_practicas"];
+            $practicas->fecha_fin = $validated["fecha_fin_practicas"];
+
+
+            if($request->has('convenio_practicas')){
+                if($practicas->convenio_practicas!=null){
+                Storage::disk('public')->delete($practicas->convenio);  //eliminamos le antiguo
+                }
+                $practicas->convenio = Storage::disk('public')->putFile('practicas/convenios', $validated["convenio_practicas"], 'public'); //escribimos el nuevo
+            }
+
+            if($request->has('doc_confidencialidad_practicas')){
+                if($practicas->doc_confidencialidad!=null){
+                Storage::disk('public')->delete($practicas->doc_confidencialidad);
+                }
+                $practicas->doc_confidencialidad=Storage::disk('public')->putFile('practicas/doc_confidencialidad', $validated["doc_confidencialidad_practicas"], 'public');
+            }
+
+            $practicas->save();
+        }
+
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('empleados.index', compact('empleado', 'rolConPoderes'));
+        return redirect()->route('empleados.index')->with('editado','si');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -231,27 +275,19 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Empleado $empleado)
-    {
-        //
-    }
+    public function destroy(Empleado $empleado){
+        if(isset($empleado->practica)) $empleado->practica->delete();
 
-    public function filtro(FiltroRequest $request){
-        $validated = $request->validated();
-        //dd($validated);
-        //$query->whereIn('clientes.id', '=', $ambitoId)->paginate(10);
-        $arrayIds = [];
-        foreach($validated['ambito'] as $clave => $valor){
-            array_push($arrayIds, $clave);
-        }
-        //$ambitoId = Ambito::whereId($arrayIds)->first()->value('id');
+        $empleado->ambitos()->detach();
+        $empleado->faltas()->delete();
+        $empleado->nominas()->delete();
+        $empleado->asistencias()->delete();
+        $empleado->vacaciones()->delete();
+        $empleado->delete();
 
-        $empleados = Empleado::whereHas('ambitos', function($query) use($arrayIds){
-            $query->whereIn("ambito_id",  $arrayIds);
-        })->paginate(10);
-
-        $ambitos = Ambito::all();
         $rolConPoderes = self::ROLCONPODERES;
-        return view('empleados.index',compact('empleados', 'ambitos', 'rolConPoderes'));
+        return redirect()->route('empleados.index')->with('eliminado','si');
+
     }
+
 }

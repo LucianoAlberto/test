@@ -1,62 +1,73 @@
 <x-app-layout>
+    <!--Menu superior-->
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Nuevo Proyecto : <a class="text-red-500 uppercase underline"
-                href="{{ route('clientes.show', $cliente) }} {{ $cliente->apellidos }}"> {{ $cliente->nombre }}
-                {{ $cliente->apellidos }}</a>
+            <a class="text-red-500 uppercase underline" href="{{route('clientes.show', $cliente)}}"> {{$cliente->nombre}} {{$cliente->apellidos}}</a>
         </h2>
 
-        <label class="mr-5">Añadir Concepto
-            <x-boton2 tipo="div" nombre="Añadir" class="bg-green-600 hover:bg-green-700 w-16 mr-6" onclick="nuevoConcepto(event)">
-                <x-slot name="boton">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                </x-slot>
-            </x-boton2>
-        </label>
+        <div class="flex justify-end ">
+            <div class="block  mx-2">
+                <a href="{{ route('contratos.index', $cliente) }}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Contratos</a>
+            </div>
+
+            <div class="block  mx-2">
+                <a href="{{ route('facturas.index',$cliente) }}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Facturas</a>
+            </div>
+
+            <div class="block  mx-2">
+                <a href="{{route('proyectos.index',$cliente)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Proyectos</a>
+            </div>
+
+            <div class="block  mx-2">
+                <a href="{{route('pagos.index',$cliente)}}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Pagos</a>
+            </div>
+        </div>
     </x-slot>
-
-
+        <!---Fin menu superior-->
     <div>
         <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8">
 
             {{-- Formulario para un Nuevo concepto --}}
-            <div class="w-full max-w-xs  m-auto mt-5 mb-5 bg-gray-200" id='nuevoConcepto' hidden>
-                <div class="flex justify-end ">
-                    <x-ocultar_Div></x-ocultar_Div>
+            <div class="w-1/2 max-w-xs  m-auto mt-5 mb-5 bg-gray-300 border-2" id='nuevoConcepto' hidden >
+
+                <div class="flex justify-end mb-5">
+                    <x-boton2 tipo="div" class="bg-red-600 hover:bg-red-700 w-6 h-6 " onclick="closeNuevoConcepto()">
+                        <x-slot name="boton">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </x-slot>
+                    </x-boton2>
                 </div>
-                <form class="bg-gray-300 shadow-md rounded px-8 pt-6 pb-8 mb-4" action="{{ route('conceptos.store') }}"
+
+                <form class="bg-gray-300  rounded mb-4" action="{{ route('conceptos.store') }}"
                     method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="nuevoConcepto">
-                            Nombre Concepto
-                        </label>
+                    <div class="flex justify-between mx-5 place-content-center py-2">
                         <input
-                            class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            type="text" name="nuevoConcepto" required>
+                            class="shadow appearance-none border border-black rounded py-2 mx-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-3/4"
+                            type="text" name="nuevoConcepto" placeholder="Crear nuevo concepto" required>
+
+                            <x-boton2 tipo="input" nombre="Borrar" class="bg-green-600 hover:bg-green-700 w-12 items-center">
+                                <x-slot name="boton">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                      </svg>
+                                </x-slot>
+                            </x-boton2>
                         @error('nuevoConcepto')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
-
-                    <div class="flex items-center justify-center">
-                        <button
-                            class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                            Crear Concepto
-                        </button>
-                    </div>
-                </form><hr>
+                </form>
 
                 {{--Eliminar concepto--}}
-
-                <form class="bg-gray-300 shadow-md rounded px-8 pt-6 pb-8 mb-4" action="{{ route('conceptos.eliminar') }}"
+                <form class="bg-gray-300  rounded  mb-4" action="{{ route('conceptos.eliminar') }}"
                     method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="nuevoConcepto">
-                            Eliminar Concepto
-                        </label>
-                        <select name="eliminarConcepto" id="eliminarConcepto">
+                    <div class=" flex justify-between mx-5 place-content-center py-2">
+
+                        <select name="eliminarConcepto" id="eliminarConcepto"  class="form-input rounded-md shadow-sm mt-1 block w-3/4 mx-auto">
+                            <option value="">Selecciona concepto</option>
                             @foreach ($conceptos as $concepto)
                                 <option value="{{ $concepto->nombre }}"
                                     {{ old('concepto') == $concepto->id ? 'selected' : '' }}>
@@ -65,33 +76,40 @@
                             @endforeach
                         </select>
 
-                        </select>
+                        <x-boton2 tipo="input" nombre="Borrar" class="bg-red-600 hover:bg-red-700 w-12 items-center">
+                            <x-slot name="boton">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                            </x-slot>
+                        </x-boton2>
+
                         @error('eliminaConcepto')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
-                    </div>
-
-                    <div class="flex items-center justify-center">
-                        <button
-                            class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                            Eliminar Concepto
-                        </button>
                     </div>
                 </form><hr>
             </div>
 
 
             <div class="mt-5 md:mt-0 md:col-span-2" id="contenedorPrincipal">
+                <h3 class="text-center font-bold uppercase w-full py-5 bg-gray-300">Nuevo Proyecto</h3>
                 <form method="post" action="{{ route('proyectos.store',$cliente) }}" enctype="multipart/form-data">
                     @csrf
                     <input type="number" name="cliente_id" id="cliente_id" value="{{ $cliente->id }}" hidden>
                     <div class="shadow overflow-hidden sm:rounded-md">
-
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div >
                                 <div class="flex justify-between mb-4">
                                     <div class="w-1/2 mr-4">
-                                        <label for="concepto" class="block font-medium text-sm text-gray-700">Concepto</label>
+                                        <label for="concepto" class="flex font-medium text-sm text-gray-700">Concepto *
+
+                                            <x-boton2 tipo="div" class="ml-1 bg-gray-800 hover:bg-gray-700  hover:scale-125 w-6 h-6 fill-none " onclick="nuevoConcepto()">
+                                                <x-slot name="boton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-slash-minus" viewBox="0 0 16 16">
+                                                        <path d="m1.854 14.854 13-13a.5.5 0 0 0-.708-.708l-13 13a.5.5 0 0 0 .708.708ZM4 1a.5.5 0 0 1 .5.5v2h2a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2h-2a.5.5 0 0 1 0-1h2v-2A.5.5 0 0 1 4 1Zm5 11a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5A.5.5 0 0 1 9 12Z"/>
+                                                      </svg>
+                                                </x-slot>
+                                            </x-boton2>
+                                        </label>
                                         <select name="concepto" id="concepto"
                                             class="form-input rounded-md shadow-sm mt-1 block w-full"
                                             value="{{ old('concepto', '') }}">
@@ -110,7 +128,7 @@
 
                                     <div class="w-1/2 ml-4">
                                         <label for="referencia"
-                                            class="block font-medium text-sm text-gray-700">Referencia</label>
+                                            class="block font-medium text-sm text-gray-700 mt-1">Referencia *</label>
 
                                         <select name="referencia" id="referencia"
                                             class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -134,7 +152,8 @@
                                     <div class="w-1/8">
                                         <label for="proveedor_dominio_usuario"
                                             class="block font-medium text-sm text-gray-700">Provedor Dominio Usuario</label>
-                                        <input type="text" name="proveedor_dominio_usuario" id="proveedor_dominio_usuario">
+                                        <input type="text" name="proveedor_dominio_usuario" id="proveedor_dominio_usuario"
+                                            value="{{ old('proveedor_dominio_usuario', '') }}">
                                         @error('proveedor_dominio_usuario')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
@@ -143,7 +162,8 @@
                                     <div class="w-1/8">
                                         <label for="proveedor_dominio_contrasenha"
                                             class="block font-medium text-sm text-gray-700">Provedor Dominio Contraseña</label>
-                                        <input type="text" name="proveedor_dominio_contrasenha" id="proveedor_dominio_contrasenha">
+                                        <input type="text" name="proveedor_dominio_contrasenha" id="proveedor_dominio_contrasenha"
+                                            value="{{ old('proveedor_dominio_contrasenha', '') }}">
                                         @error('proveedor_dominio_contrasenha')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
@@ -152,7 +172,8 @@
                                     <div class="w-1/8">
                                         <label for="proveedor_hosting_usuario"
                                             class="block font-medium text-sm text-gray-700">Provedor Hosting Usuario</label>
-                                        <input type="text" name="proveedor_hosting_usuario" id="proveedor_hosting_usuario">
+                                        <input type="text" name="proveedor_hosting_usuario" id="proveedor_hosting_usuario"
+                                            value="{{ old('proveedor_hosting_usuario', '') }}">
                                         @error('proveedor_hosting_usuario')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
@@ -161,7 +182,8 @@
                                     <div class="w-1/8">
                                         <label for="proveedor_hosting_contrasenha"
                                             class="block font-medium text-sm text-gray-700">Provedor Hosting Contraseña</label>
-                                        <input type="text" name="proveedor_hosting_contrasenha" id="proveedor_hosting_contrasenha">
+                                        <input type="text" name="proveedor_hosting_contrasenha" id="proveedor_hosting_contrasenha"
+                                            value="{{ old('proveedor_hosting_contrasenha', '') }}">
                                         @error('proveedor_hosting_contrasenha')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
@@ -175,7 +197,8 @@
                                         <label class="block text-gray-700 text-sm font-bold mb-2" for="sepa">
                                           Subir SEPA
                                         </label>
-                                        <input class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="sepa" type="file" name="sepa"  >
+                                        <input class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="sepa" type="file" name="sepa"
+                                        value="{{ old('sepa', '') }}">
                                         @error('sepa')
                                         <p class="text-sm text-red-600">{{ $message }}</p>
                                      @enderror
@@ -185,7 +208,8 @@
                                         <label class="block text-gray-700 text-sm font-bold mb-2" for="hoja_preferencia">
                                           Subir Hoja Preferencia
                                         </label>
-                                        <input class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="hoja_preferencia" type="file" name="hoja_preferencia"  >
+                                        <input class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="hoja_preferencia" type="file" name="hoja_preferencia"
+                                            value="{{ old('hoja_preferencia', '') }}">
                                         @error('hoja_preferencia')
                                         <p class="text-sm text-red-600">{{ $message }}</p>
                                      @enderror
@@ -213,34 +237,50 @@
                                     </div>
                                 </div>
 
-                                <div class="contenedorDominios flex">
+                                <div class="contenedorDominios flex mb-4">
                                     <div class="divNombreDominio w-1/3 mr-4">
                                         <label for="dominio[0][nombre]"
                                             class="block font-medium text-sm text-gray-700">Nombre Dominio</label>
-                                        <input type="text" name="dominio[0][nombre]" class="w-full">
-                                        @error('dominio[0][nombre]')
+                                        <input type="text" name="dominio[0][nombre]" class="w-full"
+                                        value="{{ old('dominio[0][nombre]', '') }}">
+                                        {{-- @error('dominio[][nombre]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
 
                                     <div class="divUsuarioDominio w-1/3 mx-4">
                                         <label for="dominio[0][usuario]"
                                             class="block font-medium text-sm text-gray-700">Dominio Usuario</label>
-                                        <input type="text" name="dominio[0][usuario]" class="w-full">
-                                        @error('dominio[0][usuario]')
+                                        <input type="text" name="dominio[0][usuario]" class="w-full"
+                                        value="{{ old('dominio[0][usuario]', '') }}">
+
+                                        {{-- @error('dominio[][usuario]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
 
                                     <div class="divContrasenhaDominio w-1/3 ml-4">
                                         <label for="dominio[0][contrasenha]"
                                             class="block font-medium text-sm text-gray-700">Dominio Contraseña</label>
-                                        <input type="text" name="dominio[0][contrasenha]" class="w-full">
-                                        @error('dominio[0][contrasenha]')
+                                        <input type="text" name="dominio[0][contrasenha]" class="w-full"
+                                        value="{{ old('dominio[0][contrasenha]', '') }}">
+
+                                        {{-- @error('dominio[][contrasenha]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
                                 </div>
+                                @if($errors->has('dominio.*.nombre'))
+                                    <p class="text-sm text-red-600">{{ $errors->first('dominio.*.nombre') }}</p>
+                                @endif
+
+                                @if($errors->has('dominio.*.usuario'))
+                                    <p class="text-sm text-red-600">{{ $errors->first('dominio.*.usuario') }}</p>
+                                @endif
+
+                                @if($errors->has('dominio.*.contrasenha'))
+                                    <p class="text-sm text-red-600">{{ $errors->first('dominio.*.contrasenha') }}</p>
+                                @endif
                             </div>
                             <hr>
 
@@ -263,31 +303,43 @@
                                     </div>
                                 </div>
 
-                                <div class="flex justify-between contenedorBasesDatos">
+                                <div class="flex justify-between contenedorBasesDatos mb-4">
                                     <div class="divNombreBD w-1/3 mr-4">
                                         <label for="bd[0][nombre]" class="block font-medium text-sm text-gray-700">Nombre
                                             BBDD</label>
-                                        <input type="text" name="bd[0][nombre]" class="w-full">
-                                        @error('bd[0][nombre]')
+                                        <input type="text" name="bd[0][nombre]" class="w-full"
+                                        value="{{ old('bd[0][nombre]', '') }}">
+                                        @if($errors->has('bd.*.nombre'))
+                                            <p class="text-sm text-red-600">{{ $errors->first('bd.*.nombre') }}</p>
+                                        @endif
+                                        {{-- @error('bd[][nombre]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
 
                                     <div class="divHostBD w-1/3 mx-4">
                                         <label for="bd[0][host]" class="block font-medium text-sm text-gray-700">Host</label>
-                                        <input type="text" name="bd[0][host]" class="w-full">
-                                        @error('bd[0][host]')
+                                        <input type="text" name="bd[0][host]" class="w-full"
+                                            value="{{ old('bd[0][host]', '') }}">
+                                        @if($errors->has('bd.*.host'))
+                                            <p class="text-sm text-red-600">{{ $errors->first('bd.*.host') }}</p>
+                                        @endif
+                                        {{-- @error('bd[][host]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
 
                                     <div class="divContrasenhaBD w-1/3 ml-4">
                                         <label for="bd[0][contrasenha]"
                                             class="block font-medium text-sm text-gray-700">Contraseña</label>
-                                        <input type="text" name="bd[0][contrasenha]" class="w-full">
-                                        @error('bd[0][contrasenha]')
+                                        <input type="text" name="bd[0][contrasenha]" class="w-full"
+                                            value="{{ old('bd[0][contrasenha]', '') }}">
+                                        @if($errors->has('bd.*.contrasenha'))
+                                            <p class="text-sm text-red-600">{{ $errors->first('bd.*.contrasenha') }}</p>
+                                        @endif
+                                        {{-- @error('bd[][contrasenha]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
                                 </div>
                             </div>
@@ -313,32 +365,44 @@
                                     </div>
                                 </div>
 
-                                <div class="contenedorEmails flex justify-between">
+                                <div class="contenedorEmails flex justify-between mb-4">
                                     <div class="divEmailEmail w-1/3 mr-4">
                                         <label for="email[0][email]"
                                             class="block font-medium text-sm text-gray-700">Email</label>
-                                        <input type="text" name="email[0][email]" class="w-full">
-                                        @error('email[0][email]')
+                                        <input type="text" name="email[0][email]" class="w-full"
+                                            value="{{ old('email[0][email]', '') }}">
+                                        @if($errors->has('email.*.email'))
+                                            <p class="text-sm text-red-600">{{ $errors->first('email.*.email') }}</p>
+                                        @endif
+                                        {{-- @error('email[][email]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
 
-                                    <div class="divEmailcontrasenha w-1/3 mx-4">
+                                    <div class="divEmailContrasenha w-1/3 mx-4">
                                         <label for="email[0][contrasenha]"
                                             class="block font-medium text-sm text-gray-700">Password</label>
-                                        <input type="text" name="email[0][contrasenha]" class="w-full">
-                                        @error('email[0][contrasenha]')
+                                        <input type="text" name="email[0][contrasenha]" class="w-full"
+                                            value="{{ old('email[0][contrasenha]', '') }}">
+                                        @if($errors->has('email.*.contrasenha'))
+                                            <p class="text-sm text-red-600">{{ $errors->first('email.*.contrasenha') }}</p>
+                                        @endif
+                                        {{-- @error('email[][contrasenha]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
 
                                     <div class="divEmailRuta w-1/3 ml-4">
                                         <label for="email[0][ruta_acceso]" class="block font-medium text-sm text-gray-700">Ruta
                                             Accesso</label>
-                                        <input type="text" name="email[0][ruta_acceso]" class="w-full">
-                                        @error('email[0][ruta_acceso]')
+                                        <input type="text" name="email[0][ruta_acceso]" class="w-full"
+                                            value="{{ old('email[0][ruta_acceso]', '') }}">
+                                        @if($errors->has('email.*.ruta_acceso'))
+                                            <p class="text-sm text-red-600">{{ $errors->first('email.*.ruta_acceso') }}</p>
+                                        @endif
+                                        {{-- @error('email[][ruta_acceso]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
                                 </div>
                             </div>
@@ -363,32 +427,44 @@
                                     </div>
                                 </div>
 
-                                <div class="contenedorAccesos flex justify-between">
+                                <div class="contenedorAccesos flex justify-between mb-4">
                                     <div class="divDominioAcceso w-1/3 mr-4">
                                         <label for="acceso[0][dominio]"
                                             class="block font-medium text-sm text-gray-700">Dominio</label>
-                                        <input type="text" name="acceso[0][dominio]" class="w-full">
-                                        @error('acceso[0][dominio]')
+                                        <input type="text" name="acceso[0][dominio]" class="w-full"
+                                            value="{{ old('acceso[0][dominio]', '') }}">
+                                        @if($errors->has('acceso.*.dominio'))
+                                            <p class="text-sm text-red-600">{{ $errors->first('acceso.*.dominio') }}</p>
+                                        @endif
+                                        {{-- @error('acceso[][dominio]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
 
                                     <div class="divUsuarioAcceso w-1/3 mx-4">
                                         <label for="acceso[0][usuario]"
                                             class="block font-medium text-sm text-gray-700">Usuario</label>
-                                        <input type="text" name="acceso[0][usuario]" class="w-full">
-                                        @error('acceso[0][usuario]')
+                                        <input type="text" name="acceso[0][usuario]" class="w-full"
+                                            value="{{ old('acceso[0][usuario]', '') }}">
+                                        @if($errors->has('acceso.*.usuario'))
+                                            <p class="text-sm text-red-600">{{ $errors->first('acceso.*.usuario') }}</p>
+                                        @endif
+                                        {{-- @error('acceso[][usuario]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
 
                                     <div class="divContrasenhaAcceso w-1/3 ml-4">
                                         <label for="acceso[0][contrasenha]"
                                             class="block font-medium text-sm text-gray-700">Contraseña</label>
-                                        <input type="text" name="acceso[0][contrasenha]" class="w-full">
-                                        @error('acceso[0][contrasenha]')
+                                        <input type="text" name="acceso[0][contrasenha]" class="w-full"
+                                            value="{{ old('acceso[0][contrasenha]', '') }}">
+                                        @if($errors->has('acceso.*.contrasenha'))
+                                            <p class="text-sm text-red-600">{{ $errors->first('acceso.*.contrasenha') }}</p>
+                                        @endif
+                                        {{-- @error('acceso[][contrasenha]')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
                                 </div>
                             </div>
@@ -399,28 +475,43 @@
                                     Otros Datos
                                  </label>
                                  <textarea name="otros_datos" id="otros_datos" cols="102" rows="10" scroll>
-
+                                    {{ old('otros_datos', '') }}
                                  </textarea>
-
                             </div>
-
 
                             <div class="flex items-center justify-end px-4 py-3 text-right sm:px-6">
                                 <button
-                                    class="inline-flex items-center px-4 py-2 bg-gray-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-500 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
+                                    class="inline-flex items-center px-4 py-2 bg-gray-800 hover:scale-125 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-500 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                                     Crear
                                 </button>
                             </div>
                         </div>
                 </form>
             </div>
-            @if(session('eliminado')=='si')
-                <script>alert('Concepto Eliminado con Exito');</script>
-            @endif
-
-            @if(session('creado')=='si')
-                <script>alert('Concepto Creado con Exito');</script>
-            @endif
+            <small class="text-red-500 px-2 ">Los campos marcados con * son OBLIGATORIOS</small>
         </div>
+        {{--Aviso sessiones--}}
+        @if(session('conceptoCreado') == 'si')
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Nuevo concepto creado',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+    @elseif (session('conceptoEliminado') == 'si')
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Concepto eliminado',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+    @endif
+    {{-- fin avisos sessiones --}}
     </div>
 </x-app-layout>

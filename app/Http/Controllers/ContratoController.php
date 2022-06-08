@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ambito;
 use App\Models\Cliente;
 use App\Models\Contrato;
 use Illuminate\Http\Request;
 use App\Models\ConceptoFactura;
 use App\Http\Requests\ContratoRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Schema;
 
 class ContratoController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -18,10 +21,32 @@ class ContratoController extends Controller
      */
     public function index(Cliente $cliente)
     {
+        $rolConPoderes = self::ROLCONPODERES;
+        $conceptos = ConceptoFactura::all();
         $contratos = Contrato::where('cliente_id', $cliente->id)->paginate(10);
 
+        return view('contratos.index', compact('cliente', 'contratos', 'rolConPoderes', 'conceptos'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexTotal(Request $request)
+    {
         $rolConPoderes = self::ROLCONPODERES;
-        return view('contratos.index', compact('cliente', 'contratos', 'rolConPoderes'));
+        $conceptos = ConceptoFactura::all();
+        $criterios = Schema::getColumnListing('contratos');
+
+        if(!is_null($request->busqueda) && !is_null($request->criterio)){
+            $contratos = Contrato::where($request->criterio, 'LIKE', '%'.$request->busqueda.'%')->paginate(10);
+        }
+        else{
+            $contratos = Contrato::paginate(10);
+        }
+
+        return view ('contratos.indexTotal',compact('contratos','rolConPoderes', 'criterios', 'conceptos'));
     }
 
     /**
@@ -31,7 +56,7 @@ class ContratoController extends Controller
      */
     public function create(Cliente $cliente)
     {
-        $conceptos=ConceptoFactura::all(['id','nombre']);
+        $conceptos = ConceptoFactura::all(['id','nombre']);
         return view('contratos.create',compact('cliente', 'conceptos'));
     }
 
@@ -43,33 +68,31 @@ class ContratoController extends Controller
      */
     public function store(ContratoRequest $request, Cliente $cliente)
     {
-        $valido = $request->validated();
-
-        //$cliente=Cliente::where('id',"=",$valido['cliente_id'])->get()->first();
-
+        $validated = $request->validated();
         $contrato = new Contrato;
 
         if($request->hasFile('archivo')){
-            $contrato->archivo = Storage::disk('public')->putFile('contratos/archivos',$valido['archivo'], 'public');
+            $contrato->archivo = Storage::disk('public')->putFile('contratos/archivos',$validated['archivo'], 'public');
         }
 
         if($request->hasFile('presupuesto')){
-            $contrato->presupuesto = Storage::disk('public')->putFile('contratos/presupuestos',$valido['presupuesto'], 'public');
+            $contrato->presupuesto = Storage::disk('public')->putFile('contratos/presupuestos',$validated['presupuesto'], 'public');
         }
 
-        $contrato->concepto = $valido['concepto'];
-        $contrato->referencia = $valido['referencia'];
-        $contrato->fecha_firma = $valido['fecha_firma'];
-        $contrato->base_imponible = $valido['base_imponible'];
-        $contrato->iva = $valido['iva'];
-        $contrato->irpf = $valido['irpf'];
-        $contrato->total = $valido['total'];
+        $contrato->concepto_facturas_id = $validated['concepto'];
+
+        $contrato->referencia = $validated['referencia'];
+        $contrato->fecha_firma = $validated['fecha_firma'];
+        $contrato->base_imponible = $validated['base_imponible'];
+        $contrato->iva = $validated['iva'];
+        $contrato->irpf = $validated['irpf'];
+        $contrato->total = $validated['total'];
         $contrato->cliente_id = $cliente->id;
 
         $contrato->save();
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('contratos.index',compact('cliente', 'rolConPoderes'));
+        return redirect()->route('contratos.index',compact('cliente', 'rolConPoderes'))->with('creado','si');
     }
 
     /**
@@ -80,7 +103,9 @@ class ContratoController extends Controller
      */
     public function show(Cliente $cliente, Contrato $contrato)
     {
-        return view('contratos.show', ['cliente' => $cliente, 'contrato' => $contrato]);
+        $conceptos = ConceptoFactura::all();
+        $rolConPoderes = self::ROLCONPODERES;
+        return view('contratos.show', compact('cliente', 'contrato', 'conceptos','rolConPoderes'));
     }
 
     /**
@@ -105,14 +130,14 @@ class ContratoController extends Controller
      */
     public function update(ContratoRequest $request, Cliente $cliente, Contrato $contrato)
     {
-        $valido = $request->validated();
+        $validated = $request->validated();
 
         if($request->hasFile('archivo')){
             //Si tiene un archivo lo elimina y guarda el nuevo
             if($contrato->archivo != null){
                 Storage::disk('public')->delete($contrato->archivo);
             }
-            $contrato->archivo = Storage::disk('public')->putFile('contratos/archivos',$valido['archivo'], 'public');
+            $contrato->archivo = Storage::disk('public')->putFile('contratos/archivos',$validated['archivo'], 'public');
         }
 
         if($request->hasFile('presupuesto')){
@@ -120,22 +145,23 @@ class ContratoController extends Controller
             if($contrato->presupuesto != null){
                 Storage::disk('public')->delete($contrato->presupuesto);
             }
-            $contrato->presupuesto = Storage::disk('public')->putFile('contratos/presupuestos',$valido['presupuesto'], 'public');
+            $contrato->presupuesto = Storage::disk('public')->putFile('contratos/presupuestos',$validated['presupuesto'], 'public');
         }
 
-        $contrato->concepto = $valido['concepto'];
-        $contrato->referencia = $valido['referencia'];
-        $contrato->fecha_firma = $valido['fecha_firma'];
-        $contrato->base_imponible = $valido['base_imponible'];
-        $contrato->iva = $valido['iva'];
-        $contrato->irpf = $valido['irpf'];
-        $contrato->total = $valido['total'];
+        $contrato->concepto_facturas_id = $validated['concepto'];
+
+        $contrato->referencia = $validated['referencia'];
+        $contrato->fecha_firma = $validated['fecha_firma'];
+        $contrato->base_imponible = $validated['base_imponible'];
+        $contrato->iva = $validated['iva'];
+        $contrato->irpf = $validated['irpf'];
+        $contrato->total = $validated['total'];
         $contrato->cliente_id = $cliente->id;
 
         $contrato->save();
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('contratos.index', compact('cliente', 'contrato', 'rolConPoderes'));
+        return redirect()->route('contratos.index', compact('cliente', 'contrato', 'rolConPoderes'))->with('editado','si');
     }
 
     /**
@@ -146,17 +172,16 @@ class ContratoController extends Controller
      */
     public function destroy(Cliente $cliente, Contrato $contrato)
     {
-        $contrato_destruido = Contrato::find($contrato->id);
-
-        if($contrato_destruido->archivo != null){
-            Storage::delete($contrato_destruido->archivo);
+        if($contrato->archivo != null){
+            Storage::disk('public')->delete($contrato->archivo);
         }
-        if($contrato_destruido->presupuesto != null){
-            Storage::delete($contrato_destruido->presupuesto);
+        if($contrato->presupuesto != null){
+            Storage::disk('public')->delete($contrato->presupuesto);
         }
 
-        $contrato_destruido->delete();
+        $contrato->delete();
+        $rolConPoderes = self::ROLCONPODERES;
 
-        return redirect()->route('contratos.index', compact('rolConPoderes'));
+        return redirect()->route('contratos.index', compact('rolConPoderes','cliente'))->with('eliminado','si');
     }
 }

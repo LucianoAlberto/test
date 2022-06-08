@@ -2,7 +2,8 @@
     <x-jet-authentication-card>
         <x-slot name="logo">
             {{--<x-jet-authentication-card-logo />--}}
-            <img class="w-10" src="{{ url('logo.png') }}" />
+            <a href="{{route('clientes.index')}}"><img class="w-20" src="{{ url('logo.png') }}" /></a>
+            
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
@@ -33,14 +34,12 @@
             <div class="mt-4">
                 <x-jet-label for="rol" value="{{ __('Asignar Rol') }}" />
                 <select id="rol" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-center rounded-md mt-1 w-full"  name="rol" required >
-                    <option value="0">--- Seleciona un rol ---</option>
+                    <option value="">--- Selecciona un rol ---</option>
                     @foreach ($roles as $rol)
                         <option value="{{$rol->id}}"> {{$rol->name}}</option>
                     @endforeach
-                </select>   
+                </select>
             </div>
-
-            
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">
@@ -60,7 +59,7 @@
             @endif
 
             <div class="flex items-center justify-end mt-4">
-                
+
 
                 <x-jet-button class="ml-4">
                     {{ __('Register') }}

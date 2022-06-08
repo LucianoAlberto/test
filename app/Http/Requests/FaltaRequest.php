@@ -25,8 +25,8 @@ class FaltaRequest extends FormRequest
     {
         return [
             'fecha_falta'=>'required|date',
-            'justificacion'=>'required|string',
-            'notas'=>'required|string',
+            'justificacion'=>'nullable|string',
+            'notas'=>'nullable|string',
         ];
     }
 }

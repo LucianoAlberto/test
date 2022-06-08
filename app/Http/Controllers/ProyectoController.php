@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\ConceptoFactura;
 use App\Models\EmailCorporativo;
 use App\Http\Requests\ProyectoRequest;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 
 class ProyectoController extends Controller
@@ -22,10 +23,31 @@ class ProyectoController extends Controller
      */
     public function index(Cliente $cliente)
     {
-        $proyectos = $cliente->proyectos;
 
         $rolConPoderes = self::ROLCONPODERES;
-        return view('proyectos.index', compact('cliente','proyectos', 'rolConPoderes'));
+        $proyectos = $cliente->proyectos()->paginate(10);
+
+        return view('proyectos.index', compact('cliente', 'proyectos', 'rolConPoderes'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexTotal(Request $request)
+    {
+        $rolConPoderes = self::ROLCONPODERES;
+        $criterios = Schema::getColumnListing('proyectos');
+
+        if(!is_null($request->busqueda) && !is_null($request->criterio)){
+            $proyectos = Proyecto::where($request->criterio, 'LIKE', '%'.$request->busqueda.'%')->paginate(10);
+        }
+        else{
+            $proyectos = Proyecto::paginate(10);
+        }
+
+        return view ('proyectos.indexTotal',compact('proyectos','rolConPoderes', 'criterios'));
     }
 
     /**
@@ -84,9 +106,16 @@ class ProyectoController extends Controller
         foreach($valido['dominio'] as $dominio){
             if(in_array( !null, $dominio)){
                 $nuevo_dominio = new Dominio;
-                $nuevo_dominio->nombre = $dominio['nombre'];
-                $nuevo_dominio->usuario = $dominio['usuario'];
-                $nuevo_dominio->contrasenha = $dominio['contrasenha'];
+                if(isset($dominio['nombre'])){
+                    $nuevo_dominio->nombre = $dominio['nombre'];
+                }
+                if(isset($dominio['usuario'])){
+                    $nuevo_dominio->usuario = $dominio['usuario'];
+                }
+                if(isset($dominio['contrasenha'])){
+                    $nuevo_dominio->contrasenha = $dominio['contrasenha'];
+                }
+
                 $nuevo_dominio->proyecto_id = $proyecto->id;
                 $nuevo_dominio->save();
             }
@@ -95,9 +124,16 @@ class ProyectoController extends Controller
         foreach($valido['bd'] as $bd){
             if(in_array( !null, $bd)){
                 $nueva_bd = new BaseDatos;
-                $nueva_bd->nombre = $bd['nombre'];
-                $nueva_bd->host = $bd['host'];
-                $nueva_bd->contrasenha = $bd['contrasenha'];
+                if(isset($bd['nombre'])){
+                    $nueva_bd->nombre = $bd['nombre'];
+                }
+                if(isset($bd['host'])){
+                    $nueva_bd->host = $bd['host'];
+                }
+                if(isset($bd['contrasenha'])){
+                    $nueva_bd->contrasenha = $bd['contrasenha'];
+                }
+
                 $nueva_bd->proyecto_id = $proyecto->id;
                 $nueva_bd->save();
             }
@@ -106,9 +142,16 @@ class ProyectoController extends Controller
         foreach($valido['email'] as $email){
             if(in_array( !null, $email)){
                 $nuevo_email = new EmailCorporativo;
-                $nuevo_email->email = $email['email'];
-                $nuevo_email->contrasenha = $email['contrasenha'];
-                $nuevo_email->ruta_acceso = $email['ruta_acceso'];
+                if(isset($email['email'])){
+                    $nuevo_email->email = $email['email'];
+                }
+                if(isset($email['contrasenha'])){
+                    $nuevo_email->contrasenha = $email['contrasenha'];
+                }
+                if(isset($email['ruta_acceso'])){
+                    $nuevo_email->ruta_acceso = $email['ruta_acceso'];
+                }
+
                 $nuevo_email->proyecto_id = $proyecto->id;
                 $nuevo_email->save();
             }
@@ -117,16 +160,23 @@ class ProyectoController extends Controller
         foreach($valido['acceso'] as $acceso){
             if(in_array( !null, $acceso)){
                 $nuevo_acceso = new Acceso;
-                $nuevo_acceso->dominio = $acceso['dominio'];
-                $nuevo_acceso->usuario = $acceso['usuario'];
-                $nuevo_acceso->contrasenha = $acceso['contrasenha'];
+                if(isset($acceso['dominio'])){
+                    $nuevo_acceso->dominio = $acceso['dominio'];
+                }
+                if(isset($acceso['usuario'])){
+                    $nuevo_acceso->usuario = $acceso['usuario'];
+                }
+                if(isset($acceso['contrasenha'])){
+                    $nuevo_acceso->contrasenha = $acceso['contrasenha'];
+                }
+
                 $nuevo_acceso->proyecto_id = $proyecto->id;
                 $nuevo_acceso->save();
             }
         }
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('proyectos.index',compact('cliente', 'rolConPoderes'));
+        return redirect()->route('proyectos.index',compact('cliente', 'rolConPoderes'))->with('creado','si');
     }
 
 
@@ -139,7 +189,8 @@ class ProyectoController extends Controller
      */
     public function show(Cliente $cliente, Proyecto $proyecto)
     {
-        return view('proyectos.show', compact('cliente', 'proyecto'));
+        $rolConPoderes = self::ROLCONPODERES;
+        return view('proyectos.show', compact('cliente', 'proyecto','rolConPoderes'));
     }
 
     /**
@@ -170,7 +221,7 @@ class ProyectoController extends Controller
     {
         //obtenemos todos los conceptos de la BD
         $conceptos = ConceptoFactura::all(['id','nombre']);
-        //dd($proyecto);
+
         //recuperamos los contratos de este cliente
         $contratos = $proyecto->cliente->contratos;
 
@@ -253,7 +304,9 @@ class ProyectoController extends Controller
             }
         }
 
-        return redirect()->back();
+       // return redirect()->back();
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('proyectos.index', compact('cliente', 'rolConPoderes'))->with('editado','si');
     }
 
     /**
@@ -264,10 +317,21 @@ class ProyectoController extends Controller
      */
     public function destroy(Cliente $cliente, Proyecto $proyecto)
     {
-        //dd($proyecto);
+        if($proyecto->sepa != null){
+            Storage::disk('public')->delete($proyecto->sepa);
+        }
+
+        if($proyecto->preferencias != null){
+            Storage::disk('public')->delete($proyecto->preferencias);
+        }
+        $proyecto->basedatoss()->delete();
+        $proyecto->dominios()->delete();
+        $proyecto->emailcorporativos()->delete();
+        $proyecto->accesos()->delete();
+
         $proyecto->delete();
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('proyectos.index', compact('cliente', 'rolConPoderes'));
+        return redirect()->route('proyectos.index', compact('cliente', 'rolConPoderes'))->with('eliminado','si');
     }
 }

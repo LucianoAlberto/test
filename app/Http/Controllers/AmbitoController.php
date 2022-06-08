@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ambito;
 use Illuminate\Http\Request;
+use App\Http\Requests\AmbitoRequest;
 
 class AmbitoController extends Controller
 {
@@ -33,9 +34,18 @@ class AmbitoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AmbitoRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $ambito = new Ambito;
+        $ambito->nombre = $request['nuevoAmbito'];
+        $ambito->created_at = now('Europe/Madrid');
+        $ambito->updated_at = now('Europe/Madrid');
+        $ambito->save();
+
+        return redirect()->back()->with('ambito_creado','si');
+
     }
 
     /**
@@ -75,11 +85,21 @@ class AmbitoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Ambito  $ambito
+     * @param  \App\Models\AmbitoRequest  $ambito
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ambito $ambito)
+    public function destroy(AmbitoRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $ambito = Ambito::find($validated['eliminarAmbito']);
+
+        //dd($ambito);
+        $ambito->clientes()->detach();
+        $ambito->empleados()->detach();
+
+        $ambito->delete();
+
+        return redirect()->back()->with('ambito_eliminado','si');
     }
 }

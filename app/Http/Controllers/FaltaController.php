@@ -45,13 +45,16 @@ class FaltaController extends Controller
         $falta = new Falta;
         $falta->empleado_id = $empleado->id;
         $falta->fecha_falta = $validated["fecha_falta"];
-        $falta->justificacion = $validated["justificacion"];
+        if(!is_null($request->justificacion)){
+            $falta->justificacion = "si";
+        }else $falta->justificacion = "";
+
         $falta->notas = $validated["notas"];
 
         $falta->save();
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('faltas.index', compact('empleado', 'rolConPoderes'));
+        return redirect()->route('faltas.index', compact('empleado', 'rolConPoderes'))->with('creado','si');
     }
 
     /**
@@ -89,13 +92,16 @@ class FaltaController extends Controller
 
         $falta->empleado_id = $empleado->id;
         $falta->fecha_falta = $validated["fecha_falta"];
-        $falta->justificacion = $validated["justificacion"];
+
+        if(!is_null($request->justificacion)){
+            $falta->justificacion = "si";
+        }else $falta->justificacion = "";
         $falta->notas = $validated["notas"];
 
         $falta->save();
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('faltas.index', compact('empleado', 'rolConPoderes'));
+        return redirect()->route('faltas.index', compact('empleado', 'rolConPoderes'))->with('editado','si');
     }
 
     /**
@@ -104,8 +110,11 @@ class FaltaController extends Controller
      * @param  \App\Models\Falta  $falta
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Falta $falta)
+    public function destroy(Empleado $empleado, Falta $falta)
     {
-        //
+        $falta->delete();
+
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('faltas.index', compact('empleado', 'rolConPoderes'))->with('eliminado','si');
     }
 }

@@ -10,6 +10,7 @@ use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Actions\Fortify\PasswordValidationRules;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -24,7 +25,7 @@ class UserController extends Controller
     {
         $users = User::paginate(10);
 
-        $roles=DB::table('roles')->get();
+        $roles = DB::table('roles')->get();
         return view('users.index', compact('users','roles'));
     }
 
@@ -36,7 +37,7 @@ class UserController extends Controller
     public function create()
     {
         //recuperamos los roles existentes
-        $roles=DB::table('roles')->get();
+        $roles = DB::table('roles')->get();
 
         return view('users.create',compact('roles'));
     }
@@ -49,18 +50,18 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        //dd($request);
 
-        $validated = $request->validated(); 
+        $validated = $request->validated();
         $datos = $request->except('_token');
 
         $usuario = new User;
         $usuario->name = $validated["name"];
         $usuario->email = $validated["email"];
-        $usuario->password =bcrypt($validated["password"]);
-        $usuario->rol=$validated['rol'];
-        $usuario->save();  
-        
+        $usuario->password = bcrypt($request["password"]);
+        $usuario->rol = $validated['rol'];
+        $usuario->assignRole(Role::find($validated['rol']));
+        $usuario->save();
+
         return redirect()->route('users.index');
     }
 
@@ -83,7 +84,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $roles=DB::table('roles')->get();
+        $roles = DB::table('roles')->get();
 
         return view('users.edit', compact('user','roles'));
     }
@@ -95,16 +96,19 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, $id)
+    public function update(UserRequest $request, User $user)
     {
+
         $validated = $request->validated();
-
-        $user = User::find($id);
-
-        $user->name = $validated["nombre"];
+        $user->name = $validated["name"];
         $user->email = $validated["email"];
-        $user->password = bcrypt($validated["contrasenha"]);
-        $user->rol=$valido['rol'];
+ 
+        if($request["password"] != $user->password){
+            $user->password = bcrypt($request["password"]);
+        }
+
+        $user->rol = $validated['rol'];
+        $user->assignRole(Role::find($validated['rol']));
 
         $user->update();
 

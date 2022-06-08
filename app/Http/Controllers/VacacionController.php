@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Empleado;
 use App\Models\Vacacion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\VacacionRequest;
 
 class VacacionController extends Controller
@@ -16,10 +17,14 @@ class VacacionController extends Controller
      */
     public function index(Empleado $empleado)
     {
-        $vacaciones = $empleado->vacaciones();
+        $vacaciones = $empleado->vacaciones;
 
+        $dias = DB::table('vacacions')
+             ->select(DB::raw('DATEDIFF(fecha_fin, fecha_inicio) as dias'))
+             ->get('dias');           
+      
         $rolConPoderes = self::ROLCONPODERES;
-        return view('vacaciones.index', compact('empleado', 'vacaciones', 'rolConPoderes'));
+        return view('vacaciones.index', compact('empleado', 'vacaciones', 'rolConPoderes','dias'));
     }
 
     /**
@@ -50,7 +55,7 @@ class VacacionController extends Controller
         $vacacion->save();
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('vacaciones.index', compact('empleado', 'rolConPoderes'));
+        return redirect()->route('vacaciones.index', compact('empleado', 'rolConPoderes'))->with('creado','si');
     }
 
     /**
@@ -93,7 +98,7 @@ class VacacionController extends Controller
         $vacacion->save();
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('vacaciones.index', compact('empleado', 'rolConPoderes'));
+        return redirect()->route('vacaciones.index', compact('empleado', 'rolConPoderes'))->with('editado','si');
     }
 
     /**
@@ -102,8 +107,11 @@ class VacacionController extends Controller
      * @param  \App\Models\Vacacion  $vacacion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vacacion $vacacion)
+    public function destroy(Empleado $empleado, Vacacion $vacacion)
     {
-        //
+        $vacacion->delete();
+
+        $rolConPoderes = self::ROLCONPODERES;
+        return redirect()->route('vacaciones.index', compact('empleado', 'rolConPoderes'))->with('eliminado','si');
     }
 }

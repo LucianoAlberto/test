@@ -5082,7 +5082,7 @@ window.deleteConfirm = function (formId, event) {
   var texto = "";
 
   if (event.target.closest("form").classList.contains("cliente")) {
-    texto = '¿Desea borrar este cliente?';
+    texto = '¿Desea borrar este cliente? AVISO !!!  se eliminaran todos los contratos, facturas, proyectos asociados a este cliente';
   } else if (event.target.closest("form").classList.contains("user")) {
     texto = '¿Desea borrar este usuario?';
   } else if (event.target.closest("form").classList.contains("factura")) {
@@ -5091,11 +5091,22 @@ window.deleteConfirm = function (formId, event) {
     texto = '¿Desea borrar este contrato?';
   } else if (event.target.closest("form").classList.contains("proyecto")) {
     texto = '¿Desea borrar este proyecto?';
+  } else if (event.target.closest("form").classList.contains("pago")) {
+    texto = '¿Desea borrar este pago?';
+  } else if (event.target.closest("form").classList.contains("vacacion")) {
+    texto = '¿Desea borrar estas vacaciones?';
+  } else if (event.target.closest("form").classList.contains("falta")) {
+    texto = '¿Desea borrar esta falta?';
+  } else if (event.target.closest("form").classList.contains("nomina")) {
+    texto = '¿Desea borrar esta nómina?';
+  } else if (event.target.closest("form").classList.contains("asistencias")) {
+    texto = '¿Desea borrar esta asistencia?';
+  } else if (event.target.closest("form").classList.contains("empleado")) {
+    texto = '¿Desea borrar este empleado? AVISO !!!  se eliminaran todos los datos asociados a este EMPLEADO';
   }
 
-  console.log(texto);
   sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
-    icon: 'warning',
+    icon: 'question',
     text: texto,
     showCancelButton: true,
     confirmButtonText: 'Borrar',
@@ -5113,6 +5124,11 @@ window.detalles = function (vista, event) {
   if (event.target.tagName == "TD") {
     window.location.href = vista;
   }
+};
+
+window.anadirPago = function () {
+  var div = document.getElementById('nuevo_pago');
+  div.style.display = 'block';
 };
 
 window.masFactura = function (event) {
@@ -5217,7 +5233,8 @@ window.menosDominio = function (event) {
 
 window.masBasesDatos = function (event) {
   var numeroBasesDatos = event.target.closest(".divBasesDatos").querySelectorAll(".contenedorBasesDatos").length;
-  var divContenedorBasesDatos = event.target.closest(".divBasesDatos").querySelector(".contenedorBasesDatos").cloneNode(true); //modifico el for del label y el name e id del input
+  var divContenedorBasesDatos = event.target.closest(".divBasesDatos").querySelector(".contenedorBasesDatos").cloneNode(true);
+  console.log(divContenedorBasesDatos); //modifico el for del label y el name e id del input
 
   divContenedorBasesDatos.querySelector(".divNombreBD").querySelector("label").htmlFor = "bd[" + numeroBasesDatos + "][nombre]";
   divContenedorBasesDatos.querySelector(".divNombreBD").querySelector("input").name = "bd[" + numeroBasesDatos + "][nombre]";
@@ -5247,9 +5264,9 @@ window.masEmail = function (event) {
   divContenedorEmails.querySelector(".divEmailEmail").querySelector("label").htmlFor = "email[" + numeroEmail + "][email]";
   divContenedorEmails.querySelector(".divEmailEmail").querySelector("input").name = "email[" + numeroEmail + "][email]";
   divContenedorEmails.querySelector(".divEmailEmail").querySelector("input").value = null;
-  divContenedorEmails.querySelector(".divEmailcontrasenha").querySelector("label").htmlFor = "email[" + numeroEmail + "][contrasenha]";
-  divContenedorEmails.querySelector(".divEmailcontrasenha").querySelector("input").name = "email[" + numeroEmail + "][contrasenha]";
-  divContenedorEmails.querySelector(".divEmailcontrasenha").querySelector("input").value = null;
+  divContenedorEmails.querySelector(".divEmailContrasenha").querySelector("label").htmlFor = "email[" + numeroEmail + "][contrasenha]";
+  divContenedorEmails.querySelector(".divEmailContrasenha").querySelector("input").name = "email[" + numeroEmail + "][contrasenha]";
+  divContenedorEmails.querySelector(".divEmailContrasenha").querySelector("input").value = null;
   divContenedorEmails.querySelector(".divEmailRuta").querySelector("label").htmlFor = "email[" + numeroEmail + "][ruta_acceso]";
   divContenedorEmails.querySelector(".divEmailRuta").querySelector("input").name = "email[" + numeroEmail + "][ruta_acceso]";
   divContenedorEmails.querySelector(".divEmailRuta").querySelector("input").value = null;
@@ -5371,13 +5388,38 @@ window.anadirFactura = function () {
   div.style.display = 'block';
 };
 
+window.cerrarNuevaFactura = function () {
+  var div = document.getElementById('nueva_factura');
+  div.style.display = 'none';
+};
+
+window.cerrarNuevoPago = function () {
+  var div = document.getElementById('nuevo_pago');
+  div.style.display = 'none';
+}; // nuevo concepto
+
+
 window.nuevoConcepto = function () {
   var div = document.getElementById('nuevoConcepto');
   div.style.display = 'block';
+  div.scrollIntoView();
 };
 
 window.closeNuevoConcepto = function () {
   var div = document.getElementById('nuevoConcepto');
+  div.style.display = 'none';
+}; // nuevo ambito
+
+
+window.nuevoAmbito = function () {
+  var div = document.getElementById('nuevoAmbito');
+  div.style.display = 'block';
+  div.scrollIntoView();
+}; // nuevo ambito
+
+
+window.closenuevoAmbito = function () {
+  var div = document.getElementById('nuevoAmbito');
   div.style.display = 'none';
 };
 
@@ -5405,39 +5447,62 @@ window.nuevoAccesso = function () {
   document.querySelector('.div_accesso').append(div);
 };
 
-window.masPago = function (event) {
-  var numeroPago = event.target.closest(".divPagos").querySelectorAll(".contenedorNominas").length;
-  var divContenedorPagos = event.target.closest(".divPagos").querySelector(".contenedorNominas").cloneNode(true); //modifico el for del label y el name e id del input
-
-  divContenedorPagos.querySelector(".divFechaInicioNomina").querySelector("label").htmlFor = "nominas[" + numeroPago + "][fecha_inicio]";
-  divContenedorPagos.querySelector(".divFechaInicioNomina").querySelector("input").name = "nominas[" + numeroPago + "][fecha_inicio]";
-  divContenedorPagos.querySelector(".divFechaInicioNomina").querySelector("input").value = null;
-  divContenedorPagos.querySelector(".divFechaFinNomina").querySelector("label").htmlFor = "nominas[" + numeroPago + "][fecha_fin]";
-  divContenedorPagos.querySelector(".divFechaFinNomina").querySelector("input").name = "nominas[" + numeroPago + "][fecha_fin]";
-  divContenedorPagos.querySelector(".divFechaFinNomina").querySelector("input").value = null;
-  divContenedorPagos.querySelector(".divFechaPagoNomina").querySelector("label").htmlFor = "nominas[" + numeroPago + "][fecha_pago]";
-  divContenedorPagos.querySelector(".divFechaPagoNomina").querySelector("input").name = "nominas[" + numeroPago + "][fecha_pago]";
-  divContenedorPagos.querySelector(".divFechaPagoNomina").querySelector("input").value = null;
-  divContenedorPagos.querySelector(".divHorasNomina").querySelector("label").htmlFor = "nominas[" + numeroPago + "][horas_alta_ss]";
-  divContenedorPagos.querySelector(".divHorasNomina").querySelector("input").name = "nominas[" + numeroPago + "][horas_alta_ss]";
-  divContenedorPagos.querySelector(".divHorasNomina").querySelector("input").value = null;
-  divContenedorPagos.querySelector(".divImporteTotalNomina").querySelector("label").htmlFor = "nominas[" + numeroPago + "][importe_total]";
-  divContenedorPagos.querySelector(".divImporteTotalNomina").querySelector("input").name = "nominas[" + numeroPago + "][importe_total]";
-  divContenedorPagos.querySelector(".divImporteTotalNomina").querySelector("input").value = null;
-  divContenedorPagos.querySelector(".divImportePagadoNomina").querySelector("label").htmlFor = "nominas[" + numeroPago + "][importe_pagado]";
-  divContenedorPagos.querySelector(".divImportePagadoNomina").querySelector("input").name = "nominas[" + numeroPago + "][importe_pagado]";
-  divContenedorPagos.querySelector(".divImportePagadoNomina").querySelector("input").value = null;
-  event.target.closest(".divPagos").appendChild(divContenedorPagos);
+window.crearNomina = function () {
+  var div = document.getElementById('nueva_nomina');
+  div.style.display = 'block';
 };
 
-window.menosPago = function (event) {
-  var ultimoHijoContenedorPagos = event.target.closest(".divPagos").lastElementChild;
-  var listaContenedoresPagos = event.target.closest(".divPagos").querySelectorAll(".contenedorNominas");
-
-  if (ultimoHijoContenedorPagos.classList.contains("contenedorNominas") && listaContenedoresPagos.length > 1) {
-    ultimoHijoContenedorPagos.remove();
-  }
+window.cerrarNomina = function () {
+  var div = document.getElementById('nueva_nomina');
+  div.style.display = 'none';
 };
+/*
+window.masPago = function(event)
+{
+    let numeroPago = event.target.closest(".divPagos").querySelectorAll(".contenedorNominas").length;
+
+    let divContenedorPagos = event.target.closest(".divPagos").querySelector(".contenedorNominas").cloneNode(true);
+
+    //modifico el for del label y el name e id del input
+    divContenedorPagos.querySelector(".divFechaInicioNomina").querySelector("label").htmlFor = "nominas["+numeroPago+"][fecha_inicio]";
+    divContenedorPagos.querySelector(".divFechaInicioNomina").querySelector("input").name = "nominas["+numeroPago+"][fecha_inicio]";
+    divContenedorPagos.querySelector(".divFechaInicioNomina").querySelector("input").value = null;
+
+    divContenedorPagos.querySelector(".divFechaFinNomina").querySelector("label").htmlFor = "nominas["+numeroPago+"][fecha_fin]";
+    divContenedorPagos.querySelector(".divFechaFinNomina").querySelector("input").name = "nominas["+numeroPago+"][fecha_fin]";
+    divContenedorPagos.querySelector(".divFechaFinNomina").querySelector("input").value = null;
+
+    divContenedorPagos.querySelector(".divFechaPagoNomina").querySelector("label").htmlFor = "nominas["+numeroPago+"][fecha_pago]";
+    divContenedorPagos.querySelector(".divFechaPagoNomina").querySelector("input").name = "nominas["+numeroPago+"][fecha_pago]";
+    divContenedorPagos.querySelector(".divFechaPagoNomina").querySelector("input").value = null;
+
+    divContenedorPagos.querySelector(".divHorasNomina").querySelector("label").htmlFor = "nominas["+numeroPago+"][horas_alta_ss]";
+    divContenedorPagos.querySelector(".divHorasNomina").querySelector("input").name = "nominas["+numeroPago+"][horas_alta_ss]";
+    divContenedorPagos.querySelector(".divHorasNomina").querySelector("input").value = null;
+
+    divContenedorPagos.querySelector(".divImporteTotalNomina").querySelector("label").htmlFor = "nominas["+numeroPago+"][importe_total]";
+    divContenedorPagos.querySelector(".divImporteTotalNomina").querySelector("input").name = "nominas["+numeroPago+"][importe_total]";
+    divContenedorPagos.querySelector(".divImporteTotalNomina").querySelector("input").value = null;
+
+    divContenedorPagos.querySelector(".divImportePagadoNomina").querySelector("label").htmlFor = "nominas["+numeroPago+"][importe_pagado]";
+    divContenedorPagos.querySelector(".divImportePagadoNomina").querySelector("input").name = "nominas["+numeroPago+"][importe_pagado]";
+    divContenedorPagos.querySelector(".divImportePagadoNomina").querySelector("input").value = null;
+
+    event.target.closest(".divPagos").appendChild(divContenedorPagos);
+}
+
+window.menosPago = function(event)
+{
+    let ultimoHijoContenedorPagos = event.target.closest(".divPagos").lastElementChild;
+
+    let listaContenedoresPagos = event.target.closest(".divPagos").querySelectorAll(".contenedorNominas");
+
+    if(ultimoHijoContenedorPagos.classList.contains("contenedorNominas") && listaContenedoresPagos.length > 1){
+        ultimoHijoContenedorPagos.remove();
+    }
+}
+*/
+
 
 window.masFalta = function (event) {
   var numeroFalta = event.target.closest(".divFaltas").querySelectorAll(".contenedorFaltas").length;
@@ -5447,17 +5512,42 @@ window.masFalta = function (event) {
   divContenedorFaltas.querySelector(".divFechaFalta").querySelector("input").name = "faltas[" + numeroFalta + "][fecha_falta]";
   divContenedorFaltas.querySelector(".divFechaFalta").querySelector("input").value = null;
   divContenedorFaltas.querySelector(".divJustificacionFalta").querySelector("label").htmlFor = "faltas[" + numeroFalta + "][justificacion]";
-  divContenedorFaltas.querySelector(".divJustificacionFalta").querySelector("input").name = "faltas[" + numeroFalta + "][justificacion]";
-  divContenedorFaltas.querySelector(".divJustificacionFalta").querySelector("input").value = null;
+  divContenedorFaltas.querySelector(".divJustificacionFalta").querySelector("textarea").name = "faltas[" + numeroFalta + "][justificacion]";
+  divContenedorFaltas.querySelector(".divJustificacionFalta").querySelector("textarea").value = null;
   divContenedorFaltas.querySelector(".divNotaFalta").querySelector("label").htmlFor = "faltas[" + numeroFalta + "][notas]";
-  divContenedorFaltas.querySelector(".divNotaFalta").querySelector("input").name = "faltas[" + numeroFalta + "][notas]";
-  divContenedorFaltas.querySelector(".divNotaFalta").querySelector("input").value = null;
+  divContenedorFaltas.querySelector(".divNotaFalta").querySelector("textarea").name = "faltas[" + numeroFalta + "][notas]";
+  divContenedorFaltas.querySelector(".divNotaFalta").querySelector("textarea").value = null;
   event.target.closest(".divFaltas").appendChild(divContenedorFaltas);
 };
 
 window.menosFalta = function (event) {
   var ultimoHijoContenedorFaltas = event.target.closest(".divFaltas").lastElementChild;
   var listaContenedoresFaltas = event.target.closest(".divFaltas").querySelectorAll(".contenedorFaltas");
+
+  if (ultimoHijoContenedorFaltas.classList.contains("contenedorFaltas") && listaContenedoresFaltas.length > 1) {
+    ultimoHijoContenedorFaltas.remove();
+  }
+};
+
+window.masFaltasPracticas = function (event) {
+  var numeroFalta = event.target.closest(".divFaltasPracticas").querySelectorAll(".contenedorFaltas").length;
+  var divContenedorFaltas = event.target.closest(".divFaltasPracticas").querySelector(".contenedorFaltas").cloneNode(true); //modifico el for del label y el name e id del input
+
+  divContenedorFaltas.querySelector(".divFechaFaltaPracticas").querySelector("label").htmlFor = "faltas[" + numeroFalta + "][fecha_falta]";
+  divContenedorFaltas.querySelector(".divFechaFaltaPracticas").querySelector("input").name = "faltas[" + numeroFalta + "][fecha_falta]";
+  divContenedorFaltas.querySelector(".divFechaFaltaPracticas").querySelector("input").value = null;
+  divContenedorFaltas.querySelector(".divJustificacionFaltaPracticas").querySelector("label").htmlFor = "faltas[" + numeroFalta + "][justificacion]";
+  divContenedorFaltas.querySelector(".divJustificacionFaltaPracticas").querySelector("textarea").name = "faltas[" + numeroFalta + "][justificacion]";
+  divContenedorFaltas.querySelector(".divJustificacionFaltaPracticas").querySelector("textarea").value = null;
+  divContenedorFaltas.querySelector(".divNotaFaltaPracticas").querySelector("label").htmlFor = "faltas[" + numeroFalta + "][notas]";
+  divContenedorFaltas.querySelector(".divNotaFaltaPracticas").querySelector("textarea").name = "faltas[" + numeroFalta + "][notas]";
+  divContenedorFaltas.querySelector(".divNotaFaltaPracticas").querySelector("textarea").value = null;
+  event.target.closest(".divFaltasPracticas").appendChild(divContenedorFaltas);
+};
+
+window.menosFaltasPracticas = function (event) {
+  var ultimoHijoContenedorFaltas = event.target.closest(".divFaltasPracticas").lastElementChild;
+  var listaContenedoresFaltas = event.target.closest(".divFaltasPracticas").querySelectorAll(".contenedorFaltas");
 
   if (ultimoHijoContenedorFaltas.classList.contains("contenedorFaltas") && listaContenedoresFaltas.length > 1) {
     ultimoHijoContenedorFaltas.remove();
@@ -5539,6 +5629,20 @@ window.numero_tarjeta = function () {
 
   if (entradaIban.value.length > 14) {
     entradaIban.value = entradaIban.value;
+  }
+};
+
+window.mandarFormAmbito = function () {
+  document.getElementById('filtroForm').submit();
+};
+
+window.mostrarPracticas = function (event) {
+  if (event.target.checked) {
+    document.getElementById("divPracticas").style.display = "block";
+    document.getElementById("divEmpleado").style.display = "none";
+  } else {
+    document.getElementById("divPracticas").style.display = "none";
+    document.getElementById("divEmpleado").style.display = "block";
   }
 };
 

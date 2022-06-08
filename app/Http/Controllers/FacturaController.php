@@ -7,6 +7,7 @@ use App\Models\Factura;
 use App\Models\Contrato;
 use Illuminate\Http\Request;
 use App\Http\Requests\FacturaRequest;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 
 class FacturaController extends Controller
@@ -18,11 +19,30 @@ class FacturaController extends Controller
      */
     public function index(Cliente $cliente)
     {
-        $proyectos = $cliente->proyectos();
-        $facturas = $cliente->facturas();
-
         $rolConPoderes = self::ROLCONPODERES;
-        return view('facturas.index', compact('cliente', 'proyectos', 'facturas', 'rolConPoderes'));
+        $facturas = $cliente->facturas()->paginate(10);
+
+        return view('facturas.index', compact('cliente', 'facturas', 'rolConPoderes'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexTotal(Request $request)
+    {
+        $rolConPoderes = self::ROLCONPODERES;
+        $criterios = Schema::getColumnListing('facturas');
+
+        if(!is_null($request->busqueda) && !is_null($request->criterio)){
+            $facturas = Factura::where($request->criterio, 'LIKE', '%'.$request->busqueda.'%')->paginate(10);
+        }
+        else{
+            $facturas = Factura::paginate(10);
+        }
+
+        return view ('facturas.indexTotal', compact('facturas', 'rolConPoderes', 'criterios'));
     }
 
     /**
@@ -44,8 +64,6 @@ class FacturaController extends Controller
     public function store(FacturaRequest $request, Cliente $cliente)
     {
         $validated = $request->validated();
-        //dd($valido);
-
 
         $factura = new Factura;
         $factura->cliente_id = $cliente->id;
@@ -59,12 +77,13 @@ class FacturaController extends Controller
         $factura->save();
 
         if($validated['referencia_contrato'] != 0){
-            $contrato = Contrato::where('referencia', $validated['referencia_contrato'])->select('id')->get();
-            $factura->contratos()->attach($contrato[0]);
+            $contrato = Contrato::where('referencia', $validated['referencia_contrato'])->select('id')->first();
+
+            $factura->contratos()->attach($contrato->id);
         }
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('facturas.index', compact('rolConPoderes'));
+        return redirect()->route('facturas.index', compact('cliente', 'rolConPoderes'))->with('creado','si');
     }
 
     /**
@@ -75,7 +94,9 @@ class FacturaController extends Controller
      */
     public function show(Cliente $cliente, Factura $factura)
     {
-        return view('facturas.show', compact('cliente', 'factura'));
+
+        $rolConPoderes = self::ROLCONPODERES;
+        return view('facturas.show', compact('cliente', 'factura','rolConPoderes'));
     }
 
     /**
@@ -99,6 +120,7 @@ class FacturaController extends Controller
     public function update(FacturaRequest $request, Cliente $cliente, Factura $factura)
     {
 
+        $facutra_antigua=$factura;
         $validated = $request->validated();
 
         $factura->cliente_id = $cliente->id;
@@ -116,7 +138,7 @@ class FacturaController extends Controller
         $factura->save();
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('facturas.index', compact('cliente', 'rolConPoderes'));
+        return redirect()->route('facturas.index', compact('cliente', 'rolConPoderes'))->with('editado','si');
     }
 
     /**
@@ -130,11 +152,10 @@ class FacturaController extends Controller
         if($factura->factura != null){
             Storage::disk('public')->delete($factura->factura);
         }
-            //dd($factura_destruida->contratos);
         $factura->contratos()->detach();
         $factura->delete();
 
         $rolConPoderes = self::ROLCONPODERES;
-        return redirect()->route('facturas.index', compact('cliente', 'factura', 'rolConPoderes'));
+        return redirect()->route('facturas.index', compact('cliente', 'factura', 'rolConPoderes'))->with('eliminado','si');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Ambito;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Scopes\ActiveScope;
 
 class Cliente extends Model
 {
@@ -53,12 +54,12 @@ class Cliente extends Model
         return $this->belongsToMany(Ambito::class);
     }
 
-    public function scopeSinAmbitos($query)
+    public function scopeSinAmbito($query)
     {
         return $query->doesntHave('ambitos')->paginate(10);
     }
 
-    public function scopeConAmbitos($query, $ambito)
+    public function scopeConAmbito($query, $ambito)
     {
         return $query->whereHas('ambitos', function($q) use($ambito){
             $q->where('ambito_id', $ambito);

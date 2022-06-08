@@ -10,7 +10,7 @@ class Nomina extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['empleado_id', 'fecha_inicio', 'fecha_fin', 'importe_total', 'importe_pagado', 'fecha_pago'];
+    protected $fillable = ['empleado_id', 'fecha_inicio', 'fecha_fin', 'importe_total','pago_extra', 'importe_pagado', 'fecha_pago', 'horas_alta_ss'];
 
     /**
      * Obtiene el empleado asociado a esta nómina.

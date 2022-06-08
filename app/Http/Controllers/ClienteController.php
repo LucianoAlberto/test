@@ -240,6 +240,10 @@ class ClienteController extends Controller
             $proyecto->delete();
         }
 
+        foreach($cliente->pagos as $pago){
+            $pago->delete();
+        }
+
         $cliente->ambitos()->detach();
         $cliente->delete();
 

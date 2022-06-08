@@ -18,10 +18,10 @@ return new class extends Migration
             $table->foreignId('cliente_id')->constrained();
             $table->foreignId('concepto_facturas_id')->constrained()->nullable();
             $table->string('referencia');
-            $table->decimal('base_imponible', 8, 2)->nullable();
-            $table->decimal('iva', 4, 2)->nullable();
-            $table->decimal('irpf', 4, 2)->nullable();
-            $table->decimal('total', 8, 2)->nullable();
+            $table->decimal('base_imponible', 10, 2)->nullable();
+            $table->decimal('iva', 10, 2)->nullable();
+            $table->decimal('irpf', 10, 2)->nullable();
+            $table->decimal('total', 10, 2)->nullable();
             $table->date('fecha_firma')->nullable();
             $table->string('archivo')->nullable();
             $table->string('presupuesto')->nullable();
